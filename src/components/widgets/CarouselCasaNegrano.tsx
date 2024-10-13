@@ -2,10 +2,11 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 interface CarouselCasaNegranoProps {
-  images: string[];
+  images: any[];
 }
 
 export default function CarouselCasaNegrano({ images }: CarouselCasaNegranoProps) {
+  console.log(images);
   return (
     <Carousel className="w-full max-w-sm">
       <CarouselContent className="-ml-1">
@@ -14,7 +15,7 @@ export default function CarouselCasaNegrano({ images }: CarouselCasaNegranoProps
             <div className="p-1">
               <Card>
                 <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <img src={image} alt={`Carousel item ${index + 1}`} className="w-full h-full object-cover" />
+                  <img src={image.src} alt={`Carousel item ${index + 1}`} className="w-full h-full object-cover" />
                 </CardContent>
               </Card>
             </div>

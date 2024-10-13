@@ -12,6 +12,34 @@ import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import { getPermalink } from '~/utils/permalinks';
 import HeroCasaNegrano from '~/components/widgets/HeroCasaNegrano.astro';
 
+import img1 from '../../assets/images/bilocale/IMG_8928.webp';
+import img2 from '../../assets/images/bilocale/IMG_8929.webp';
+import img3 from '../../assets/images/bilocale/IMG_8930.webp';
+import img4 from '../../assets/images/bilocale/IMG_8931.webp';
+import img5 from '../../assets/images/bilocale/IMG_8932.webp';
+import img6 from '../../assets/images/bilocale/IMG_8933.webp';
+import img7 from '../../assets/images/bilocale/IMG_8934.webp';
+import img8 from '../../assets/images/bilocale/IMG_8935.webp';
+import img9 from '../../assets/images/bilocale/IMG_8936.webp';
+import img10 from '../../assets/images/bilocale/IMG_8937.webp';
+import img11 from '../../assets/images/bilocale/IMG_8939.webp';
+import img12 from '../../assets/images/bilocale/IMG_8940.webp';
+import img13 from '../../assets/images/bilocale/IMG_8941.webp';
+import img14 from '../../assets/images/bilocale/IMG_8942.webp';
+import img15 from '../../assets/images/bilocale/IMG_8943.webp';
+import img16 from '../../assets/images/bilocale/IMG_8944.webp';
+import img17 from '../../assets/images/bilocale/IMG_8945.webp';
+import img18 from '../../assets/images/bilocale/IMG_8946.webp';
+import img19 from '../../assets/images/bilocale/IMG_8947.webp';
+import img20 from '../../assets/images/bilocale/IMG_8948.webp';
+
+import imgCasa from '../../assets/images/casa.webp';
+
+const images = [
+  img1, img2, img3, img4, img5, img6, img7, img8, img9, img10,
+  img11, img12, img13, img14, img15, img16, img17, img18, img19, img20
+];
+
 const metadata = {
   title: 'Casa Negrano - Holiday Housing - Appartamenti / Casa vacanze a Trento',
 };
@@ -62,7 +90,7 @@ const metadata = {
     id="about"
     columns={3}
     images={[
-      './src/assets/images/casa.webp',
+      imgCasa,
     ]}
     items={[
       {
@@ -108,29 +136,7 @@ const metadata = {
     title="I nostri appartamenti"
     subtitle="Appartamenti accoglienti per ogni esigenza."
     isReversed
-    images={[
-      './src/assets/images/bilocale/IMG_8928.webp',
-      './src/assets/images/bilocale/IMG_8929.webp',
-      './src/assets/images/bilocale/IMG_8930.webp',
-      './src/assets/images/bilocale/IMG_8931.webp',
-      './src/assets/images/bilocale/IMG_8932.webp',
-      './src/assets/images/bilocale/IMG_8933.webp',
-      './src/assets/images/bilocale/IMG_8934.webp',
-
-      './src/assets/images/bilocale/IMG_8935.webp',
-      './src/assets/images/bilocale/IMG_8936.webp',
-      './src/assets/images/bilocale/IMG_8937.webp',
-      './src/assets/images/bilocale/IMG_8939.webp',
-      './src/assets/images/bilocale/IMG_8940.webp',
-      './src/assets/images/bilocale/IMG_8941.webp',
-      './src/assets/images/bilocale/IMG_8942.webp',
-      './src/assets/images/bilocale/IMG_8943.webp',
-      './src/assets/images/bilocale/IMG_8944.webp',
-      './src/assets/images/bilocale/IMG_8945.webp',
-      './src/assets/images/bilocale/IMG_8946.webp',
-      './src/assets/images/bilocale/IMG_8947.webp',
-      './src/assets/images/bilocale/IMG_8948.webp',
-    ]}
+    images={images}
     items={[
       {
         title: 'Descrizione:',
@@ -177,16 +183,7 @@ const metadata = {
     id="trilocale"
     isReversed
     isAfterContent={true}
-    images={[
-      './src/assets/images/bilocale/IMG_8928.webp',
-      './src/assets/images/bilocale/IMG_8929.webp',
-      './src/assets/images/bilocale/IMG_8930.webp',
-      './src/assets/images/bilocale/IMG_8931.webp',
-      './src/assets/images/bilocale/IMG_8932.webp',
-      './src/assets/images/bilocale/IMG_8933.webp',
-      './src/assets/images/bilocale/IMG_8934.webp',
-      './src/assets/images/bilocale/IMG_8935.webp',
-    ]}
+    images={images}
     items={[
       {
         title: 'Descrizione:',
