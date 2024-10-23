@@ -2,7 +2,6 @@
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
-import Announcement from '~/components/widgets/Announcement.astro';
 
 import { headerData, footerData } from '~/navigation';
 
@@ -29,11 +28,15 @@ const { metadata } = Astro.props;
     <Footer {...footerData} />
   </slot>
 
-  <script
-    id="Cookiebot"
-    src="https://consent.cookiebot.com/uc.js"
-    data-cbid="30c2bb46-8783-403f-8dbf-1a270b029e27"
-    data-blockingmode="auto"
-    type="text/javascript"
-    defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var script = document.createElement('script');
+      script.id = 'Cookiebot';
+      script.src = 'https://consent.cookiebot.com/uc.js';
+      script.setAttribute('data-cbid', '30c2bb46-8783-403f-8dbf-1a270b029e27');
+      script.setAttribute('data-blockingmode', 'auto');
+      script.type = 'text/javascript';
+      document.body.appendChild(script);
+    });
+  </script>
 </Layout>

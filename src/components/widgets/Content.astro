@@ -2,7 +2,6 @@
 import type { Content as Props } from '~/types';
 import Headline from '../ui/Headline.astro';
 import WidgetWrapper from '../ui/WidgetWrapper.astro';
-import Image from '~/components/common/Image.astro';
 import Button from '~/components/ui/Button.astro';
 import ItemGrid from '../ui/ItemGrid.astro';
 import CarouselCasaNegrano from './CarouselCasaNegrano';
@@ -15,7 +14,6 @@ const {
   callToAction,
   items = [],
   columns,
-  image = await Astro.slots.render('image'),
   isReversed = false,
   isAfterContent = false,
   images = [],
@@ -31,7 +29,7 @@ const {
 
 <WidgetWrapper
   id={id}
-  isDark={false}
+  isDark={isDark}
   containerClass={`max-w-7xl mx-auto ${isAfterContent ? 'pt-0 md:pt-0 lg:pt-0' : ''} ${classes?.container ?? ''}`}
   bg={bg}
 >
