@@ -70,7 +70,7 @@ const CalendarForm = () => {
   const today = new Date();
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-6">
+    <div className="w-full max-w-4xl mx-auto py-6 md:p-6">
       <Card>
         <CardHeader>
           <CardTitle>Scrivici!</CardTitle>
