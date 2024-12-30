@@ -1,70 +1,63 @@
 ---
-import heroImage from '../../assets/images/suiteDeluxe/20241130_155610.webp';
 // src/components/IntroSection.astro
+import { Image } from 'astro:assets';
+import { ViewTransitions } from 'astro:transitions';
+import heroImage from '../../assets/images/suiteDeluxe/20241130_155610.webp';
+import HouseIcon from '../ui/house.astro';
+
+const apartments = [
+  { title: 'Bilocale 2', subtitle: 'posti letto', href: '#mini' },
+  { title: 'Trilocale 4', subtitle: 'posti letto', href: '#medio' },
+  { title: 'Appartamento', subtitle: '8 posti letto', href: '#grande' }
+];
 ---
 
+<ViewTransitions />
+
 <section class="w-full min-h-screen bg-white">
-  <div class="max-w-full h-auto lg:h-[80vh] flex flex-col"> <!-- Modified height for mobile -->
-    <!-- Main content row -->
-    <div class="flex flex-col lg:flex-row flex-1 overflow-hidden"> <!-- Changed to column on mobile -->
-      <!-- Left content -->
-      <div class="w-full lg:w-1/2 p-6 lg:p-16 flex flex-col justify-center order-2 lg:order-1"> <!-- Added order and adjusted padding -->
-        <h1 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 lg:mb-6">Il tuo rifugio a Trento, tra natura e comfort</h1>
+  <div class="max-w-full h-auto lg:h-[80vh] flex flex-col">
+    <div class="flex flex-col lg:flex-row flex-1 overflow-hidden">
+      <div class="w-full lg:w-1/2 p-6 lg:p-16 flex flex-col justify-center order-2 lg:order-1">
+        <h1 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 lg:mb-6">
+          Il tuo rifugio a Trento, tra natura e comfort
+        </h1>
         <p class="text-base lg:text-lg text-gray-600 leading-relaxed">
           Situata a Villazzano, una tranquilla collina a soli 5 km dal centro di Trento, Casa Negrano offre due
           appartamenti accoglienti e confortevoli, ideali per chi desidera esplorare il Trentino o rilassarsi immerso
           nella natura. Circondata dalla bellezza delle montagne e collegata agevolmente alla città, la nostra struttura
           è perfetta per famiglie, coppie, gruppi di amici e chi viaggia per lavoro.
         </p>
-        <!-- Apartments options row -->
-        <div class="flex flex-col sm:flex-row justify-start gap-4 lg:gap-12 p-4 lg:p-8 bg-white"> <!-- Modified for better mobile spacing -->
-          {
-            [
-              { title: 'Bilocale 2', subtitle: 'posti letto', href: '#mini' },
-              { title: 'Trilocale 4', subtitle: 'posti letto', href: '#medio' },
-              { title: 'Appartamento', subtitle: '8 posti letto', href: '#grande' },
-            ].map((apt) => (
-              <a href={apt.href} class="flex items-center gap-3 py-2 lg:py-0"> <!-- Added vertical padding for mobile -->
-                <div class="bg-green-500 p-2 rounded-full">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 text-white"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                    <polyline points="9 22 9 12 15 12 15 22" />
-                  </svg>
-                </div>
-                <div class="flex flex-col">
-                  <span class="font-medium text-gray-900">{apt.title}</span>
-                  <span class="text-gray-600">{apt.subtitle}</span>
-                </div>
-              </a>
-            ))
-          }
+        
+        <div class="flex flex-col sm:flex-row justify-start gap-4 lg:gap-12 p-4 lg:p-8 bg-white">
+          {apartments.map((apt) => (
+            <a href={apt.href} class="flex items-center gap-3 py-2 lg:py-0">
+              <div class="bg-green-500 p-2 rounded-full">
+                <HouseIcon class="h-5 w-5 text-white" />
+              </div>
+              <div class="flex flex-col">
+                <span class="font-medium text-gray-900">{apt.title}</span>
+                <span class="text-gray-600">{apt.subtitle}</span>
+              </div>
+            </a>
+          ))}
         </div>
       </div>
 
-      <!-- Right image container -->
-      <div class="w-full lg:w-1/2 overflow-hidden h-[50vh] lg:h-auto order-1 lg:order-2"> <!-- Modified height and added order -->
+      <div class="w-full lg:w-1/2 overflow-hidden h-[50vh] lg:h-auto order-1 lg:order-2">
         <div class="w-full h-full">
-          <img
-            src={heroImage.src}
+          <Image 
+            src={heroImage}
             alt="Casa Negrano - Vista esterna"
             class="w-full h-full object-cover"
-            loading="lazy"
+            width={heroImage.width}
+            height={heroImage.height}
+            loading="eager"
+            fetchpriority="high"
+            format="webp"
+            quality={80}
           />
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<style>
-  /* Puoi aggiungere stili scoped qui se necessario */
-</style>
