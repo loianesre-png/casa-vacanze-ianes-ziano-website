@@ -71,6 +71,12 @@ const BookingWidget = ({ availability, minStayRules, maxGuests = 4 }) => {
   }, [availability, minStayRules]);
 
   const isDateUnavailable = (date) => {
+    // Check if date is in the past (before today)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset time to start of day
+    if (date < today) return true;
+
+    // Existing checks
     if (!validDateRange.start || !validDateRange.end) return true;
     if (date < validDateRange.start || date > validDateRange.end) return true;
     return unavailableDates.has(format(date, 'yyyy-MM-dd'));
