@@ -21,7 +21,7 @@ Raccogliamo i dati personali che ci fornite volontariamente quando:
 
 - Compilate il modulo di contatto
 - Effettuate una prenotazione
-- Vi registrate al nostro sito
+- Vi registrate al nostro sito 
 - Vi iscrivete alla nostra newsletter
 
 Questi dati possono includere:
