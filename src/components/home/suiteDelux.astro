@@ -2,13 +2,16 @@
 import BookingWidgetWrapper from '../booking/BookingWidgetWrapper.astro';
 import ImageCarousel from '../widgets/ImageCarousel.astro';
 
-// Get all images from the bilocale directory
-const images = (await Astro.glob('../../assets/images/suiteDeluxe/*.webp')).map(image => ({ src: image.default }));
+// Get all images from the suite directory
+const imageModules = await Astro.glob('../../assets/images/suiteDeluxe/*.webp');
 
-const imagesSuite = images.map(image => image.src);
+// Transform to the format expected by the enhanced ImageCarousel
+const images = imageModules.map((module, index) => ({
+  src: module.default,
+  alt: `Suite Deluxe apartment view ${index + 1}`,
+  title: `Image ${index + 1} of suite deluxe apartment`
+}));
 
-
-// src/components/ApartmentDetail.astro
 ---
 
 <div class="flex flex-col-reverse lg:flex-row gap-12 max-w-7xl mx-auto p-6">
@@ -16,7 +19,7 @@ const imagesSuite = images.map(image => image.src);
   <div class="w-full lg:w-1/2 flex flex-col gap-6">
     <!-- Qui va inserito il componente dello slider esistente -->
 
-    <ImageCarousel images={imagesSuite} />
+    <ImageCarousel images={images} loading="eager" preloadCount={2} />
     <div class="flex justify-center">
       <BookingWidgetWrapper property="large" />
     </div>

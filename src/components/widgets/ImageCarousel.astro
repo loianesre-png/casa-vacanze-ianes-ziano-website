@@ -1,244 +1,564 @@
 ---
 // ImageCarousel.astro
 interface ImageItem {
-    src: string;
-    alt?: string;
-    title?: string;
+  src: string | any; // Allow any type for src to handle Astro's image processing
+  alt?: string;
+  title?: string;
 }
 
 interface Props {
-    images: ImageItem[];
+  images: ImageItem[];
+  loading?: 'eager' | 'lazy';
+  preloadCount?: number;
 }
 
-const { images } = Astro.props;
+const { images, loading = 'lazy', preloadCount = 2 } = Astro.props;
 
-const safeImages = images.map(img => ({
-    src: img.src,
-    alt: img.alt || '',
-    title: img.title || ''
-}));
+// Ensure all image sources are proper strings before passing to Alpine.js
+const safeImages = images.map((img, index) => {
+  let imageSrc: string;
+
+  // Handle different possible structures for img.src
+  const imgSrc = img.src as any; // Type assertion to handle various formats
+
+  if (typeof imgSrc === 'string') {
+    imageSrc = imgSrc;
+  } else if (imgSrc && imgSrc.src) {
+    imageSrc = imgSrc.src;
+  } else if (imgSrc && typeof imgSrc === 'object') {
+    // For optimized images, try to get the src property or convert to string
+    imageSrc = imgSrc.src || String(imgSrc);
+  } else {
+    imageSrc = String(imgSrc);
+  }
+
+  // Debug: Log the final image sources
+//   console.log(`Image ${index}:`, {
+//     original: imgSrc,
+//     originalType: typeof imgSrc,
+//     final: imageSrc,
+//     finalType: typeof imageSrc,
+//   });
+
+  return {
+    src: imageSrc,
+    alt: img.alt || `Image ${index + 1}`,
+    title: img.title || '',
+  };
+});
 ---
 
-<div 
-    class="relative w-full max-w-4xl mx-auto" 
-    x-data={`{
+<div
+  class="relative w-full max-w-4xl mx-auto"
+  x-data={`{
         images: ${JSON.stringify(safeImages)},
         currentIndex: 0,
         isModalOpen: false,
-        prev() {
-            this.currentIndex = this.currentIndex === 0 
+        loadedImages: new Set([0]), // Track loaded images
+        isLoading: false,
+        autoplayInterval: null,
+        autoplayEnabled: false,
+        touchStartX: 0,
+        touchEndX: 0,
+        
+        init() {
+            // Preload first few images
+            this.preloadImages();
+            // Set up intersection observer for better performance
+            this.setupIntersectionObserver();
+            // Add keyboard navigation
+            this.setupKeyboardNavigation();
+        },
+        
+        preloadImages() {
+            const preloadCount = Math.min(${preloadCount}, this.images.length);
+            for (let i = 0; i < preloadCount; i++) {
+                this.loadImage(i);
+            }
+        },
+        
+        setupIntersectionObserver() {
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            this.preloadNearbyImages();
+                        }
+                    });
+                });
+                observer.observe(this.$el);
+            }
+        },
+        
+        setupKeyboardNavigation() {
+            document.addEventListener('keydown', (e) => {
+                if (this.isModalOpen) {
+                    if (e.key === 'ArrowLeft') this.prev();
+                    if (e.key === 'ArrowRight') this.next();
+                }
+            });
+        },
+        
+        async loadImage(index) {
+            if (this.loadedImages.has(index)) return;
+            
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => {
+                    this.loadedImages.add(index);
+                    resolve();
+                };
+                img.onerror = () => resolve(); // Continue even if image fails
+                
+                // Since we've already processed the image sources, they should be strings
+                img.src = this.images[index].src;
+            });
+        },
+        
+        preloadNearbyImages() {
+            const indicesToLoad = [
+                (this.currentIndex + 1) % this.images.length,
+                (this.currentIndex - 1 + this.images.length) % this.images.length
+            ];
+            
+            indicesToLoad.forEach(index => this.loadImage(index));
+        },
+        
+        async prev() {
+            const newIndex = this.currentIndex === 0 
                 ? this.images.length - 1 
                 : this.currentIndex - 1;
+            await this.goToSlide(newIndex);
         },
-        next() {
-            this.currentIndex = (this.currentIndex + 1) % this.images.length;
+        
+        async next() {
+            const newIndex = (this.currentIndex + 1) % this.images.length;
+            await this.goToSlide(newIndex);
         },
+        
+        async goToSlide(index) {
+            if (index === this.currentIndex) return;
+            
+            this.isLoading = true;
+            await this.loadImage(index);
+            this.currentIndex = index;
+            this.preloadNearbyImages();
+            this.isLoading = false;
+        },
+        
         openModal() {
             this.isModalOpen = true;
             document.body.style.overflow = 'hidden';
+            document.body.style.paddingRight = this.getScrollbarWidth() + 'px';
         },
+        
         closeModal() {
             this.isModalOpen = false;
             document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
+            this.stopAutoplay();
+        },
+        
+        getScrollbarWidth() {
+            return window.innerWidth - document.documentElement.clientWidth;
+        },
+        
+        toggleAutoplay() {
+            this.autoplayEnabled = !this.autoplayEnabled;
+            if (this.autoplayEnabled) {
+                this.startAutoplay();
+            } else {
+                this.stopAutoplay();
+            }
+        },
+        
+        startAutoplay() {
+            this.stopAutoplay();
+            this.autoplayInterval = setInterval(() => {
+                if (!this.isLoading) this.next();
+            }, 3000);
+        },
+        
+        stopAutoplay() {
+            if (this.autoplayInterval) {
+                clearInterval(this.autoplayInterval);
+                this.autoplayInterval = null;
+            }
+        },
+        
+        handleTouchStart(e) {
+            this.touchStartX = e.touches[0].clientX;
+        },
+        
+        handleTouchEnd(e) {
+            this.touchEndX = e.changedTouches[0].clientX;
+            this.handleSwipe();
+        },
+        
+        handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = this.touchStartX - this.touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    this.next();
+                } else {
+                    this.prev();
+                }
+            }
         }
     }`}
-    @keydown.escape.window="closeModal()"
+  @keydown.escape.window="closeModal()"
+  x-init="init()"
 >
-    <!-- Thumbnail carousel -->
-    <div class="overflow-hidden relative rounded-lg aspect-video">
-        <div
-            class="flex h-full transition-transform duration-500 ease-in-out"
-            :style="`transform: translateX(-${currentIndex * 100}%)`"
-        >
-            {images.map((image) => (
-                <div class="w-full h-full flex-shrink-0">
-                    <img 
-                        src={image.src} 
-                        alt={image.alt || ''}
-                        class="w-full h-full object-cover"
-                        loading="lazy"
-                    />
-                </div>
-            ))}
+  <!-- Loading indicator -->
+  <div
+    x-show="isLoading"
+    class="absolute inset-0 bg-black/20 flex items-center justify-center z-20 rounded-lg"
+    x-transition:enter="transition ease-out duration-150"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+  >
+    <div class="bg-white/90 rounded-full p-3">
+      <svg class="animate-spin h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path
+          class="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        ></path>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Thumbnail carousel -->
+  <div
+    class="overflow-hidden relative rounded-lg aspect-video bg-gray-100"
+    @touchstart="handleTouchStart($event)"
+    @touchend="handleTouchEnd($event)"
+  >
+    <div
+      class="flex h-full transition-transform duration-500 ease-in-out will-change-transform"
+      :style="`transform: translateX(-${currentIndex * 100}%)`"
+    >
+      <template x-for="(image, index) in images" :key="index">
+        <div class="w-full h-full flex-shrink-0 relative">
+          <img
+            :src="image.src"
+            :alt="image.alt"
+            class="w-full h-full object-cover transition-opacity duration-300"
+            x-bind:class="{ 'opacity-0': !loadedImages.has(index) }"
+            :loading="index < ${preloadCount} ? '${loading}' : 'lazy'"
+            @load="loadedImages.add(index)"
+            @error="loadedImages.add(index)"
+            />
+            <!-- x-intersect:enter="loadImage(index)" -->
+            
+          <!-- Image placeholder -->
+          <div
+            x-show="!loadedImages.has(index) && index !== 0"
+            class="absolute inset-0 bg-gray-200 flex items-center justify-center"
+          >
+            <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              ></path>
+            </svg>
+          </div>
         </div>
-
-        <!-- Expand button -->
-        <button
-            @click="openModal"
-            class="absolute top-2 right-2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors duration-300 z-10"
-            aria-label="Open larger view"
-        >
-        <svg
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="M16 4l4 0l0 4" />
-  <path d="M14 10l6 -6" />
-  <path d="M8 20l-4 0l0 -4" />
-  <path d="M4 20l6 -6" />
-</svg>
-        </button>
-
-        <!-- Thumbnail Navigation buttons -->
-        {images.length > 1 && (
-            <>
-                <button
-                    @click="prev"
-                    class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors duration-300 z-10"
-                    aria-label="Previous slide"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                    </svg>
-                </button>
-                
-                <button
-                    @click="next"
-                    class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors duration-300 z-10"
-                    aria-label="Next slide"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                </button>
-            </>
-        )}
-
-        <!-- Thumbnail Image counter -->
-        {images.length > 1 && (
-            <div class="absolute top-2 left-2 bg-black/50 text-white px-2 py-1 rounded-md text-sm z-10">
-                <span x-text="currentIndex + 1"></span>/<span x-text="images.length"></span>
-            </div>
-        )}
-
-        <!-- Thumbnail Slide indicators -->
-        {images.length > 1 && (
-            <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
-                {images.map((_, index) => (
-                    <button
-                        @click={`currentIndex = ${index}`}
-                        class="w-2 h-2 rounded-full transition-colors duration-300"
-                        :class={`currentIndex === ${index} ? 'bg-white' : 'bg-white/50'`}
-                        aria-label={`Go to slide ${index + 1}`}
-                    />
-                ))}
-            </div>
-        )}
+      </template>
     </div>
 
-    <!-- Modal Overlay -->
-    <template x-if="isModalOpen">
-        <div
-            class="fixed inset-0 z-50 overflow-auto bg-black/80"
-            @click.self="closeModal"
-            x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0"
-            x-transition:enter-end="opacity-100"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100"
-            x-transition:leave-end="opacity-0"
+    <!-- Control buttons overlay -->
+    <div class="absolute inset-0 flex items-center justify-between pointer-events-none">
+      <!-- Expand button -->
+      <button
+        @click="openModal"
+        class="absolute top-2 right-2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-300 z-10 pointer-events-auto hover:scale-110"
+        aria-label="Open larger view"
+        title="View fullscreen"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
         >
-            <div class="min-h-screen flex items-center justify-center p-4">
-                <div class="relative w-full max-w-6xl bg-black rounded-lg">
-                    <!-- Close button -->
-                    <button
-                        @click="closeModal"
-                        class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors duration-300 z-20"
-                        aria-label="Close modal"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
+          <path d="M16 4l4 0l0 4"></path>
+          <path d="M14 10l6 -6"></path>
+          <path d="M8 20l-4 0l0 -4"></path>
+          <path d="M4 20l6 -6"></path>
+        </svg>
+      </button>
 
-                    <!-- Modal carousel -->
-                    <div class="relative overflow-hidden" style="height: 80vh;">
-                        <div
-                            class="flex h-full will-change-transform"
-                            :style="`transform: translateX(-${currentIndex * 100}%)`"
-                        >
-                            <template x-for="(image, index) in images" :key="index">
-                                <div 
-                                    class="w-full h-full flex-shrink-0 flex items-center justify-center transition-opacity duration-500"
-                                    :class="{'opacity-100': index === currentIndex, 'opacity-0': index !== currentIndex}"
-                                >
-                                    <img 
-                                        :src="image.src" 
-                                        :alt="image.alt"
-                                        class="max-w-full max-h-full object-contain transform transition-transform duration-500 ease-out"
-                                        :class="{'scale-100': index === currentIndex, 'scale-95': index !== currentIndex}"
-                                    />
-                                </div>
-                            </template>
-                        </div>
+      <!-- Navigation buttons -->
+      <template x-if="images.length > 1">
+        <div class="flex justify-between w-full px-2 pointer-events-auto">
+          <button
+            @click="prev"
+            class="bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-300 hover:scale-110 group"
+            aria-label="Previous slide"
+            title="Previous image"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 group-hover:-translate-x-0.5 transition-transform"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
 
-                        <!-- Modal Navigation buttons -->
-                        <template x-if="images.length > 1">
-                            <div>
-                                <button
-                                    @click="prev"
-                                    class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-4 rounded-full transition-colors duration-300 z-10"
-                                    aria-label="Previous slide"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                                    </svg>
-                                </button>
-                                
-                                <button
-                                    @click="next"
-                                    class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-4 rounded-full transition-colors duration-300 z-10"
-                                    aria-label="Next slide"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </template>
-
-                        <!-- Modal Image counter -->
-                        <template x-if="images.length > 1">
-                            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white px-3 py-2 rounded-md text-sm z-10">
-                                <span x-text="currentIndex + 1"></span>/<span x-text="images.length"></span>
-                            </div>
-                        </template>
-                    </div>
-                </div>
-            </div>
+          <button
+            @click="next"
+            class="bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-300 hover:scale-110 group"
+            aria-label="Next slide"
+            title="Next image"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 group-hover:translate-x-0.5 transition-transform"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
         </div>
+      </template>
+    </div>
+
+    <!-- Image counter -->
+    <template x-if="images.length > 1">
+      <div class="absolute top-2 left-2 bg-black/50 text-white px-2 py-1 rounded-md text-sm z-10 backdrop-blur-sm">
+        <span x-text="currentIndex + 1"></span>/<span x-text="images.length"></span>
+      </div>
     </template>
+
+    <!-- Slide indicators -->
+    <template x-if="images.length > 1">
+      <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+        <template x-for="(image, index) in images" :key="index">
+          <button
+            @click="goToSlide(index)"
+            class="w-2 h-2 rounded-full transition-all duration-300 hover:scale-125"
+            x-bind:class="currentIndex === index ? 'bg-white' : 'bg-white/50 hover:bg-white/75'"
+            :aria-label="`Go to slide ${index + 1}`"
+            :title="`Image ${index + 1}`"></button>
+        </template>
+      </div>
+    </template>
+  </div>
+
+  <!-- Modal Overlay -->
+  <template x-if="isModalOpen">
+    <div
+      class="fixed inset-0 z-50 overflow-auto bg-black/90 backdrop-blur-sm"
+      @click.self="closeModal"
+      @touchstart="handleTouchStart($event)"
+      @touchend="handleTouchEnd($event)"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="transition ease-in duration-200"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+    >
+      <div class="min-h-screen flex items-center justify-center p-4">
+        <div class="relative w-full max-w-6xl">
+          <!-- Modal controls -->
+          <div class="absolute top-4 right-4 flex gap-2 z-20">
+            <!-- Autoplay toggle -->
+            <template x-if="images.length > 1">
+              <button
+                @click="toggleAutoplay"
+                class="bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors duration-300"
+                :aria-label="autoplayEnabled ? 'Stop autoplay' : 'Start autoplay'"
+                :title="autoplayEnabled ? 'Stop autoplay' : 'Start autoplay'"
+              >
+                <svg
+                  x-show="!autoplayEnabled"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M19 10a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <svg
+                  x-show="autoplayEnabled"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </button>
+            </template>
+
+            <!-- Close button -->
+            <button
+              @click="closeModal"
+              class="bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors duration-300"
+              aria-label="Close modal"
+              title="Close (Esc)"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Modal carousel -->
+          <div class="relative overflow-hidden rounded-lg bg-black" style="height: 80vh;">
+            <div
+              class="flex h-full will-change-transform transition-transform duration-500 ease-in-out"
+              :style="`transform: translateX(-${currentIndex * 100}%)`"
+            >
+              <template x-for="(image, index) in images" :key="index">
+                <div class="w-full h-full flex-shrink-0 flex items-center justify-center">
+                  <img
+                    :src="image.src"
+                    :alt="image.alt"
+                    class="max-w-full max-h-full object-contain transition-all duration-500"
+                    x-bind:class="{
+                                            'scale-100 opacity-100': index === currentIndex, 
+                                            'scale-95 opacity-50': index !== currentIndex
+                                        }"
+                    loading="lazy"
+                  />
+                </div>
+              </template>
+            </div>
+
+            <!-- Modal Navigation buttons -->
+            <template x-if="images.length > 1">
+              <div class="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 pointer-events-none">
+                <button
+                  @click="prev"
+                  class="bg-black/50 hover:bg-black/70 text-white p-4 rounded-full transition-all duration-300 hover:scale-110 pointer-events-auto"
+                  aria-label="Previous slide"
+                  title="Previous (←)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-8 w-8"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                  </svg>
+                </button>
+
+                <button
+                  @click="next"
+                  class="bg-black/50 hover:bg-black/70 text-white p-4 rounded-full transition-all duration-300 hover:scale-110 pointer-events-auto"
+                  aria-label="Next slide"
+                  title="Next (→)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-8 w-8"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </button>
+              </div>
+            </template>
+
+            <!-- Modal Image counter and progress -->
+            <template x-if="images.length > 1">
+              <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
+                <!-- Progress bar -->
+                <div class="w-32 h-1 bg-white/20 rounded-full overflow-hidden">
+                  <div
+                    class="h-full bg-white transition-all duration-500 ease-out"
+                    :style="`width: ${((currentIndex + 1) / images.length) * 100}%`"
+                  >
+                  </div>
+                </div>
+
+                <!-- Counter -->
+                <div class="bg-black/50 text-white px-3 py-2 rounded-md text-sm backdrop-blur-sm">
+                  <span x-text="currentIndex + 1"></span> of <span x-text="images.length"></span>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
 </div>
 
-
 <style>
-    /* Smooth sliding animation */
-    [x-data] [x-cloak] { display: none !important; }
-    
-    .will-change-transform {
-        transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
-        will-change: transform;
-    }
+  [x-cloak] {
+    display: none !important;
+  }
 
-    /* Add smooth fade transition between slides */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  /* Improved transitions */
+  .transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Smooth scrollbar prevention */
+  body.modal-open {
+    overflow: hidden;
+  }
+
+  /* Better focus styles for accessibility */
+  button:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+
+  /* Optimized animations */
+  @media (prefers-reduced-motion: reduce) {
+    .transition-transform,
+    .transition-all,
     .transition-opacity {
-        transition-property: opacity, transform;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition: none !important;
     }
 
-    /* Optional: Add a subtle zoom effect during transitions */
-    .scale-95 {
-        transform: scale(0.95);
+    .animate-spin {
+      animation: none !important;
     }
-
-    .scale-100 {
-        transform: scale(1);
-    }
+  }
 </style>

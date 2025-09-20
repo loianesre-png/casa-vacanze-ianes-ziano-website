@@ -42,7 +42,7 @@ const metadata = {
     />
   </Fragment>
 
-  <HeroCasaNegrano />
+  <HeroCasaNegrano id="about"/>
 
   <div class="m-4 md:relative md:z-10 md:translate-y-[50%] flex justify-center">
     <AvailabilityChecker client:idle />
@@ -50,7 +50,7 @@ const metadata = {
 
   <Intro />
 
-  <div class="flex flex-col gap-24 bg-[#d7edff]">
+  <div id="bilocale" class="flex flex-col gap-24 bg-[#d7edff]">
     <div class="text-center flex flex-col gap-4 pt-12 md:pt-16">
       <div class="text-3xl md:text-4xl font-bold">I nostri appartamenti</div>
       <div class="text-xl">
@@ -59,6 +59,7 @@ const metadata = {
       </div>
     </div>
 
+    
     <Bilocale />
 
     <Trilocale />
