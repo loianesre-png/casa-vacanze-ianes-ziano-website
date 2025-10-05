@@ -1,7 +1,7 @@
 ---
-// ImageCarousel.astro
+// Optimized ImageCarousel.astro with true lazy loading
 interface ImageItem {
-  src: string | any; // Allow any type for src to handle Astro's image processing
+  src: string | { src: string };
   alt?: string;
   title?: string;
 }
@@ -12,33 +12,22 @@ interface Props {
   preloadCount?: number;
 }
 
-const { images, loading = 'lazy', preloadCount = 2 } = Astro.props;
+const { images } = Astro.props;
 
-// Ensure all image sources are proper strings before passing to Alpine.js
+// Process image sources
 const safeImages = images.map((img, index) => {
   let imageSrc: string;
-
-  // Handle different possible structures for img.src
-  const imgSrc = img.src as any; // Type assertion to handle various formats
+  const imgSrc = img.src;
 
   if (typeof imgSrc === 'string') {
     imageSrc = imgSrc;
   } else if (imgSrc && imgSrc.src) {
     imageSrc = imgSrc.src;
   } else if (imgSrc && typeof imgSrc === 'object') {
-    // For optimized images, try to get the src property or convert to string
     imageSrc = imgSrc.src || String(imgSrc);
   } else {
     imageSrc = String(imgSrc);
   }
-
-  // Debug: Log the final image sources
-//   console.log(`Image ${index}:`, {
-//     original: imgSrc,
-//     originalType: typeof imgSrc,
-//     final: imageSrc,
-//     finalType: typeof imageSrc,
-//   });
 
   return {
     src: imageSrc,
@@ -54,74 +43,132 @@ const safeImages = images.map((img, index) => {
         images: ${JSON.stringify(safeImages)},
         currentIndex: 0,
         isModalOpen: false,
-        loadedImages: new Set([0]), // Track loaded images
+        loadedImages: new Set(),
         isLoading: false,
         autoplayInterval: null,
         autoplayEnabled: false,
         touchStartX: 0,
         touchEndX: 0,
+        isInitialized: false,
         
         init() {
-            // Preload first few images
-            this.preloadImages();
-            // Set up intersection observer for better performance
+            // Defer initialization slightly to not block initial render
+            requestIdleCallback(() => {
+                this.initialize();
+            }, { timeout: 1000 });
+        },
+        
+        initialize() {
+            if (this.isInitialized) return;
+            this.isInitialized = true;
+            
+            // Load first image immediately
+            this.loadImage(0);
+            
+            // Preload adjacent images including wrap-around
+            // This fixes the issue when clicking left arrow immediately
+            if (this.images.length > 1) {
+                const lastIndex = this.images.length - 1;
+                this.loadImage(lastIndex);  // Preload last image (for backward navigation)
+                this.loadImage(1);           // Preload next image (for forward navigation)
+            }
+            
             this.setupIntersectionObserver();
-            // Add keyboard navigation
             this.setupKeyboardNavigation();
         },
         
-        preloadImages() {
-            const preloadCount = Math.min(${preloadCount}, this.images.length);
-            for (let i = 0; i < preloadCount; i++) {
-                this.loadImage(i);
-            }
-        },
-        
         setupIntersectionObserver() {
-            if ('IntersectionObserver' in window) {
-                const observer = new IntersectionObserver((entries) => {
+            if (!('IntersectionObserver' in window)) return;
+            
+            const observer = new IntersectionObserver(
+                (entries) => {
                     entries.forEach(entry => {
-                        if (entry.isIntersecting) {
+                        if (entry.isIntersecting && entry.intersectionRatio > 0.1) {
+                            // Load nearby images when carousel is visible
                             this.preloadNearbyImages();
                         }
                     });
-                });
-                observer.observe(this.$el);
-            }
+                },
+                {
+                    rootMargin: '100px',
+                    threshold: [0, 0.1, 0.5]
+                }
+            );
+            
+            observer.observe(this.$el);
         },
         
         setupKeyboardNavigation() {
-            document.addEventListener('keydown', (e) => {
-                if (this.isModalOpen) {
-                    if (e.key === 'ArrowLeft') this.prev();
-                    if (e.key === 'ArrowRight') this.next();
-                }
-            });
+            const handler = (e) => {
+                if (!this.isModalOpen) return;
+                if (e.key === 'ArrowLeft') this.prev();
+                if (e.key === 'ArrowRight') this.next();
+            };
+            
+            document.addEventListener('keydown', handler);
+            
+            // Cleanup on component destroy
+            this.$el._cleanup = () => {
+                document.removeEventListener('keydown', handler);
+            };
         },
         
         async loadImage(index) {
-            if (this.loadedImages.has(index)) return;
+            if (this.loadedImages.has(index)) return Promise.resolve();
             
             return new Promise((resolve) => {
                 const img = new Image();
+                let resolved = false;
+                
+                // Timeout fallback: resolve after 10 seconds no matter what
+                const timeout = setTimeout(() => {
+                    if (!resolved) {
+                        
+                        this.loadedImages.add(index);
+                        resolved = true;
+                        resolve();
+                    }
+                }, 10000);
+                
                 img.onload = () => {
+                    if (resolved) return;
+                    clearTimeout(timeout);
+                    resolved = true;
                     this.loadedImages.add(index);
                     resolve();
                 };
-                img.onerror = () => resolve(); // Continue even if image fails
                 
-                // Since we've already processed the image sources, they should be strings
+                img.onerror = (e) => {
+                    if (resolved) return;
+                    clearTimeout(timeout);
+                    resolved = true;
+                    
+                    this.loadedImages.add(index);
+                    resolve(); // Still resolve to prevent hanging
+                };
+                
+                // Don't use lazy loading on programmatic Image objects
+                img.decoding = 'async';
                 img.src = this.images[index].src;
             });
         },
         
         preloadNearbyImages() {
+            // Load current + 1 next + 1 previous
             const indicesToLoad = [
+                this.currentIndex,
                 (this.currentIndex + 1) % this.images.length,
                 (this.currentIndex - 1 + this.images.length) % this.images.length
             ];
             
-            indicesToLoad.forEach(index => this.loadImage(index));
+            indicesToLoad.forEach(index => {
+                // Use requestIdleCallback for non-blocking loads
+                if ('requestIdleCallback' in window) {
+                    requestIdleCallback(() => this.loadImage(index));
+                } else {
+                    setTimeout(() => this.loadImage(index), 0);
+                }
+            });
         },
         
         async prev() {
@@ -139,7 +186,11 @@ const safeImages = images.map((img, index) => {
         async goToSlide(index) {
             if (index === this.currentIndex) return;
             
-            this.isLoading = true;
+            // Only show loading if image isn't ready
+            if (!this.loadedImages.has(index)) {
+                this.isLoading = true;
+            }
+            
             await this.loadImage(index);
             this.currentIndex = index;
             this.preloadNearbyImages();
@@ -150,6 +201,9 @@ const safeImages = images.map((img, index) => {
             this.isModalOpen = true;
             document.body.style.overflow = 'hidden';
             document.body.style.paddingRight = this.getScrollbarWidth() + 'px';
+            
+            // Preload more images when modal opens
+            this.preloadNearbyImages();
         },
         
         closeModal() {
@@ -209,7 +263,6 @@ const safeImages = images.map((img, index) => {
         }
     }`}
   @keydown.escape.window="closeModal()"
-  x-init="init()"
 >
   <!-- Loading indicator -->
   <div
@@ -218,6 +271,7 @@ const safeImages = images.map((img, index) => {
     x-transition:enter="transition ease-out duration-150"
     x-transition:enter-start="opacity-0"
     x-transition:enter-end="opacity-100"
+    x-cloak
   >
     <div class="bg-white/90 rounded-full p-3">
       <svg class="animate-spin h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24">
@@ -238,35 +292,41 @@ const safeImages = images.map((img, index) => {
     @touchend="handleTouchEnd($event)"
   >
     <div
-      class="flex h-full transition-transform duration-500 ease-in-out will-change-transform"
+      class="flex h-full transition-transform duration-500 ease-in-out"
       :style="`transform: translateX(-${currentIndex * 100}%)`"
+      style="will-change: transform;"
     >
       <template x-for="(image, index) in images" :key="index">
         <div class="w-full h-full flex-shrink-0 relative">
+          <!-- Image with proper lazy loading attributes -->
           <img
             :src="image.src"
             :alt="image.alt"
-            class="w-full h-full object-cover transition-opacity duration-300"
-            x-bind:class="{ 'opacity-0': !loadedImages.has(index) }"
-            :loading="index < ${preloadCount} ? '${loading}' : 'lazy'"
+            :title="image.title"
+            class="w-full h-full object-cover"
+            :class="{ 'opacity-0': !loadedImages.has(index), 'opacity-100 transition-opacity duration-300': loadedImages.has(index) }"
+            loading="lazy"
+            decoding="async"
             @load="loadedImages.add(index)"
             @error="loadedImages.add(index)"
-            />
-            <!-- x-intersect:enter="loadImage(index)" -->
-            
-          <!-- Image placeholder -->
-          <div
-            x-show="!loadedImages.has(index) && index !== 0"
-            class="absolute inset-0 bg-gray-200 flex items-center justify-center"
           >
-            <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-              ></path>
-            </svg>
+          
+          <!-- Placeholder skeleton -->
+          <div
+            x-show="!loadedImages.has(index)"
+            class="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse"
+            x-cloak
+          >
+            <div class="absolute inset-0 flex items-center justify-center">
+              <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                ></path>
+              </svg>
+            </div>
           </div>
         </div>
       </template>
@@ -353,7 +413,7 @@ const safeImages = images.map((img, index) => {
           <button
             @click="goToSlide(index)"
             class="w-2 h-2 rounded-full transition-all duration-300 hover:scale-125"
-            x-bind:class="currentIndex === index ? 'bg-white' : 'bg-white/50 hover:bg-white/75'"
+            :class="currentIndex === index ? 'bg-white' : 'bg-white/50 hover:bg-white/75'"
             :aria-label="`Go to slide ${index + 1}`"
             :title="`Image ${index + 1}`"></button>
         </template>
@@ -361,7 +421,7 @@ const safeImages = images.map((img, index) => {
     </template>
   </div>
 
-  <!-- Modal Overlay -->
+  <!-- Modal (unchanged but with lazy loading) -->
   <template x-if="isModalOpen">
     <div
       class="fixed inset-0 z-50 overflow-auto bg-black/90 backdrop-blur-sm"
@@ -379,13 +439,11 @@ const safeImages = images.map((img, index) => {
         <div class="relative w-full max-w-6xl">
           <!-- Modal controls -->
           <div class="absolute top-4 right-4 flex gap-2 z-20">
-            <!-- Autoplay toggle -->
             <template x-if="images.length > 1">
               <button
                 @click="toggleAutoplay"
                 class="bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors duration-300"
                 :aria-label="autoplayEnabled ? 'Stop autoplay' : 'Start autoplay'"
-                :title="autoplayEnabled ? 'Stop autoplay' : 'Start autoplay'"
               >
                 <svg
                   x-show="!autoplayEnabled"
@@ -399,7 +457,9 @@ const safeImages = images.map((img, index) => {
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M19 10a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                  ></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
                 <svg
                   x-show="autoplayEnabled"
@@ -408,6 +468,7 @@ const safeImages = images.map((img, index) => {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
+                  x-cloak
                 >
                   <path
                     stroke-linecap="round"
@@ -418,12 +479,10 @@ const safeImages = images.map((img, index) => {
               </button>
             </template>
 
-            <!-- Close button -->
             <button
               @click="closeModal"
               class="bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors duration-300"
               aria-label="Close modal"
-              title="Close (Esc)"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -437,11 +496,12 @@ const safeImages = images.map((img, index) => {
             </button>
           </div>
 
-          <!-- Modal carousel -->
+          <!-- Modal carousel content -->
           <div class="relative overflow-hidden rounded-lg bg-black" style="height: 80vh;">
             <div
-              class="flex h-full will-change-transform transition-transform duration-500 ease-in-out"
+              class="flex h-full transition-transform duration-500 ease-in-out"
               :style="`transform: translateX(-${currentIndex * 100}%)`"
+              style="will-change: transform;"
             >
               <template x-for="(image, index) in images" :key="index">
                 <div class="w-full h-full flex-shrink-0 flex items-center justify-center">
@@ -449,32 +509,23 @@ const safeImages = images.map((img, index) => {
                     :src="image.src"
                     :alt="image.alt"
                     class="max-w-full max-h-full object-contain transition-all duration-500"
-                    x-bind:class="{
-                                            'scale-100 opacity-100': index === currentIndex, 
-                                            'scale-95 opacity-50': index !== currentIndex
-                                        }"
+                    :class="{ 'scale-100 opacity-100': index === currentIndex, 'scale-95 opacity-50': index !== currentIndex }"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </template>
             </div>
 
-            <!-- Modal Navigation buttons -->
+            <!-- Modal navigation -->
             <template x-if="images.length > 1">
               <div class="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 pointer-events-none">
                 <button
                   @click="prev"
                   class="bg-black/50 hover:bg-black/70 text-white p-4 rounded-full transition-all duration-300 hover:scale-110 pointer-events-auto"
-                  aria-label="Previous slide"
-                  title="Previous (←)"
+                  aria-label="Previous"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-8 w-8"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
+                  <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                   </svg>
                 </button>
@@ -482,35 +533,24 @@ const safeImages = images.map((img, index) => {
                 <button
                   @click="next"
                   class="bg-black/50 hover:bg-black/70 text-white p-4 rounded-full transition-all duration-300 hover:scale-110 pointer-events-auto"
-                  aria-label="Next slide"
-                  title="Next (→)"
+                  aria-label="Next"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-8 w-8"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
+                  <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                   </svg>
                 </button>
               </div>
             </template>
 
-            <!-- Modal Image counter and progress -->
+            <!-- Counter and progress -->
             <template x-if="images.length > 1">
               <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
-                <!-- Progress bar -->
                 <div class="w-32 h-1 bg-white/20 rounded-full overflow-hidden">
                   <div
                     class="h-full bg-white transition-all duration-500 ease-out"
                     :style="`width: ${((currentIndex + 1) / images.length) * 100}%`"
-                  >
-                  </div>
+                  ></div>
                 </div>
-
-                <!-- Counter -->
                 <div class="bg-black/50 text-white px-3 py-2 rounded-md text-sm backdrop-blur-sm">
                   <span x-text="currentIndex + 1"></span> of <span x-text="images.length"></span>
                 </div>
@@ -528,19 +568,15 @@ const safeImages = images.map((img, index) => {
     display: none !important;
   }
 
+  /* Performance optimizations */
   .will-change-transform {
     will-change: transform;
   }
 
-  /* Improved transitions */
+  /* Smooth transitions */
   .transition-all {
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* Smooth scrollbar prevention */
-  body.modal-open {
-    overflow: hidden;
   }
 
   /* Better focus styles for accessibility */
@@ -549,16 +585,40 @@ const safeImages = images.map((img, index) => {
     outline-offset: 2px;
   }
 
-  /* Optimized animations */
+  /* Respect user preferences for reduced motion */
   @media (prefers-reduced-motion: reduce) {
     .transition-transform,
     .transition-all,
     .transition-opacity {
-      transition: none !important;
+      transition-duration: 0.01ms !important;
     }
 
-    .animate-spin {
+    .animate-spin,
+    .animate-pulse {
       animation: none !important;
     }
   }
+
+  /* Optimize rendering performance */
+  img {
+    content-visibility: auto;
+  }
 </style>
+
+<script>
+  // Polyfill for requestIdleCallback
+  if (typeof window !== 'undefined' && !('requestIdleCallback' in window)) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).requestIdleCallback = function(callback: any) {
+      const start = Date.now();
+      return setTimeout(function() {
+        callback({
+          didTimeout: false,
+          timeRemaining: function() {
+            return Math.max(0, 50 - (Date.now() - start));
+          }
+        });
+      }, 1);
+    };
+  }
+</script>

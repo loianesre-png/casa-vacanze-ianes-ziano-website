@@ -1,38 +1,42 @@
 ---
-// import BookingWidgetWrapper from '../booking/BookingWidgetWrapper.astro';
+// Optimized Trilocale component with deferred image loading
 import ImageCarousel from '../widgets/ImageCarousel.astro';
 
 // Get all images from the trilocale directory
 const imageModules = await Astro.glob('../../assets/images/trilocale/*.webp');
 
-// Transform to the format expected by the enhanced ImageCarousel
+// Transform to the format expected by the carousel
 const images = imageModules.map((module, index) => ({
   src: module.default,
   alt: `Trilocale apartment view ${index + 1}`,
-  title: `Image ${index + 1} of trilocale apartment`
+  title: `Image ${index + 1} of trilocale apartment`,
 }));
 ---
 
 <div class="flex flex-col-reverse lg:flex-row gap-12 max-w-7xl mx-auto p-6">
-  <!-- Placeholder per lo slider esistente -->
+  <!-- Image carousel section -->
   <div class="w-full lg:w-1/2 flex flex-col gap-6">
-    <!-- Qui va inserito il componente dello slider esistente -->
-
-    <ImageCarousel images={images} loading="eager" preloadCount={2} />
-    <!-- <div class="flex justify-center">
-      <BookingWidgetWrapper property="medium" />
-    </div> -->
+    <div 
+      class="carousel-container" 
+      data-carousel-deferred
+    >
+      <ImageCarousel 
+        images={images} 
+        loading="lazy" 
+        preloadCount={1}
+      />
+    </div>
   </div>
 
-  <!-- Informazioni appartamento -->
+  <!-- Apartment information -->
   <div class="w-full lg:w-1/2 space-y-8">
-    <!-- Titoli -->
+    <!-- Titles -->
     <div>
       <h1 class="text-3xl font-bold mb-2">Ampio Trilocale:</h1>
       <h2 class="text-2xl">2 camere e 2 bagni</h2>
     </div>
 
-    <!-- Descrizione -->
+    <!-- Description -->
     <div class="space-y-2">
       <div class="flex items-center gap-2">
         <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
@@ -49,7 +53,7 @@ const images = imageModules.map((module, index) => ({
       </p>
     </div>
 
-    <!-- Superficie -->
+    <!-- Surface area -->
     <div class="space-y-2">
       <div class="flex items-center gap-2">
         <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
@@ -66,7 +70,7 @@ const images = imageModules.map((module, index) => ({
       <p class="text-gray-700">120 mq</p>
     </div>
 
-    <!-- Capacità -->
+    <!-- Capacity -->
     <div class="space-y-2">
       <div class="flex items-center gap-2">
         <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
@@ -85,6 +89,74 @@ const images = imageModules.map((module, index) => ({
   </div>
 </div>
 
+<!-- Deferred initialization script -->
+<script>
+  // Initialize carousel only when visible or after page load
+  function initCarousel() {
+    const carouselContainer = document.querySelector('[data-carousel-deferred]');
+    
+    if (!carouselContainer) return;
+
+    // Use Intersection Observer for better performance
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Trigger Alpine.js initialization when visible
+              carouselContainer.removeAttribute('data-carousel-deferred');
+              observer.disconnect();
+            }
+          });
+        },
+        {
+          rootMargin: '50px', // Start loading 50px before visible
+          threshold: 0.01
+        }
+      );
+
+      observer.observe(carouselContainer);
+    } else {
+      // Fallback: load after page load
+      carouselContainer.removeAttribute('data-carousel-deferred');
+    }
+  }
+
+  // Run after DOM is ready but before images load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCarousel);
+  } else {
+    initCarousel();
+  }
+</script>
+
 <style>
-  /* Aggiungi stili custom se necessario */
+  /* Show loading state while carousel initializes */
+  .carousel-container[data-carousel-deferred] {
+    min-height: 400px;
+    background: linear-gradient(
+      90deg,
+      #f0f0f0 0%,
+      #f8f8f8 50%,
+      #f0f0f0 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    border-radius: 0.5rem;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Remove shimmer once loaded */
+  .carousel-container:not([data-carousel-deferred]) {
+    animation: none;
+    background: transparent;
+  }
 </style>
