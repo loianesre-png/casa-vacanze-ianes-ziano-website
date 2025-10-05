@@ -1,5 +1,5 @@
 ---
-import BookingWidgetWrapper from '../booking/BookingWidgetWrapper.astro';
+// import BookingWidgetWrapper from '../booking/BookingWidgetWrapper.astro';
 import ImageCarousel from '../widgets/ImageCarousel.astro';
 
 // Get all images from the trilocale directory
@@ -19,9 +19,9 @@ const images = imageModules.map((module, index) => ({
     <!-- Qui va inserito il componente dello slider esistente -->
 
     <ImageCarousel images={images} loading="eager" preloadCount={2} />
-    <div class="flex justify-center">
+    <!-- <div class="flex justify-center">
       <BookingWidgetWrapper property="medium" />
-    </div>
+    </div> -->
   </div>
 
   <!-- Informazioni appartamento -->
