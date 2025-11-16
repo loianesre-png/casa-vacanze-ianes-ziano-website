@@ -171,9 +171,9 @@ export const apartments: Apartment[] = [
       {
         name: 'Bagno principale',
         description:
-          "Bagno principale spazioso con ampia doccia walk-in, doppio lavabo e finiture di pregio. Include lavatrice per maggiore comodità durante soggiorni prolungati. Design moderno con ceramiche di alta qualità.",
+          "Bagno principale spazioso con ampia doccia, doppio lavabo e finiture di pregio. Include lavatrice per maggiore comodità durante soggiorni prolungati. Design moderno con ceramiche di alta qualità.",
         image: '523A1037 - Modificata.webp',
-        amenities: ['Doccia walk-in', 'Doppio lavabo', 'Lavatrice', 'Asciugacapelli', 'Set di cortesia'],
+        amenities: ['Doccia', 'Doppio lavabo', 'Lavatrice', 'Asciugacapelli', 'Set di cortesia'],
       },
       {
         name: 'Secondo bagno',
@@ -265,9 +265,9 @@ export const apartments: Apartment[] = [
       {
         name: 'Bagno principale',
         description:
-          "Bagno principale extra large con doppia doccia walk-in, doppio lavabo e ampio spazio. Include lavatrice e asciugatrice per massima comodità. Le finiture di lusso e l'illuminazione LED creano un ambiente spa-like.",
+          "Bagno principale extra large con doppia doccia, doppio lavabo e ampio spazio. Include lavatrice e asciugatrice per massima comodità. Le finiture di lusso e l'illuminazione LED creano un ambiente spa-like.",
         image: '20250519_113612.webp',
-        amenities: ['Doppia doccia walk-in', 'Doppio lavabo', 'Lavatrice', 'Asciugatrice', 'Asciugacapelli', 'Set di cortesia premium'],
+        amenities: ['Doppia doccia', 'Doppio lavabo', 'Lavatrice', 'Asciugatrice', 'Asciugacapelli', 'Set di cortesia premium'],
       },
       {
         name: 'Secondo bagno',

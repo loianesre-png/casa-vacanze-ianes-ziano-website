@@ -1,6 +1,6 @@
 # Casa Negrano - Luxury Rental Website
 
-Luxury vacation rental website for Casa Negrano apartments in Cannobio, Lake Maggiore. Built with Astro 4.15.5, TypeScript, and Tailwind CSS featuring a custom minimal luxury design system.
+Luxury vacation rental website for Casa Negrano apartments in Trento, Trentino, Italia. Built with Astro 4.15.5, TypeScript, and Tailwind CSS featuring a custom minimal luxury design system.
 
 ## Overview
 
