@@ -7,6 +7,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import ApartmentHero from '~/components/appartamenti/ApartmentHero.astro';
 import PropertyOverview from '~/components/appartamenti/PropertyOverview.astro';
 import RoomShowcase from '~/components/appartamenti/RoomShowcase.astro';
+import PhotoGallery from '~/components/appartamenti/PhotoGallery.astro';
 import ServicesGrid from '~/components/appartamenti/ServicesGrid.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import Benefits from '~/components/appartamenti/Benefits.astro';
@@ -81,6 +82,9 @@ const testimonials = [
 
   <!-- Room-by-Room Showcase -->
   <RoomShowcase rooms={apartment.rooms} apartmentId={apartment.id} />
+
+  <!-- Photo Gallery -->
+  <PhotoGallery apartmentSlug="trilocale" apartmentName={apartment.name} />
 
   <!-- Services Grid -->
   <ServicesGrid />
