@@ -209,7 +209,7 @@ export const apartments: Apartment[] = [
     bedrooms: '2 camere matrimoniali + 2 camere doppie',
     bathrooms: '2 bagni con doccia',
     heroImage: '20250519_113155.webp',
-    propertyImage: '20250519_113216.webp',
+    propertyImage: '20250519_113155.webp',
     rooms: [
       {
         name: 'Camera matrimoniale con balcone',
