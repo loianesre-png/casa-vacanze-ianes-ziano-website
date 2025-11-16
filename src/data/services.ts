@@ -136,7 +136,7 @@ export const trentinoGuestCardBenefits: Benefit[] = [
     title: 'Funivie e impianti di risalita',
     description:
       'Tariffe agevolate per funivie, seggiovie e skilift in numerose località montane, per raggiungere facilmente i sentieri e i panorami più belli.',
-    icon: 'tabler:cable-car',
+    icon: 'tabler:stairs-up',
   },
   {
     title: 'Attività outdoor e sport',
