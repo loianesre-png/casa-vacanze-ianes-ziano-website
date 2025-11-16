@@ -38,19 +38,19 @@ const propertyImageModule = await imageModule();
 const propertyImageSrc = propertyImageModule.default;
 ---
 
-<section class="py-12 md:py-16 lg:py-24 bg-white">
+<section class="py-12 md:py-16 lg:py-24 bg-luxury-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Title -->
     <div class="text-center mb-12 md:mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">L'appartamento</h2>
-      <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+      <h2 class="font-heading text-3xl md:text-4xl font-medium text-luxury-black mb-4">L'appartamento</h2>
+      <div class="w-20 h-0.5 bg-luxury-gold mx-auto"></div>
     </div>
 
     <!-- Two-column layout -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
       <!-- Image Column -->
       <div class="order-2 lg:order-1">
-        <div class="relative rounded-lg overflow-hidden shadow-xl">
+        <div class="relative rounded overflow-hidden shadow-luxury-lg">
           <Image
             src={propertyImageSrc}
             alt="Vista dell'appartamento"
@@ -68,7 +68,7 @@ const propertyImageSrc = propertyImageModule.default;
       <div class="order-1 lg:order-2 space-y-6 lg:space-y-8">
         <!-- Description Text -->
         <div class="prose prose-lg max-w-none">
-          <p class="text-gray-700 leading-relaxed">
+          <p class="text-luxury-graphite leading-relaxed">
             {description}
           </p>
         </div>
@@ -76,9 +76,9 @@ const propertyImageSrc = propertyImageModule.default;
         <!-- Key Specifications Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
           <!-- Capacity -->
-          <div class="flex items-start gap-3 p-4 bg-blue-50 rounded-lg">
-            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="flex items-start gap-3 p-4 bg-luxury-beige rounded border border-luxury-sand">
+            <div class="w-10 h-10 rounded bg-luxury-gold flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-luxury-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -88,15 +88,15 @@ const propertyImageSrc = propertyImageModule.default;
               </svg>
             </div>
             <div>
-              <h3 class="text-sm font-semibold text-gray-600 mb-1">Capacità</h3>
-              <p class="text-lg font-bold text-gray-900">{capacity} {capacity === 1 ? 'ospite' : 'ospiti'}</p>
+              <h3 class="text-sm font-medium text-luxury-graphite mb-1 uppercase tracking-wide">Capacità</h3>
+              <p class="text-lg font-medium text-luxury-black">{capacity} {capacity === 1 ? 'ospite' : 'ospiti'}</p>
             </div>
           </div>
 
           <!-- Size -->
-          <div class="flex items-start gap-3 p-4 bg-blue-50 rounded-lg">
-            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="flex items-start gap-3 p-4 bg-luxury-beige rounded border border-luxury-sand">
+            <div class="w-10 h-10 rounded bg-luxury-gold flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-luxury-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -106,15 +106,15 @@ const propertyImageSrc = propertyImageModule.default;
               </svg>
             </div>
             <div>
-              <h3 class="text-sm font-semibold text-gray-600 mb-1">Superficie</h3>
-              <p class="text-lg font-bold text-gray-900">{size} m²</p>
+              <h3 class="text-sm font-medium text-luxury-graphite mb-1 uppercase tracking-wide">Superficie</h3>
+              <p class="text-lg font-medium text-luxury-black">{size} m²</p>
             </div>
           </div>
 
           <!-- Bedrooms -->
-          <div class="flex items-start gap-3 p-4 bg-blue-50 rounded-lg">
-            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="flex items-start gap-3 p-4 bg-luxury-beige rounded border border-luxury-sand">
+            <div class="w-10 h-10 rounded bg-luxury-gold flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-luxury-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -124,15 +124,15 @@ const propertyImageSrc = propertyImageModule.default;
               </svg>
             </div>
             <div>
-              <h3 class="text-sm font-semibold text-gray-600 mb-1">Camere</h3>
-              <p class="text-lg font-bold text-gray-900">{bedrooms}</p>
+              <h3 class="text-sm font-medium text-luxury-graphite mb-1 uppercase tracking-wide">Camere</h3>
+              <p class="text-lg font-medium text-luxury-black">{bedrooms}</p>
             </div>
           </div>
 
           <!-- Bathrooms -->
-          <div class="flex items-start gap-3 p-4 bg-blue-50 rounded-lg">
-            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="flex items-start gap-3 p-4 bg-luxury-beige rounded border border-luxury-sand">
+            <div class="w-10 h-10 rounded bg-luxury-gold flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-luxury-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -141,8 +141,8 @@ const propertyImageSrc = propertyImageModule.default;
               </svg>
             </div>
             <div>
-              <h3 class="text-sm font-semibold text-gray-600 mb-1">Bagni</h3>
-              <p class="text-lg font-bold text-gray-900">{bathrooms}</p>
+              <h3 class="text-sm font-medium text-luxury-graphite mb-1 uppercase tracking-wide">Bagni</h3>
+              <p class="text-lg font-medium text-luxury-black">{bathrooms}</p>
             </div>
           </div>
         </div>
