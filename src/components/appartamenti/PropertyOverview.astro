@@ -1,0 +1,152 @@
+---
+/**
+ * PropertyOverview Component
+ * Main apartment description section with key specifications
+ * Two-column layout: image + description and specs
+ */
+import { Image } from 'astro:assets';
+
+interface Props {
+  /** Main description of the apartment */
+  description: string;
+  /** Property overview image filename */
+  propertyImage: string;
+  /** Apartment ID for image path */
+  apartmentId: string;
+  /** Number of guests */
+  capacity: number;
+  /** Size in square meters */
+  size: number;
+  /** Bedroom configuration */
+  bedrooms: string;
+  /** Bathroom configuration */
+  bathrooms: string;
+}
+
+const { description, propertyImage, apartmentId, capacity, size, bedrooms, bathrooms } = Astro.props;
+
+// Dynamically import the property image
+const images = import.meta.glob('../../assets/images/**/*.webp');
+const imagePath = `../../assets/images/${apartmentId}/${propertyImage}`;
+const imageModule = images[imagePath];
+
+if (!imageModule) {
+  throw new Error(`Property image not found: ${imagePath}`);
+}
+
+const propertyImageModule = await imageModule();
+const propertyImageSrc = propertyImageModule.default;
+---
+
+<section class="py-12 md:py-16 lg:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Title -->
+    <div class="text-center mb-12 md:mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">L'appartamento</h2>
+      <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+    </div>
+
+    <!-- Two-column layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <!-- Image Column -->
+      <div class="order-2 lg:order-1">
+        <div class="relative rounded-lg overflow-hidden shadow-xl">
+          <Image
+            src={propertyImageSrc}
+            alt="Vista dell'appartamento"
+            class="w-full h-full object-cover"
+            widths={[400, 600, 800, 1000]}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            loading="lazy"
+            format="webp"
+            quality={85}
+          />
+        </div>
+      </div>
+
+      <!-- Description Column -->
+      <div class="order-1 lg:order-2 space-y-6 lg:space-y-8">
+        <!-- Description Text -->
+        <div class="prose prose-lg max-w-none">
+          <p class="text-gray-700 leading-relaxed">
+            {description}
+          </p>
+        </div>
+
+        <!-- Key Specifications Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+          <!-- Capacity -->
+          <div class="flex items-start gap-3 p-4 bg-blue-50 rounded-lg">
+            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-sm font-semibold text-gray-600 mb-1">Capacità</h3>
+              <p class="text-lg font-bold text-gray-900">{capacity} {capacity === 1 ? 'ospite' : 'ospiti'}</p>
+            </div>
+          </div>
+
+          <!-- Size -->
+          <div class="flex items-start gap-3 p-4 bg-blue-50 rounded-lg">
+            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 8V4m0 0h4M4 4l5 5m11-2V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-sm font-semibold text-gray-600 mb-1">Superficie</h3>
+              <p class="text-lg font-bold text-gray-900">{size} m²</p>
+            </div>
+          </div>
+
+          <!-- Bedrooms -->
+          <div class="flex items-start gap-3 p-4 bg-blue-50 rounded-lg">
+            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-sm font-semibold text-gray-600 mb-1">Camere</h3>
+              <p class="text-lg font-bold text-gray-900">{bedrooms}</p>
+            </div>
+          </div>
+
+          <!-- Bathrooms -->
+          <div class="flex items-start gap-3 p-4 bg-blue-50 rounded-lg">
+            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-sm font-semibold text-gray-600 mb-1">Bagni</h3>
+              <p class="text-lg font-bold text-gray-900">{bathrooms}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

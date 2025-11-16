@@ -1,0 +1,75 @@
+---
+/**
+ * ServicesGrid Component
+ * Displays services and amenities in a responsive grid
+ */
+import { Icon } from 'astro-icon/components';
+import { coreServices } from '~/data/services';
+import type { Service } from '~/data/services';
+
+interface Props {
+  /** Optional custom services array, defaults to core services */
+  services?: Service[];
+  /** Optional title override */
+  title?: string;
+  /** Optional subtitle override */
+  subtitle?: string;
+  /** Number of columns on desktop */
+  columns?: 2 | 3 | 4;
+}
+
+const {
+  services = coreServices,
+  title = 'I nostri servizi',
+  subtitle = 'Scopri tutto ciò che abbiamo pensato per rendere speciale la tua esperienza',
+  columns = 3,
+} = Astro.props;
+
+const gridCols = {
+  2: 'md:grid-cols-2',
+  3: 'md:grid-cols-2 lg:grid-cols-3',
+  4: 'md:grid-cols-2 lg:grid-cols-4',
+};
+---
+
+<section class="py-12 md:py-16 lg:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-12 md:mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        {title}
+      </h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+        {subtitle}
+      </p>
+      <div class="w-20 h-1 bg-blue-600 mx-auto mt-4"></div>
+    </div>
+
+    <!-- Services Grid -->
+    <div class={`grid grid-cols-1 ${gridCols[columns]} gap-6 lg:gap-8`}>
+      {
+        services.map((service) => (
+          <div class="group bg-white border border-gray-200 rounded-xl p-6 hover:shadow-xl hover:border-blue-300 transition-all duration-300">
+            {/* Icon */}
+            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors duration-300">
+              <Icon
+                name={service.icon}
+                class="w-7 h-7 text-blue-600 group-hover:text-white transition-colors duration-300"
+              />
+            </div>
+
+            {/* Title */}
+            <h3 class="text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+              {service.title}
+            </h3>
+
+            {/* Description */}
+            <p class="text-gray-600 leading-relaxed">
+              {service.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
