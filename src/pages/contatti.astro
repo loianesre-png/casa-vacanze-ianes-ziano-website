@@ -1,0 +1,41 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import CalendarForm from '~/components/widgets/CalendarForm';
+import Features2 from '~/components/widgets/Features2.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+
+const metadata = {
+  title: 'Contatti - Casa Negrano | Richiedi Informazioni',
+  description: 'Contattaci per informazioni e prenotazioni. Siamo a Villazzano, Trento. Email: casanegrano@gmail.com',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- HeroText Widget ******************* -->
+
+  <HeroText tagline="Contatti" title="Mettiamoci in contatto!" />
+
+  <div
+    class="max-w-3xl mx-auto text-center p-6 rounded-md shadow-xl dark:shadow-none dark:border dark:border-slate-600"
+  >
+    <CalendarForm client:idle />
+  </div>
+
+  <!-- Features2 Widget ************** -->
+  <Features2
+    title="Ecco come trovarci!"
+    items={[
+      {
+        title: 'Email',
+        description: 'casanegrano@gmail.com',
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'Posizione',
+        description: 'Località Negrano 13, Trento, 38123, Italy',
+        icon: 'tabler:map-pin',
+      },
+    ]}
+  />
+</Layout>

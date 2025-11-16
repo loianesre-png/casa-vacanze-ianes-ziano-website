@@ -4,7 +4,6 @@
  * Main landing page showcasing all three apartments
  */
 import Layout from '~/layouts/PageLayout.astro';
-import Header from '~/components/widgets/Header.astro';
 import HomeHero from '~/components/home/HomeHero.astro';
 import ApartmentsOverview from '~/components/home/ApartmentsOverview.astro';
 import Features3 from '~/components/widgets/Features3.astro';
@@ -21,26 +20,6 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <Fragment slot="header">
-    <Header
-      id="header"
-      links={[
-        { text: 'Home', href: '#' },
-        { text: 'Chi siamo', href: '#chi-siamo' },
-        { text: 'Appartamenti', href: '#appartamenti' },
-        { text: 'I nostri comfort', href: '#comfort' },
-        { text: 'Testimonianze', href: '#testimonianze' },
-      ]}
-      actions={[
-        {
-          text: 'Contattaci',
-          href: '/contatti',
-        },
-      ]}
-      isSticky
-    />
-  </Fragment>
-
   <!-- Hero Section -->
   <HomeHero />
 

@@ -6,26 +6,47 @@ export const headerData = {
       text: 'Home',
       href: '/',
     },
-    // {
-    //   text: 'Pages',
-    //   links: [
-
-    //     {
-    //       text: 'Contact',
-    //       href: getPermalink('/contact'),
-    //     },
-    //     {
-    //       text: 'Terms',
-    //       href: getPermalink('/terms'),
-    //     },
-    //     {
-    //       text: 'Privacy policy',
-    //       href: getPermalink('/privacy'),
-    //     },
-    //   ],
-    // }
+    {
+      text: 'Chi siamo',
+      href: '/#chi-siamo',
+    },
+    {
+      text: 'Appartamenti',
+      href: '/#appartamenti',
+      links: [
+        {
+          text: 'Bilocale - L\'Angolino',
+          href: '/appartamenti/bilocale',
+        },
+        {
+          text: 'Trilocale - La Famiglia',
+          href: '/appartamenti/trilocale',
+        },
+        {
+          text: 'Suite Deluxe',
+          href: '/appartamenti/suite-deluxe',
+        },
+        {
+          text: 'Tutti gli appartamenti',
+          href: '/#appartamenti',
+        },
+      ],
+    },
+    {
+      text: 'I nostri comfort',
+      href: '/#comfort',
+    },
+    {
+      text: 'Testimonianze',
+      href: '/#testimonianze',
+    },
   ],
-  actions: [],
+  actions: [
+    {
+      text: 'Contattaci',
+      href: '/contatti',
+    },
+  ],
 };
 
 export const footerData = {
@@ -33,13 +54,22 @@ export const footerData = {
     {
       title: 'Link utili',
       links: [
-        { text: 'Home', href: '#' },
-        { text: 'Chi siamo', href: '#about' },
-        { text: 'Appartamenti', href: '#bilocale' },
-        { text: 'I nostri comfort', href: '#comfort' },
-        { text: 'Testimonianze', href: '#testimonianze' },
+        { text: 'Home', href: '/' },
+        { text: 'Chi siamo', href: '/#chi-siamo' },
+        { text: 'Appartamenti', href: '/#appartamenti' },
+        { text: 'I nostri comfort', href: '/#comfort' },
+        { text: 'Testimonianze', href: '/#testimonianze' },
+        { text: 'Contatti', href: '/contatti' },
       ],
-    }
+    },
+    {
+      title: 'Appartamenti',
+      links: [
+        { text: 'Bilocale - L\'Angolino', href: '/appartamenti/bilocale' },
+        { text: 'Trilocale - La Famiglia', href: '/appartamenti/trilocale' },
+        { text: 'Suite Deluxe', href: '/appartamenti/suite-deluxe' },
+      ],
+    },
   ],
   secondaryLinks: [
     { text: 'Cookies', href: getPermalink('/cookies') },
@@ -57,6 +87,6 @@ export const footerData = {
       Codici CIN: IT022205C2A7J22SB7 | IT022205C269BP38G3 | IT022205C2I72MMQXZ
       <br />
       &copy; 2025 Casa Negrano. Tutti i diritti riservati.
-    
+
   `,
 };
