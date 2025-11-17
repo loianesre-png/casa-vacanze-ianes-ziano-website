@@ -1,0 +1,121 @@
+---
+/**
+ * ApartmentCTA Component
+ * Call-to-action section for booking/contacting about the apartment
+ */
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  /** Apartment name for personalized messaging */
+  apartmentName: string;
+  /** Optional custom title */
+  title?: string;
+  /** Optional custom description */
+  description?: string;
+  /** Contact page URL */
+  contactUrl?: string;
+}
+
+const {
+  apartmentName,
+  title = `Prenota ${apartmentName}`,
+  description = 'Hai trovato l\'appartamento perfetto per il tuo soggiorno? Contattaci per verificare la disponibilità e ricevere un preventivo personalizzato.',
+  contactUrl = '/contatti',
+} = Astro.props;
+---
+
+<section class="py-12 md:py-16 lg:py-24 bg-gradient-to-br from-luxury-charcoal via-luxury-black to-luxury-charcoal relative overflow-hidden">
+  <!-- Decorative background elements -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute top-0 left-0 w-96 h-96 bg-luxury-gold rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-luxury-gold rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center">
+      <!-- Icon -->
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded bg-luxury-gold/20 backdrop-blur-sm mb-6">
+        <Icon name="tabler:mail" class="w-10 h-10 text-luxury-gold" />
+      </div>
+
+      <!-- Title -->
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-6">
+        {title}
+      </h2>
+
+      <!-- Description -->
+      <p class="text-lg md:text-xl text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed">
+        {description}
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <!-- Primary CTA - Contact Form -->
+        <a
+          href={contactUrl}
+          class="btn-primary inline-flex items-center gap-3 px-8 py-4 hover:scale-105 group"
+        >
+          <Icon name="tabler:calendar" class="w-6 h-6" />
+          <span>Verifica disponibilità</span>
+          <svg
+            class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+
+        <!-- Secondary CTA - Direct Email -->
+        <a
+          href="mailto:casanegrano@gmail.com?subject=Richiesta informazioni per {apartmentName}"
+          class="btn-ghost inline-flex items-center gap-3 px-8 py-4 group"
+        >
+          <Icon name="tabler:mail" class="w-6 h-6" />
+          <span>Scrivi una email</span>
+        </a>
+      </div>
+
+      <!-- Additional Info -->
+      <div class="mt-12 pt-8 border-t border-luxury-gold/20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
+          <!-- Quick Response -->
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded bg-luxury-gold/20 flex items-center justify-center">
+              <Icon name="tabler:clock" class="w-6 h-6 text-luxury-gold" />
+            </div>
+            <p class="text-sm font-medium">Risposta rapida</p>
+            <p class="text-xs text-white/80">Entro 24 ore</p>
+          </div>
+
+          <!-- Flexible Check-in -->
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded bg-luxury-gold/20 flex items-center justify-center">
+              <Icon name="tabler:door-enter" class="w-6 h-6 text-luxury-gold" />
+            </div>
+            <p class="text-sm font-medium">Check-in flessibile</p>
+            <p class="text-xs text-white/80">Dalle 16:00</p>
+          </div>
+
+          <!-- Best Price -->
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-12 h-12 rounded bg-luxury-gold/20 flex items-center justify-center">
+              <Icon name="tabler:discount-check" class="w-6 h-6 text-luxury-gold" />
+            </div>
+            <p class="text-sm font-medium">Miglior prezzo garantito</p>
+            <p class="text-xs text-white/80">Prenotazione diretta</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <!-- <div class="mt-8 text-white/80 text-sm">
+        <p>
+          Oppure chiamaci al
+          <a href="tel:+39XXXXXXXXX" class="text-luxury-gold font-medium hover:text-luxury-bronze transition-all duration-400">+39 XXX XXX XXXX</a>
+        </p>
+      </div> -->
+    </div>
+  </div>
+</section>

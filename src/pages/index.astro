@@ -1,7 +1,146 @@
 ---
-import Personal from './home/personal.astro';
-import '@/styles/globals.css'
+/**
+ * Home Page - Casa Negrano
+ * Main landing page showcasing all three apartments
+ */
+import Layout from '~/layouts/PageLayout.astro';
+import HomeHero from '~/components/home/HomeHero.astro';
+import ApartmentsOverview from '~/components/home/ApartmentsOverview.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getRandomReviews } from '~/data/reviews';
+
+import '@/styles/globals.css';
+
+const metadata = {
+  title: 'Casa Negrano - Appartamenti Vacanze a Trento | Holiday Housing',
+  description:
+    'Appartamenti moderni per vacanze a Trento. Scegli tra bilocale, trilocale o suite deluxe. WiFi, parcheggio, cucina attrezzata. A 5 km dal centro.',
+};
+
+// Get 6 random reviews for testimonials section
+const randomReviews = getRandomReviews(6);
+const testimonials = randomReviews.map((review) => ({
+  testimonial: review.text,
+  name: review.username,
+}));
 ---
 
-<Personal />
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <HomeHero />
 
+  <!-- About Section -->
+  <section id="chi-siamo" class="py-16 md:py-20 lg:py-28 bg-luxury-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="font-heading text-3xl md:text-4xl font-medium text-luxury-black mb-6">
+          Il tuo rifugio a Trento, tra natura e comfort
+        </h2>
+        <div class="w-20 h-0.5 bg-luxury-gold mx-auto mb-8"></div>
+        <div class="prose prose-lg max-w-none text-luxury-graphite leading-relaxed">
+          <p class="mb-6">
+            Situata a <strong class="text-luxury-gold">Villazzano</strong>, una tranquilla collina a soli <strong class="text-luxury-gold">5 km dal centro di Trento</strong
+            >, Casa Negrano offre tre appartamenti accoglienti e confortevoli, ideali per chi desidera esplorare il
+            Trentino o rilassarsi immerso nella natura.
+          </p>
+          <p>
+            Circondata dalla bellezza delle montagne e collegata agevolmente alla città, la nostra struttura è perfetta
+            per <strong class="text-luxury-gold">famiglie</strong>, <strong class="text-luxury-gold">coppie</strong>, <strong class="text-luxury-gold">gruppi di amici</strong> e chi viaggia per{' '}
+            <strong class="text-luxury-gold">lavoro</strong>. Ogni appartamento è dotato di tutti i comfort moderni per garantirti un soggiorno
+            indimenticabile.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Apartments Overview Section -->
+  <ApartmentsOverview />
+
+  <!-- Comfort/Services Section -->
+  <Features3
+    id="comfort"
+    title="I nostri Comfort"
+    subtitle="Tutto ciò che serve per un soggiorno senza pensieri."
+    columns={3}
+    defaultIcon="tabler:wifi"
+    items={[
+      {
+        title: 'WiFi ad alta velocità',
+        description:
+          'Rimani sempre connesso con una connessione veloce e stabile, ideale per lavorare da remoto o per lo streaming dei tuoi contenuti preferiti.',
+        icon: 'tabler:wifi',
+      },
+      {
+        title: 'Parcheggio in struttura',
+        description: 'Parcheggia comodamente la tua auto nella nostra struttura, senza pensieri e senza costi aggiuntivi.',
+        icon: 'tabler:parking-circle',
+      },
+      {
+        title: 'Check-in flessibile a partire dalle 16:00',
+        description:
+          "Arriva quando vuoi dalle 16:00 in poi, hai la libertà di scegliere l'orario di arrivo più comodo per te. Check-out alle 10:00.",
+        icon: 'tabler:door-enter',
+      },
+      {
+        title: 'Riscaldamento e raffrescamento a pavimento',
+        description: 'Il massimo del comfort termico in ogni stagione, per un ambiente sempre alla temperatura ideale.',
+        icon: 'tabler:air-conditioning',
+      },
+      {
+        title: 'Cucina ben attrezzata',
+        description:
+          'Ogni appartamento dispone di una cucina completa, dotata di tutto il necessario per preparare e gustare i tuoi pasti preferiti.',
+        icon: 'tabler:tools-kitchen',
+      },
+      {
+        title: 'Balcone privato',
+        description:
+          "Goditi la vista e l'aria fresca dal balcone del tuo appartamento, perfetto per un momento di relax all'aperto.",
+        icon: 'tabler:building-bridge-2',
+      },
+      {
+        title: 'Biancheria e asciugamani inclusi',
+        description:
+          'Troverai tutto ciò di cui hai bisogno per un soggiorno confortevole, con biancheria e asciugamani forniti per ogni ospite.',
+        icon: 'tabler:bed',
+      },
+      {
+        title: 'Ascensore',
+        description:
+          "L'ascensore offre un accesso facile e comodo a tutti gli appartamenti, garantendo un soggiorno senza ostacoli per famiglie, coppie e ospiti con mobilità ridotta.",
+        icon: 'tabler:elevator',
+      },
+      {
+        title: 'Cassaforte',
+        description:
+          'Per la tua sicurezza, ogni appartamento è dotato di una cassaforte per riporre i tuoi oggetti di valore in tutta tranquillità.',
+        icon: 'tabler:lock',
+      },
+    ]}
+  />
+
+  <!-- Testimonials Section -->
+  <Testimonials
+    id="testimonianze"
+    title="Le testimonianze"
+    subtitle="Scopri cosa dicono di noi i nostri ospiti."
+    testimonials={testimonials}
+  />
+
+  <!-- Call to Action Section -->
+  <CallToAction
+    id="contact"
+    title="Non aspettare, prenota ora la tua prossima vacanza!"
+    subtitle="Hai qualche richiesta particolare o qualche domanda?"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Contattaci',
+        href: '/contatti',
+      },
+    ]}
+  />
+</Layout>

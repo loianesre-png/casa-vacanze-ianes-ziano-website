@@ -21,26 +21,35 @@
 }
 
 @layer components {
+  /* Luxury Button Base */
   .btn {
-    @apply inline-flex items-center justify-center rounded-full border-gray-400 border bg-transparent font-medium text-center text-base text-page leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2 hover:bg-gray-100 hover:border-gray-600 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800 dark:hover:border-slate-800 cursor-pointer;
+    @apply inline-flex items-center justify-center rounded border bg-transparent font-medium text-center text-sm uppercase tracking-wide leading-snug transition-all duration-400 py-3.5 px-6 md:px-8 focus:ring-luxury-gold focus:ring-offset-luxury-cream focus:ring-2 focus:ring-offset-2 cursor-pointer;
   }
 
+  /* Luxury Primary Button (Gold) */
   .btn-primary {
-    @apply btn font-semibold bg-primary text-white border-primary hover:text-amber-400 dark:text-white dark:bg-primary dark:border-primary dark:hover:text-amber-400;
+    @apply btn font-medium bg-luxury-gold text-luxury-black border border-luxury-gold/20 hover:bg-luxury-bronze hover:border-luxury-bronze/20 shadow-luxury-sm hover:shadow-luxury-md;
   }
 
+  /* Luxury Secondary Button (Outline Gold) */
   .btn-secondary {
-    @apply btn;
+    @apply btn border border-luxury-gold text-luxury-gold bg-transparent hover:bg-luxury-gold hover:text-luxury-black;
   }
 
+  /* Luxury Tertiary Button (Minimal) */
   .btn-tertiary {
-    @apply btn border-none shadow-none text-muted hover:text-gray-900 dark:text-gray-400 dark:hover:text-white;
+    @apply btn border-none shadow-none text-luxury-charcoal hover:text-luxury-gold;
+  }
+
+  /* Luxury Ghost Button (White on dark backgrounds) */
+  .btn-ghost {
+    @apply btn border border-white/30 text-white bg-transparent hover:bg-white/10 hover:border-white/50;
   }
 }
 
 #header.scroll > div:first-child {
-  @apply bg-page md:bg-white/90 md:backdrop-blur-md;
-  box-shadow: 0 0.375rem 1.5rem 0 rgb(140 152 164 / 13%);
+  @apply bg-luxury-white border-b border-luxury-sand;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 .dark #header.scroll > div:first-child,
 #header.scroll.dark > div:first-child {

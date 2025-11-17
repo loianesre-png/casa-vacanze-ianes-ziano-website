@@ -1,0 +1,123 @@
+---
+/**
+ * ApartmentsOverview Component
+ * Displays all available apartments in a responsive grid
+ */
+import ApartmentCard from './ApartmentCard.astro';
+import { apartments } from '~/data/apartments';
+---
+
+<section id="appartamenti" class="py-16 md:py-20 lg:py-28 bg-gradient-to-br from-luxury-cream via-luxury-white to-luxury-beige">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-12 md:mb-16">
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-medium text-luxury-black mb-4">
+        I nostri appartamenti
+      </h2>
+      <p class="text-lg md:text-xl text-luxury-graphite max-w-3xl mx-auto leading-relaxed">
+        Scegli la soluzione che fa per te, per un soggiorno indimenticabile a Trento. Ogni appartamento è arredato con
+        gusto moderno e dotato di tutti i comfort.
+      </p>
+      <div class="w-20 h-0.5 bg-luxury-gold mx-auto mt-6"></div>
+    </div>
+
+    <!-- Apartments Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+      {apartments.map((apartment) => <ApartmentCard apartment={apartment} />)}
+    </div>
+
+    <!-- Additional Info Banner -->
+    <div class="mt-16 bg-gradient-to-r from-luxury-charcoal to-luxury-black rounded p-8 md:p-12 text-center text-white shadow-luxury-lg">
+      <div class="max-w-4xl mx-auto">
+        <h3 class="font-heading text-2xl md:text-3xl font-medium mb-4">Non riesci a scegliere?</h3>
+        <p class="text-lg mb-6 opacity-90 leading-relaxed">
+          Contattaci e saremo felici di aiutarti a trovare l'appartamento perfetto per le tue esigenze. Ti forniremo
+          tutte le informazioni necessarie e un preventivo personalizzato.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/contatti"
+            class="btn-primary inline-flex items-center justify-center gap-2 px-8 py-4"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
+            </svg>
+            <span>Richiedi informazioni</span>
+          </a>
+          <a
+            href="mailto:casanegrano@gmail.com"
+            class="btn-ghost inline-flex items-center justify-center gap-2 px-8 py-4"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+              ></path>
+            </svg>
+            <span>Scrivici</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Comparison Table -->
+    <div class="mt-16">
+      <h3 class="font-heading text-2xl md:text-3xl font-medium text-luxury-black text-center mb-8">Confronto rapido</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full bg-luxury-white rounded shadow-luxury-md overflow-hidden">
+          <thead class="bg-luxury-charcoal text-white">
+            <tr>
+              <th class="px-6 py-4 text-left font-medium uppercase tracking-wide text-sm">Appartamento</th>
+              <th class="px-6 py-4 text-center font-medium uppercase tracking-wide text-sm">Ospiti</th>
+              <th class="px-6 py-4 text-center font-medium uppercase tracking-wide text-sm">Superficie</th>
+              <th class="px-6 py-4 text-center font-medium uppercase tracking-wide text-sm">Camere</th>
+              <th class="px-6 py-4 text-center font-medium uppercase tracking-wide text-sm">Bagni</th>
+              <th class="px-6 py-4 text-center font-medium uppercase tracking-wide text-sm"></th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-luxury-sand">
+            {
+              apartments.map((apartment, index) => (
+                <tr class={index % 2 === 0 ? 'bg-luxury-beige/30' : 'bg-luxury-white'}>
+                  <td class="px-6 py-4">
+                    <div>
+                      <p class="font-medium text-luxury-black">{apartment.name.replace('Appartamento ', '')}</p>
+                      <p class="text-sm text-luxury-graphite">{apartment.subtitle}</p>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-center text-luxury-black font-medium">{apartment.capacity}</td>
+                  <td class="px-6 py-4 text-center text-luxury-black font-medium">{apartment.size} m²</td>
+                  <td class="px-6 py-4 text-center text-luxury-graphite">{apartment.bedrooms}</td>
+                  <td class="px-6 py-4 text-center text-luxury-graphite">{apartment.bathrooms}</td>
+                  <td class="px-6 py-4 text-center">
+                    <a
+                      href={`/appartamenti/${apartment.slug}`}
+                      class="inline-flex items-center gap-1 text-luxury-gold hover:text-luxury-bronze font-medium transition-all duration-400"
+                    >
+                      <span class="text-sm uppercase tracking-wide">Dettagli</span>
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </a>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

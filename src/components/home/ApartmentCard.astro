@@ -1,0 +1,150 @@
+---
+/**
+ * ApartmentCard Component
+ * Card display for individual apartments on the home page
+ */
+import { Image } from 'astro:assets';
+import type { Apartment } from '~/data/apartments';
+
+interface Props {
+  /** Apartment data object */
+  apartment: Apartment;
+}
+
+const { apartment } = Astro.props;
+
+// Dynamically import the apartment image
+const images = import.meta.glob('../../assets/images/**/*.webp');
+const imagePath = `../../assets/images/${apartment.id}/${apartment.heroImage}`;
+const imageModule = images[imagePath];
+
+if (!imageModule) {
+  throw new Error(`Apartment image not found: ${imagePath}`);
+}
+
+const apartmentImageModule = await imageModule();
+const apartmentImage = apartmentImageModule.default;
+---
+
+<div
+  class="group bg-luxury-white rounded shadow-luxury-md hover:shadow-luxury-lg transition-all duration-400 overflow-hidden border border-luxury-sand hover:border-luxury-gold"
+>
+  <!-- Image Section -->
+  <div class="relative h-64 overflow-hidden">
+    <Image
+      src={apartmentImage}
+      alt={`${apartment.name} - Casa Negrano`}
+      class="w-full h-full object-cover transition-transform duration-400 group-hover:scale-105"
+      widths={[400, 600, 800]}
+      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+      loading="lazy"
+      format="webp"
+      quality={85}
+    />
+
+    <!-- Capacity Badge -->
+    <div class="absolute top-4 right-4 px-4 py-2 bg-luxury-gold text-luxury-black rounded font-medium text-sm shadow-luxury-sm uppercase tracking-wide">
+      {apartment.capacity} {apartment.capacity === 1 ? 'ospite' : 'ospiti'}
+    </div>
+
+    <!-- Overlay on hover -->
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-luxury-black/50 via-luxury-black/0 to-luxury-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
+    >
+    </div>
+  </div>
+
+  <!-- Content Section -->
+  <div class="p-6 lg:p-8">
+    <!-- Apartment Name -->
+    <h3 class="font-heading text-2xl font-medium text-luxury-black mb-2 group-hover:text-luxury-gold transition-all duration-400">
+      {apartment.name}
+    </h3>
+
+    <!-- Subtitle -->
+    <p class="text-luxury-graphite mb-4 uppercase tracking-wide text-sm">
+      {apartment.subtitle}
+    </p>
+
+    <!-- Description -->
+    <p class="text-luxury-graphite leading-relaxed mb-6 line-clamp-3">
+      {apartment.description}
+    </p>
+
+    <!-- Key Features Grid -->
+    <div class="grid grid-cols-2 gap-3 mb-6 pb-6 border-b border-luxury-sand">
+      <!-- Size -->
+      <div class="flex items-center gap-2">
+        <svg class="w-5 h-5 text-luxury-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 8V4m0 0h4M4 4l5 5m11-2V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
+        </svg>
+        <span class="text-sm text-luxury-graphite font-medium">{apartment.size} m²</span>
+      </div>
+
+      <!-- Bedrooms -->
+      <div class="flex items-center gap-2">
+        <svg class="w-5 h-5 text-luxury-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+          ></path>
+        </svg>
+        <span class="text-sm text-luxury-graphite font-medium">{apartment.bedrooms}</span>
+      </div>
+
+      <!-- Bathrooms -->
+      <div class="flex items-center gap-2">
+        <svg class="w-5 h-5 text-luxury-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path>
+        </svg>
+        <span class="text-sm text-luxury-graphite font-medium">{apartment.bathrooms}</span>
+      </div>
+
+      <!-- WiFi -->
+      <div class="flex items-center gap-2">
+        <svg class="w-5 h-5 text-luxury-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"
+          ></path>
+        </svg>
+        <span class="text-sm text-luxury-graphite font-medium">WiFi incluso</span>
+      </div>
+    </div>
+
+    <!-- Ideal For Tags -->
+    <div class="mb-6">
+      <p class="text-xs font-medium text-luxury-graphite uppercase tracking-wider mb-2">Ideale per:</p>
+      <div class="flex flex-wrap gap-2">
+        {
+          apartment.idealFor.slice(0, 3).map((tag) => (
+            <span class="px-3 py-1 bg-luxury-beige text-luxury-gold rounded text-xs font-medium">{tag}</span>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <a
+      href={`/appartamenti/${apartment.slug}`}
+      class="btn-primary inline-flex items-center justify-center gap-2 w-full px-6 py-3"
+    >
+      <span>Scopri di più</span>
+      <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+      </svg>
+    </a>
+  </div>
+</div>

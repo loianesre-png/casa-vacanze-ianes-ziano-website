@@ -1,0 +1,104 @@
+---
+/**
+ * Photo Gallery Component
+ * Displays an image carousel of all apartment photos
+ */
+import { Image, getImage } from 'astro:assets';
+import ImageCarousel from '~/components/widgets/ImageCarousel.astro';
+
+export interface Props {
+  apartmentSlug: string;
+  apartmentName: string;
+}
+
+const { apartmentSlug, apartmentName } = Astro.props;
+
+// Load all images based on apartment slug
+let imageModules;
+
+if (apartmentSlug === 'bilocale') {
+  imageModules = await Astro.glob('../../assets/images/bilocale/*.webp');
+} else if (apartmentSlug === 'trilocale') {
+  imageModules = await Astro.glob('../../assets/images/trilocale/*.webp');
+} else if (apartmentSlug === 'suite-deluxe') {
+  imageModules = await Astro.glob('../../assets/images/suite-deluxe/*.webp');
+} else {
+  throw new Error(`Unknown apartment slug: ${apartmentSlug}`);
+}
+
+// Generate optimized images
+const images = await Promise.all(
+  imageModules.map(async (module, index) => {
+    const originalImage = module.default;
+
+    // Generate thumbnail for carousel
+    const thumbnail = await getImage({
+      src: originalImage,
+      width: 800,
+      format: 'webp',
+      quality: 85,
+    });
+
+    const thumbnail1200 = await getImage({
+      src: originalImage,
+      width: 1200,
+      format: 'webp',
+      quality: 85,
+    });
+
+    // Generate full-size for modal
+    const full = await getImage({
+      src: originalImage,
+      width: 1600,
+      format: 'webp',
+      quality: 90,
+    });
+
+    const full2400 = await getImage({
+      src: originalImage,
+      width: 2400,
+      format: 'webp',
+      quality: 90,
+    });
+
+    return {
+      src: thumbnail.src,
+      srcset: `${thumbnail.src} 800w, ${thumbnail1200.src} 1200w`,
+      sizes: '(max-width: 768px) 100vw, 800px',
+      fullSrc: full.src,
+      fullSrcset: `${thumbnail1200.src} 1200w, ${full.src} 1600w, ${full2400.src} 2400w`,
+      alt: `${apartmentName} - Foto ${index + 1}`,
+      title: `Vista dell'appartamento ${apartmentName}`,
+    };
+  })
+);
+---
+
+<section class="bg-luxury-white py-12 md:py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <!-- Section heading -->
+    <div class="text-center mb-8 md:mb-12">
+      <h2 class="text-3xl md:text-4xl font-heading font-medium text-luxury-black mb-4">
+        Galleria Fotografica
+      </h2>
+      <div class="w-20 h-0.5 bg-luxury-gold mx-auto mb-4"></div>
+      <p class="text-lg text-luxury-graphite max-w-2xl mx-auto">
+        Esplora gli spazi e i comfort dell'appartamento attraverso le nostre foto
+      </p>
+    </div>
+
+    <!-- Image carousel -->
+    <div class="max-w-5xl mx-auto">
+      <ImageCarousel images={images} loading="lazy" preloadCount={2} />
+    </div>
+
+    <!-- Gallery info -->
+    <div class="mt-8 text-center">
+      <p class="text-sm text-luxury-graphite">
+        <span class="font-medium text-luxury-gold">{images.length} foto</span> disponibili
+        <span class="mx-2">•</span>
+        Clicca sull'icona di espansione per visualizzare a schermo intero
+      </p>
+    </div>
+  </div>
+</section>

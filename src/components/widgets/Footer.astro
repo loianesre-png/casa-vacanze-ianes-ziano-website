@@ -26,22 +26,22 @@ export interface Props {
 const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light' } = Astro.props;
 ---
 
-<footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-200 dark:border-slate-800 not-prose']}>
-  <div class="dark:bg-dark absolute inset-0 pointer-events-none" aria-hidden="true"></div>
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 dark:text-slate-300">
+<footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-luxury-sand bg-luxury-white not-prose']}>
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
       <!-- Site info -->
       <div class="md:col-span-12 lg:col-span-4">
         <div class="mb-4">
-          <a class="inline-block font-bold text-xl" href={getHomePermalink()}>{SITE?.name}</a>
+          <a class="inline-block font-heading font-medium text-xl text-luxury-black hover:text-luxury-gold transition-all duration-400" href={getHomePermalink()}>{SITE?.name}</a>
         </div>
-        <div class="text-sm flex flex-wrap gap-2 mb-6">
+        <div class="text-sm flex flex-wrap gap-2 mb-6 text-luxury-graphite">
           {
             secondaryLinks.map(({ text, href }, index) => (
               <>
                 {index !== 0 ? ' · ' : ''}
                 <a
-                  class="hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
+                  class="hover:text-luxury-gold transition-all duration-400"
                   href={href}
                   set:html={text}
                 />
@@ -56,13 +56,13 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
         {
           links.map(({ title, links }) => (
             <div class="mb-4">
-              <div class="dark:text-gray-300 font-medium mb-2">{title}</div>
+              <div class="text-luxury-black font-medium mb-3 uppercase tracking-wide text-sm">{title}</div>
               {links && Array.isArray(links) && links.length > 0 && (
                 <ul class="text-sm">
                   {links.map(({ text, href, ariaLabel }) => (
                     <li class="mb-2">
                       <a
-                        class="hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
+                        class="text-luxury-graphite hover:text-luxury-gold transition-all duration-400"
                         href={href}
                         aria-label={ariaLabel}
                       >
@@ -78,14 +78,14 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
       </div>
 
       <!-- Footnote -->
-      <div class="text-sm text-center md:text-left sm:grid-cols-3 md:col-span-12">
+      <div class="text-sm text-center md:text-left sm:grid-cols-3 md:col-span-12 text-luxury-graphite">
         <Fragment set:html={footNote} />
       </div>
 
       <!-- MAP -->
       <div class="md:col-span-12 lg:col-span-12 mt-6">
         <iframe
-          class="w-full h-[250px] sm:h-[300px] md:h-[350px] rounded-lg shadow-md"
+          class="w-full h-[250px] sm:h-[300px] md:h-[350px] rounded shadow-luxury-md"
           title="Google Maps - Casa Negrano"
           src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d494.5618518780699!2d11.147751298501028!3d46.05162570411028!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4782769e96de90b5%3A0xf242c3e311707912!2sLocalit%C3%A0%20Negrano%2C%2013%2C%2038123%20Trento%20TN!5e1!3m2!1sen!2sit!4v1742306434709!5m2!1sen!2sit"
           style="border:0;"
@@ -97,7 +97,7 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
       </div>
     </div>
 
-    <!-- Social links section (commented out, but fixed for future use) -->
+    <!-- Social links section (commented out, but updated for luxury styling) -->
     <!-- <div class="md:flex md:items-center md:justify-between py-6 md:py-8">
       {
         socialLinks?.length ? (
@@ -105,7 +105,7 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
             {socialLinks.map(({ ariaLabel, href, text, icon }) => (
               <li>
                 <a
-                  class="dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+                  class="text-luxury-graphite hover:bg-luxury-beige hover:text-luxury-gold dark:text-gray-400 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-luxury-gold rounded text-sm p-2.5 inline-flex items-center transition-all duration-400"
                   aria-label={ariaLabel}
                   href={href}
                 >
@@ -120,8 +120,8 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
         )
       }
 
-      
-    </div> 
+
+    </div>
     -->
   </div>
 </footer>

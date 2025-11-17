@@ -1,0 +1,143 @@
+---
+/**
+ * RoomShowcase Component
+ * Displays each room with alternating image-text layout
+ * Repeating card/module pattern for room-by-room details
+ */
+import { Image } from 'astro:assets';
+import type { Room } from '~/data/apartments';
+
+interface Props {
+  /** Array of room objects */
+  rooms: Room[];
+  /** Apartment ID for image path */
+  apartmentId: string;
+}
+
+const { rooms, apartmentId } = Astro.props;
+
+// Dynamically import all images for this apartment
+const images = import.meta.glob('../../assets/images/**/*.webp');
+
+// Helper function to get image module
+async function getImageModule(imageName: string) {
+  const imagePath = `../../assets/images/${apartmentId}/${imageName}`;
+  const imageModule = images[imagePath];
+
+  if (!imageModule) {
+    console.warn(`Room image not found: ${imagePath}`);
+    return null;
+  }
+
+  const module = await imageModule();
+  return module.default;
+}
+
+// Load all room images
+const roomImages = await Promise.all(
+  rooms.map(room => getImageModule(room.image))
+);
+---
+
+<section class="py-12 md:py-16 lg:py-24 bg-luxury-cream">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Title -->
+    <div class="text-center mb-12 md:mb-16">
+      <h2 class="font-heading text-3xl md:text-4xl font-medium text-luxury-black mb-4">Gli spazi dell'appartamento</h2>
+      <p class="text-lg text-luxury-graphite max-w-2xl mx-auto">
+        Scopri ogni ambiente nel dettaglio, pensato per offrirti comfort e funzionalità
+      </p>
+      <div class="w-20 h-0.5 bg-luxury-gold mx-auto mt-4"></div>
+    </div>
+
+    <!-- Room Cards - Alternating Layout -->
+    <div class="space-y-16 md:space-y-24">
+      {
+        rooms.map((room, index) => {
+          const isEven = index % 2 === 0;
+          const roomImage = roomImages[index];
+
+          if (!roomImage) {
+            return null;
+          }
+
+          return (
+            <div class={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${!isEven ? 'lg:flex-row-reverse' : ''}`}>
+              {/* Image Column */}
+              <div class={`${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
+                <div class="relative rounded overflow-hidden shadow-luxury-lg group">
+                  <Image
+                    src={roomImage}
+                    alt={`${room.name} - Casa Negrano`}
+                    class="w-full h-full object-cover aspect-[4/3] transition-transform duration-400 group-hover:scale-105"
+                    widths={[400, 600, 800, 1000]}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    loading="lazy"
+                    format="webp"
+                    quality={85}
+                  />
+                  {/* Overlay on hover */}
+                  <div class="absolute inset-0 bg-gradient-to-t from-luxury-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+                </div>
+              </div>
+
+              {/* Content Column */}
+              <div class={`${isEven ? 'lg:order-2' : 'lg:order-1'} space-y-4 lg:space-y-6`}>
+                {/* Room Name */}
+                <h3 class="font-heading text-2xl md:text-3xl font-medium text-luxury-black flex items-center gap-3">
+                  <div class="w-10 h-10 rounded bg-luxury-gold flex items-center justify-center flex-shrink-0">
+                    <svg class="w-6 h-6 text-luxury-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                  </div>
+                  {room.name}
+                </h3>
+
+                {/* Room Description */}
+                <div class="prose prose-lg max-w-none">
+                  <p class="text-luxury-graphite leading-relaxed">
+                    {room.description}
+                  </p>
+                </div>
+
+                {/* Amenities List (if available) */}
+                {room.amenities && room.amenities.length > 0 && (
+                  <div class="mt-6">
+                    <h4 class="text-sm font-medium text-luxury-graphite uppercase tracking-wider mb-3">
+                      Dotazioni
+                    </h4>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {room.amenities.map((amenity) => (
+                        <li class="flex items-start gap-2">
+                          <svg
+                            class="w-5 h-5 text-luxury-gold flex-shrink-0 mt-0.5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M5 13l4 4L19 7"
+                            ></path>
+                          </svg>
+                          <span class="text-luxury-graphite">{amenity}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

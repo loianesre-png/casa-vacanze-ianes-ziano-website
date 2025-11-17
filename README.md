@@ -1,295 +1,287 @@
-# 🚀 AstroWind
+# Casa Negrano - Luxury Rental Website
 
-<img src="https://raw.githubusercontent.com/onwidget/.github/main/resources/astrowind/lighthouse-score.png" align="right"
-     alt="AstroWind Lighthouse Score" width="100" height="358">
+Luxury vacation rental website for Casa Negrano apartments in Trento, Trentino, Italia. Built with Astro 4.15.5, TypeScript, and Tailwind CSS featuring a custom minimal luxury design system.
 
-🌟 _Most *starred* & *forked* Astro theme in 2022 & 2023_. 🌟
+## Overview
 
-**AstroWind** is a free and open-source template to make your website using **[Astro 4.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/)**. Ready to start a new project and designed taking into account web best practices.
+Casa Negrano offers three luxury apartments for short-term rental:
+- **Bilocale** - Two-room apartment
+- **Trilocale** - Three-room apartment
+- **Suite Deluxe** - Premium suite
 
-- ✅ **Production-ready** scores in **PageSpeed Insights** reports.
-- ✅ Integration with **Tailwind CSS** supporting **Dark mode** and **_RTL_**.
-- ✅ **Fast and SEO friendly blog** with automatic **RSS feed**, **MDX** support, **Categories & Tags**, **Social Share**, ...
-- ✅ **Image Optimization** (using new **Astro Assets** and **Unpic** for Universal image CDN).
-- ✅ Generation of **project sitemap** based on your routes.
-- ✅ **Open Graph tags** for social media sharing.
-- ✅ **Analytics** built-in Google Analytics, and Splitbee integration.
+This website showcases these properties with elegant photo galleries, detailed room information, service listings, and integrated booking capabilities.
 
-<br>
+## Quick Start
 
-<img src="https://raw.githubusercontent.com/onwidget/.github/main/resources/astrowind/screenshot-astrowind-1.png" alt="AstroWind Theme Screenshot">
+### Prerequisites
 
-[![onWidget](https://custom-icon-badges.demolab.com/badge/made%20by%20-onWidget-556bf2?style=flat-square&logo=onwidget&logoColor=white&labelColor=101827)](https://onwidget.com)
-[![License](https://img.shields.io/github/license/onwidget/astrowind?style=flat-square&color=dddddd&labelColor=000000)](https://github.com/onwidget/astrowind/blob/main/LICENSE.md)
-[![Maintained](https://img.shields.io/badge/maintained%3F-yes-brightgreen.svg?style=flat-square)](https://github.com/onwidget)
-[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/onwidget/astrowind#contributing)
-[![Known Vulnerabilities](https://snyk.io/test/github/onwidget/astrowind/badge.svg?style=flat-square)](https://snyk.io/test/github/onwidget/astrowind)
-[![Stars](https://img.shields.io/github/stars/onwidget/astrowind.svg?style=social&label=stars&maxAge=86400&color=ff69b4)](https://github.com/onwidget/astrowind)
-[![Forks](https://img.shields.io/github/forks/onwidget/astrowind.svg?style=social&label=forks&maxAge=86400&color=ff69b4)](https://github.com/onwidget/astrowind)
+- Node.js 18+
+- npm or pnpm
 
-<br>
+### Installation
 
-<details open>
-<summary>Table of Contents</summary>
-
-- [Demo](#demo)
-- [Upcoming: AstroWind 2.0 – We Need Your Vision!](#-upcoming-astrowind-20--we-need-your-vision)
-- [Getting started](#getting-started)
-  - [Project structure](#project-structure)
-  - [Commands](#commands)
-  - [Configuration](#configuration)
-  - [Deploy](#deploy)
-- [Frequently Asked Questions](#frequently-asked-questions)
-- [Related Projects](#related-projects)
-- [Contributing](#contributing)
-- [Acknowledgements](#acknowledgements)
-- [License](#license)
-
-</details>
-
-<br>
-
-## Demo
-
-📌 [https://astrowind.vercel.app/](https://astrowind.vercel.app/)
-
-<br>
-
-## 🔔 Upcoming: AstroWind 2.0 – We Need Your Vision!
-
-We're embarking on an exciting journey with **AstroWind 2.0**, and we want you to be a part of it! We're currently taking the first steps in developing this new version and your insights are invaluable. Join the discussion and share your feedback, ideas, and suggestions to help shape the future of **AstroWind**. Let's make **AstroWind 2.0** even better, together!
-
-[Share Your Feedback in Our Discussion!](https://github.com/onwidget/astrowind/discussions/392)
-
-<br>
-
-## Getting started
-
-**AstroWind** tries to give you quick access to creating a website using [Astro 4.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/). It's a free theme which focuses on simplicity, good practices and high performance.
-
-Very little vanilla javascript is used only to provide basic functionality so that each developer decides which framework (React, Vue, Svelte, Solid JS...) to use and how to approach their goals.
-
-In this version the template supports all the options in the `output` configuration, `static`, `hybrid` and `server`, but the blog only works with `prerender = true`. We are working on the next version and aim to make it fully compatible with SSR.
-
-### Project structure
-
-Inside **AstroWind** template, you'll see the following folders and files:
-
-```
-/
-├── public/
-│   ├── _headers
-│   └── robots.txt
-├── src/
-│   ├── assets/
-│   │   ├── favicons/
-│   │   ├── images/
-│   │   └── styles/
-│   │       └── tailwind.css
-│   ├── components/
-│   │   ├── blog/
-│   │   ├── common/
-│   │   ├── ui/
-│   │   ├── widgets/
-│   │   │   ├── Header.astro
-│   │   │   └── ...
-│   │   ├── CustomStyles.astro
-│   │   ├── Favicons.astro
-│   │   └── Logo.astro
-│   ├── content/
-│   │   ├── post/
-│   │   │   ├── post-slug-1.md
-│   │   │   ├── post-slug-2.mdx
-│   │   │   └── ...
-│   │   └-- config.ts
-│   ├── layouts/
-│   │   ├── Layout.astro
-│   │   ├── MarkdownLayout.astro
-│   │   └── PageLayout.astro
-│   ├── pages/
-│   │   ├── [...blog]/
-│   │   │   ├── [category]/
-│   │   │   ├── [tag]/
-│   │   │   ├── [...page].astro
-│   │   │   └── index.astro
-│   │   ├── index.astro
-│   │   ├── 404.astro
-│   │   ├-- rss.xml.ts
-│   │   └── ...
-│   ├── utils/
-│   ├── config.yaml
-│   └── navigation.js
-├── package.json
-├── astro.config.ts
-└── ...
+```bash
+npm install
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Development
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory if they do not require any transformation or in the `assets/` directory if they are imported directly.
-
-[![Edit AstroWind on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://githubbox.com/onwidget/astrowind/tree/main) [![Open in Gitpod](https://svgshare.com/i/xdi.svg)](https://gitpod.io/?on=gitpod#https://github.com/onwidget/astrowind) [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/onwidget/astrowind)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file `README.md`. Update `src/config.yaml` and contents. Have fun!
-
-<br>
-
-### Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command               | Action                                             |
-| :-------------------- | :------------------------------------------------- |
-| `npm install`         | Installs dependencies                              |
-| `npm run dev`         | Starts local dev server at `localhost:3000`        |
-| `npm run build`       | Build your production site to `./dist/`            |
-| `npm run preview`     | Preview your build locally, before deploying       |
-| `npm run format`      | Format codes with Prettier                         |
-| `npm run lint:eslint` | Run Eslint                                         |
-| `npm run astro ...`   | Run CLI commands like `astro add`, `astro preview` |
-
-<br>
-
-### Configuration
-
-Basic configuration file: `./src/config.yaml`
-
-```yaml
-site:
-  name: 'Example'
-  site: 'https://example.com'
-  base: '/' # Change this if you need to deploy to Github Pages, for example
-  trailingSlash: false # Generate permalinks with or without "/" at the end
-
-  googleSiteVerificationId: false # Or some value,
-
-# Default SEO metadata
-metadata:
-  title:
-    default: 'Example'
-    template: '%s — Example'
-  description: 'This is the default meta description of Example website'
-  robots:
-    index: true
-    follow: true
-  openGraph:
-    site_name: 'Example'
-    images:
-      - url: '~/assets/images/default.png'
-        width: 1200
-        height: 628
-    type: website
-  twitter:
-    handle: '@twitter_user'
-    site: '@twitter_user'
-    cardType: summary_large_image
-
-i18n:
-  language: en
-  textDirection: ltr
-
-apps:
-  blog:
-    isEnabled: true # If the blog will be enabled
-    postsPerPage: 6 # Number of posts per page
-
-    post:
-      isEnabled: true
-      permalink: '/blog/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
-      robots:
-        index: true
-
-    list:
-      isEnabled: true
-      pathname: 'blog' # Blog main path, you can change this to "articles" (/articles)
-      robots:
-        index: true
-
-    category:
-      isEnabled: true
-      pathname: 'category' # Category main path /category/some-category, you can change this to "group" (/group/some-category)
-      robots:
-        index: true
-
-    tag:
-      isEnabled: true
-      pathname: 'tag' # Tag main path /tag/some-tag, you can change this to "topics" (/topics/some-category)
-      robots:
-        index: false
-
-    isRelatedPostsEnabled: true # If a widget with related posts is to be displayed below each post
-    relatedPostsCount: 4 # Number of related posts to display
-
-analytics:
-  vendors:
-    googleAnalytics:
-      id: null # or "G-XXXXXXXXXX"
-
-ui:
-  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
+```bash
+npm run dev
 ```
 
-<br>
+Visit `http://localhost:4321` to view the site.
 
-#### Customize Design
+### Build
 
-To customize Font families, Colors or more Elements refer to the following files:
-
-- `src/components/CustomStyles.astro`
-- `src/assets/styles/tailwind.css`
-
-### Deploy
-
-#### Deploy to production (manual)
-
-You can create an optimized production build with:
-
-```shell
+```bash
 npm run build
 ```
 
-Now, your website is ready to be deployed. All generated files are located at
-`dist` folder, which you can deploy the folder to any hosting service you
-prefer.
+Production files are generated in the `./dist/` directory.
 
-#### Deploy to Netlify
+### Preview
 
-Clone this repository on your own GitHub account and deploy it to Netlify:
+```bash
+npm run preview
+```
 
-[![Netlify Deploy button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/onwidget/astrowind)
+Preview the production build locally before deploying.
 
-#### Deploy to Vercel
+## Project Structure
 
-Clone this repository on your own GitHub account and deploy to Vercel:
+```
+/
+├── public/                 # Static assets
+├── src/
+│   ├── assets/
+│   │   ├── images/         # Optimized images by apartment
+│   │   │   ├── bilocale/
+│   │   │   ├── trilocale/
+│   │   │   └── suite-deluxe/
+│   │   └── styles/
+│   │       └── tailwind.css
+│   ├── components/
+│   │   ├── appartamenti/   # Apartment-specific components
+│   │   │   ├── ApartmentHero.astro
+│   │   │   ├── PhotoGallery.astro
+│   │   │   ├── RoomShowcase.astro
+│   │   │   └── ServicesGrid.astro
+│   │   ├── ui/             # Reusable UI components
+│   │   └── widgets/        # Complex widgets
+│   │       ├── Header.astro
+│   │       ├── Footer.astro
+│   │       ├── ImageCarousel.astro
+│   │       └── CalendarForm.tsx
+│   ├── layouts/
+│   │   └── PageLayout.astro
+│   ├── pages/
+│   │   ├── appartamenti/   # Apartment detail pages
+│   │   │   ├── bilocale.astro
+│   │   │   ├── trilocale.astro
+│   │   │   └── suite-deluxe.astro
+│   │   ├── index.astro     # Homepage
+│   │   └── ...
+│   └── config.yaml         # Site configuration
+├── ARCHITECTURE.md         # Complete documentation
+└── package.json
+```
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fonwidget%2Fastrowind)
+## Technology Stack
 
-<br>
+- **Astro 4.15.5** - Static site generator with partial hydration
+- **TypeScript** - Type-safe component development
+- **Tailwind CSS 3.4.11** - Utility-first CSS with custom luxury tokens
+- **Alpine.js** - Lightweight JavaScript for interactive components
+- **React 18** - For complex interactive components (CalendarForm)
+- **Astro Assets** - Built-in image optimization
 
-## Frequently Asked Questions
+## Key Features
 
-- Why?
--
--
+### Photo Gallery System
+- Luxury-styled image carousel with fullscreen modal
+- Responsive srcset (800w, 1200w, 1600w, 2400w)
+- Touch/swipe support
+- Keyboard navigation (←/→ arrows, Escape)
+- Autoplay mode with progress indicators
+- Lazy loading for performance
 
-<br>
+### Luxury Design System
+Custom design tokens following minimal luxury aesthetic:
 
-## Related projects
+| Color | Hex | Usage |
+|-------|-----|-------|
+| Luxury Gold | `#c9a961` | Primary accent, CTAs, highlights |
+| Luxury Bronze | `#a98b5f` | Secondary accent, hover states |
+| Luxury Cream | `#faf8f5` | Light backgrounds |
+| Luxury Beige | `#f5f2ed` | Subtle backgrounds |
+| Luxury Black | `#1a1a1a` | Headings, primary text |
+| Luxury Charcoal | `#2d2d2d` | Dark elements |
+| Luxury Graphite | `#4a4a4a` | Body text |
 
-- [TailNext](https://tailnext.vercel.app/) - Free template using Next.js 14 and Tailwind CSS with the new App Router.
-- [Qwind](https://qwind.pages.dev/) - Free template to make your website using Qwik + Tailwind CSS.
+**Typography:**
+- Headings: Playfair Display (serif, elegant)
+- Body: Inter Variable (sans-serif, clean)
 
-## Contributing
+**Design Principles:**
+- Border radius: Always `rounded` (0.25rem)
+- Transitions: Always `duration-400` (400ms)
+- Font weights: `font-medium` (500) for headings
+- Shadows: `shadow-luxury-sm/md/lg`
 
-If you have any ideas, suggestions or find any bugs, feel free to open a discussion, an issue or create a pull request.
-That would be very useful for all of us and we would be happy to listen and take action.
+### Performance Optimizations
+- WebP image format throughout
+- Responsive image srcsets
+- Lazy loading with Intersection Observer
+- Deferred carousel initialization with `requestIdleCallback`
+- Minimal JavaScript footprint
 
-## Acknowledgements
+### SEO & Meta
+- Open Graph tags for social sharing
+- Structured data for rental properties
+- Automatic sitemap generation
+- Optimized meta descriptions
 
-Initially created by [onWidget](https://onwidget.com) and maintained by a community of [contributors](https://github.com/onwidget/astrowind/graphs/contributors).
+## Content Management
+
+### Adding Apartment Photos
+
+1. Add WebP images to the appropriate directory:
+   ```
+   src/assets/images/bilocale/*.webp
+   src/assets/images/trilocale/*.webp
+   src/assets/images/suite-deluxe/*.webp
+   ```
+
+2. Images are automatically loaded by `PhotoGallery.astro` component
+
+3. Multiple sizes are generated automatically:
+   - Thumbnails: 800w, 1200w
+   - Fullscreen: 1600w, 2400w
+
+### Updating Apartment Information
+
+Edit apartment data in the respective page files:
+- `src/pages/appartamenti/bilocale.astro`
+- `src/pages/appartamenti/trilocale.astro`
+- `src/pages/appartamenti/suite-deluxe.astro`
+
+Each file contains structured data for:
+- Title and description
+- Room details (bedrooms, bathrooms, capacity)
+- Services and amenities
+- Pricing information
+
+### Modifying Site Configuration
+
+Edit `src/config.yaml` for:
+- Site name and URL
+- Meta descriptions
+- Google Analytics ID
+- Contact information
+
+## Styling Guidelines
+
+### Button Styles
+
+```astro
+<!-- Primary button -->
+<a class="btn font-medium bg-luxury-gold text-luxury-black border border-luxury-gold/20
+          hover:bg-luxury-bronze shadow-luxury-sm hover:shadow-luxury-md
+          uppercase tracking-wide transition-all duration-400">
+  Prenota Ora
+</a>
+
+<!-- Secondary button -->
+<a class="btn font-medium bg-luxury-white text-luxury-black border border-luxury-sand
+          hover:bg-luxury-cream shadow-luxury-sm transition-all duration-400">
+  Scopri di Più
+</a>
+```
+
+### Section Layouts
+
+```astro
+<section class="bg-luxury-white py-12 md:py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <!-- Section heading -->
+    <div class="text-center mb-8 md:mb-12">
+      <h2 class="text-3xl md:text-4xl font-heading font-medium text-luxury-black mb-4">
+        Titolo Sezione
+      </h2>
+      <div class="w-20 h-0.5 bg-luxury-gold mx-auto mb-4"></div>
+      <p class="text-lg text-luxury-graphite max-w-2xl mx-auto">
+        Descrizione della sezione
+      </p>
+    </div>
+
+    <!-- Content -->
+  </div>
+</section>
+```
+
+### Card Components
+
+```astro
+<div class="bg-luxury-white rounded border border-luxury-sand shadow-luxury-sm
+            hover:shadow-luxury-md transition-all duration-400">
+  <div class="p-6">
+    <!-- Card content -->
+  </div>
+</div>
+```
+
+## Available Commands
+
+| Command | Action |
+|---------|--------|
+| `npm install` | Install dependencies |
+| `npm run dev` | Start dev server at `localhost:4321` |
+| `npm run build` | Build production site to `./dist/` |
+| `npm run preview` | Preview production build locally |
+| `npm run format` | Format code with Prettier |
+| `npm run lint:eslint` | Run ESLint |
+
+## Deployment
+
+### Manual Deployment
+
+```bash
+npm run build
+```
+
+Deploy the `dist/` folder to your hosting provider.
+
+### Netlify
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start)
+
+### Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
+
+## Documentation
+
+For complete documentation including:
+- Detailed design system specifications
+- Component architecture
+- Styling patterns and examples
+- Performance optimization strategies
+- File structure details
+
+See **[ARCHITECTURE.md](./ARCHITECTURE.md)**
+
+## Browser Support
+
+- Chrome/Edge (latest)
+- Firefox (latest)
+- Safari 14+
+- Mobile browsers (iOS Safari, Chrome Mobile)
 
 ## License
 
-**AstroWind** is licensed under the MIT license — see the [LICENSE](./LICENSE.md) file for details.
+This project is based on the AstroWind template, licensed under the MIT license.
+
+---
+
+Built with [Astro](https://astro.build/) • Styled with [Tailwind CSS](https://tailwindcss.com/)

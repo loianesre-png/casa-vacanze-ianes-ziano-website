@@ -1,0 +1,108 @@
+---
+/**
+ * ApartmentHero Component
+ * Full-width hero section for apartment pages
+ * Displays apartment name, subtitle, and hero image
+ */
+import { Image } from 'astro:assets';
+
+interface Props {
+  /** Apartment name */
+  title: string;
+  /** Subtitle/tagline */
+  subtitle: string;
+  /** Hero image filename */
+  heroImage: string;
+  /** Apartment ID for image path */
+  apartmentId: string;
+}
+
+const { title, subtitle, heroImage, apartmentId } = Astro.props;
+
+// Dynamically import the hero image
+const images = import.meta.glob('../../assets/images/**/*.webp');
+const imagePath = `../../assets/images/${apartmentId}/${heroImage}`;
+const imageModule = images[imagePath];
+
+if (!imageModule) {
+  throw new Error(`Hero image not found: ${imagePath}`);
+}
+
+const heroImageModule = await imageModule();
+const heroImageSrc = heroImageModule.default;
+---
+
+<section class="relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh] overflow-hidden">
+  <!-- Hero Image -->
+  <div class="absolute inset-0">
+    <Image
+      src={heroImageSrc}
+      alt={`${title} - Vista principale`}
+      class="w-full h-full object-cover"
+      widths={[400, 800, 1200, 1600, 2400]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      format="webp"
+      quality={90}
+    />
+    <!-- Overlay gradient for better text readability -->
+    <div class="absolute inset-0 bg-gradient-to-b from-luxury-black/45 via-luxury-charcoal/35 to-luxury-black/65"></div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="relative h-full flex items-end pb-12 md:pb-16 lg:pb-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="max-w-3xl">
+        <!-- Breadcrumb -->
+        <nav class="mb-4 md:mb-6" aria-label="Breadcrumb">
+          <ol class="flex items-center space-x-2 text-sm text-white/90">
+            <li>
+              <a href="/" class="hover:text-luxury-gold transition-all duration-400">Home</a>
+            </li>
+            <li>
+              <svg class="w-4 h-4 text-luxury-gold/60" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </li>
+            <li>
+              <a href="/#appartamenti" class="hover:text-luxury-gold transition-all duration-400">Appartamenti</a>
+            </li>
+            <li>
+              <svg class="w-4 h-4 text-luxury-gold/60" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </li>
+            <li>
+              <span class="text-luxury-gold font-medium">{title.replace('Appartamento ', '')}</span>
+            </li>
+          </ol>
+        </nav>
+
+        <!-- Title and Subtitle -->
+        <h1 class="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-white mb-3 md:mb-4 leading-tight">
+          {title}
+        </h1>
+        <p class="text-lg sm:text-xl md:text-2xl text-white/95 font-light uppercase tracking-wide">
+          {subtitle}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 hidden md:block">
+    <div class="flex flex-col items-center gap-2 text-luxury-gold/80 animate-bounce">
+      <span class="text-sm uppercase tracking-wide">Scopri di più</span>
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </div>
+  </div>
+</section>

@@ -28,7 +28,7 @@ const {
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
   <div
-    class="max-w-3xl mx-auto text-center md:p-6 md:rounded-md md:shadow-xl md:dark:shadow-none md:dark:border md:dark:border-slate-600"
+    class="max-w-3xl mx-auto text-center md:p-6 md:rounded md:shadow-luxury-md md:dark:shadow-none md:dark:border md:dark:border-slate-600 md:bg-luxury-white md:border md:border-luxury-sand"
   >
     <Headline
       title={title}
@@ -36,8 +36,8 @@ const {
       tagline={tagline}
       classes={{
         container: 'mb-0 md:mb-0',
-        title: 'text-4xl md:text-4xl font-bold tracking-tighter mb-4 font-heading',
-        subtitle: 'text-xl  dark:text-slate-400',
+        title: 'text-4xl md:text-4xl font-heading font-medium tracking-tight mb-4',
+        subtitle: 'text-xl text-luxury-graphite dark:text-slate-400',
       }}
     />
     <CalendarForm client:load />
