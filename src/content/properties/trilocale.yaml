@@ -1,0 +1,168 @@
+# =============================================================================
+# Property Configuration: Trilocale - La Famiglia
+# =============================================================================
+id: trilocale
+slug: trilocale
+published: true
+order: 2
+
+name: "Appartamento La Famiglia"
+subtitle: "Trilocale con 2 camere e 2 bagni"
+
+description: >
+  L'appartamento offre due camere da letto (una matrimoniale e una con due letti
+  singoli), due bagni completi e un ampio soggiorno con cucina ben fornita. Gli
+  spazi generosi e la configurazione intelligente lo rendono perfetto per famiglie
+  o gruppi di amici che desiderano maggiore privacy e comfort durante il loro
+  soggiorno a Trento.
+
+shortDescription: "Trilocale spazioso ideale per famiglie"
+
+# -----------------------------------------------------------------------------
+# Capacity & Size
+# -----------------------------------------------------------------------------
+capacity:
+  guests: 4
+  bedrooms: "1 camera matrimoniale + 1 camera doppia"
+  bathrooms: "2 bagni con doccia"
+  beds:
+    double: 1
+    single: 2
+    sofa: 1
+
+size:
+  value: 120
+  unit: sqm
+
+# -----------------------------------------------------------------------------
+# Images
+# -----------------------------------------------------------------------------
+images:
+  hero: "523A1074 - Modificata.webp"
+  thumbnail: "523A1092 - Modificata.webp"
+  gallery: "trilocale"
+
+# -----------------------------------------------------------------------------
+# Rooms
+# -----------------------------------------------------------------------------
+rooms:
+  - name: "Camera matrimoniale"
+    description: >
+      Elegante camera matrimoniale, ampi armadi a muro e riscaldamento a pavimento.
+      L'arredamento moderno e i colori rilassanti creano un'atmosfera accogliente.
+      La camera offre tutto lo spazio necessario per un soggiorno confortevole e
+      include un ampio guardaroba.
+    image: "523A1015 - Modificata.webp"
+    amenities:
+      - "Letto matrimoniale"
+      - "Armadio a muro"
+      - "Climatizzazione a pavimento"
+      - "Finestre ampie"
+
+  - name: "Camera doppia"
+    description: >
+      Camera spaziosa con due letti singoli, perfetta per bambini o amici. Dotata
+      di armadio capiente e scrivania, offre un ambiente luminoso e confortevole.
+      I letti possono essere uniti su richiesta per creare un secondo letto
+      matrimoniale.
+    image: "32a7fc80-6f47-466a-9f49-b1b405980869.webp"
+    amenities:
+      - "Due letti singoli"
+      - "Armadio"
+      - "Climatizzazione a pavimento"
+
+  - name: "Soggiorno"
+    description: >
+      Ampio soggiorno open space con zona pranzo e area relax. Il divano comodo
+      può ospitare ospiti aggiuntivi, mentre la TV smart e la connessione WiFi
+      veloce garantiscono intrattenimento. Le grandi finestre riempiono lo spazio
+      di luce naturale.
+    image: "523A1047 - Modificata.webp"
+    amenities:
+      - "Divano letto"
+      - "TV smart"
+      - "Tavolo da pranzo"
+      - "Area relax"
+      - "Climatizzazione a pavimento"
+
+  - name: "Cucina"
+    description: >
+      Cucina moderna e spaziosa, perfettamente attrezzata per preparare pasti per
+      tutta la famiglia. Include elettrodomestici di ultima generazione, ampio
+      piano di lavoro e dispensa. L'isola centrale offre spazio aggiuntivo per la
+      preparazione dei cibi e può servire come zona colazione.
+    image: "523A1074 - Modificata.webp"
+    amenities:
+      - "Frigorifero"
+      - "Piano cottura a induzione"
+      - "Forno elettrico"
+      - "Lavastoviglie"
+      - "Microonde"
+      - "Macchina del caffè"
+      - "Pentole e stoviglie"
+
+  - name: "Bagno principale"
+    description: >
+      Bagno principale spazioso con ampia doccia, lavabo e finiture di pregio.
+      Include lavatrice per maggiore comodità durante soggiorni prolungati.
+      Design moderno con ceramiche di alta qualità.
+    image: "523A1116 - Modificata - Modificata.webp"
+    amenities:
+      - "Doccia"
+      - "Lavabo"
+      - "Lavatrice"
+      - "Asciugacapelli"
+      - "Set di cortesia"
+
+  - name: "Secondo bagno"
+    description: >
+      Secondo bagno, ideale per garantire privacy e comfort a tutti gli ospiti.
+      Dotato di tutti i servizi necessari e finiture moderne.
+    image: "523A1139 - Modificata.webp"
+    amenities:
+      - "Lavabo"
+      - "Asciugacapelli"
+      - "Asciugamani forniti"
+
+  - name: "Balcone"
+    description: >
+      Balcone privato attrezzato con tavolino e sedie, perfetto per godersi un
+      caffè al mattino o rilassarsi la sera ammirando il panorama sulle colline
+      trentine. Uno spazio ideale per momenti di tranquillità all'aria aperta.
+    image: "20250519_111428.webp"
+    amenities:
+      - "Tavolino"
+      - "Sedie"
+      - "Vista panoramica"
+
+# -----------------------------------------------------------------------------
+# Features & Amenities
+# -----------------------------------------------------------------------------
+features:
+  - "WiFi ad alta velocità"
+  - "Parcheggio incluso"
+  - "Due bagni"
+  - "Cucina spaziosa attrezzata"
+  - "Riscaldamento e raffrescamento a pavimento"
+  - "TV smart"
+  - "Lavatrice"
+  - "Biancheria e asciugamani inclusi"
+  - "Ascensore"
+  - "Cassaforte"
+  - "Possibilità di brandine e culle"
+
+# -----------------------------------------------------------------------------
+# Target Audience
+# -----------------------------------------------------------------------------
+idealFor:
+  - "Famiglie con bambini"
+  - "Gruppi di amici"
+  - "Soggiorni prolungati"
+  - "Chi cerca spazio e privacy"
+
+# -----------------------------------------------------------------------------
+# SEO
+# -----------------------------------------------------------------------------
+seo:
+  title: "Trilocale La Famiglia - Appartamento per 4 persone"
+  description: "Trilocale con 2 camere, 2 bagni e ampi spazi. Ideale per famiglie e gruppi a Trento."

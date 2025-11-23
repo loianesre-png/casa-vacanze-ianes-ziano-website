@@ -1,7 +1,13 @@
 // src/data/services.ts
 /**
- * Services, amenities, and benefits for Casa Negrano apartments
+ * Services, amenities, and benefits for property rental apartments
+ *
+ * Note: Contact information is now managed in src/config/site.config.ts
+ * The contactInfo export below is kept for backward compatibility but
+ * pulls data from the centralized config.
  */
+
+import { getContactEmail, getContactPhone, getAddress, getCoordinates } from '../config';
 
 export interface Service {
   /** Service title */
@@ -272,19 +278,20 @@ export const houseRules: HouseRule[] = [
 
 /**
  * Contact information
+ * Now pulls from centralized config (src/config/site.config.ts)
  */
 export const contactInfo = {
-  email: 'casanegrano@gmail.com',
-  phone: '+39 XXX XXX XXXX', // Add actual phone number
-  address: {
-    street: 'Località Negrano 13',
-    city: 'Trento',
-    postalCode: '38123',
-    country: 'Italy',
+  get email() {
+    return getContactEmail();
   },
-  coordinates: {
-    lat: 46.0588, // Approximate - verify actual coordinates
-    lng: 11.1389,
+  get phone() {
+    return getContactPhone() || '';
+  },
+  get address() {
+    return getAddress();
+  },
+  get coordinates() {
+    return getCoordinates();
   },
 };
 

@@ -1,0 +1,143 @@
+# =============================================================================
+# Property Configuration Template
+# =============================================================================
+# Copy this file and rename it to create a new property.
+# Filename should match the slug (e.g., my-apartment.yaml for slug: my-apartment)
+#
+# Required fields are marked with [REQUIRED]
+# Optional fields can be removed or left empty
+#
+# Images should be placed in: src/assets/images/{slug}/
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Basic Information [REQUIRED]
+# -----------------------------------------------------------------------------
+id: my-apartment           # [REQUIRED] Unique identifier (no spaces)
+slug: my-apartment         # [REQUIRED] URL-friendly slug (used in URLs)
+published: true            # Set to false to hide this property
+order: 1                   # Display order (lower number = shown first)
+
+name: "My Apartment Name"  # [REQUIRED] Display name
+subtitle: "Brief tagline"  # Short subtitle shown on cards
+
+description: >             # [REQUIRED] Full description (supports multiple lines)
+  Write your full apartment description here. This text appears on the
+  property detail page and should describe the apartment in detail.
+
+shortDescription: "Brief description for cards"  # Optional short version
+
+# -----------------------------------------------------------------------------
+# Capacity & Size [REQUIRED]
+# -----------------------------------------------------------------------------
+capacity:
+  guests: 4                # [REQUIRED] Maximum number of guests
+  bedrooms: "2 bedrooms"   # [REQUIRED] Bedroom configuration text
+  bathrooms: "1 bathroom"  # [REQUIRED] Bathroom configuration text
+  beds:                    # Optional: detailed bed breakdown
+    double: 1
+    single: 2
+    sofa: 0
+
+size:
+  value: 80                # [REQUIRED] Size number
+  unit: sqm                # sqm (square meters) or sqft (square feet)
+
+# -----------------------------------------------------------------------------
+# Images [REQUIRED]
+# -----------------------------------------------------------------------------
+images:
+  hero: "hero-image.webp"      # [REQUIRED] Main hero image filename
+  thumbnail: "thumb.webp"      # [REQUIRED] Thumbnail for cards
+  gallery: "my-apartment"      # Folder name for gallery images
+  # Or list specific images:
+  # gallery:
+  #   - "image1.webp"
+  #   - "image2.webp"
+
+# -----------------------------------------------------------------------------
+# Rooms
+# -----------------------------------------------------------------------------
+# List each room/space in the property
+rooms:
+  - name: "Bedroom"
+    description: "Description of the bedroom"
+    image: "bedroom.webp"     # Image filename
+    amenities:                # Optional: room-specific amenities
+      - "King bed"
+      - "Wardrobe"
+      - "Air conditioning"
+
+  - name: "Living Room"
+    description: "Description of the living room"
+    image: "living.webp"
+    amenities:
+      - "Sofa"
+      - "Smart TV"
+      - "Dining table"
+
+  - name: "Kitchen"
+    description: "Description of the kitchen"
+    image: "kitchen.webp"
+    amenities:
+      - "Refrigerator"
+      - "Stove"
+      - "Microwave"
+
+  - name: "Bathroom"
+    description: "Description of the bathroom"
+    image: "bathroom.webp"
+    amenities:
+      - "Shower"
+      - "Hair dryer"
+      - "Toiletries"
+
+# -----------------------------------------------------------------------------
+# Features & Amenities
+# -----------------------------------------------------------------------------
+features:                     # Key features shown prominently
+  - "Free WiFi"
+  - "Free parking"
+  - "Air conditioning"
+  - "Fully equipped kitchen"
+
+amenities:                    # Full amenities list (optional)
+  - "Washing machine"
+  - "Iron"
+  - "Desk"
+
+# -----------------------------------------------------------------------------
+# Target Audience
+# -----------------------------------------------------------------------------
+idealFor:
+  - "Couples"
+  - "Families"
+  - "Business travelers"
+
+# -----------------------------------------------------------------------------
+# Pricing (optional)
+# -----------------------------------------------------------------------------
+# Uncomment and fill in to display pricing
+# pricing:
+#   enabled: true
+#   currency: EUR
+#   currencySymbol: "€"
+#   startingFrom: 80          # "From X per night" price
+#   periods:
+#     - name: "Low season"
+#       dates: "November - March"
+#       pricePerNight: 80
+#       minimumStay: 2
+#     - name: "High season"
+#       dates: "June - August"
+#       pricePerNight: 120
+#       minimumStay: 3
+#   note: "Prices exclude cleaning fee"
+
+# -----------------------------------------------------------------------------
+# SEO (optional)
+# -----------------------------------------------------------------------------
+seo:
+  title: "Custom page title"
+  description: "Custom meta description for search engines"
+  # image: "og-image.webp"  # Custom Open Graph image

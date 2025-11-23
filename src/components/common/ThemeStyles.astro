@@ -1,0 +1,49 @@
+---
+/**
+ * ThemeStyles Component
+ * ====================
+ * Injects CSS variables based on the theme configuration.
+ *
+ * Place this component in your <head> to enable dynamic theming.
+ * The component generates CSS variables from theme.config.ts.
+ *
+ * Usage in Layout:
+ * ```astro
+ * ---
+ * import ThemeStyles from '~/components/common/ThemeStyles.astro';
+ * ---
+ * <head>
+ *   <ThemeStyles />
+ * </head>
+ * ```
+ */
+import { generateFullThemeCSS, getTheme } from '~/utils/theme';
+
+// Get the resolved theme and generate CSS
+const theme = getTheme();
+const themeCSS = generateFullThemeCSS(theme);
+---
+
+<style is:inline set:html={themeCSS}></style>
+
+<style is:global>
+  /* Typography from theme */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height);
+  }
+
+  code, pre {
+    font-family: var(--font-mono);
+  }
+
+  /* Transition speed from theme */
+  a, button, input, select, textarea {
+    transition-duration: var(--transition-speed);
+  }
+</style>

@@ -1,0 +1,77 @@
+# =============================================================================
+# Contact Page Content (Italian)
+# =============================================================================
+# All text content for the contact page
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Page Header
+# -----------------------------------------------------------------------------
+page:
+  tagline: "Contatti"
+  title: "Mettiamoci in contatto!"
+  description: "Hai domande o vuoi prenotare? Siamo qui per aiutarti."
+
+# -----------------------------------------------------------------------------
+# Contact Form
+# -----------------------------------------------------------------------------
+form:
+  title: "Scrivici!"
+  subtitle: "Compila il modulo sottostante"
+
+  fields:
+    name:
+      label: "Nome Completo"
+      placeholder: "Mario Rossi"
+    email:
+      label: "Email"
+      placeholder: "mario.rossi@example.com"
+    phone:
+      label: "Telefono"
+      placeholder: "+39 XXX XXX XXXX"
+    guests:
+      label: "Numero di Ospiti"
+      placeholder: "2"
+    check_in:
+      label: "Data di Check-in"
+      placeholder: "Seleziona data"
+    check_out:
+      label: "Data di Check-out"
+      placeholder: "Seleziona data"
+    message:
+      label: "Richieste Speciali"
+      placeholder: "Eventuali richieste speciali..."
+
+  submit: "Invia Richiesta"
+  submitting: "Invio in corso..."
+
+# -----------------------------------------------------------------------------
+# Contact Info Section
+# -----------------------------------------------------------------------------
+info:
+  title: "Ecco come trovarci!"
+  items:
+    - icon: "email"
+      label: "Email"
+      value: "" # Pulled from config
+    - icon: "phone"
+      label: "Telefono"
+      value: "" # Pulled from config
+    - icon: "location"
+      label: "Indirizzo"
+      value: "" # Pulled from config
+
+# -----------------------------------------------------------------------------
+# Messages
+# -----------------------------------------------------------------------------
+messages:
+  success: "Richiesta inviata con successo! Ti risponderemo al più presto."
+  error: "Errore nell'invio della richiesta. Riprova più tardi."
+  disabled: "Il modulo di contatto non è attualmente disponibile. Contattaci direttamente via email."
+
+# -----------------------------------------------------------------------------
+# SEO
+# -----------------------------------------------------------------------------
+seo:
+  title: "Contatti"
+  description: "Contattaci per informazioni e prenotazioni. Siamo a tua disposizione per rispondere a tutte le tue domande."

@@ -1,0 +1,171 @@
+# =============================================================================
+# Property Configuration: Bilocale - L'Angolino
+# =============================================================================
+# This file defines all data for a single property/apartment
+# Edit this file to customize the property details
+#
+# Images should be placed in: src/assets/images/bilocale/
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Basic Information
+# -----------------------------------------------------------------------------
+id: bilocale
+slug: bilocale
+published: true
+order: 1  # Display order (lower = first)
+
+name: "Appartamento L'Angolino"
+subtitle: "Bilocale con camera matrimoniale e balcone privato"
+
+description: >
+  Composto da una camera matrimoniale, un bagno con doccia e un soggiorno con
+  cucina completamente attrezzata, L'Angolino offre un ambiente intimo e
+  confortevole. Il balcone privato regala momenti di relax con vista sulla
+  natura circostante, mentre gli interni moderni garantiscono tutti i comfort
+  per un soggiorno perfetto.
+
+shortDescription: "Bilocale intimo e confortevole con balcone privato"
+
+# -----------------------------------------------------------------------------
+# Capacity & Size
+# -----------------------------------------------------------------------------
+capacity:
+  guests: 2
+  bedrooms: "1 camera matrimoniale"
+  bathrooms: "1 bagno con doccia"
+  beds:
+    double: 1
+    single: 0
+    sofa: 0
+
+size:
+  value: 70
+  unit: sqm
+
+# -----------------------------------------------------------------------------
+# Images
+# -----------------------------------------------------------------------------
+# Image filenames relative to src/assets/images/bilocale/
+images:
+  hero: "20250519_105447.webp"
+  thumbnail: "20250519_105511.webp"
+  # Gallery can be a folder path (loads all images) or array of filenames
+  gallery: "bilocale"  # Will load from src/assets/images/bilocale/
+
+# -----------------------------------------------------------------------------
+# Rooms
+# -----------------------------------------------------------------------------
+rooms:
+  - name: "Camera da letto"
+    description: >
+      Spaziosa camera matrimoniale con ampi armadi, riscaldamento e
+      raffrescamento a pavimento, e accesso diretto al balcone privato.
+      L'ambiente è arredato con gusto moderno e offre un'atmosfera tranquilla
+      per un riposo perfetto. Il letto matrimoniale è dotato di materasso di
+      alta qualità per garantire il massimo comfort.
+    image: "20250519_110007.webp"
+    amenities:
+      - "Letto matrimoniale"
+      - "Armadio capiente"
+      - "Accesso al balcone"
+      - "Climatizzazione a pavimento"
+
+  - name: "Soggiorno"
+    description: >
+      Il luminoso soggiorno combina comfort e funzionalità con un comodo divano,
+      TV a schermo piatto e una zona pranzo elegante. Le ampie finestre offrono
+      abbondante luce naturale e una splendida vista. L'ambiente è perfetto per
+      rilassarsi dopo una giornata di esplorazione del Trentino.
+    image: "20250519_105348.webp"
+    amenities:
+      - "Divano"
+      - "TV a schermo piatto"
+      - "Tavolo da pranzo"
+      - "Finestre ampie"
+      - "Climatizzazione a pavimento"
+
+  - name: "Cucina"
+    description: >
+      Cucina moderna e completamente attrezzata con tutto il necessario per
+      preparare i vostri pasti preferiti. Dotata di frigorifero, piano cottura
+      a induzione, forno, microonde e utensili completi. L'angolo cottura si
+      integra perfettamente con il soggiorno, creando uno spazio conviviale.
+    image: "20250519_105313.webp"
+    amenities:
+      - "Frigorifero"
+      - "Piano cottura a induzione"
+      - "Microonde"
+      - "Lavastoviglie"
+      - "Caffettiera"
+      - "Utensili completi"
+
+  - name: "Bagno"
+    description: >
+      Bagno moderno con ampia doccia, sanitari di qualità e finiture eleganti.
+      Dotato di asciugacapelli, set di cortesia e ampio spazio per i vostri
+      effetti personali. La doccia spaziosa garantisce comfort e praticità.
+    image: "20250519_105935.webp"
+    amenities:
+      - "Doccia spaziosa"
+      - "Asciugacapelli"
+      - "Set di cortesia"
+      - "Asciugamani forniti"
+
+  - name: "Balcone"
+    description: >
+      Balcone privato attrezzato con tavolino e sedie, perfetto per godersi un
+      caffè al mattino o rilassarsi la sera ammirando il panorama sulle colline
+      trentine. Uno spazio ideale per momenti di tranquillità all'aria aperta.
+    image: "20250519_110417.webp"
+    amenities:
+      - "Tavolino"
+      - "Sedie"
+      - "Vista panoramica"
+
+# -----------------------------------------------------------------------------
+# Features & Amenities
+# -----------------------------------------------------------------------------
+features:
+  - "WiFi ad alta velocità"
+  - "Parcheggio incluso"
+  - "Balcone privato"
+  - "Cucina completamente attrezzata"
+  - "Riscaldamento e raffrescamento a pavimento"
+  - "TV a schermo piatto"
+  - "Biancheria e asciugamani inclusi"
+  - "Ascensore"
+  - "Cassaforte"
+  - "Possibilità di brandine e culle"
+
+# -----------------------------------------------------------------------------
+# Target Audience
+# -----------------------------------------------------------------------------
+idealFor:
+  - "Coppie"
+  - "Viaggiatori singoli"
+  - "Viaggi di lavoro"
+  - "Weekend romantici"
+
+# -----------------------------------------------------------------------------
+# Pricing (optional)
+# -----------------------------------------------------------------------------
+# pricing:
+#   enabled: false
+#   currency: EUR
+#   currencySymbol: "€"
+#   startingFrom: 80
+#   periods:
+#     - name: "Bassa stagione"
+#       dates: "Novembre - Marzo"
+#       pricePerNight: 80
+#     - name: "Alta stagione"
+#       dates: "Giugno - Agosto"
+#       pricePerNight: 120
+
+# -----------------------------------------------------------------------------
+# SEO (optional - uses defaults from site config if not specified)
+# -----------------------------------------------------------------------------
+seo:
+  title: "Bilocale L'Angolino - Appartamento per 2 persone"
+  description: "Bilocale accogliente con camera matrimoniale, cucina attrezzata e balcone privato. Perfetto per coppie a Trento."

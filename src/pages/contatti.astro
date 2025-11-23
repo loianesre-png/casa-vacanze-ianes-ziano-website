@@ -1,39 +1,80 @@
 ---
+/**
+ * Contact Page
+ * Displays contact form and location information
+ *
+ * Content is loaded from: src/content/dictionary/{locale}/contact.yaml
+ * Contact info is loaded from: src/config/site.config.ts
+ */
 import Layout from '~/layouts/PageLayout.astro';
-
 import CalendarForm from '~/components/widgets/CalendarForm';
 import Features2 from '~/components/widgets/Features2.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 
+import { getContactContent, getCommonContent } from '~/utils/content';
+import { getContactEmail, getFormattedAddress, getSiteName } from '~/config';
+
+// Load content from dictionary
+const contactContent = await getContactContent();
+const common = await getCommonContent();
+
+// Get contact info from config
+const email = getContactEmail();
+const address = getFormattedAddress();
+const siteName = getSiteName();
+
+// Build form content props for CalendarForm
+const formContent = {
+  formTitle: contactContent.form.title,
+  formSubtitle: contactContent.form.subtitle,
+  disabledTitle: common.buttons.contact,
+  disabledMessage: contactContent.messages.disabled,
+  checkIn: common.labels.check_in,
+  checkOut: common.labels.check_out,
+  selectDate: common.form.select_date || 'Seleziona data',
+  name: common.form.name,
+  namePlaceholder: common.placeholders.name,
+  email: common.form.email || 'Email',
+  emailPlaceholder: common.placeholders.email,
+  guests: common.form.guests_count || common.labels.guests,
+  guestsPlaceholder: common.placeholders.guests,
+  message: common.form.special_requests || contactContent.form.fields?.message?.label,
+  messagePlaceholder: common.placeholders.message,
+  submit: common.buttons.submit,
+  submitting: common.buttons.submitting,
+  successMessage: common.messages.success.form_sent,
+  errorMessage: common.messages.error.form_error,
+};
+
+// Page metadata
 const metadata = {
-  title: 'Contatti - Casa Negrano | Richiedi Informazioni',
-  description: 'Contattaci per informazioni e prenotazioni. Siamo a Villazzano, Trento. Email: casanegrano@gmail.com',
+  title: `${contactContent.seo.title} - ${siteName}`,
+  description: contactContent.seo.description,
 };
 ---
 
 <Layout metadata={metadata}>
   <!-- HeroText Widget ******************* -->
-
-  <HeroText tagline="Contatti" title="Mettiamoci in contatto!" />
+  <HeroText tagline={contactContent.page.tagline} title={contactContent.page.title} />
 
   <div
     class="max-w-3xl mx-auto text-center p-6 rounded shadow-luxury-lg bg-luxury-white border border-luxury-sand"
   >
-    <CalendarForm client:idle />
+    <CalendarForm client:idle content={formContent} />
   </div>
 
   <!-- Features2 Widget ************** -->
   <Features2
-    title="Ecco come trovarci!"
+    title={contactContent.info.title}
     items={[
       {
         title: 'Email',
-        description: 'casanegrano@gmail.com',
+        description: email,
         icon: 'tabler:mail',
       },
       {
         title: 'Posizione',
-        description: 'Località Negrano 13, Trento, 38123, Italy',
+        description: address,
         icon: 'tabler:map-pin',
       },
     ]}

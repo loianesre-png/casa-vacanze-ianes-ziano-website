@@ -1,0 +1,100 @@
+# =============================================================================
+# Apartments/Properties Content (Italian)
+# =============================================================================
+# Text content for apartment pages and property-related sections
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Common Property Labels
+# -----------------------------------------------------------------------------
+labels:
+  guests: "Ospiti"
+  bedrooms: "Camere"
+  bathrooms: "Bagni"
+  size: "Superficie"
+  sqm: "m²"
+  features: "Caratteristiche"
+  amenities: "Servizi"
+  ideal_for: "Ideale per"
+  rooms: "Le stanze"
+  gallery: "Galleria fotografica"
+  reviews: "Recensioni"
+  benefits: "Vantaggi"
+
+# -----------------------------------------------------------------------------
+# Property Page Sections
+# -----------------------------------------------------------------------------
+sections:
+  overview:
+    title: "Panoramica"
+  rooms:
+    title: "Le stanze dell'appartamento"
+    subtitle: "Scopri ogni ambiente"
+
+# -----------------------------------------------------------------------------
+# Rooms Section (for property pages)
+# -----------------------------------------------------------------------------
+rooms_section:
+  title: "Gli spazi dell'appartamento"
+  subtitle: "Scopri ogni ambiente nel dettaglio, pensato per offrirti comfort e funzionalità"
+  gallery:
+    title: "Galleria fotografica"
+    subtitle: "Esplora l'appartamento"
+  services:
+    title: "Servizi inclusi"
+    subtitle: "Tutto il comfort di cui hai bisogno"
+    core_services_title: "Servizi base"
+    premium_services_title: "Servizi premium"
+  reviews:
+    title: "Cosa dicono i nostri ospiti"
+    subtitle: "Recensioni verificate"
+  benefits:
+    title: "Vantaggi esclusivi"
+    subtitle: "Trentino Guest Card inclusa"
+  cta:
+    title: "Prenota questo appartamento"
+    description: "Contattaci per verificare la disponibilità e prenotare."
+    button: "Richiedi disponibilità"
+
+# -----------------------------------------------------------------------------
+# Property Card
+# -----------------------------------------------------------------------------
+card:
+  view_details: "Scopri di più"
+  starting_from: "a partire da"
+  per_night: "a notte"
+
+# -----------------------------------------------------------------------------
+# Comparison Table
+# -----------------------------------------------------------------------------
+comparison:
+  title: "Confronta gli appartamenti"
+  headers:
+    property: "Appartamento"
+    guests: "Ospiti"
+    bedrooms: "Camere"
+    bathrooms: "Bagni"
+    size: "Superficie"
+
+# -----------------------------------------------------------------------------
+# Trentino Guest Card
+# -----------------------------------------------------------------------------
+guest_card:
+  title: "Trentino Guest Card"
+  description: "Tutti i nostri ospiti ricevono gratuitamente la Trentino Guest Card, che offre accesso gratuito o scontato a musei, trasporti pubblici e attività in tutto il Trentino."
+  cta: "Scopri i vantaggi"
+
+# -----------------------------------------------------------------------------
+# Local Recommendations
+# -----------------------------------------------------------------------------
+recommendations:
+  title: "Cosa fare nei dintorni"
+  subtitle: "Scopri le attrazioni locali"
+  distance_label: "Distanza"
+
+# -----------------------------------------------------------------------------
+# House Rules
+# -----------------------------------------------------------------------------
+house_rules:
+  title: "Regole della casa"
+  subtitle: "Informazioni importanti per il tuo soggiorno"

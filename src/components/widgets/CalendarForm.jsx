@@ -6,17 +6,54 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { getContactFormWebhook, isContactFormEnabled } from "@/config";
 
+/**
+ * CalendarForm Component
+ * Contact/booking request form with date pickers
+ *
+ * Configuration:
+ * - Webhook URL is configured in src/config/site.config.ts
+ * - Form labels can be passed as props from parent Astro component
+ *
+ * @param {Object} props
+ * @param {Object} props.content - Form content/labels (from content dictionary)
+ */
+const CalendarForm = ({ content = {} }) => {
+  // Get webhook URL from centralized config
+  const webhookUrl = getContactFormWebhook();
+  const formEnabled = isContactFormEnabled();
 
+  // Default content with Italian fallbacks
+  const labels = {
+    formTitle: content.formTitle || 'Scrivici!',
+    formSubtitle: content.formSubtitle || 'Compila il modulo sottostante',
+    disabledTitle: content.disabledTitle || 'Contattaci',
+    disabledMessage: content.disabledMessage || 'Il modulo di contatto non è attualmente disponibile. Contattaci direttamente via email.',
+    checkIn: content.checkIn || 'Data di Check-in',
+    checkOut: content.checkOut || 'Data di Check-out',
+    selectDate: content.selectDate || 'Seleziona data',
+    name: content.name || 'Nome Completo',
+    namePlaceholder: content.namePlaceholder || 'Mario Rossi',
+    email: content.email || 'Email',
+    emailPlaceholder: content.emailPlaceholder || 'mario.rossi@example.com',
+    guests: content.guests || 'Numero di Ospiti',
+    guestsPlaceholder: content.guestsPlaceholder || '2',
+    message: content.message || 'Richieste Speciali',
+    messagePlaceholder: content.messagePlaceholder || 'Eventuali richieste speciali...',
+    submit: content.submit || 'Invia Richiesta',
+    submitting: content.submitting || 'Invio in corso...',
+    successMessage: content.successMessage || 'Richiesta inviata con successo!',
+    errorMessage: content.errorMessage || "Errore nell'invio della richiesta",
+  };
 
-const CalendarForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     guests: '',
     message: ''
   });
-  
+
   const [checkIn, setCheckIn] = useState(null);
   const [checkOut, setCheckOut] = useState(null);
   const [checkInOpen, setCheckInOpen] = useState(false);
@@ -30,7 +67,7 @@ const CalendarForm = () => {
       [name]: value
     }));
   };
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -41,9 +78,13 @@ const CalendarForm = () => {
       checkOut: checkOut ? checkOut.toISOString() : null,
       submitDate: new Date().toISOString()
     };
- 
+
     try {
-      const response = await fetch('https://n8n.casanegrano.it/webhook/99e9a979-9ef4-472b-b75c-8f3dc29c40c1', {
+      if (!webhookUrl) {
+        throw new Error('Contact form webhook URL not configured');
+      }
+
+      const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -52,16 +93,16 @@ const CalendarForm = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Errore nell\'invio della richiesta');
+        throw new Error(labels.errorMessage);
       }
 
-      alert('richiesta inviata con successo!');
+      alert(labels.successMessage);
       // Reset form
       setFormData({ name: '', email: '', guests: '', message: '' });
       setCheckIn(null);
       setCheckOut(null);
     } catch (error) {
-      alert('Errore nell\'invio della richiesta: ' + error.message);
+      alert(labels.errorMessage + ': ' + error.message);
     } finally {
       setIsSubmitting(false);
     }
@@ -69,20 +110,36 @@ const CalendarForm = () => {
 
   const today = new Date();
 
+  // If form is disabled in config, show a message
+  if (!formEnabled) {
+    return (
+      <div className="w-full max-w-4xl mx-auto py-6 md:p-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>{labels.disabledTitle}</CardTitle>
+            <CardDescription>
+              {labels.disabledMessage}
+            </CardDescription>
+          </CardHeader>
+        </Card>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full max-w-4xl mx-auto py-6 md:p-6">
       <Card>
         <CardHeader>
-          <CardTitle>Scrivici!</CardTitle>
+          <CardTitle>{labels.formTitle}</CardTitle>
           <CardDescription>
-            Compila il modulo sottostante
+            {labels.formSubtitle}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label>Data di Check-in</Label>
+                <Label>{labels.checkIn}</Label>
                 <Popover open={checkInOpen} onOpenChange={setCheckInOpen}>
                   <PopoverTrigger asChild>
                     <Button
@@ -94,7 +151,7 @@ const CalendarForm = () => {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric'
-                      }) : "Seleziona data"}
+                      }) : labels.selectDate}
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0" align="start">
@@ -108,7 +165,7 @@ const CalendarForm = () => {
                       disabled={(date) =>
                         date < today || (checkOut && date >= checkOut)
                       }
-                      
+
                       weekStartsOn={1}
                     />
                   </PopoverContent>
@@ -116,7 +173,7 @@ const CalendarForm = () => {
               </div>
 
               <div className="space-y-2">
-                <Label>Data di Check-out</Label>
+                <Label>{labels.checkOut}</Label>
                 <Popover open={checkOutOpen} onOpenChange={setCheckOutOpen}>
                   <PopoverTrigger asChild>
                     <Button
@@ -128,7 +185,7 @@ const CalendarForm = () => {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric'
-                      }) : "Seleziona data"}
+                      }) : labels.selectDate}
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0" align="start">
@@ -151,18 +208,18 @@ const CalendarForm = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Nome Completo</Label>
+                <Label htmlFor="name">{labels.name}</Label>
                 <Input
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  placeholder="Mario Rossi"
+                  placeholder={labels.namePlaceholder}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{labels.email}</Label>
                 <Input
                   id="email"
                   name="email"
@@ -170,13 +227,13 @@ const CalendarForm = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  placeholder="mario.rossi@example.com"
+                  placeholder={labels.emailPlaceholder}
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="guests">Numero di Ospiti</Label>
+              <Label htmlFor="guests">{labels.guests}</Label>
               <Input
                 id="guests"
                 name="guests"
@@ -185,28 +242,28 @@ const CalendarForm = () => {
                 value={formData.guests}
                 onChange={handleInputChange}
                 required
-                placeholder="2"
+                placeholder={labels.guestsPlaceholder}
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="message">Richieste Speciali</Label>
+              <Label htmlFor="message">{labels.message}</Label>
               <Textarea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
                 className="h-24"
-                placeholder="Eventuali richieste speciali..."
+                placeholder={labels.messagePlaceholder}
               />
             </div>
 
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               className="w-full"
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Invio in corso...' : 'Invia Richiesta'}
+              {isSubmitting ? labels.submitting : labels.submit}
             </Button>
           </form>
         </CardContent>

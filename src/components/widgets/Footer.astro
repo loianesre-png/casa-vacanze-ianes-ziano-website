@@ -2,6 +2,18 @@
 // import { Icon } from 'astro-icon/components';
 import { SITE } from 'astrowind:config';
 import { getHomePermalink } from '~/utils/permalinks';
+import { getMapConfig, getFormattedAddress, getSiteName } from '~/config';
+
+// Get map configuration from centralized config
+const mapConfig = getMapConfig();
+const formattedAddress = getFormattedAddress();
+const siteName = getSiteName();
+
+// Build OpenStreetMap embed URL (alternative to Google Maps)
+// For Google Maps, you'll need to get a proper embed URL from Google Maps
+const osmEmbedUrl = mapConfig.coordinates
+  ? `https://www.openstreetmap.org/export/embed.html?bbox=${mapConfig.coordinates.lng - 0.01}%2C${mapConfig.coordinates.lat - 0.01}%2C${mapConfig.coordinates.lng + 0.01}%2C${mapConfig.coordinates.lat + 0.01}&layer=mapnik&marker=${mapConfig.coordinates.lat}%2C${mapConfig.coordinates.lng}`
+  : null;
 
 interface Link {
   text?: string;
@@ -21,9 +33,14 @@ export interface Props {
   socialLinks: Array<Link>;
   footNote?: string;
   theme?: string;
+  /** Optional Google Maps embed URL (get this from Google Maps share feature) */
+  mapEmbedUrl?: string;
 }
 
-const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light' } = Astro.props;
+const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light', mapEmbedUrl } = Astro.props;
+
+// Use provided Google Maps URL, or fall back to OSM
+const finalMapUrl = mapEmbedUrl || osmEmbedUrl;
 ---
 
 <footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-luxury-sand bg-luxury-white not-prose']}>
@@ -82,19 +99,21 @@ const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme 
         <Fragment set:html={footNote} />
       </div>
 
-      <!-- MAP -->
-      <div class="md:col-span-12 lg:col-span-12 mt-6">
-        <iframe
-          class="w-full h-[250px] sm:h-[300px] md:h-[350px] rounded shadow-luxury-md"
-          title="Google Maps - Casa Negrano"
-          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d494.5618518780699!2d11.147751298501028!3d46.05162570411028!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4782769e96de90b5%3A0xf242c3e311707912!2sLocalit%C3%A0%20Negrano%2C%2013%2C%2038123%20Trento%20TN!5e1!3m2!1sen!2sit!4v1742306434709!5m2!1sen!2sit"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        >
-        </iframe>
-      </div>
+      <!-- MAP - Only shown if coordinates are configured -->
+      {finalMapUrl && (
+        <div class="md:col-span-12 lg:col-span-12 mt-6">
+          <iframe
+            class="w-full h-[250px] sm:h-[300px] md:h-[350px] rounded shadow-luxury-md"
+            title={`Mappa - ${siteName}`}
+            src={finalMapUrl}
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          >
+          </iframe>
+        </div>
+      )}
     </div>
 
     <!-- Social links section (commented out, but updated for luxury styling) -->

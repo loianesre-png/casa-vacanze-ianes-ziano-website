@@ -9,6 +9,7 @@ import CustomStyles from '~/components/CustomStyles.astro';
 import ApplyColorMode from '~/components/common/ApplyColorMode.astro';
 import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
+import ThemeStyles from '~/components/common/ThemeStyles.astro';
 // import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
 
@@ -31,6 +32,7 @@ const { language, textDirection } = I18N;
     <CommonMeta />
     <Favicons />
     <CustomStyles />
+    <ThemeStyles />
     <ApplyColorMode />
     <Metadata {...metadata} />
     <SiteVerification />

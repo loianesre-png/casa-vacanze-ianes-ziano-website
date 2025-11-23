@@ -1,0 +1,125 @@
+# =============================================================================
+# Homepage Content (Italian)
+# =============================================================================
+# All text content for the homepage
+# Edit these values to customize your homepage messaging
+#
+# To add another language:
+# 1. Copy this file to src/content/dictionary/[lang]/homepage.yaml
+# 2. Translate all values
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Hero Section
+# -----------------------------------------------------------------------------
+hero:
+  # Badge shown above the main heading
+  badge: "Appartamenti vacanze a Trento"
+
+  # Main heading (supports line break with \n)
+  title: "Benvenuti a"
+  title_highlight: "Casa Negrano"
+
+  # Subtitle below heading
+  subtitle: "Appartamenti moderni nel cuore del Trentino"
+
+  # Description paragraph
+  description: >
+    Situati a Villazzano, a soli 5 km dal centro di Trento, i nostri appartamenti
+    offrono il perfetto equilibrio tra tranquillità e comodità. Scegli tra tre
+    soluzioni pensate per ogni tipo di soggiorno.
+
+  # CTA Buttons
+  cta_primary: "Scopri gli appartamenti"
+  cta_secondary: "Contattaci"
+
+  # Key features shown in hero
+  features:
+    - title: "Posizione strategica"
+      subtitle: "5 km da Trento centro"
+      icon: "location"
+    - title: "Comfort moderni"
+      subtitle: "Tutti i servizi inclusi"
+      icon: "check"
+    - title: "Check-in flessibile"
+      subtitle: "Dalle 16:00"
+      icon: "clock"
+
+  # Scroll indicator
+  scroll_text: "Scorri per scoprire"
+
+  # Hero image alt text
+  image_alt: "Vista esterna della struttura"
+
+# -----------------------------------------------------------------------------
+# About Section
+# -----------------------------------------------------------------------------
+about:
+  section_id: "chi-siamo"
+  title: "Il tuo rifugio a Trento, tra natura e comfort"
+  description: >
+    Situata a Villazzano, a soli 5 km dal centro di Trento, Casa Negrano offre
+    appartamenti moderni e confortevoli, perfetti per famiglie, coppie, gruppi
+    di amici o viaggiatori d'affari. Ogni appartamento è stato pensato per
+    garantirti un soggiorno rilassante e senza pensieri.
+
+  # Key selling points
+  highlights:
+    - "5 km dal centro di Trento"
+    - "Appartamenti moderni e confortevoli"
+    - "Perfetti per ogni tipo di ospite"
+    - "Soggiorno rilassante e senza pensieri"
+
+# -----------------------------------------------------------------------------
+# Apartments Overview Section
+# -----------------------------------------------------------------------------
+apartments:
+  section_id: "appartamenti"
+  title: "I nostri appartamenti"
+  subtitle: "Scegli la soluzione che fa per te tra i nostri appartamenti, ognuno con caratteristiche uniche per soddisfare le tue esigenze."
+
+  # Comparison banner
+  comparison_banner:
+    title: "Non riesci a scegliere?"
+    description: "Contattaci per ricevere consigli personalizzati in base alle tue esigenze."
+    cta: "Contattaci"
+
+  # Card labels
+  card:
+    guests_label: "Ospiti"
+    size_label: "Superficie"
+    view_details: "Scopri di più"
+
+# -----------------------------------------------------------------------------
+# Comfort/Services Section
+# -----------------------------------------------------------------------------
+comfort:
+  section_id: "comfort"
+  title: "Comfort e servizi"
+  subtitle: "Tutto ciò di cui hai bisogno per un soggiorno perfetto"
+  description: >
+    I nostri appartamenti sono dotati di tutti i comfort moderni per garantirti
+    un'esperienza di soggiorno superiore.
+
+# -----------------------------------------------------------------------------
+# Testimonials Section
+# -----------------------------------------------------------------------------
+testimonials:
+  section_id: "testimonianze"
+  title: "Cosa dicono i nostri ospiti"
+  subtitle: "Le recensioni di chi ha già soggiornato da noi"
+
+# -----------------------------------------------------------------------------
+# CTA Section
+# -----------------------------------------------------------------------------
+cta:
+  title: "Prenota il tuo soggiorno"
+  description: "Contattaci per verificare la disponibilità e prenotare il tuo appartamento."
+  button: "Contattaci ora"
+
+# -----------------------------------------------------------------------------
+# SEO Metadata
+# -----------------------------------------------------------------------------
+seo:
+  title: "Appartamenti Vacanze a Trento"
+  description: "Appartamenti moderni per vacanze a Trento, Italia. Posizione strategica, comfort moderni e check-in flessibile."

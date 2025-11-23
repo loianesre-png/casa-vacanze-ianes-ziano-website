@@ -1,0 +1,128 @@
+---
+/**
+ * Dynamic Property Page
+ * Generates pages for all properties from YAML configuration
+ *
+ * This replaces individual property page files (bilocale.astro, trilocale.astro, etc.)
+ * with a single dynamic route that loads content from YAML files.
+ */
+import Layout from '~/layouts/PageLayout.astro';
+import ApartmentHero from '~/components/appartamenti/ApartmentHero.astro';
+import PropertyOverview from '~/components/appartamenti/PropertyOverview.astro';
+import RoomShowcase from '~/components/appartamenti/RoomShowcase.astro';
+import PhotoGallery from '~/components/appartamenti/PhotoGallery.astro';
+import ServicesGrid from '~/components/appartamenti/ServicesGrid.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import Benefits from '~/components/appartamenti/Benefits.astro';
+import ApartmentCTA from '~/components/appartamenti/ApartmentCTA.astro';
+
+import { getProperties, getPropertyBySlug } from '~/utils/properties';
+import { getSiteName, getSiteUrl } from '~/config';
+import { getApartmentsContent } from '~/utils/content';
+
+// Generate static paths for all properties
+export async function getStaticPaths() {
+  const properties = await getProperties();
+
+  return properties.map((property) => ({
+    params: { slug: property.slug },
+  }));
+}
+
+// Get the property for this page
+const { slug } = Astro.params;
+const property = await getPropertyBySlug(slug);
+
+if (!property) {
+  return Astro.redirect('/404');
+}
+
+// Load content dictionary for apartments
+const apartmentsContent = await getApartmentsContent();
+const siteName = getSiteName();
+const siteUrl = getSiteUrl();
+
+// SEO metadata - use property's SEO config or generate defaults
+const metadata = {
+  title: property.seo?.title || `${property.name} - ${property.subtitle} | ${siteName}`,
+  description: property.seo?.description || `${property.description.substring(0, 155)}...`,
+  canonical: `${siteUrl}/appartamenti/${property.slug}`,
+  openGraph: {
+    title: property.seo?.title || property.name,
+    description: property.seo?.description || property.subtitle,
+    type: 'website',
+    url: `${siteUrl}/appartamenti/${property.slug}`,
+    image: property.seo?.image,
+  },
+};
+
+// Sample testimonials - in a full implementation, these could come from a YAML file
+// or be filtered based on the property
+const testimonials = [
+  {
+    testimonial: apartmentsContent.testimonials?.default?.[0]?.text ||
+      `Casa moderna con ascensore e parcheggio, dotata di tutto il necessario e anche di più! C'è addirittura un adattatore per caricare qualsiasi tipo di cellulare. Franco e la moglie sono molto disponibili. La doccia è enorme e il materasso è comodissimo. Consigliatissimo!`,
+    name: apartmentsContent.testimonials?.default?.[0]?.name || 'Sara',
+  },
+  {
+    testimonial: apartmentsContent.testimonials?.default?.[1]?.text ||
+      `Molto pulito e di nuova qualità. Cucina ben attrezzata, c'è tutto! Materassi molto comodi. Tutto impeccabile! Proprietari molto gentili, sempre disponibili e che si sono fatti sentire da soli. Ci torneremmo subito! Siamo stati entusiasti.`,
+    name: apartmentsContent.testimonials?.default?.[1]?.name || 'Sebastian',
+  },
+  {
+    testimonial: apartmentsContent.testimonials?.default?.[2]?.text ||
+      `Appartamento grande e pulito. Tutto nuovo e ben organizzato. Confortevole`,
+    name: apartmentsContent.testimonials?.default?.[2]?.name || 'Giuseppina',
+  },
+  {
+    testimonial: apartmentsContent.testimonials?.default?.[3]?.text ||
+      `Struttura nuova e ben curata, proprietari deliziosi, ci torneremo sicuramente, consigliatissima!`,
+    name: apartmentsContent.testimonials?.default?.[3]?.name || 'Alessandro',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <ApartmentHero
+    title={property.name}
+    subtitle={property.subtitle || ''}
+    heroImage={property.images.hero}
+    apartmentId={property.id}
+  />
+
+  <!-- Property Overview Section -->
+  <PropertyOverview
+    description={property.description}
+    propertyImage={property.images.thumbnail}
+    apartmentId={property.id}
+    capacity={property.capacity.guests}
+    size={property.size.value}
+    sizeUnit={property.size.unit}
+    bedrooms={property.capacity.bedrooms}
+    bathrooms={property.capacity.bathrooms}
+  />
+
+  <!-- Room-by-Room Showcase -->
+  <RoomShowcase rooms={property.rooms} apartmentId={property.id} />
+
+  <!-- Photo Gallery -->
+  <PhotoGallery apartmentSlug={property.slug} apartmentName={property.name} />
+
+  <!-- Services Grid -->
+  <ServicesGrid />
+
+  <!-- Testimonials Section -->
+  <Testimonials
+    id="testimonianze"
+    title={apartmentsContent.testimonials?.title || "Cosa dicono i nostri ospiti"}
+    subtitle={apartmentsContent.testimonials?.subtitle || "La soddisfazione dei nostri ospiti è la nostra priorità. Ecco cosa raccontano."}
+    testimonials={testimonials}
+  />
+
+  <!-- Benefits Section (Trentino Guest Card) -->
+  <Benefits />
+
+  <!-- Call to Action -->
+  <ApartmentCTA apartmentName={property.name} />
+</Layout>

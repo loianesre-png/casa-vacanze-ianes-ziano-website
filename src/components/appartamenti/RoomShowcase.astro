@@ -3,9 +3,12 @@
  * RoomShowcase Component
  * Displays each room with alternating image-text layout
  * Repeating card/module pattern for room-by-room details
+ *
+ * Properties are loaded from: src/content/properties/*.yaml
  */
 import { Image } from 'astro:assets';
-import type { Room } from '~/data/apartments';
+import type { Room } from '~/utils/properties';
+import { getApartmentsContent } from '~/utils/content';
 
 interface Props {
   /** Array of room objects */
@@ -15,6 +18,7 @@ interface Props {
 }
 
 const { rooms, apartmentId } = Astro.props;
+const apartmentsContent = await getApartmentsContent();
 
 // Dynamically import all images for this apartment
 const images = import.meta.glob('../../assets/images/**/*.webp');
@@ -33,9 +37,9 @@ async function getImageModule(imageName: string) {
   return module.default;
 }
 
-// Load all room images
+// Load all room images (handle optional image field)
 const roomImages = await Promise.all(
-  rooms.map(room => getImageModule(room.image))
+  rooms.map(room => room.image ? getImageModule(room.image) : null)
 );
 ---
 
@@ -43,9 +47,9 @@ const roomImages = await Promise.all(
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Title -->
     <div class="text-center mb-12 md:mb-16">
-      <h2 class="font-heading text-3xl md:text-4xl font-medium text-luxury-black mb-4">Gli spazi dell'appartamento</h2>
+      <h2 class="font-heading text-3xl md:text-4xl font-medium text-luxury-black mb-4">{apartmentsContent.rooms_section?.title || "Gli spazi dell'appartamento"}</h2>
       <p class="text-lg text-luxury-graphite max-w-2xl mx-auto">
-        Scopri ogni ambiente nel dettaglio, pensato per offrirti comfort e funzionalità
+        {apartmentsContent.rooms_section?.subtitle || "Scopri ogni ambiente nel dettaglio, pensato per offrirti comfort e funzionalità"}
       </p>
       <div class="w-20 h-0.5 bg-luxury-gold mx-auto mt-4"></div>
     </div>
@@ -109,7 +113,7 @@ const roomImages = await Promise.all(
                 {room.amenities && room.amenities.length > 0 && (
                   <div class="mt-6">
                     <h4 class="text-sm font-medium text-luxury-graphite uppercase tracking-wider mb-3">
-                      Dotazioni
+                      {apartmentsContent.labels?.amenities || "Dotazioni"}
                     </h4>
                     <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {room.amenities.map((amenity) => (

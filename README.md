@@ -1,287 +1,185 @@
-# Casa Negrano - Luxury Rental Website
+# Property Rental Website Template
 
-Luxury vacation rental website for Casa Negrano apartments in Trento, Trentino, Italia. Built with Astro 4.15.5, TypeScript, and Tailwind CSS featuring a custom minimal luxury design system.
+A beautiful, configurable website template for vacation rentals, apartments, and holiday properties. Built with Astro 4.15.5, TypeScript, and Tailwind CSS featuring a customizable design system.
 
-## Overview
+## Features
 
-Casa Negrano offers three luxury apartments for short-term rental:
-- **Bilocale** - Two-room apartment
-- **Trilocale** - Three-room apartment
-- **Suite Deluxe** - Premium suite
-
-This website showcases these properties with elegant photo galleries, detailed room information, service listings, and integrated booking capabilities.
+- **Configuration-Driven**: Customize everything through YAML/TypeScript config files
+- **Multiple Properties**: Support for single or multiple rental properties
+- **Theme Presets**: 5 built-in themes (luxury, modern, rustic, coastal, minimal)
+- **Performance Optimized**: Static site generation, WebP images, lazy loading
+- **SEO Ready**: Open Graph, meta tags, sitemap, structured data
+- **i18n Ready**: Architecture supports future multi-language expansion
+- **Responsive Design**: Mobile-first, works on all devices
 
 ## Quick Start
 
 ### Prerequisites
 
 - Node.js 18+
-- npm or pnpm
+- npm
 
 ### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/yourusername/property-rental-website-template.git
+cd property-rental-website-template
+
+# Install dependencies
 npm install
-```
 
-### Development
-
-```bash
+# Start development server
 npm run dev
 ```
 
-Visit `http://localhost:4321` to view the site.
+Visit `http://localhost:4321` to view your site.
 
-### Build
+### Build for Production
 
 ```bash
 npm run build
 ```
 
-Production files are generated in the `./dist/` directory.
+## Configuration
 
-### Preview
+### 1. Site Settings (`src/config/site.config.ts`)
 
-```bash
-npm run preview
+Configure your site identity, contact info, and integrations:
+
+```typescript
+const siteConfig = {
+  identity: {
+    name: 'Your Property Name',
+    tagline: 'Your tagline here',
+  },
+  contact: {
+    email: 'your@email.com',
+    phone: '+1 234 567 8900',
+    // ...
+  },
+  // ...
+};
 ```
 
-Preview the production build locally before deploying.
+### 2. Properties (`src/content/properties/*.yaml`)
+
+Add your rental properties as YAML files:
+
+```yaml
+id: my-property
+slug: my-property
+name: "My Property Name"
+description: "Property description..."
+
+capacity:
+  guests: 4
+  bedrooms: "2 bedrooms"
+  bathrooms: "1 bathroom"
+
+images:
+  hero: "hero.webp"
+  thumbnail: "thumb.webp"
+  gallery: "my-property"
+```
+
+See `src/content/properties/_example.yaml` for a complete template.
+
+### 3. Theme (`src/config/theme.config.ts`)
+
+Choose a preset or customize colors:
+
+```typescript
+const themeConfig = {
+  preset: 'luxury',  // or: 'modern', 'rustic', 'coastal', 'minimal'
+  colors: {
+    primary: '#your-brand-color',
+    // ...
+  },
+};
+```
+
+### 4. Content (`src/content/dictionary/`)
+
+Customize all text content in YAML files:
+- `common.yaml` - Buttons, labels, navigation
+- `homepage.yaml` - Homepage content
+- `contact.yaml` - Contact page
+- `apartments.yaml` - Property labels
 
 ## Project Structure
 
 ```
-/
-├── public/                 # Static assets
-├── src/
-│   ├── assets/
-│   │   ├── images/         # Optimized images by apartment
-│   │   │   ├── bilocale/
-│   │   │   ├── trilocale/
-│   │   │   └── suite-deluxe/
-│   │   └── styles/
-│   │       └── tailwind.css
-│   ├── components/
-│   │   ├── appartamenti/   # Apartment-specific components
-│   │   │   ├── ApartmentHero.astro
-│   │   │   ├── PhotoGallery.astro
-│   │   │   ├── RoomShowcase.astro
-│   │   │   └── ServicesGrid.astro
-│   │   ├── ui/             # Reusable UI components
-│   │   └── widgets/        # Complex widgets
-│   │       ├── Header.astro
-│   │       ├── Footer.astro
-│   │       ├── ImageCarousel.astro
-│   │       └── CalendarForm.tsx
-│   ├── layouts/
-│   │   └── PageLayout.astro
-│   ├── pages/
-│   │   ├── appartamenti/   # Apartment detail pages
-│   │   │   ├── bilocale.astro
-│   │   │   ├── trilocale.astro
-│   │   │   └── suite-deluxe.astro
-│   │   ├── index.astro     # Homepage
-│   │   └── ...
-│   └── config.yaml         # Site configuration
-├── ARCHITECTURE.md         # Complete documentation
-└── package.json
+src/
+├── config/                  # Configuration files
+│   ├── site.config.ts       # Site identity, contact, SEO
+│   ├── theme.config.ts      # Theme customization
+│   └── schema/              # TypeScript interfaces
+├── content/
+│   ├── dictionary/          # UI text content
+│   │   └── it/              # Language folder
+│   │       ├── common.yaml
+│   │       ├── homepage.yaml
+│   │       └── ...
+│   └── properties/          # Property data
+│       ├── _example.yaml    # Template
+│       └── *.yaml           # Your properties
+├── assets/images/           # Images by property
+│   └── {property-slug}/
+├── components/              # Astro/React components
+├── layouts/                 # Page layouts
+├── pages/                   # Site pages
+└── utils/                   # Utility functions
 ```
 
-## Technology Stack
+## Theme Presets
 
-- **Astro 4.15.5** - Static site generator with partial hydration
-- **TypeScript** - Type-safe component development
-- **Tailwind CSS 3.4.11** - Utility-first CSS with custom luxury tokens
-- **Alpine.js** - Lightweight JavaScript for interactive components
-- **React 18** - For complex interactive components (CalendarForm)
-- **Astro Assets** - Built-in image optimization
+| Preset | Style | Best For |
+|--------|-------|----------|
+| `luxury` | Gold, cream, elegant | High-end rentals |
+| `modern` | Blue, clean, minimal | Urban apartments |
+| `rustic` | Amber, warm, cozy | Country retreats |
+| `coastal` | Cyan, fresh, airy | Beach properties |
+| `minimal` | Black & white | Design-focused |
 
-## Key Features
+## Commands
 
-### Photo Gallery System
-- Luxury-styled image carousel with fullscreen modal
-- Responsive srcset (800w, 1200w, 1600w, 2400w)
-- Touch/swipe support
-- Keyboard navigation (←/→ arrows, Escape)
-- Autoplay mode with progress indicators
-- Lazy loading for performance
-
-### Luxury Design System
-Custom design tokens following minimal luxury aesthetic:
-
-| Color | Hex | Usage |
-|-------|-----|-------|
-| Luxury Gold | `#c9a961` | Primary accent, CTAs, highlights |
-| Luxury Bronze | `#a98b5f` | Secondary accent, hover states |
-| Luxury Cream | `#faf8f5` | Light backgrounds |
-| Luxury Beige | `#f5f2ed` | Subtle backgrounds |
-| Luxury Black | `#1a1a1a` | Headings, primary text |
-| Luxury Charcoal | `#2d2d2d` | Dark elements |
-| Luxury Graphite | `#4a4a4a` | Body text |
-
-**Typography:**
-- Headings: Playfair Display (serif, elegant)
-- Body: Inter Variable (sans-serif, clean)
-
-**Design Principles:**
-- Border radius: Always `rounded` (0.25rem)
-- Transitions: Always `duration-400` (400ms)
-- Font weights: `font-medium` (500) for headings
-- Shadows: `shadow-luxury-sm/md/lg`
-
-### Performance Optimizations
-- WebP image format throughout
-- Responsive image srcsets
-- Lazy loading with Intersection Observer
-- Deferred carousel initialization with `requestIdleCallback`
-- Minimal JavaScript footprint
-
-### SEO & Meta
-- Open Graph tags for social sharing
-- Structured data for rental properties
-- Automatic sitemap generation
-- Optimized meta descriptions
-
-## Content Management
-
-### Adding Apartment Photos
-
-1. Add WebP images to the appropriate directory:
-   ```
-   src/assets/images/bilocale/*.webp
-   src/assets/images/trilocale/*.webp
-   src/assets/images/suite-deluxe/*.webp
-   ```
-
-2. Images are automatically loaded by `PhotoGallery.astro` component
-
-3. Multiple sizes are generated automatically:
-   - Thumbnails: 800w, 1200w
-   - Fullscreen: 1600w, 2400w
-
-### Updating Apartment Information
-
-Edit apartment data in the respective page files:
-- `src/pages/appartamenti/bilocale.astro`
-- `src/pages/appartamenti/trilocale.astro`
-- `src/pages/appartamenti/suite-deluxe.astro`
-
-Each file contains structured data for:
-- Title and description
-- Room details (bedrooms, bathrooms, capacity)
-- Services and amenities
-- Pricing information
-
-### Modifying Site Configuration
-
-Edit `src/config.yaml` for:
-- Site name and URL
-- Meta descriptions
-- Google Analytics ID
-- Contact information
-
-## Styling Guidelines
-
-### Button Styles
-
-```astro
-<!-- Primary button -->
-<a class="btn font-medium bg-luxury-gold text-luxury-black border border-luxury-gold/20
-          hover:bg-luxury-bronze shadow-luxury-sm hover:shadow-luxury-md
-          uppercase tracking-wide transition-all duration-400">
-  Prenota Ora
-</a>
-
-<!-- Secondary button -->
-<a class="btn font-medium bg-luxury-white text-luxury-black border border-luxury-sand
-          hover:bg-luxury-cream shadow-luxury-sm transition-all duration-400">
-  Scopri di Più
-</a>
-```
-
-### Section Layouts
-
-```astro
-<section class="bg-luxury-white py-12 md:py-16">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <!-- Section heading -->
-    <div class="text-center mb-8 md:mb-12">
-      <h2 class="text-3xl md:text-4xl font-heading font-medium text-luxury-black mb-4">
-        Titolo Sezione
-      </h2>
-      <div class="w-20 h-0.5 bg-luxury-gold mx-auto mb-4"></div>
-      <p class="text-lg text-luxury-graphite max-w-2xl mx-auto">
-        Descrizione della sezione
-      </p>
-    </div>
-
-    <!-- Content -->
-  </div>
-</section>
-```
-
-### Card Components
-
-```astro
-<div class="bg-luxury-white rounded border border-luxury-sand shadow-luxury-sm
-            hover:shadow-luxury-md transition-all duration-400">
-  <div class="p-6">
-    <!-- Card content -->
-  </div>
-</div>
-```
-
-## Available Commands
-
-| Command | Action |
-|---------|--------|
-| `npm install` | Install dependencies |
-| `npm run dev` | Start dev server at `localhost:4321` |
-| `npm run build` | Build production site to `./dist/` |
-| `npm run preview` | Preview production build locally |
-| `npm run format` | Format code with Prettier |
-| `npm run lint:eslint` | Run ESLint |
-
-## Deployment
-
-### Manual Deployment
-
-```bash
-npm run build
-```
-
-Deploy the `dist/` folder to your hosting provider.
-
-### Netlify
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start)
-
-### Vercel
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm run check` | TypeScript type checking |
 
 ## Documentation
 
-For complete documentation including:
-- Detailed design system specifications
-- Component architecture
-- Styling patterns and examples
-- Performance optimization strategies
-- File structure details
+- [Quick Start Guide](./docs/getting-started/quick-start.md)
+- [Site Configuration](./docs/configuration/site-config.md)
+- [Property Configuration](./docs/configuration/properties.md)
+- [Theme Configuration](./docs/configuration/theme.md)
+- [Development Plan](./DEVELOPMENT_PLAN.md)
 
-See **[ARCHITECTURE.md](./ARCHITECTURE.md)**
+## Technology Stack
 
-## Browser Support
+- **Framework**: Astro 4.15.5
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 3.4.11
+- **Components**: React 18 (for interactive elements)
+- **Output**: Static HTML (SSG)
 
-- Chrome/Edge (latest)
-- Firefox (latest)
-- Safari 14+
-- Mobile browsers (iOS Safari, Chrome Mobile)
+## Deployment
+
+The site generates static HTML and can be deployed anywhere:
+
+- **Netlify**: Connect your Git repo for automatic deploys
+- **Vercel**: Similar to Netlify
+- **GitHub Pages**: Use `gh-pages` branch
+- **Any server**: Upload the `dist/` folder
 
 ## License
 
-This project is based on the AstroWind template, licensed under the MIT license.
+MIT License - feel free to use this template for personal and commercial projects.
 
 ---
 
-Built with [Astro](https://astro.build/) • Styled with [Tailwind CSS](https://tailwindcss.com/)
+Built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/)

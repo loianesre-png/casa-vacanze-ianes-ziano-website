@@ -2,28 +2,35 @@
 /**
  * ApartmentCard Component
  * Card display for individual apartments on the home page
+ *
+ * Properties are loaded from: src/content/properties/*.yaml
  */
 import { Image } from 'astro:assets';
-import type { Apartment } from '~/data/apartments';
+import type { Property } from '~/utils/properties';
+import { getCommonContent } from '~/utils/content';
 
 interface Props {
-  /** Apartment data object */
-  apartment: Apartment;
+  /** Property data object */
+  property: Property;
 }
 
-const { apartment } = Astro.props;
+const { property } = Astro.props;
+const common = await getCommonContent();
 
-// Dynamically import the apartment image
+// Dynamically import the property image
 const images = import.meta.glob('../../assets/images/**/*.webp');
-const imagePath = `../../assets/images/${apartment.id}/${apartment.heroImage}`;
+const imagePath = `../../assets/images/${property.id}/${property.images.hero}`;
 const imageModule = images[imagePath];
 
 if (!imageModule) {
-  throw new Error(`Apartment image not found: ${imagePath}`);
+  throw new Error(`Property image not found: ${imagePath}`);
 }
 
-const apartmentImageModule = await imageModule();
-const apartmentImage = apartmentImageModule.default;
+const propertyImageModule = await imageModule();
+const propertyImage = propertyImageModule.default;
+
+// Size label based on unit
+const sizeLabel = property.size.unit === 'sqm' ? 'm²' : 'ft²';
 ---
 
 <div
@@ -32,8 +39,8 @@ const apartmentImage = apartmentImageModule.default;
   <!-- Image Section -->
   <div class="relative h-64 overflow-hidden">
     <Image
-      src={apartmentImage}
-      alt={`${apartment.name} - Casa Negrano`}
+      src={propertyImage}
+      alt={property.name}
       class="w-full h-full object-cover transition-transform duration-400 group-hover:scale-105"
       widths={[400, 600, 800]}
       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -44,7 +51,7 @@ const apartmentImage = apartmentImageModule.default;
 
     <!-- Capacity Badge -->
     <div class="absolute top-4 right-4 px-4 py-2 bg-luxury-gold text-luxury-black rounded font-medium text-sm shadow-luxury-sm uppercase tracking-wide">
-      {apartment.capacity} {apartment.capacity === 1 ? 'ospite' : 'ospiti'}
+      {property.capacity.guests} {common.labels.guests}
     </div>
 
     <!-- Overlay on hover -->
@@ -58,17 +65,17 @@ const apartmentImage = apartmentImageModule.default;
   <div class="p-6 lg:p-8">
     <!-- Apartment Name -->
     <h3 class="font-heading text-2xl font-medium text-luxury-black mb-2 group-hover:text-luxury-gold transition-all duration-400">
-      {apartment.name}
+      {property.name}
     </h3>
 
     <!-- Subtitle -->
     <p class="text-luxury-graphite mb-4 uppercase tracking-wide text-sm">
-      {apartment.subtitle}
+      {property.subtitle}
     </p>
 
     <!-- Description -->
     <p class="text-luxury-graphite leading-relaxed mb-6 line-clamp-3">
-      {apartment.description}
+      {property.shortDescription || property.description}
     </p>
 
     <!-- Key Features Grid -->
@@ -82,7 +89,7 @@ const apartmentImage = apartmentImageModule.default;
             stroke-width="2"
             d="M4 8V4m0 0h4M4 4l5 5m11-2V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
         </svg>
-        <span class="text-sm text-luxury-graphite font-medium">{apartment.size} m²</span>
+        <span class="text-sm text-luxury-graphite font-medium">{property.size.value} {sizeLabel}</span>
       </div>
 
       <!-- Bedrooms -->
@@ -95,7 +102,7 @@ const apartmentImage = apartmentImageModule.default;
             d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
           ></path>
         </svg>
-        <span class="text-sm text-luxury-graphite font-medium">{apartment.bedrooms}</span>
+        <span class="text-sm text-luxury-graphite font-medium">{property.capacity.bedrooms}</span>
       </div>
 
       <!-- Bathrooms -->
@@ -107,41 +114,45 @@ const apartmentImage = apartmentImageModule.default;
             stroke-width="2"
             d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path>
         </svg>
-        <span class="text-sm text-luxury-graphite font-medium">{apartment.bathrooms}</span>
+        <span class="text-sm text-luxury-graphite font-medium">{property.capacity.bathrooms}</span>
       </div>
 
-      <!-- WiFi -->
-      <div class="flex items-center gap-2">
-        <svg class="w-5 h-5 text-luxury-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"
-          ></path>
-        </svg>
-        <span class="text-sm text-luxury-graphite font-medium">WiFi incluso</span>
-      </div>
+      <!-- WiFi (if in features) -->
+      {property.features?.some(f => f.toLowerCase().includes('wifi')) && (
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-luxury-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"
+            ></path>
+          </svg>
+          <span class="text-sm text-luxury-graphite font-medium">{common.labels.wifi_included || 'WiFi incluso'}</span>
+        </div>
+      )}
     </div>
 
     <!-- Ideal For Tags -->
-    <div class="mb-6">
-      <p class="text-xs font-medium text-luxury-graphite uppercase tracking-wider mb-2">Ideale per:</p>
-      <div class="flex flex-wrap gap-2">
-        {
-          apartment.idealFor.slice(0, 3).map((tag) => (
-            <span class="px-3 py-1 bg-luxury-beige text-luxury-gold rounded text-xs font-medium">{tag}</span>
-          ))
-        }
+    {property.idealFor && property.idealFor.length > 0 && (
+      <div class="mb-6">
+        <p class="text-xs font-medium text-luxury-graphite uppercase tracking-wider mb-2">{common.labels.ideal_for || 'Ideale per'}:</p>
+        <div class="flex flex-wrap gap-2">
+          {
+            property.idealFor.slice(0, 3).map((tag) => (
+              <span class="px-3 py-1 bg-luxury-beige text-luxury-gold rounded text-xs font-medium">{tag}</span>
+            ))
+          }
+        </div>
       </div>
-    </div>
+    )}
 
     <!-- CTA Button -->
     <a
-      href={`/appartamenti/${apartment.slug}`}
+      href={`/appartamenti/${property.slug}`}
       class="btn-primary inline-flex items-center justify-center gap-2 w-full px-6 py-3"
     >
-      <span>Scopri di più</span>
+      <span>{common.buttons.learn_more}</span>
       <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
       </svg>

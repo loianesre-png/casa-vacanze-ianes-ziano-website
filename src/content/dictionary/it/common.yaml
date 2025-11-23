@@ -1,0 +1,120 @@
+# =============================================================================
+# Common UI Text (Italian)
+# =============================================================================
+# Shared text elements used across multiple components
+# Edit these values to customize your site's common UI elements
+#
+# To add another language:
+# 1. Copy this file to src/content/dictionary/[lang]/common.yaml
+# 2. Translate all values
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Buttons
+# -----------------------------------------------------------------------------
+buttons:
+  contact: "Contattaci"
+  book_now: "Prenota ora"
+  learn_more: "Scopri di più"
+  view_all: "Vedi tutti"
+  send: "Invia"
+  submit: "Invia Richiesta"
+  submitting: "Invio in corso..."
+  back: "Indietro"
+  close: "Chiudi"
+  discover: "Scopri"
+  explore: "Esplora"
+
+# -----------------------------------------------------------------------------
+# Navigation
+# -----------------------------------------------------------------------------
+navigation:
+  home: "Home"
+  about: "Chi siamo"
+  apartments: "Appartamenti"
+  all_apartments: "Tutti gli appartamenti"
+  comfort: "I nostri comfort"
+  testimonials: "Testimonianze"
+  contact: "Contatti"
+
+# -----------------------------------------------------------------------------
+# Labels
+# -----------------------------------------------------------------------------
+labels:
+  guests: "Ospiti"
+  bedrooms: "Camere"
+  bathrooms: "Bagni"
+  size: "Superficie"
+  sqm: "m²"
+  sqft: "sq ft"
+  from: "da"
+  per_night: "a notte"
+  check_in: "Check-in"
+  check_out: "Check-out"
+  min_stay: "Soggiorno minimo"
+  nights: "notti"
+  wifi_included: "WiFi incluso"
+  ideal_for: "Ideale per"
+  parking_included: "Parcheggio incluso"
+  features: "Caratteristiche"
+  amenities: "Servizi"
+
+# -----------------------------------------------------------------------------
+# Form Labels
+# -----------------------------------------------------------------------------
+form:
+  name: "Nome Completo"
+  email: "Email"
+  phone: "Telefono"
+  guests_count: "Numero di Ospiti"
+  check_in_date: "Data di Check-in"
+  check_out_date: "Data di Check-out"
+  message: "Messaggio"
+  special_requests: "Richieste Speciali"
+  select_date: "Seleziona data"
+
+# -----------------------------------------------------------------------------
+# Form Placeholders
+# -----------------------------------------------------------------------------
+placeholders:
+  name: "Mario Rossi"
+  email: "mario.rossi@example.com"
+  phone: "+39 XXX XXX XXXX"
+  guests: "2"
+  message: "Eventuali richieste speciali..."
+
+# -----------------------------------------------------------------------------
+# Messages
+# -----------------------------------------------------------------------------
+messages:
+  success:
+    form_sent: "Richiesta inviata con successo!"
+    booking_confirmed: "Prenotazione confermata!"
+  error:
+    generic: "Si è verificato un errore. Riprova più tardi."
+    form_error: "Errore nell'invio della richiesta"
+    required_field: "Questo campo è obbligatorio"
+    invalid_email: "Inserisci un indirizzo email valido"
+    invalid_date: "Seleziona una data valida"
+  info:
+    form_disabled: "Il modulo di contatto non è attualmente disponibile. Contattaci direttamente via email."
+
+# -----------------------------------------------------------------------------
+# Date Formats
+# -----------------------------------------------------------------------------
+date:
+  locale: "it-IT"
+  format:
+    short: "DD/MM/YYYY"
+    long: "dddd, D MMMM YYYY"
+    month_year: "MMMM YYYY"
+
+# -----------------------------------------------------------------------------
+# Misc
+# -----------------------------------------------------------------------------
+misc:
+  scroll_to_discover: "Scorri per scoprire"
+  all_rights_reserved: "Tutti i diritti riservati"
+  cin_codes_label: "Codici CIN"
+  loading: "Caricamento..."
+  no_results: "Nessun risultato"

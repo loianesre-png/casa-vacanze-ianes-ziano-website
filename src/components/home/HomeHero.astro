@@ -3,8 +3,20 @@
  * HomeHero Component
  * Main hero section for the home page
  * Welcomes visitors and highlights the main value proposition
+ *
+ * Content is loaded from: src/content/dictionary/{locale}/homepage.yaml
+ * Configuration is loaded from: src/config/site.config.ts
  */
 import { Image } from 'astro:assets';
+import { getHomepageContent } from '~/utils/content';
+import { getSiteName } from '~/config';
+
+// Load content from dictionary
+const content = await getHomepageContent();
+const hero = content.hero;
+const siteName = getSiteName();
+
+// Hero image - you can change this path in the import below
 import heroImage from '../../assets/images/20250519_115212.webp';
 ---
 
@@ -13,7 +25,7 @@ import heroImage from '../../assets/images/20250519_115212.webp';
   <div class="absolute inset-0">
     <Image
       src={heroImage}
-      alt="Casa Negrano - Vista esterna della struttura"
+      alt={`${siteName} - ${hero.image_alt}`}
       class="w-full h-full object-cover"
       widths={[400, 800, 1200, 1600, 2400]}
       sizes="100vw"
@@ -40,24 +52,23 @@ import heroImage from '../../assets/images/20250519_115212.webp';
               d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
             ></path>
           </svg>
-          <span class="text-white text-sm font-medium uppercase tracking-wide">Appartamenti vacanze a Trento</span>
+          <span class="text-white text-sm font-medium uppercase tracking-wide">{hero.badge}</span>
         </div>
 
         <!-- Main Heading -->
         <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium text-white mb-6 leading-tight">
-          Benvenuti a <br />
-          <span class="text-luxury-gold">Casa Negrano</span>
+          {hero.title} <br />
+          <span class="text-luxury-gold">{hero.title_highlight}</span>
         </h1>
 
         <!-- Subtitle -->
         <p class="text-xl sm:text-2xl md:text-3xl text-white/95 font-light mb-6 leading-relaxed">
-          Appartamenti moderni nel cuore del Trentino
+          {hero.subtitle}
         </p>
 
         <!-- Description -->
         <p class="text-base sm:text-lg text-white/90 max-w-2xl mb-10 leading-relaxed">
-          Situati a Villazzano, a soli 5 km dal centro di Trento, i nostri appartamenti offrono il perfetto equilibrio
-          tra tranquillità e comodità. Scegli tra tre soluzioni pensate per ogni tipo di soggiorno.
+          {hero.description}
         </p>
 
         <!-- CTA Buttons -->
@@ -66,7 +77,7 @@ import heroImage from '../../assets/images/20250519_115212.webp';
             href="#appartamenti"
             class="btn-primary inline-flex items-center justify-center gap-3 px-8 py-4 hover:scale-105 group"
           >
-            <span>Scopri gli appartamenti</span>
+            <span>{hero.cta_primary}</span>
             <svg
               class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-400"
               fill="none"
@@ -89,59 +100,48 @@ import heroImage from '../../assets/images/20250519_115212.webp';
                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
               ></path>
             </svg>
-            <span>Contattaci</span>
+            <span>{hero.cta_secondary}</span>
           </a>
         </div>
 
         <!-- Key Features -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-12 pt-8 border-t border-luxury-gold/20">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded bg-luxury-gold/15 backdrop-blur-sm flex items-center justify-center">
-              <svg class="w-6 h-6 text-luxury-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                ></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                ></path>
-              </svg>
+          {hero.features.map((feature) => (
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded bg-luxury-gold/15 backdrop-blur-sm flex items-center justify-center">
+                {feature.icon === 'location' && (
+                  <svg class="w-6 h-6 text-luxury-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                )}
+                {feature.icon === 'check' && (
+                  <svg class="w-6 h-6 text-luxury-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                )}
+                {feature.icon === 'clock' && (
+                  <svg class="w-6 h-6 text-luxury-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                )}
+              </div>
+              <div>
+                <p class="text-white font-medium">{feature.title}</p>
+                <p class="text-white/70 text-sm">{feature.subtitle}</p>
+              </div>
             </div>
-            <div>
-              <p class="text-white font-medium">Posizione strategica</p>
-              <p class="text-white/70 text-sm">5 km da Trento centro</p>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded bg-luxury-gold/15 backdrop-blur-sm flex items-center justify-center">
-              <svg class="w-6 h-6 text-luxury-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-            </div>
-            <div>
-              <p class="text-white font-medium">Comfort moderni</p>
-              <p class="text-white/70 text-sm">Tutti i servizi inclusi</p>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded bg-luxury-gold/15 backdrop-blur-sm flex items-center justify-center">
-              <svg class="w-6 h-6 text-luxury-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-            </div>
-            <div>
-              <p class="text-white font-medium">Check-in flessibile</p>
-              <p class="text-white/70 text-sm">Dalle 16:00</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
@@ -150,7 +150,7 @@ import heroImage from '../../assets/images/20250519_115212.webp';
   <!-- Scroll indicator -->
   <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:block">
     <a href="#appartamenti" class="flex flex-col items-center gap-2 text-luxury-gold/80 hover:text-luxury-gold transition-all duration-800 animate-bounce">
-      <span class="text-sm uppercase tracking-wide">Scorri per scoprire</span>
+      <span class="text-sm uppercase tracking-wide">{hero.scroll_text}</span>
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
       </svg>

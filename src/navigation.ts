@@ -1,4 +1,10 @@
 import { getPermalink } from './utils/permalinks';
+import {
+  getContactEmail,
+  getFormattedRegistrationCodes,
+  getCopyrightText,
+  getSiteName,
+} from './config';
 
 export const headerData = {
   links: [
@@ -74,7 +80,7 @@ export const footerData = {
   secondaryLinks: [
     { text: 'Cookies', href: getPermalink('/cookies') },
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
-    { text: 'casanegrano@gmail.com', href: 'mailto:casanegrano@gmail.com' },
+    { text: getContactEmail(), href: `mailto:${getContactEmail()}` },
   ],
   socialLinks: [
     // { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },
@@ -84,9 +90,9 @@ export const footerData = {
     // { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/onwidget/astrowind' },
   ],
   footNote: `
-      Codici CIN: IT022205C2A7J22SB7 | IT022205C269BP38G3 | IT022205C2I72MMQXZ
+      Codici CIN: ${getFormattedRegistrationCodes()}
       <br />
-      &copy; 2025 Casa Negrano. Tutti i diritti riservati.
+      ${getCopyrightText()}. Tutti i diritti riservati.
 
   `,
 };

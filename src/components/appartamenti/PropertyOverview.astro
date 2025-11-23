@@ -15,15 +15,18 @@ interface Props {
   apartmentId: string;
   /** Number of guests */
   capacity: number;
-  /** Size in square meters */
+  /** Size value */
   size: number;
+  /** Size unit (sqm or sqft) */
+  sizeUnit?: 'sqm' | 'sqft';
   /** Bedroom configuration */
   bedrooms: string;
   /** Bathroom configuration */
   bathrooms: string;
 }
 
-const { description, propertyImage, apartmentId, capacity, size, bedrooms, bathrooms } = Astro.props;
+const { description, propertyImage, apartmentId, capacity, size, sizeUnit = 'sqm', bedrooms, bathrooms } = Astro.props;
+const sizeLabel = sizeUnit === 'sqm' ? 'm²' : 'ft²';
 
 // Dynamically import the property image
 const images = import.meta.glob('../../assets/images/**/*.webp');
@@ -107,7 +110,7 @@ const propertyImageSrc = propertyImageModule.default;
             </div>
             <div>
               <h3 class="text-sm font-medium text-luxury-graphite mb-1 uppercase tracking-wide">Superficie</h3>
-              <p class="text-lg font-medium text-luxury-black">{size} m²</p>
+              <p class="text-lg font-medium text-luxury-black">{size} {sizeLabel}</p>
             </div>
           </div>
 
