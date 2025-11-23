@@ -4,6 +4,14 @@ import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Button from '~/components/ui/Button.astro';
 import Image from '~/components/common/Image.astro';
 import type { Testimonials as Props } from '~/types';
+import { getSocialLinks } from '~/config';
+import { getCommonContent } from '~/utils/content';
+
+const socialLinks = getSocialLinks();
+const common = await getCommonContent();
+
+// Get reviews URL from social links (booking.com link)
+const reviewsUrl = socialLinks?.booking;
 
 const {
   title = '',
@@ -11,12 +19,19 @@ const {
   tagline = '',
   testimonials = [],
   callToAction,
+  /** Optional reviews URL override */
+  reviewsLink,
+  /** Text for the "read more" link */
+  readMoreText,
 
   id,
   isDark = false,
   classes = {},
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
+
+// Use provided reviewsLink, fallback to booking.com from config
+const finalReviewsUrl = reviewsLink || (reviewsUrl ? `${reviewsUrl}#tab-reviews` : null);
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
@@ -66,18 +81,20 @@ const {
     }
   </div>
 
-  <div class="flex justify-center mx-auto w-fit mt-8 md:mt-12 font-medium">
-    <p class="text-center text-md text-luxury-graphite mt-4">
-      <a
-        href="https://www.booking.com/hotel/it/casanegrano.it.html#tab-reviews"
-        class="text-luxury-gold hover:text-luxury-bronze underline transition-all duration-400"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Leggi di più!
-      </a>
-    </p>
-  </div>
+  {finalReviewsUrl && (
+    <div class="flex justify-center mx-auto w-fit mt-8 md:mt-12 font-medium">
+      <p class="text-center text-md text-luxury-graphite mt-4">
+        <a
+          href={finalReviewsUrl}
+          class="text-luxury-gold hover:text-luxury-bronze underline transition-all duration-400"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {readMoreText || common.buttons?.view_all || 'Leggi di più!'}
+        </a>
+      </p>
+    </div>
+  )}
   {
     callToAction && (
       <div class="flex justify-center mx-auto w-fit mt-8 md:mt-12 font-medium">

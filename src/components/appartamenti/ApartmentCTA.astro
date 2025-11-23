@@ -2,8 +2,12 @@
 /**
  * ApartmentCTA Component
  * Call-to-action section for booking/contacting about the apartment
+ *
+ * Uses config for email and content dictionary for labels
  */
 import { Icon } from 'astro-icon/components';
+import { getContactEmail } from '~/config';
+import { getApartmentsContent } from '~/utils/content';
 
 interface Props {
   /** Apartment name for personalized messaging */
@@ -16,10 +20,14 @@ interface Props {
   contactUrl?: string;
 }
 
+const apartmentsContent = await getApartmentsContent();
+const contactEmail = getContactEmail();
+const ctaContent = apartmentsContent.sections?.cta;
+
 const {
   apartmentName,
-  title = `Prenota ${apartmentName}`,
-  description = 'Hai trovato l\'appartamento perfetto per il tuo soggiorno? Contattaci per verificare la disponibilità e ricevere un preventivo personalizzato.',
+  title = ctaContent?.title?.replace('{name}', apartmentName) || `Prenota ${apartmentName}`,
+  description = ctaContent?.description || 'Hai trovato l\'appartamento perfetto per il tuo soggiorno? Contattaci per verificare la disponibilità e ricevere un preventivo personalizzato.',
   contactUrl = '/contatti',
 } = Astro.props;
 ---
@@ -56,7 +64,7 @@ const {
           class="btn-primary inline-flex items-center gap-3 px-8 py-4 hover:scale-105 group"
         >
           <Icon name="tabler:calendar" class="w-6 h-6" />
-          <span>Verifica disponibilità</span>
+          <span>{ctaContent?.button || 'Verifica disponibilità'}</span>
           <svg
             class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-400"
             fill="none"
@@ -69,11 +77,11 @@ const {
 
         <!-- Secondary CTA - Direct Email -->
         <a
-          href="mailto:casanegrano@gmail.com?subject=Richiesta informazioni per {apartmentName}"
+          href={`mailto:${contactEmail}?subject=${encodeURIComponent(ctaContent?.email_subject?.replace('{name}', apartmentName) || `Richiesta informazioni per ${apartmentName}`)}`}
           class="btn-ghost inline-flex items-center gap-3 px-8 py-4 group"
         >
           <Icon name="tabler:mail" class="w-6 h-6" />
-          <span>Scrivi una email</span>
+          <span>{ctaContent?.email_button || 'Scrivi una email'}</span>
         </a>
       </div>
 
@@ -85,8 +93,8 @@ const {
             <div class="w-12 h-12 rounded bg-luxury-gold/20 flex items-center justify-center">
               <Icon name="tabler:clock" class="w-6 h-6 text-luxury-gold" />
             </div>
-            <p class="text-sm font-medium">Risposta rapida</p>
-            <p class="text-xs text-white/80">Entro 24 ore</p>
+            <p class="text-sm font-medium">{ctaContent?.features?.response_title || 'Risposta rapida'}</p>
+            <p class="text-xs text-white/80">{ctaContent?.features?.response_subtitle || 'Entro 24 ore'}</p>
           </div>
 
           <!-- Flexible Check-in -->
@@ -94,8 +102,8 @@ const {
             <div class="w-12 h-12 rounded bg-luxury-gold/20 flex items-center justify-center">
               <Icon name="tabler:door-enter" class="w-6 h-6 text-luxury-gold" />
             </div>
-            <p class="text-sm font-medium">Check-in flessibile</p>
-            <p class="text-xs text-white/80">Dalle 16:00</p>
+            <p class="text-sm font-medium">{ctaContent?.features?.checkin_title || 'Check-in flessibile'}</p>
+            <p class="text-xs text-white/80">{ctaContent?.features?.checkin_subtitle || 'Dalle 16:00'}</p>
           </div>
 
           <!-- Best Price -->
@@ -103,8 +111,8 @@ const {
             <div class="w-12 h-12 rounded bg-luxury-gold/20 flex items-center justify-center">
               <Icon name="tabler:discount-check" class="w-6 h-6 text-luxury-gold" />
             </div>
-            <p class="text-sm font-medium">Miglior prezzo garantito</p>
-            <p class="text-xs text-white/80">Prenotazione diretta</p>
+            <p class="text-sm font-medium">{ctaContent?.features?.price_title || 'Miglior prezzo garantito'}</p>
+            <p class="text-xs text-white/80">{ctaContent?.features?.price_subtitle || 'Prenotazione diretta'}</p>
           </div>
         </div>
       </div>

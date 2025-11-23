@@ -2,9 +2,12 @@
 /**
  * Photo Gallery Component
  * Displays an image carousel of all apartment photos
+ *
+ * Images are loaded dynamically from: src/assets/images/{apartmentSlug}/
  */
-import { Image, getImage } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import ImageCarousel from '~/components/widgets/ImageCarousel.astro';
+import { getApartmentsContent } from '~/utils/content';
 
 export interface Props {
   apartmentSlug: string;
@@ -12,25 +15,27 @@ export interface Props {
 }
 
 const { apartmentSlug, apartmentName } = Astro.props;
+const apartmentsContent = await getApartmentsContent();
 
-// Load all images based on apartment slug
-let imageModules;
+// Dynamic image loading using import.meta.glob
+// This loads all webp images from all property folders
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/images/**/*.webp',
+  { eager: true }
+);
 
-if (apartmentSlug === 'bilocale') {
-  imageModules = await Astro.glob('../../assets/images/bilocale/*.webp');
-} else if (apartmentSlug === 'trilocale') {
-  imageModules = await Astro.glob('../../assets/images/trilocale/*.webp');
-} else if (apartmentSlug === 'suite-deluxe') {
-  imageModules = await Astro.glob('../../assets/images/suite-deluxe/*.webp');
-} else {
-  throw new Error(`Unknown apartment slug: ${apartmentSlug}`);
+// Filter images for the current property
+const propertyImages = Object.entries(allImages)
+  .filter(([path]) => path.includes(`/${apartmentSlug}/`))
+  .map(([_, module]) => module.default);
+
+if (propertyImages.length === 0) {
+  console.warn(`No images found for property: ${apartmentSlug}`);
 }
 
 // Generate optimized images
 const images = await Promise.all(
-  imageModules.map(async (module, index) => {
-    const originalImage = module.default;
-
+  propertyImages.map(async (originalImage, index) => {
     // Generate thumbnail for carousel
     const thumbnail = await getImage({
       src: originalImage,
@@ -67,8 +72,8 @@ const images = await Promise.all(
       sizes: '(max-width: 768px) 100vw, 800px',
       fullSrc: full.src,
       fullSrcset: `${thumbnail1200.src} 1200w, ${full.src} 1600w, ${full2400.src} 2400w`,
-      alt: `${apartmentName} - Foto ${index + 1}`,
-      title: `Vista dell'appartamento ${apartmentName}`,
+      alt: `${apartmentName} - ${apartmentsContent.sections?.gallery?.photo_label || 'Foto'} ${index + 1}`,
+      title: `${apartmentName}`,
     };
   })
 );
@@ -79,26 +84,34 @@ const images = await Promise.all(
     <!-- Section heading -->
     <div class="text-center mb-8 md:mb-12">
       <h2 class="text-3xl md:text-4xl font-heading font-medium text-luxury-black mb-4">
-        Galleria Fotografica
+        {apartmentsContent.sections?.gallery?.title || "Galleria Fotografica"}
       </h2>
       <div class="w-20 h-0.5 bg-luxury-gold mx-auto mb-4"></div>
       <p class="text-lg text-luxury-graphite max-w-2xl mx-auto">
-        Esplora gli spazi e i comfort dell'appartamento attraverso le nostre foto
+        {apartmentsContent.sections?.gallery?.subtitle || "Esplora gli spazi e i comfort dell'appartamento attraverso le nostre foto"}
       </p>
     </div>
 
     <!-- Image carousel -->
-    <div class="max-w-5xl mx-auto">
-      <ImageCarousel images={images} loading="lazy" preloadCount={2} />
-    </div>
+    {images.length > 0 ? (
+      <div class="max-w-5xl mx-auto">
+        <ImageCarousel images={images} loading="lazy" preloadCount={2} />
+      </div>
+    ) : (
+      <div class="text-center text-luxury-graphite">
+        <p>{apartmentsContent.sections?.gallery?.no_images || "Nessuna immagine disponibile"}</p>
+      </div>
+    )}
 
     <!-- Gallery info -->
-    <div class="mt-8 text-center">
-      <p class="text-sm text-luxury-graphite">
-        <span class="font-medium text-luxury-gold">{images.length} foto</span> disponibili
-        <span class="mx-2">•</span>
-        Clicca sull'icona di espansione per visualizzare a schermo intero
-      </p>
-    </div>
+    {images.length > 0 && (
+      <div class="mt-8 text-center">
+        <p class="text-sm text-luxury-graphite">
+          <span class="font-medium text-luxury-gold">{images.length} {apartmentsContent.sections?.gallery?.photos_label || 'foto'}</span> {apartmentsContent.sections?.gallery?.available_label || 'disponibili'}
+          <span class="mx-2">•</span>
+          {apartmentsContent.sections?.gallery?.fullscreen_hint || "Clicca sull'icona di espansione per visualizzare a schermo intero"}
+        </p>
+      </div>
+    )}
   </div>
 </section>

@@ -30,16 +30,14 @@ sections:
   rooms:
     title: "Le stanze dell'appartamento"
     subtitle: "Scopri ogni ambiente"
-
-# -----------------------------------------------------------------------------
-# Rooms Section (for property pages)
-# -----------------------------------------------------------------------------
-rooms_section:
-  title: "Gli spazi dell'appartamento"
-  subtitle: "Scopri ogni ambiente nel dettaglio, pensato per offrirti comfort e funzionalità"
   gallery:
-    title: "Galleria fotografica"
-    subtitle: "Esplora l'appartamento"
+    title: "Galleria Fotografica"
+    subtitle: "Esplora gli spazi e i comfort dell'appartamento attraverso le nostre foto"
+    photo_label: "Foto"
+    photos_label: "foto"
+    available_label: "disponibili"
+    fullscreen_hint: "Clicca sull'icona di espansione per visualizzare a schermo intero"
+    no_images: "Nessuna immagine disponibile"
   services:
     title: "Servizi inclusi"
     subtitle: "Tutto il comfort di cui hai bisogno"
@@ -52,9 +50,25 @@ rooms_section:
     title: "Vantaggi esclusivi"
     subtitle: "Trentino Guest Card inclusa"
   cta:
-    title: "Prenota questo appartamento"
-    description: "Contattaci per verificare la disponibilità e prenotare."
-    button: "Richiedi disponibilità"
+    title: "Prenota {name}"
+    description: "Hai trovato l'appartamento perfetto per il tuo soggiorno? Contattaci per verificare la disponibilità e ricevere un preventivo personalizzato."
+    button: "Verifica disponibilità"
+    email_button: "Scrivi una email"
+    email_subject: "Richiesta informazioni per {name}"
+    features:
+      response_title: "Risposta rapida"
+      response_subtitle: "Entro 24 ore"
+      checkin_title: "Check-in flessibile"
+      checkin_subtitle: "Dalle 16:00"
+      price_title: "Miglior prezzo garantito"
+      price_subtitle: "Prenotazione diretta"
+
+# -----------------------------------------------------------------------------
+# Rooms Section (for property pages)
+# -----------------------------------------------------------------------------
+rooms_section:
+  title: "Gli spazi dell'appartamento"
+  subtitle: "Scopri ogni ambiente nel dettaglio, pensato per offrirti comfort e funzionalità"
 
 # -----------------------------------------------------------------------------
 # Property Card

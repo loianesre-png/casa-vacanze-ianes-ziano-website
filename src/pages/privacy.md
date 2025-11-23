@@ -3,7 +3,14 @@ title: 'Privacy Policy'
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
-**Ultimo aggiornamento:** 18 marzo 2025
+{/*
+  ============================================================================
+  TEMPLATE NOTE: Update this privacy policy with your actual information
+  Replace all [PLACEHOLDER] values with your real data before going live.
+  ============================================================================
+*/}
+
+**Ultimo aggiornamento:** [DATA_AGGIORNAMENTO]
 
 ## 1. INTRODUZIONE
 
@@ -11,7 +18,7 @@ Benvenuti sul nostro sito web dedicato all'affitto di appartamenti per brevi per
 
 ## 2. TITOLARE DEL TRATTAMENTO
 
-Il Titolare del trattamento dei dati personali è Franco Cadonna, residente in Località Negrano 13, Trento, codice fiscale: CDNFNC59T12L378L, email: casanegrano@gmail.com.
+Il Titolare del trattamento dei dati personali è [NOME_TITOLARE], residente in [INDIRIZZO_TITOLARE], codice fiscale: [CODICE_FISCALE], email: [EMAIL_CONTATTO].
 
 ## 3. TIPOLOGIE DI DATI RACCOLTI
 
@@ -127,7 +134,7 @@ La presente Privacy Policy potrebbe essere soggetta a modifiche. Ogni aggiorname
 
 Per qualsiasi domanda o chiarimento riguardante la presente Privacy Policy o il trattamento dei dati personali, gli utenti possono contattare il Titolare del trattamento ai seguenti recapiti:
 
-- Email: casanegrano@gmail.com
+- Email: [EMAIL_CONTATTO]
 
 ---
 
