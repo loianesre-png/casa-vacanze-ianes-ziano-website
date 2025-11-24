@@ -3,8 +3,8 @@
  * Dynamic Property Page
  * Generates pages for all properties from YAML configuration
  *
- * This replaces individual property page files (bilocale.astro, trilocale.astro, etc.)
- * with a single dynamic route that loads content from YAML files.
+ * This dynamic route loads content from YAML property files
+ * and generates a page for each property.
  */
 import Layout from '~/layouts/PageLayout.astro';
 import ApartmentHero from '~/components/appartamenti/ApartmentHero.astro';
@@ -61,23 +61,23 @@ const metadata = {
 const testimonials = [
   {
     testimonial: apartmentsContent.testimonials?.default?.[0]?.text ||
-      `Casa moderna con ascensore e parcheggio, dotata di tutto il necessario e anche di più! C'è addirittura un adattatore per caricare qualsiasi tipo di cellulare. Franco e la moglie sono molto disponibili. La doccia è enorme e il materasso è comodissimo. Consigliatissimo!`,
-    name: apartmentsContent.testimonials?.default?.[0]?.name || 'Sara',
+      `Modern apartment with elevator and parking, equipped with everything you need and more! The hosts are very helpful. The shower is huge and the mattress is very comfortable. Highly recommended!`,
+    name: apartmentsContent.testimonials?.default?.[0]?.name || 'Sarah',
   },
   {
     testimonial: apartmentsContent.testimonials?.default?.[1]?.text ||
-      `Molto pulito e di nuova qualità. Cucina ben attrezzata, c'è tutto! Materassi molto comodi. Tutto impeccabile! Proprietari molto gentili, sempre disponibili e che si sono fatti sentire da soli. Ci torneremmo subito! Siamo stati entusiasti.`,
+      `Very clean and high quality. Well-equipped kitchen with everything! Very comfortable mattresses. Everything impeccable! Very kind owners, always available. We would go back immediately!`,
     name: apartmentsContent.testimonials?.default?.[1]?.name || 'Sebastian',
   },
   {
     testimonial: apartmentsContent.testimonials?.default?.[2]?.text ||
-      `Appartamento grande e pulito. Tutto nuovo e ben organizzato. Confortevole`,
-    name: apartmentsContent.testimonials?.default?.[2]?.name || 'Giuseppina',
+      `Large and clean apartment. Everything new and well organized. Comfortable.`,
+    name: apartmentsContent.testimonials?.default?.[2]?.name || 'Jennifer',
   },
   {
     testimonial: apartmentsContent.testimonials?.default?.[3]?.text ||
-      `Struttura nuova e ben curata, proprietari deliziosi, ci torneremo sicuramente, consigliatissima!`,
-    name: apartmentsContent.testimonials?.default?.[3]?.name || 'Alessandro',
+      `New and well-maintained property, delightful hosts, we will definitely be back!`,
+    name: apartmentsContent.testimonials?.default?.[3]?.name || 'Alex',
   },
 ];
 ---

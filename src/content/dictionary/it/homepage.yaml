@@ -1,5 +1,5 @@
 # =============================================================================
-# Homepage Content (Italian)
+# Homepage Content
 # =============================================================================
 # All text content for the homepage
 # Edit these values to customize your homepage messaging
@@ -14,112 +14,111 @@
 # -----------------------------------------------------------------------------
 hero:
   # Badge shown above the main heading
-  badge: "Appartamenti vacanze a Trento"
+  badge: "Vacation Rentals"
 
   # Main heading (supports line break with \n)
-  title: "Benvenuti a"
-  title_highlight: "Casa Negrano"
+  title: "Welcome to"
+  title_highlight: "Your Property"
 
   # Subtitle below heading
-  subtitle: "Appartamenti moderni nel cuore del Trentino"
+  subtitle: "Modern apartments in a perfect location"
 
   # Description paragraph
   description: >
-    Situati a Villazzano, a soli 5 km dal centro di Trento, i nostri appartamenti
-    offrono il perfetto equilibrio tra tranquillità e comodità. Scegli tra tre
-    soluzioni pensate per ogni tipo di soggiorno.
+    Located in a prime location, our apartments offer the perfect balance
+    between tranquility and convenience. Choose from three solutions
+    designed for every type of stay.
 
   # CTA Buttons
-  cta_primary: "Scopri gli appartamenti"
-  cta_secondary: "Contattaci"
+  cta_primary: "Discover our properties"
+  cta_secondary: "Contact us"
 
   # Key features shown in hero
   features:
-    - title: "Posizione strategica"
-      subtitle: "5 km da Trento centro"
+    - title: "Prime Location"
+      subtitle: "Close to city center"
       icon: "location"
-    - title: "Comfort moderni"
-      subtitle: "Tutti i servizi inclusi"
+    - title: "Modern Comfort"
+      subtitle: "All amenities included"
       icon: "check"
-    - title: "Check-in flessibile"
-      subtitle: "Dalle 16:00"
+    - title: "Flexible Check-in"
+      subtitle: "From 4:00 PM"
       icon: "clock"
 
   # Scroll indicator
-  scroll_text: "Scorri per scoprire"
+  scroll_text: "Scroll to discover"
 
   # Hero image alt text
-  image_alt: "Vista esterna della struttura"
+  image_alt: "Exterior view of the property"
 
 # -----------------------------------------------------------------------------
 # About Section
 # -----------------------------------------------------------------------------
 about:
-  section_id: "chi-siamo"
-  title: "Il tuo rifugio a Trento, tra natura e comfort"
+  section_id: "about"
+  title: "Your retreat, between nature and comfort"
   description: >
-    Situata a Villazzano, a soli 5 km dal centro di Trento, Casa Negrano offre
-    appartamenti moderni e confortevoli, perfetti per famiglie, coppie, gruppi
-    di amici o viaggiatori d'affari. Ogni appartamento è stato pensato per
-    garantirti un soggiorno rilassante e senza pensieri.
+    Our property offers modern and comfortable apartments, perfect for
+    families, couples, groups of friends, or business travelers. Each
+    apartment has been designed to ensure a relaxing and worry-free stay.
 
   # Key selling points
   highlights:
-    - "5 km dal centro di Trento"
-    - "Appartamenti moderni e confortevoli"
-    - "Perfetti per ogni tipo di ospite"
-    - "Soggiorno rilassante e senza pensieri"
+    - "Close to city center"
+    - "Modern and comfortable apartments"
+    - "Perfect for every type of guest"
+    - "Relaxing and worry-free stay"
 
 # -----------------------------------------------------------------------------
 # Apartments Overview Section
 # -----------------------------------------------------------------------------
 apartments:
-  section_id: "appartamenti"
-  title: "I nostri appartamenti"
-  subtitle: "Scegli la soluzione che fa per te tra i nostri appartamenti, ognuno con caratteristiche uniche per soddisfare le tue esigenze."
+  section_id: "properties"
+  title: "Our Properties"
+  subtitle: "Choose the solution that suits you among our apartments, each with unique features to meet your needs."
 
   # Comparison banner
   comparison_banner:
-    title: "Non riesci a scegliere?"
-    description: "Contattaci per ricevere consigli personalizzati in base alle tue esigenze."
-    cta: "Contattaci"
+    title: "Can't decide?"
+    description: "Contact us for personalized advice based on your needs."
+    cta: "Contact us"
 
   # Card labels
   card:
-    guests_label: "Ospiti"
-    size_label: "Superficie"
-    view_details: "Scopri di più"
+    guests_label: "Guests"
+    size_label: "Size"
+    view_details: "Learn more"
 
 # -----------------------------------------------------------------------------
 # Comfort/Services Section
 # -----------------------------------------------------------------------------
 comfort:
-  section_id: "comfort"
-  title: "Comfort e servizi"
-  subtitle: "Tutto ciò di cui hai bisogno per un soggiorno perfetto"
+  section_id: "amenities"
+  title: "Comfort and Services"
+  subtitle: "Everything you need for a perfect stay"
   description: >
-    I nostri appartamenti sono dotati di tutti i comfort moderni per garantirti
-    un'esperienza di soggiorno superiore.
+    Our apartments are equipped with all modern comforts to guarantee
+    a superior stay experience.
 
 # -----------------------------------------------------------------------------
 # Testimonials Section
 # -----------------------------------------------------------------------------
 testimonials:
-  section_id: "testimonianze"
-  title: "Cosa dicono i nostri ospiti"
-  subtitle: "Le recensioni di chi ha già soggiornato da noi"
+  section_id: "testimonials"
+  title: "What our guests say"
+  subtitle: "Reviews from those who have already stayed with us"
 
 # -----------------------------------------------------------------------------
 # CTA Section
 # -----------------------------------------------------------------------------
 cta:
-  title: "Prenota il tuo soggiorno"
-  description: "Contattaci per verificare la disponibilità e prenotare il tuo appartamento."
-  button: "Contattaci ora"
+  title: "Book your stay"
+  description: "Contact us to check availability and book your apartment."
+  button: "Contact us now"
 
 # -----------------------------------------------------------------------------
 # SEO Metadata
 # -----------------------------------------------------------------------------
 seo:
-  title: "Appartamenti Vacanze a Trento"
-  description: "Appartamenti moderni per vacanze a Trento, Italia. Posizione strategica, comfort moderni e check-in flessibile."
+  title: "Vacation Rentals"
+  description: "Modern vacation apartments. Prime location, modern comfort, and flexible check-in."

@@ -7,9 +7,9 @@ Properties are defined using YAML files in `src/content/properties/`. Each prope
 ```
 src/content/properties/
 ├── _example.yaml       # Template for creating new properties
-├── bilocale.yaml       # Example property
-├── trilocale.yaml      # Example property
-└── suite-deluxe.yaml   # Example property
+├── property-1.yaml     # One Bedroom Apartment
+├── property-2.yaml     # Two Bedroom Apartment
+└── property-3.yaml     # Deluxe Suite
 ```
 
 ## Creating a New Property
