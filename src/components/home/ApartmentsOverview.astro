@@ -21,7 +21,7 @@ const email = getContactEmail();
 const properties = await getProperties();
 ---
 
-<section id={content.section_id} class="py-16 md:py-20 lg:py-28 bg-gradient-to-br from-luxury-cream via-luxury-white to-luxury-beige">
+<section id={content.section_id} class="py-16 md:py-20 lg:py-28 bg-gradient-to-br from-background via-card to-secondary">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Header -->
     <div class="text-center mb-12 md:mb-16">
@@ -31,7 +31,7 @@ const properties = await getProperties();
       <p class="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
         {content.subtitle}
       </p>
-      <div class="w-20 h-0.5 bg-luxury-gold mx-auto mt-6"></div>
+      <div class="w-20 h-0.5 bg-primary mx-auto mt-6"></div>
     </div>
 
     <!-- Apartments Grid -->
@@ -40,7 +40,7 @@ const properties = await getProperties();
     </div>
 
     <!-- Additional Info Banner -->
-    <div class="mt-16 bg-gradient-to-r from-luxury-charcoal to-luxury-black rounded p-8 md:p-12 text-center text-white shadow-luxury-lg">
+    <div class="mt-16 bg-gradient-to-r from-muted-foreground to-foreground rounded p-8 md:p-12 text-center text-white shadow-luxury-lg">
       <div class="max-w-4xl mx-auto">
         <h3 class="font-heading text-2xl md:text-3xl font-medium mb-4">{content.comparison_banner.title}</h3>
         <p class="text-lg mb-6 opacity-90 leading-relaxed">
@@ -86,7 +86,7 @@ const properties = await getProperties();
       </h3>
       <div class="overflow-x-auto">
         <table class="w-full bg-card rounded shadow-luxury-md overflow-hidden">
-          <thead class="bg-luxury-charcoal text-white">
+          <thead class="bg-muted-foreground text-white">
             <tr>
               <th class="px-6 py-4 text-left font-medium uppercase tracking-wide text-sm">{common.navigation.apartments.slice(0, -1) || 'Appartamento'}</th>
               <th class="px-6 py-4 text-center font-medium uppercase tracking-wide text-sm">{common.labels.guests}</th>
@@ -96,7 +96,7 @@ const properties = await getProperties();
               <th class="px-6 py-4 text-center font-medium uppercase tracking-wide text-sm"></th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-luxury-sand">
+          <tbody class="divide-y divide-muted">
             {
               properties.map((property, index) => (
                 <tr class={index % 2 === 0 ? 'bg-secondary/30' : 'bg-card'}>

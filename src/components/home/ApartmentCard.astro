@@ -50,13 +50,13 @@ const sizeLabel = property.size.unit === 'sqm' ? 'm²' : 'ft²';
     />
 
     <!-- Capacity Badge -->
-    <div class="absolute top-4 right-4 px-4 py-2 bg-luxury-gold text-foreground rounded font-medium text-sm shadow-luxury-sm uppercase tracking-wide">
+    <div class="absolute top-4 right-4 px-4 py-2 bg-primary text-foreground rounded font-medium text-sm shadow-luxury-sm uppercase tracking-wide">
       {property.capacity.guests} {common.labels.guests}
     </div>
 
     <!-- Overlay on hover -->
     <div
-      class="absolute inset-0 bg-gradient-to-t from-luxury-black/50 via-luxury-black/0 to-luxury-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
+      class="absolute inset-0 bg-gradient-to-t from-foreground/50 via-foreground/0 to-foreground/0 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
     >
     </div>
   </div>

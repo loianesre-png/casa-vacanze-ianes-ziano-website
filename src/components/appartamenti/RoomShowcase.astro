@@ -51,7 +51,7 @@ const roomImages = await Promise.all(
       <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
         {apartmentsContent.rooms_section?.subtitle || "Scopri ogni ambiente nel dettaglio, pensato per offrirti comfort e funzionalità"}
       </p>
-      <div class="w-20 h-0.5 bg-luxury-gold mx-auto mt-4"></div>
+      <div class="w-20 h-0.5 bg-primary mx-auto mt-4"></div>
     </div>
 
     <!-- Room Cards - Alternating Layout -->
@@ -81,7 +81,7 @@ const roomImages = await Promise.all(
                     quality={85}
                   />
                   {/* Overlay on hover */}
-                  <div class="absolute inset-0 bg-gradient-to-t from-luxury-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-foreground/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
                 </div>
               </div>
 
@@ -89,7 +89,7 @@ const roomImages = await Promise.all(
               <div class={`${isEven ? 'lg:order-2' : 'lg:order-1'} space-y-4 lg:space-y-6`}>
                 {/* Room Name */}
                 <h3 class="font-heading text-2xl md:text-3xl font-medium text-foreground flex items-center gap-3">
-                  <div class="w-10 h-10 rounded bg-luxury-gold flex items-center justify-center flex-shrink-0">
+                  <div class="w-10 h-10 rounded bg-primary flex items-center justify-center flex-shrink-0">
                     <svg class="w-6 h-6 text-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path
                         stroke-linecap="round"

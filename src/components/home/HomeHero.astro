@@ -35,7 +35,7 @@ import heroImage from '../../assets/images/20250519_115212.webp';
       quality={90}
     />
     <!-- Overlay gradient -->
-    <div class="absolute inset-0 bg-gradient-to-br from-luxury-black/65 via-luxury-charcoal/55 to-luxury-black/75"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-foreground/65 via-muted-foreground/55 to-foreground/75"></div>
   </div>
 
   <!-- Hero Content -->
@@ -43,7 +43,7 @@ import heroImage from '../../assets/images/20250519_115212.webp';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
       <div class="max-w-4xl">
         <!-- Welcome Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-luxury-gold/10 backdrop-blur-sm rounded mb-6 border border-primary/30">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 backdrop-blur-sm rounded mb-6 border border-primary/30">
           <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               stroke-linecap="round"
@@ -108,7 +108,7 @@ import heroImage from '../../assets/images/20250519_115212.webp';
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-12 pt-8 border-t border-primary/20">
           {hero.features.map((feature) => (
             <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded bg-luxury-gold/15 backdrop-blur-sm flex items-center justify-center">
+              <div class="w-12 h-12 rounded bg-primary/15 backdrop-blur-sm flex items-center justify-center">
                 {feature.icon === 'location' && (
                   <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
