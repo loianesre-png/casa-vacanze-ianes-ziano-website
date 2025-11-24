@@ -83,7 +83,7 @@ export interface ThemeConfig {
 }
 
 /**
- * Luxury theme preset (current Casa Negrano theme)
+ * Luxury theme preset
  */
 export const luxuryPreset: Omit<ThemeConfig, 'preset'> = {
   colors: {

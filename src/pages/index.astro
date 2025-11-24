@@ -12,7 +12,6 @@ import ApartmentsOverview from '~/components/home/ApartmentsOverview.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import { getRandomReviews } from '~/data/reviews';
 import { coreServices } from '~/data/services';
 import { getHomepageContent } from '~/utils/content';
 import { getSiteName } from '~/config';
@@ -28,12 +27,33 @@ const metadata = {
   description: homepage.seo.description,
 };
 
-// Get 6 random reviews for testimonials section
-const randomReviews = getRandomReviews(6);
-const testimonials = randomReviews.map((review) => ({
-  testimonial: review.text,
-  name: review.username,
-}));
+// Placeholder testimonials for template
+const testimonials = [
+  {
+    testimonial: 'Beautiful apartment with amazing views. The hosts were incredibly helpful and the location was perfect for exploring the area.',
+    name: 'Guest Name',
+  },
+  {
+    testimonial: 'Very clean and well-equipped. Everything we needed for a comfortable stay. Would definitely recommend!',
+    name: 'Guest Name',
+  },
+  {
+    testimonial: 'Excellent location and fantastic amenities. The property exceeded our expectations in every way.',
+    name: 'Guest Name',
+  },
+  {
+    testimonial: 'Perfect getaway spot! Modern, comfortable, and the hosts thought of every detail. We will be back!',
+    name: 'Guest Name',
+  },
+  {
+    testimonial: 'Outstanding hospitality and a wonderful property. Made our vacation truly memorable.',
+    name: 'Guest Name',
+  },
+  {
+    testimonial: 'Spacious, stylish, and spotlessly clean. The perfect base for our holiday adventures.',
+    name: 'Guest Name',
+  },
+];
 
 // Map core services to Features3 items format
 const comfortItems = coreServices.map((service) => ({

@@ -1,0 +1,6 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#e2e8f0"/>
+  <text x="50%" y="45%" font-family="Arial, sans-serif" font-size="36" fill="#64748b" text-anchor="middle" dominant-baseline="middle">Property 1</text>
+  <text x="50%" y="55%" font-family="Arial, sans-serif" font-size="28" fill="#64748b" text-anchor="middle" dominant-baseline="middle">kitchen</text>
+  <text x="50%" y="70%" font-family="Arial, sans-serif" font-size="18" fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">Replace with your image</text>
+</svg>

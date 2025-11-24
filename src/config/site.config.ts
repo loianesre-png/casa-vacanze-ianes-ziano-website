@@ -22,15 +22,15 @@ const siteConfig: SiteConfig = {
   // ==========================================================================
   identity: {
     /** Your business/site name */
-    name: 'Casa Negrano',
+    name: 'Your Property Name',
 
     /** Short tagline (shown in some components) */
-    tagline: 'Appartamenti vacanze a Trento',
+    tagline: 'Vacation rentals in Your City',
 
     /** Logo configuration (optional - uses text if not provided) */
     logo: {
       // src: 'images/logo.png',  // Uncomment and add your logo
-      alt: 'Casa Negrano',
+      alt: 'Your Property Name',
       useText: true, // Set to false when using an image logo
     },
   },
@@ -40,27 +40,27 @@ const siteConfig: SiteConfig = {
   // ==========================================================================
   contact: {
     /** Primary contact email */
-    email: 'casanegrano@gmail.com',
+    email: 'contact@example.com',
 
     /** Phone number with country code */
-    phone: '+39 XXX XXX XXXX', // TODO: Add actual phone number
+    phone: '+1 XXX XXX XXXX', // TODO: Add actual phone number
 
     /** WhatsApp number (optional) */
-    // whatsapp: '+39 XXX XXX XXXX',
+    // whatsapp: '+1 XXX XXX XXXX',
 
     /** Physical address */
     address: {
-      street: 'Località Negrano 13',
-      city: 'Trento',
-      region: 'Trentino-Alto Adige',
-      postalCode: '38123',
-      country: 'Italy',
+      street: '123 Main Street',
+      city: 'Your City',
+      region: 'Your State/Region',
+      postalCode: '12345',
+      country: 'Country',
     },
 
     /** GPS coordinates for maps */
     coordinates: {
-      lat: 46.0588,
-      lng: 11.1389,
+      lat: 40.7128,
+      lng: -74.0060,
     },
   },
 
@@ -68,8 +68,8 @@ const siteConfig: SiteConfig = {
   // SOCIAL MEDIA LINKS (optional)
   // ==========================================================================
   social: {
-    // facebook: 'https://facebook.com/casanegrano',
-    // instagram: 'https://instagram.com/casanegrano',
+    // facebook: 'https://facebook.com/yourproperty',
+    // instagram: 'https://instagram.com/yourproperty',
     // tripadvisor: 'https://tripadvisor.com/...',
     // airbnb: 'https://airbnb.com/rooms/...',
     // booking: 'https://booking.com/hotel/...',
@@ -80,16 +80,16 @@ const siteConfig: SiteConfig = {
   // ==========================================================================
   legal: {
     /** Legal business name (if different from site name) */
-    companyName: 'Casa Negrano',
+    companyName: 'Your Company Name',
 
     /** VAT/Tax ID number */
-    // vatNumber: 'IT12345678901',
+    // vatNumber: 'XX12345678901',
 
     /** Registration codes (CIN, licenses, etc.) */
     registrationCodes: [
-      'IT022205C2A7J22SB7',
-      'IT022205C269BP38G3',
-      'IT022205C2I72MMQXZ',
+      'LICENSE-001',
+      'LICENSE-002',
+      'LICENSE-003',
     ],
 
     /** Legal page URLs */
@@ -109,16 +109,16 @@ const siteConfig: SiteConfig = {
     contactForm: {
       enabled: true,
       provider: 'webhook',
-      webhookUrl: 'https://n8n.casanegrano.it/webhook/99e9a979-9ef4-472b-b75c-8f3dc29c40c1',
+      webhookUrl: 'https://your-webhook-url.com/endpoint',
       // Alternative: send to email
       // provider: 'email',
-      // emailTo: 'casanegrano@gmail.com',
+      // emailTo: 'contact@example.com',
     },
 
     /** Analytics configuration */
     analytics: {
-      googleAnalyticsId: 'G-2DYB43PT74',
-      // plausibleDomain: 'casanegrano.it',
+      // googleAnalyticsId: 'G-XXXXXXXXXX',
+      // plausibleDomain: 'yourdomain.com',
     },
 
     /** Maps configuration */
@@ -134,16 +134,16 @@ const siteConfig: SiteConfig = {
   // ==========================================================================
   seo: {
     /** Default page title */
-    defaultTitle: 'Casa Negrano',
+    defaultTitle: 'Your Property Name',
 
     /** Title template (use %s for page title) */
-    titleTemplate: '%s — Casa Negrano',
+    titleTemplate: '%s — Your Property Name',
 
     /** Default meta description */
-    description: 'Appartamenti per la tua vacanza in Trentino, Trento, Italia',
+    description: 'Vacation rentals for your perfect getaway in Your City',
 
     /** Site language (ISO 639-1 code) */
-    language: 'it',
+    language: 'en',
 
     /** Text direction */
     textDirection: 'ltr',
@@ -162,13 +162,13 @@ const siteConfig: SiteConfig = {
 
     /** Twitter card settings */
     twitter: {
-      handle: '@casanegrano',
-      site: '@casanegrano',
+      handle: '@yourproperty',
+      site: '@yourproperty',
       cardType: 'summary_large_image',
     },
 
     /** Google site verification */
-    googleSiteVerificationId: 'orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M',
+    // googleSiteVerificationId: 'your-verification-id',
   },
 
   // ==========================================================================
@@ -192,7 +192,7 @@ const siteConfig: SiteConfig = {
   // SITE URLS
   // ==========================================================================
   /** Full site URL (for sitemap, canonical URLs) */
-  url: 'https://casanegrano.it',
+  url: 'https://yourdomain.com',
 
   /** Base path (usually '/') */
   basePath: '/',

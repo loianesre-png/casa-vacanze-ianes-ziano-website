@@ -18,7 +18,7 @@ const { property } = Astro.props;
 const common = await getCommonContent();
 
 // Dynamically import the property image
-const images = import.meta.glob('../../assets/images/**/*.webp');
+const images = import.meta.glob('../../assets/images/**/*.{webp,svg,png,jpg,jpeg}');
 const imagePath = `../../assets/images/${property.id}/${property.images.hero}`;
 const imageModule = images[imagePath];
 

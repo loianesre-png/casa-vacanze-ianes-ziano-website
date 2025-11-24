@@ -14,7 +14,7 @@
  * const properties = await getProperties();
  *
  * // Get single property
- * const property = await getPropertyBySlug('bilocale');
+ * const property = await getPropertyBySlug('property-1');
  * ```
  */
 

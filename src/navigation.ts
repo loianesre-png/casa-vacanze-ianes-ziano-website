@@ -13,44 +13,44 @@ export const headerData = {
       href: '/',
     },
     {
-      text: 'Chi siamo',
-      href: '/#chi-siamo',
+      text: 'About Us',
+      href: '/#about',
     },
     {
-      text: 'Appartamenti',
-      href: '/#appartamenti',
+      text: 'Properties',
+      href: '/#properties',
       links: [
         {
-          text: 'Bilocale - L\'Angolino',
-          href: '/appartamenti/bilocale',
+          text: 'One Bedroom Apartment',
+          href: '/properties/property-1',
         },
         {
-          text: 'Trilocale - La Famiglia',
-          href: '/appartamenti/trilocale',
+          text: 'Two Bedroom Apartment',
+          href: '/properties/property-2',
         },
         {
-          text: 'Suite Deluxe',
-          href: '/appartamenti/suite-deluxe',
+          text: 'Deluxe Suite',
+          href: '/properties/property-3',
         },
         {
-          text: 'Tutti gli appartamenti',
-          href: '/#appartamenti',
+          text: 'All Properties',
+          href: '/#properties',
         },
       ],
     },
     {
-      text: 'I nostri comfort',
-      href: '/#comfort',
+      text: 'Amenities',
+      href: '/#amenities',
     },
     {
-      text: 'Testimonianze',
-      href: '/#testimonianze',
+      text: 'Testimonials',
+      href: '/#testimonials',
     },
   ],
   actions: [
     {
-      text: 'Contattaci',
-      href: '/contatti',
+      text: 'Contact Us',
+      href: '/contact',
     },
   ],
 };
@@ -58,22 +58,22 @@ export const headerData = {
 export const footerData = {
   links: [
     {
-      title: 'Link utili',
+      title: 'Quick Links',
       links: [
         { text: 'Home', href: '/' },
-        { text: 'Chi siamo', href: '/#chi-siamo' },
-        { text: 'Appartamenti', href: '/#appartamenti' },
-        { text: 'I nostri comfort', href: '/#comfort' },
-        { text: 'Testimonianze', href: '/#testimonianze' },
-        { text: 'Contatti', href: '/contatti' },
+        { text: 'About Us', href: '/#about' },
+        { text: 'Properties', href: '/#properties' },
+        { text: 'Amenities', href: '/#amenities' },
+        { text: 'Testimonials', href: '/#testimonials' },
+        { text: 'Contact', href: '/contact' },
       ],
     },
     {
-      title: 'Appartamenti',
+      title: 'Properties',
       links: [
-        { text: 'Bilocale - L\'Angolino', href: '/appartamenti/bilocale' },
-        { text: 'Trilocale - La Famiglia', href: '/appartamenti/trilocale' },
-        { text: 'Suite Deluxe', href: '/appartamenti/suite-deluxe' },
+        { text: 'One Bedroom Apartment', href: '/properties/property-1' },
+        { text: 'Two Bedroom Apartment', href: '/properties/property-2' },
+        { text: 'Deluxe Suite', href: '/properties/property-3' },
       ],
     },
   ],
@@ -90,9 +90,9 @@ export const footerData = {
     // { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/onwidget/astrowind' },
   ],
   footNote: `
-      Codici CIN: ${getFormattedRegistrationCodes()}
+      Registration Codes: ${getFormattedRegistrationCodes()}
       <br />
-      ${getCopyrightText()}. Tutti i diritti riservati.
+      ${getCopyrightText()}. All rights reserved.
 
   `,
 };
