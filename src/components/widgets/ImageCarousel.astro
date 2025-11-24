@@ -253,14 +253,14 @@ const safeImages = images.map((img, index) => ({
   <!-- Loading indicator -->
   <div
     x-show="isLoading"
-    class="absolute inset-0 bg-luxury-black/20 flex items-center justify-center z-20 rounded"
+    class="absolute inset-0 bg-foreground/20 flex items-center justify-center z-20 rounded"
     x-transition:enter="transition ease-out duration-150"
     x-transition:enter-start="opacity-0"
     x-transition:enter-end="opacity-100"
     x-cloak
   >
-    <div class="bg-luxury-white/90 rounded-full p-3">
-      <svg class="animate-spin h-6 w-6 text-luxury-gold" fill="none" viewBox="0 0 24 24">
+    <div class="bg-card/90 rounded-full p-3">
+      <svg class="animate-spin h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24">
         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
         <path
           class="opacity-75"
@@ -273,7 +273,7 @@ const safeImages = images.map((img, index) => ({
 
   <!-- Thumbnail carousel -->
   <div
-    class="overflow-hidden relative rounded aspect-video bg-luxury-beige border border-luxury-sand shadow-luxury-md"
+    class="overflow-hidden relative rounded aspect-video bg-secondary border border-muted shadow-md"
     @touchstart="handleTouchStart($event)"
     @touchend="handleTouchEnd($event)"
   >
@@ -302,11 +302,11 @@ const safeImages = images.map((img, index) => ({
           <!-- Placeholder skeleton -->
           <div
             x-show="!loadedImages.has(index)"
-            class="absolute inset-0 bg-gradient-to-r from-luxury-cream via-luxury-beige to-luxury-cream animate-pulse"
+            class="absolute inset-0 bg-gradient-to-r from-background via-secondary to-background animate-pulse"
             x-cloak
           >
             <div class="absolute inset-0 flex items-center justify-center">
-              <svg class="w-16 h-16 text-luxury-gold/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-16 h-16 text-primary/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -324,7 +324,7 @@ const safeImages = images.map((img, index) => ({
     <div class="absolute inset-0 flex items-center justify-between pointer-events-none">
       <button
         @click="openModal"
-        class="absolute top-2 right-2 bg-luxury-gold/90 hover:bg-luxury-gold text-luxury-black p-2 rounded transition-all duration-400 z-10 pointer-events-auto hover:scale-110"
+        class="absolute top-2 right-2 bg-primary/90 hover:bg-primary text-foreground p-2 rounded transition-all duration-400 z-10 pointer-events-auto hover:scale-110"
         aria-label="Open larger view"
         title="View fullscreen"
       >
@@ -338,12 +338,12 @@ const safeImages = images.map((img, index) => ({
 
       <template x-if="images.length > 1">
         <div class="flex justify-between w-full px-2 pointer-events-auto">
-          <button @click="prev" class="bg-luxury-charcoal/80 hover:bg-luxury-gold text-white hover:text-luxury-black p-2 rounded transition-all duration-400 hover:scale-110 group" aria-label="Previous">
+          <button @click="prev" class="bg-muted-foreground/80 hover:bg-primary text-white hover:text-foreground p-2 rounded transition-all duration-400 hover:scale-110 group" aria-label="Previous">
             <svg class="h-6 w-6 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
           </button>
-          <button @click="next" class="bg-luxury-charcoal/80 hover:bg-luxury-gold text-white hover:text-luxury-black p-2 rounded transition-all duration-400 hover:scale-110 group" aria-label="Next">
+          <button @click="next" class="bg-muted-foreground/80 hover:bg-primary text-white hover:text-foreground p-2 rounded transition-all duration-400 hover:scale-110 group" aria-label="Next">
             <svg class="h-6 w-6 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
@@ -353,7 +353,7 @@ const safeImages = images.map((img, index) => ({
     </div>
 
     <template x-if="images.length > 1">
-      <div class="absolute top-2 left-2 bg-luxury-charcoal/80 text-luxury-white px-2 py-1 rounded text-sm z-10 backdrop-blur-sm font-medium">
+      <div class="absolute top-2 left-2 bg-muted-foreground/80 text-white px-2 py-1 rounded text-sm z-10 backdrop-blur-sm font-medium">
         <span x-text="currentIndex + 1"></span>/<span x-text="images.length"></span>
       </div>
     </template>
@@ -364,7 +364,7 @@ const safeImages = images.map((img, index) => ({
           <button
             @click="goToSlide(index)"
             class="w-2 h-2 rounded-full transition-all duration-400 hover:scale-125"
-            :class="currentIndex === index ? 'bg-luxury-gold' : 'bg-luxury-white/50 hover:bg-luxury-gold/75'"
+            :class="currentIndex === index ? 'bg-primary' : 'bg-card/50 hover:bg-primary/75'"
             :aria-label="`Go to slide ${index + 1}`"></button>
         </template>
       </div>
@@ -374,7 +374,7 @@ const safeImages = images.map((img, index) => ({
   <!-- Modal with full-resolution images -->
   <template x-if="isModalOpen">
     <div
-      class="fixed inset-0 z-50 overflow-auto bg-luxury-black/95 backdrop-blur-sm"
+      class="fixed inset-0 z-50 overflow-auto bg-foreground/95 backdrop-blur-sm"
       @click.self="closeModal"
       @touchstart="handleTouchStart($event)"
       @touchend="handleTouchEnd($event)"
@@ -386,7 +386,7 @@ const safeImages = images.map((img, index) => ({
         <div class="relative w-full max-w-6xl">
           <div class="absolute top-4 right-4 flex gap-2 z-20">
             <template x-if="images.length > 1">
-              <button @click="toggleAutoplay" class="bg-luxury-charcoal/80 hover:bg-luxury-gold text-white hover:text-luxury-black p-2 rounded transition-all duration-400" :aria-label="autoplayEnabled ? 'Stop' : 'Play'">
+              <button @click="toggleAutoplay" class="bg-muted-foreground/80 hover:bg-primary text-white hover:text-foreground p-2 rounded transition-all duration-400" :aria-label="autoplayEnabled ? 'Stop' : 'Play'">
                 <svg x-show="!autoplayEnabled" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -396,14 +396,14 @@ const safeImages = images.map((img, index) => ({
                 </svg>
               </button>
             </template>
-            <button @click="closeModal" class="bg-luxury-charcoal/80 hover:bg-luxury-gold text-white hover:text-luxury-black p-2 rounded transition-all duration-400" aria-label="Close">
+            <button @click="closeModal" class="bg-muted-foreground/80 hover:bg-primary text-white hover:text-foreground p-2 rounded transition-all duration-400" aria-label="Close">
               <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
               </svg>
             </button>
           </div>
 
-          <div class="relative overflow-hidden rounded bg-luxury-black" style="height: 80vh;">
+          <div class="relative overflow-hidden rounded bg-foreground" style="height: 80vh;">
             <div class="flex h-full transition-transform duration-500 ease-in-out" :style="`transform: translateX(-${currentIndex * 100}%)`" style="will-change: transform;">
               <template x-for="(image, index) in images" :key="index">
                 <div class="w-full h-full flex-shrink-0 flex items-center justify-center">
@@ -424,12 +424,12 @@ const safeImages = images.map((img, index) => ({
 
             <template x-if="images.length > 1">
               <div class="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 pointer-events-none">
-                <button @click="prev" class="bg-luxury-charcoal/80 hover:bg-luxury-gold text-white hover:text-luxury-black p-4 rounded transition-all duration-400 pointer-events-auto" aria-label="Previous">
+                <button @click="prev" class="bg-muted-foreground/80 hover:bg-primary text-white hover:text-foreground p-4 rounded transition-all duration-400 pointer-events-auto" aria-label="Previous">
                   <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                   </svg>
                 </button>
-                <button @click="next" class="bg-luxury-charcoal/80 hover:bg-luxury-gold text-white hover:text-luxury-black p-4 rounded transition-all duration-400 pointer-events-auto" aria-label="Next">
+                <button @click="next" class="bg-muted-foreground/80 hover:bg-primary text-white hover:text-foreground p-4 rounded transition-all duration-400 pointer-events-auto" aria-label="Next">
                   <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                   </svg>
@@ -439,10 +439,10 @@ const safeImages = images.map((img, index) => ({
 
             <template x-if="images.length > 1">
               <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
-                <div class="w-32 h-1 bg-luxury-white/20 rounded-full overflow-hidden">
-                  <div class="h-full bg-luxury-gold transition-all duration-500" :style="`width: ${((currentIndex + 1) / images.length) * 100}%`"></div>
+                <div class="w-32 h-1 bg-card/20 rounded-full overflow-hidden">
+                  <div class="h-full bg-primary transition-all duration-500" :style="`width: ${((currentIndex + 1) / images.length) * 100}%`"></div>
                 </div>
-                <div class="bg-luxury-charcoal/80 text-luxury-white px-3 py-2 rounded text-sm backdrop-blur-sm font-medium">
+                <div class="bg-muted-foreground/80 text-white px-3 py-2 rounded text-sm backdrop-blur-sm font-medium">
                   <span x-text="currentIndex + 1"></span> of <span x-text="images.length"></span>
                 </div>
               </div>

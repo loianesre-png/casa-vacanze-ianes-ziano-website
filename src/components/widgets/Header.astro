@@ -49,7 +49,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 <header
   class:list={[
     { sticky: isSticky, relative: !isSticky, dark: isDark },
-    'top-0 z-40 flex-none mx-auto w-full border-b border-luxury-sand/0 transition-all duration-400 ease-in-out',
+    'top-0 z-40 flex-none mx-auto w-full border-b border-muted/0 transition-all duration-400 ease-in-out',
   ]}
   {...isSticky ? { 'data-aw-sticky-header': true } : {}}
   {...id ? { id } : {}}
@@ -89,16 +89,16 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             <li class={links?.length ? 'dropdown' : ''}>
               {links?.length ? (
                 <>
-                  <button type="button" class="hover:text-luxury-gold transition-all duration-400 px-4 py-3 flex items-center uppercase tracking-wide">
+                  <button type="button" class="hover:text-primary transition-all duration-400 px-4 py-3 flex items-center uppercase tracking-wide">
                     {text}{' '}
                     <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
                   </button>
-                  <ul class="dropdown-menu rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-luxury-white md:min-w-[200px] shadow-luxury-lg border border-luxury-sand">
+                  <ul class="dropdown-menu rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-card md:min-w-[200px] shadow-lg border border-muted">
                     {links.map(({ text: text2, href: href2 }) => (
                       <li>
                         <a
                           class:list={[
-                            'hover:bg-luxury-gold hover:text-luxury-black py-2 px-5 block whitespace-no-wrap transition-all duration-400',
+                            'hover:bg-primary hover:text-foreground py-2 px-5 block whitespace-no-wrap transition-all duration-400',
                             { 'aw-link-active': href2 === currentPath },
                           ]}
                           href={href2}
@@ -112,7 +112,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               ) : (
                 <a
                   class:list={[
-                    'hover:text-luxury-gold transition-all duration-400 px-4 py-3 flex items-center',
+                    'hover:text-primary transition-all duration-400 px-4 py-3 flex items-center',
                     { 'aw-link-active': href === currentPath },
                   ]}
                   href={href}
@@ -137,7 +137,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           {
             showRssFeed && (
               <a
-                class="text-luxury-graphite hover:bg-luxury-beige hover:text-luxury-gold focus:outline-none focus:ring-2 focus:ring-luxury-gold rounded text-sm p-2.5 inline-flex items-center transition-all duration-400"
+                class="text-muted-foreground hover:bg-secondary hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary rounded text-sm p-2.5 inline-flex items-center transition-all duration-400"
                 aria-label="RSS Feed"
                 href={getAsset('/rss.xml')}
               >
@@ -150,7 +150,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           actions?.length ? (
             <span class="ml-4 rtl:ml-0 rtl:mr-4">
               {actions.map((btnProps) => (
-                <Button {...btnProps} class="ml-2 py-2.5 px-5.5 md:px-6 font-medium shadow-luxury-sm text-sm w-auto uppercase tracking-wide" />
+                <Button {...btnProps} class="ml-2 py-2.5 px-5.5 md:px-6 font-medium shadow-sm text-sm w-auto uppercase tracking-wide" />
               ))}
             </span>
           ) : (

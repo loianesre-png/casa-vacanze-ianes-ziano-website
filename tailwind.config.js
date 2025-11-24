@@ -45,23 +45,24 @@ module.exports = {
         ring: 'hsl(var(--ring))',
 
         // Luxury Color Palette
+        // Note: These use hex values to support Tailwind opacity modifiers (e.g., /20)
+        // For theme-aware colors, use: text-primary, bg-secondary, etc.
         luxury: {
-          // Black & Charcoal Tones
-          black: '#1a1a1a',
-          charcoal: '#2d2d2d',
-          graphite: '#4a4a4a',
-
-          // Gold & Bronze Accents
+          // Primary brand colors (hex for opacity support)
           gold: '#c9a961',
           bronze: '#a98b5f',
           copper: '#b87333',
 
-          // Warm Neutrals
+          // Neutral tones
+          black: '#1a1a1a',
+          charcoal: '#2d2d2d',
+          graphite: '#4a4a4a',
+
+          // Background tones
           cream: '#faf8f5',
           beige: '#f5f2ed',
           sand: '#e8e4dd',
 
-          // Supporting Neutrals
           white: '#ffffff',
           gray: {
             50: '#fafafa',
@@ -76,11 +77,21 @@ module.exports = {
             900: '#171717',
           },
         },
+
+        // Theme-aware semantic colors (use CSS variables)
+        // These change when theme.config.ts preset changes
+        theme: {
+          primary: 'var(--theme-primary)',
+          accent: 'var(--theme-accent)',
+          bg: 'hsl(var(--background))',
+          fg: 'hsl(var(--foreground))',
+        },
       },
       fontFamily: {
-        sans: ['Inter Variable', 'var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
-        serif: ['Playfair Display', 'var(--aw-font-serif, ui-serif)', ...defaultTheme.fontFamily.serif],
-        heading: ['Playfair Display', 'var(--aw-font-heading, ui-serif)', ...defaultTheme.fontFamily.serif],
+        // Fonts now use CSS variables from theme.config.ts
+        sans: ['var(--font-body, Inter Variable)', 'ui-sans-serif', ...defaultTheme.fontFamily.sans],
+        serif: ['var(--font-heading, Playfair Display)', 'ui-serif', ...defaultTheme.fontFamily.serif],
+        heading: ['var(--font-heading, Playfair Display)', 'ui-serif', ...defaultTheme.fontFamily.serif],
       },
       letterSpacing: {
         tighter: '-0.05em',
@@ -96,10 +107,11 @@ module.exports = {
         sm: 'calc(var(--radius) - 4px)',
       },
       boxShadow: {
-        'luxury-sm': '0 1px 2px 0 rgb(0 0 0 / 0.05)',
-        'luxury-md': '0 4px 6px -1px rgb(0 0 0 / 0.08)',
-        'luxury-lg': '0 10px 15px -3px rgb(0 0 0 / 0.08)',
-        'luxury-gold': '0 0 20px 0 rgba(201, 169, 97, 0.2)',
+        // Theme-aware shadows using CSS variables from theme.config.ts
+        // Override Tailwind defaults with theme values
+        sm: 'var(--shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05))',
+        md: 'var(--shadow-md, 0 4px 6px -1px rgb(0 0 0 / 0.08))',
+        lg: 'var(--shadow-lg, 0 10px 15px -3px rgb(0 0 0 / 0.08))',
       },
       transitionDuration: {
         '400': '400ms',

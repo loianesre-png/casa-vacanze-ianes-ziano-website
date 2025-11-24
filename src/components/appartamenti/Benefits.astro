@@ -7,33 +7,33 @@ import { Icon } from 'astro-icon/components';
 import { trentinoGuestCardBenefits, localRecommendations } from '~/data/services';
 ---
 
-<section class="py-12 md:py-16 lg:py-24 bg-gradient-to-br from-luxury-cream via-luxury-white to-luxury-beige">
+<section class="py-12 md:py-16 lg:py-24 bg-gradient-to-br from-background via-card to-secondary">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Header -->
     <div class="text-center mb-12 md:mb-16">
-      <h2 class="font-heading text-3xl md:text-4xl font-medium text-luxury-black mb-4">
+      <h2 class="font-heading text-3xl md:text-4xl font-medium text-foreground mb-4">
         Le nostre convenzioni e consigli
       </h2>
-      <p class="text-lg text-luxury-graphite max-w-3xl mx-auto">
+      <p class="text-lg text-muted-foreground max-w-3xl mx-auto">
         Approfitta dei vantaggi esclusivi e scopri le meraviglie del Trentino
       </p>
-      <div class="w-20 h-0.5 bg-luxury-gold mx-auto mt-4"></div>
+      <div class="w-20 h-0.5 bg-primary mx-auto mt-4"></div>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
       <!-- Trentino Guest Card Section -->
-      <div class="bg-luxury-white rounded shadow-luxury-lg p-6 md:p-8 border border-luxury-sand">
+      <div class="bg-card rounded shadow-lg p-6 md:p-8 border border-muted">
         <div class="flex items-center gap-4 mb-6">
-          <div class="w-16 h-16 rounded bg-luxury-gold flex items-center justify-center">
-            <Icon name="tabler:ticket" class="w-10 h-10 text-luxury-black" />
+          <div class="w-16 h-16 rounded bg-primary flex items-center justify-center">
+            <Icon name="tabler:ticket" class="w-10 h-10 text-foreground" />
           </div>
           <div>
-            <h3 class="font-heading text-2xl font-medium text-luxury-black">Trentino Guest Card</h3>
-            <p class="text-luxury-graphite">Inclusa nel soggiorno</p>
+            <h3 class="font-heading text-2xl font-medium text-foreground">Trentino Guest Card</h3>
+            <p class="text-muted-foreground">Inclusa nel soggiorno</p>
           </div>
         </div>
 
-        <p class="text-luxury-graphite mb-6 leading-relaxed">
+        <p class="text-muted-foreground mb-6 leading-relaxed">
           Durante il tuo soggiorno riceverai la Trentino Guest Card, una carta che ti permette di accedere gratuitamente
           o con sconti esclusivi a decine di servizi e attrazioni in tutta la regione.
         </p>
@@ -42,22 +42,22 @@ import { trentinoGuestCardBenefits, localRecommendations } from '~/data/services
         <div class="space-y-4">
           {
             trentinoGuestCardBenefits.map((benefit) => (
-              <div class="flex items-start gap-3 p-3 bg-luxury-beige rounded hover:bg-luxury-beige/70 transition-all duration-400">
+              <div class="flex items-start gap-3 p-3 bg-secondary rounded hover:bg-secondary/70 transition-all duration-400">
                 {benefit.icon && (
-                  <div class="w-8 h-8 rounded bg-luxury-gold flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Icon name={benefit.icon} class="w-5 h-5 text-luxury-black" />
+                  <div class="w-8 h-8 rounded bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Icon name={benefit.icon} class="w-5 h-5 text-foreground" />
                   </div>
                 )}
                 <div class="flex-1">
-                  <h4 class="font-medium text-luxury-black mb-1">{benefit.title}</h4>
-                  <p class="text-sm text-luxury-graphite leading-relaxed">{benefit.description}</p>
+                  <h4 class="font-medium text-foreground mb-1">{benefit.title}</h4>
+                  <p class="text-sm text-muted-foreground leading-relaxed">{benefit.description}</p>
                 </div>
               </div>
             ))
           }
         </div>
 
-        <div class="mt-6 p-4 bg-gradient-to-r from-luxury-charcoal to-luxury-black rounded text-white text-center">
+        <div class="mt-6 p-4 bg-gradient-to-r from-muted-foreground to-foreground rounded text-white text-center">
           <p class="text-sm font-medium">
             💎 La Guest Card è inclusa gratuitamente in tutti i nostri appartamenti
           </p>
@@ -65,18 +65,18 @@ import { trentinoGuestCardBenefits, localRecommendations } from '~/data/services
       </div>
 
       <!-- Local Recommendations Section -->
-      <div class="bg-luxury-white rounded shadow-luxury-lg p-6 md:p-8 border border-luxury-sand">
+      <div class="bg-card rounded shadow-lg p-6 md:p-8 border border-muted">
         <div class="flex items-center gap-4 mb-6">
-          <div class="w-16 h-16 rounded bg-luxury-bronze flex items-center justify-center">
-            <Icon name="tabler:map-pin" class="w-10 h-10 text-luxury-white" />
+          <div class="w-16 h-16 rounded bg-accent flex items-center justify-center">
+            <Icon name="tabler:map-pin" class="w-10 h-10 text-white" />
           </div>
           <div>
-            <h3 class="font-heading text-2xl font-medium text-luxury-black">Dintorni e attrazioni</h3>
-            <p class="text-luxury-graphite">Cosa visitare nei dintorni</p>
+            <h3 class="font-heading text-2xl font-medium text-foreground">Dintorni e attrazioni</h3>
+            <p class="text-muted-foreground">Cosa visitare nei dintorni</p>
           </div>
         </div>
 
-        <p class="text-luxury-graphite mb-6 leading-relaxed">
+        <p class="text-muted-foreground mb-6 leading-relaxed">
           Villazzano offre una posizione strategica per esplorare il meglio del Trentino, dal centro storico di Trento
           alle montagne circostanti.
         </p>
@@ -86,20 +86,20 @@ import { trentinoGuestCardBenefits, localRecommendations } from '~/data/services
           {
             localRecommendations.slice(0, 8).map((recommendation) => {
               const typeColors = {
-                attraction: 'bg-luxury-beige text-luxury-gold',
-                restaurant: 'bg-luxury-beige text-luxury-bronze',
-                activity: 'bg-luxury-beige text-luxury-gold',
-                transport: 'bg-luxury-beige text-luxury-graphite',
-                other: 'bg-luxury-beige text-luxury-graphite',
+                attraction: 'bg-secondary text-primary',
+                restaurant: 'bg-secondary text-accent',
+                activity: 'bg-secondary text-primary',
+                transport: 'bg-secondary text-muted-foreground',
+                other: 'bg-secondary text-muted-foreground',
               };
 
               return (
-                <div class="flex items-start gap-3 p-3 bg-luxury-beige/50 rounded hover:bg-luxury-beige transition-all duration-400">
+                <div class="flex items-start gap-3 p-3 bg-secondary/50 rounded hover:bg-secondary transition-all duration-400">
                   <div class="flex-1">
                     <div class="flex items-center gap-2 mb-1">
-                      <h4 class="font-medium text-luxury-black">{recommendation.name}</h4>
+                      <h4 class="font-medium text-foreground">{recommendation.name}</h4>
                       {recommendation.distance && (
-                        <span class="text-xs text-luxury-graphite">• {recommendation.distance}</span>
+                        <span class="text-xs text-muted-foreground">• {recommendation.distance}</span>
                       )}
                     </div>
                     <span
@@ -111,7 +111,7 @@ import { trentinoGuestCardBenefits, localRecommendations } from '~/data/services
                       {recommendation.type === 'transport' && 'Trasporti'}
                       {recommendation.type === 'other' && 'Servizio'}
                     </span>
-                    <p class="text-sm text-luxury-graphite leading-relaxed">{recommendation.description}</p>
+                    <p class="text-sm text-muted-foreground leading-relaxed">{recommendation.description}</p>
                   </div>
                 </div>
               );
@@ -122,7 +122,7 @@ import { trentinoGuestCardBenefits, localRecommendations } from '~/data/services
         <div class="mt-6 text-center">
           <a
             href="/#contact"
-            class="inline-flex items-center gap-2 text-luxury-gold hover:text-luxury-bronze font-medium transition-all duration-400"
+            class="inline-flex items-center gap-2 text-primary hover:text-accent font-medium transition-all duration-400"
           >
             <span>Chiedi consigli personalizzati</span>
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -134,7 +134,7 @@ import { trentinoGuestCardBenefits, localRecommendations } from '~/data/services
     </div>
 
     <!-- Additional Info Banner -->
-    <div class="mt-12 bg-gradient-to-r from-luxury-charcoal to-luxury-black rounded p-8 text-white text-center shadow-luxury-lg">
+    <div class="mt-12 bg-gradient-to-r from-muted-foreground to-foreground rounded p-8 text-white text-center shadow-lg">
       <h3 class="font-heading text-2xl md:text-3xl font-medium mb-3">Posizione strategica</h3>
       <p class="text-lg max-w-3xl mx-auto leading-relaxed opacity-90">
         A soli 5 km dal centro di Trento, immersi nella natura ma vicini a tutti i servizi.

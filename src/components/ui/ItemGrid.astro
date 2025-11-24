@@ -11,7 +11,7 @@ const {
   panel: panelClass = '',
   title: titleClass = '',
   description: descriptionClass = '',
-  icon: defaultIconClass = 'text-luxury-gold',
+  icon: defaultIconClass = 'text-primary',
   action: actionClass = '',
 } = classes;
 ---
@@ -44,10 +44,10 @@ const {
               )}
             </div>
             <div class="mt-0.5">
-              {title && <h3 class={twMerge('text-xl font-medium text-luxury-black', titleClass, itemClasses?.title)}>{title}</h3>}
+              {title && <h3 class={twMerge('text-xl font-medium text-foreground', titleClass, itemClasses?.title)}>{title}</h3>}
               {description && (
                 <p
-                  class={twMerge(`${title ? 'mt-3' : ''} text-luxury-graphite`, descriptionClass, itemClasses?.description)}
+                  class={twMerge(`${title ? 'mt-3' : ''} text-muted-foreground`, descriptionClass, itemClasses?.description)}
                   set:html={description}
                 />
               )}

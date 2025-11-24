@@ -30,7 +30,7 @@ const {
         {
           tagline && (
             <p
-              class="text-base text-luxury-gold font-medium tracking-wider uppercase"
+              class="text-base text-primary font-medium tracking-wider uppercase"
               set:html={tagline}
             />
           )
@@ -38,13 +38,13 @@ const {
         {
           title && (
             <h1
-              class="text-5xl md:text-6xl font-heading font-medium leading-tighter tracking-tighter mb-4 text-luxury-black"
+              class="text-5xl md:text-6xl font-heading font-medium leading-tighter tracking-tighter mb-4 text-foreground"
               set:html={title}
             />
           )
         }
         <div class="max-w-3xl mx-auto">
-          {subtitle && <p class="text-xl text-luxury-graphite mb-6" set:html={subtitle} />}
+          {subtitle && <p class="text-xl text-muted-foreground mb-6" set:html={subtitle} />}
           <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4">
             {
               callToAction && (

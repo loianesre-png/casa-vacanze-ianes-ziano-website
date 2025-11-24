@@ -47,7 +47,7 @@ const heroImageSrc = heroImageModule.default;
       quality={90}
     />
     <!-- Overlay gradient for better text readability -->
-    <div class="absolute inset-0 bg-gradient-to-b from-luxury-black/45 via-luxury-charcoal/35 to-luxury-black/65"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-foreground/45 via-muted-foreground/35 to-foreground/65"></div>
   </div>
 
   <!-- Hero Content -->
@@ -58,10 +58,10 @@ const heroImageSrc = heroImageModule.default;
         <nav class="mb-4 md:mb-6" aria-label="Breadcrumb">
           <ol class="flex items-center space-x-2 text-sm text-white/90">
             <li>
-              <a href="/" class="hover:text-luxury-gold transition-all duration-400">Home</a>
+              <a href="/" class="hover:text-primary transition-all duration-400">Home</a>
             </li>
             <li>
-              <svg class="w-4 h-4 text-luxury-gold/60" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-4 h-4 text-primary/60" fill="currentColor" viewBox="0 0 20 20">
                 <path
                   fill-rule="evenodd"
                   d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -69,10 +69,10 @@ const heroImageSrc = heroImageModule.default;
               </svg>
             </li>
             <li>
-              <a href="/#appartamenti" class="hover:text-luxury-gold transition-all duration-400">Appartamenti</a>
+              <a href="/#appartamenti" class="hover:text-primary transition-all duration-400">Appartamenti</a>
             </li>
             <li>
-              <svg class="w-4 h-4 text-luxury-gold/60" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-4 h-4 text-primary/60" fill="currentColor" viewBox="0 0 20 20">
                 <path
                   fill-rule="evenodd"
                   d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -80,7 +80,7 @@ const heroImageSrc = heroImageModule.default;
               </svg>
             </li>
             <li>
-              <span class="text-luxury-gold font-medium">{title.replace('Appartamento ', '')}</span>
+              <span class="text-primary font-medium">{title.replace('Appartamento ', '')}</span>
             </li>
           </ol>
         </nav>
@@ -98,7 +98,7 @@ const heroImageSrc = heroImageModule.default;
 
   <!-- Scroll indicator -->
   <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 hidden md:block">
-    <div class="flex flex-col items-center gap-2 text-luxury-gold/80 animate-bounce">
+    <div class="flex flex-col items-center gap-2 text-primary/80 animate-bounce">
       <span class="text-sm uppercase tracking-wide">Scopri di più</span>
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>

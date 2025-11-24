@@ -32,18 +32,18 @@ const {
 } = Astro.props;
 ---
 
-<section class="py-12 md:py-16 lg:py-24 bg-gradient-to-br from-luxury-charcoal via-luxury-black to-luxury-charcoal relative overflow-hidden">
+<section class="py-12 md:py-16 lg:py-24 bg-gradient-to-br from-muted-foreground via-foreground to-muted-foreground relative overflow-hidden">
   <!-- Decorative background elements -->
   <div class="absolute inset-0 opacity-5">
-    <div class="absolute top-0 left-0 w-96 h-96 bg-luxury-gold rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 right-0 w-96 h-96 bg-luxury-gold rounded-full blur-3xl"></div>
+    <div class="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
   </div>
 
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="text-center">
       <!-- Icon -->
-      <div class="inline-flex items-center justify-center w-20 h-20 rounded bg-luxury-gold/20 backdrop-blur-sm mb-6">
-        <Icon name="tabler:mail" class="w-10 h-10 text-luxury-gold" />
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded bg-primary/20 backdrop-blur-sm mb-6">
+        <Icon name="tabler:mail" class="w-10 h-10 text-primary" />
       </div>
 
       <!-- Title -->
@@ -86,12 +86,12 @@ const {
       </div>
 
       <!-- Additional Info -->
-      <div class="mt-12 pt-8 border-t border-luxury-gold/20">
+      <div class="mt-12 pt-8 border-t border-primary/20">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
           <!-- Quick Response -->
           <div class="flex flex-col items-center gap-2">
-            <div class="w-12 h-12 rounded bg-luxury-gold/20 flex items-center justify-center">
-              <Icon name="tabler:clock" class="w-6 h-6 text-luxury-gold" />
+            <div class="w-12 h-12 rounded bg-primary/20 flex items-center justify-center">
+              <Icon name="tabler:clock" class="w-6 h-6 text-primary" />
             </div>
             <p class="text-sm font-medium">{ctaContent?.features?.response_title || 'Risposta rapida'}</p>
             <p class="text-xs text-white/80">{ctaContent?.features?.response_subtitle || 'Entro 24 ore'}</p>
@@ -99,8 +99,8 @@ const {
 
           <!-- Flexible Check-in -->
           <div class="flex flex-col items-center gap-2">
-            <div class="w-12 h-12 rounded bg-luxury-gold/20 flex items-center justify-center">
-              <Icon name="tabler:door-enter" class="w-6 h-6 text-luxury-gold" />
+            <div class="w-12 h-12 rounded bg-primary/20 flex items-center justify-center">
+              <Icon name="tabler:door-enter" class="w-6 h-6 text-primary" />
             </div>
             <p class="text-sm font-medium">{ctaContent?.features?.checkin_title || 'Check-in flessibile'}</p>
             <p class="text-xs text-white/80">{ctaContent?.features?.checkin_subtitle || 'Dalle 16:00'}</p>
@@ -108,8 +108,8 @@ const {
 
           <!-- Best Price -->
           <div class="flex flex-col items-center gap-2">
-            <div class="w-12 h-12 rounded bg-luxury-gold/20 flex items-center justify-center">
-              <Icon name="tabler:discount-check" class="w-6 h-6 text-luxury-gold" />
+            <div class="w-12 h-12 rounded bg-primary/20 flex items-center justify-center">
+              <Icon name="tabler:discount-check" class="w-6 h-6 text-primary" />
             </div>
             <p class="text-sm font-medium">{ctaContent?.features?.price_title || 'Miglior prezzo garantito'}</p>
             <p class="text-xs text-white/80">{ctaContent?.features?.price_subtitle || 'Prenotazione diretta'}</p>
@@ -121,7 +121,7 @@ const {
       <!-- <div class="mt-8 text-white/80 text-sm">
         <p>
           Oppure chiamaci al
-          <a href="tel:+39XXXXXXXXX" class="text-luxury-gold font-medium hover:text-luxury-bronze transition-all duration-400">+39 XXX XXX XXXX</a>
+          <a href="tel:+39XXXXXXXXX" class="text-primary font-medium hover:text-accent transition-all duration-400">+39 XXX XXX XXXX</a>
         </p>
       </div> -->
     </div>

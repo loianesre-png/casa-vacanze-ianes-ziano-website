@@ -29,93 +29,72 @@ const themeConfig: ThemeConfig = {
   preset: 'luxury',
 
   // ==========================================================================
-  // COLOR PALETTE
+  // COLOR PALETTE (Optional Overrides)
   // ==========================================================================
   /**
+   * IMPORTANT: When using a preset (not 'custom'), leave this section empty
+   * to use the preset's colors. Only add values here if you want to override
+   * specific colors from the preset.
+   *
    * Colors can be specified as:
    * - Hex: '#c9a961'
    * - RGB: 'rgb(201, 169, 97)'
    * - HSL: 'hsl(42, 50%, 58%)'
    *
-   * When using a preset, these values override the preset defaults.
-   * When using 'custom' preset, all values are required.
+   * When using 'custom' preset, all color values are required.
+   *
+   * Example override (uncomment to use):
+   * colors: {
+   *   primary: '#your-color',  // Override just the primary color
+   * },
    */
   colors: {
-    /** Primary brand color (buttons, links, accents) */
-    primary: '#c9a961', // Gold
-
-    /** Secondary/surface color (cards, sections) */
-    secondary: '#f5f2ed', // Beige
-
-    /** Accent color (highlights, hover states) */
-    accent: '#a98b5f', // Bronze
-
-    /** Muted color (subtle backgrounds, borders) */
-    muted: '#e8e4dd', // Sand
-
-    /** Main background color */
-    background: '#faf8f5', // Cream
-
-    /** Primary text color */
-    foreground: '#1a1a1a', // Near black
+    // Leave empty to use preset colors, or add specific overrides here
+    // primary: '#c9a961',      // Uncomment to override preset primary color
+    // secondary: '#f5f2ed',    // Uncomment to override preset secondary color
+    // accent: '#a98b5f',       // Uncomment to override preset accent color
+    // muted: '#e8e4dd',        // Uncomment to override preset muted color
+    // background: '#faf8f5',   // Uncomment to override preset background color
+    // foreground: '#1a1a1a',   // Uncomment to override preset foreground color
   },
 
   // ==========================================================================
-  // TYPOGRAPHY
+  // TYPOGRAPHY (Optional Overrides)
   // ==========================================================================
+  /**
+   * IMPORTANT: When using a preset, leave this section empty to use the
+   * preset's typography. Only add values here if you want to override
+   * specific typography settings from the preset.
+   *
+   * Popular font options:
+   * - Headings: 'Playfair Display', 'Merriweather', 'Montserrat', 'Lora'
+   * - Body: 'Inter', 'Open Sans', 'Roboto', 'Source Sans Pro'
+   */
   typography: {
-    /**
-     * Heading font family
-     * Popular options: 'Playfair Display', 'Merriweather', 'Montserrat', 'Lora'
-     */
-    headingFont: 'Playfair Display',
-
-    /**
-     * Body text font family
-     * Popular options: 'Inter', 'Open Sans', 'Roboto', 'Source Sans Pro'
-     */
-    bodyFont: 'Inter Variable',
-
-    /** Monospace font (for code blocks) */
-    monoFont: 'monospace',
-
-    /** Base font size in pixels */
-    baseFontSize: 16,
-
-    /** Line height multiplier */
-    lineHeight: 1.6,
+    // Leave empty to use preset typography, or add specific overrides here
+    // headingFont: 'Playfair Display',
+    // bodyFont: 'Inter Variable',
+    // baseFontSize: 16,
+    // lineHeight: 1.6,
   },
 
   // ==========================================================================
-  // STYLE
+  // STYLE (Optional Overrides)
   // ==========================================================================
+  /**
+   * IMPORTANT: When using a preset, leave this section empty to use the
+   * preset's style settings. Only add values here if you want to override
+   * specific style settings from the preset.
+   *
+   * Border radius options: 'none', 'small', 'medium', 'large', 'full'
+   * Shadow intensity options: 'none', 'light', 'medium', 'strong'
+   * Transition speed options: 'fast', 'normal', 'slow'
+   */
   style: {
-    /**
-     * Border radius style
-     * - 'none'   : Sharp corners (0px)
-     * - 'small'  : Subtle rounding (4px)
-     * - 'medium' : Moderate rounding (8px)
-     * - 'large'  : Pronounced rounding (12px)
-     * - 'full'   : Pill-shaped (9999px)
-     */
-    borderRadius: 'small',
-
-    /**
-     * Shadow intensity
-     * - 'none'   : No shadows
-     * - 'light'  : Subtle shadows
-     * - 'medium' : Balanced shadows
-     * - 'strong' : Dramatic shadows
-     */
-    shadowIntensity: 'medium',
-
-    /**
-     * Animation/transition speed
-     * - 'fast'   : 150ms (snappy)
-     * - 'normal' : 300ms (balanced)
-     * - 'slow'   : 500ms (elegant)
-     */
-    transitionSpeed: 'normal',
+    // Leave empty to use preset style, or add specific overrides here
+    // borderRadius: 'small',
+    // shadowIntensity: 'medium',
+    // transitionSpeed: 'normal',
   },
 
   // ==========================================================================

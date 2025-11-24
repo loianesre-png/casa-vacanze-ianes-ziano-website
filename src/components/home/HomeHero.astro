@@ -35,7 +35,7 @@ import heroImage from '../../assets/images/home-hero.svg';
       quality={90}
     />
     <!-- Overlay gradient -->
-    <div class="absolute inset-0 bg-gradient-to-br from-luxury-black/65 via-luxury-charcoal/55 to-luxury-black/75"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-foreground/65 via-muted-foreground/55 to-foreground/75"></div>
   </div>
 
   <!-- Hero Content -->
@@ -43,8 +43,8 @@ import heroImage from '../../assets/images/home-hero.svg';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
       <div class="max-w-4xl">
         <!-- Welcome Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-luxury-gold/10 backdrop-blur-sm rounded mb-6 border border-luxury-gold/30">
-          <svg class="w-5 h-5 text-luxury-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 backdrop-blur-sm rounded mb-6 border border-primary/30">
+          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -58,7 +58,7 @@ import heroImage from '../../assets/images/home-hero.svg';
         <!-- Main Heading -->
         <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium text-white mb-6 leading-tight">
           {hero.title} <br />
-          <span class="text-luxury-gold">{hero.title_highlight}</span>
+          <span class="text-primary">{hero.title_highlight}</span>
         </h1>
 
         <!-- Subtitle -->
@@ -105,12 +105,12 @@ import heroImage from '../../assets/images/home-hero.svg';
         </div>
 
         <!-- Key Features -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-12 pt-8 border-t border-luxury-gold/20">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-12 pt-8 border-t border-primary/20">
           {hero.features.map((feature) => (
             <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded bg-luxury-gold/15 backdrop-blur-sm flex items-center justify-center">
+              <div class="w-12 h-12 rounded bg-primary/15 backdrop-blur-sm flex items-center justify-center">
                 {feature.icon === 'location' && (
-                  <svg class="w-6 h-6 text-luxury-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
@@ -121,12 +121,12 @@ import heroImage from '../../assets/images/home-hero.svg';
                   </svg>
                 )}
                 {feature.icon === 'check' && (
-                  <svg class="w-6 h-6 text-luxury-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
                 )}
                 {feature.icon === 'clock' && (
-                  <svg class="w-6 h-6 text-luxury-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
@@ -149,7 +149,7 @@ import heroImage from '../../assets/images/home-hero.svg';
 
   <!-- Scroll indicator -->
   <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:block">
-    <a href="#appartamenti" class="flex flex-col items-center gap-2 text-luxury-gold/80 hover:text-luxury-gold transition-all duration-800 animate-bounce">
+    <a href="#appartamenti" class="flex flex-col items-center gap-2 text-primary/80 hover:text-primary transition-all duration-800 animate-bounce">
       <span class="text-sm uppercase tracking-wide">{hero.scroll_text}</span>
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
