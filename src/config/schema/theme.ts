@@ -67,16 +67,32 @@ export interface StyleConfig {
 export type ThemePreset = 'luxury' | 'modern' | 'rustic' | 'coastal' | 'minimal' | 'custom';
 
 /**
- * Complete theme configuration
+ * Theme configuration (with optional overrides for presets)
  */
 export interface ThemeConfig {
   /** Use a preset theme (overrides individual settings if not 'custom') */
   preset: ThemePreset;
-  /** Color palette */
+  /** Color palette (use Partial when using a preset, full when using 'custom') */
+  colors: Partial<ColorPalette>;
+  /** Typography settings (use Partial when using a preset, full when using 'custom') */
+  typography: Partial<TypographyConfig>;
+  /** Spacing and shape settings (use Partial when using a preset, full when using 'custom') */
+  style: Partial<StyleConfig>;
+  /** Dark mode color overrides (optional) */
+  darkColors?: Partial<ColorPalette>;
+}
+
+/**
+ * Fully resolved theme (after merging preset with overrides)
+ */
+export interface ResolvedThemeConfig {
+  /** The preset that was used */
+  preset: ThemePreset;
+  /** Fully resolved color palette */
   colors: ColorPalette;
-  /** Typography settings */
+  /** Fully resolved typography settings */
   typography: TypographyConfig;
-  /** Spacing and shape settings */
+  /** Fully resolved style settings */
   style: StyleConfig;
   /** Dark mode color overrides (optional) */
   darkColors?: Partial<ColorPalette>;
@@ -282,18 +298,14 @@ export const transitionSpeedValues: Record<StyleConfig['transitionSpeed'], strin
 /**
  * Merge theme preset with custom overrides
  */
-export function resolveTheme(config: ThemeConfig): ThemeConfig {
-  if (config.preset === 'custom') {
-    return config;
-  }
-
+export function resolveTheme(config: ThemeConfig): ResolvedThemeConfig {
   const preset = getThemePreset(config.preset);
 
   return {
     preset: config.preset,
-    colors: { ...preset.colors, ...config.colors },
-    typography: { ...preset.typography, ...config.typography },
-    style: { ...preset.style, ...config.style },
+    colors: { ...preset.colors, ...config.colors } as ColorPalette,
+    typography: { ...preset.typography, ...config.typography } as TypographyConfig,
+    style: { ...preset.style, ...config.style } as StyleConfig,
     darkColors: config.darkColors,
   };
 }
