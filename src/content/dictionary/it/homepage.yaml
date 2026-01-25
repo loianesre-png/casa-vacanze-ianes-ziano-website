@@ -1,124 +1,113 @@
 # =============================================================================
-# Homepage Content
+# Homepage Content - Casa Vacanze Ianes
 # =============================================================================
 # All text content for the homepage
-# Edit these values to customize your homepage messaging
-#
-# To add another language:
-# 1. Copy this file to src/content/dictionary/[lang]/homepage.yaml
-# 2. Translate all values
 # =============================================================================
 
 # -----------------------------------------------------------------------------
 # Hero Section
 # -----------------------------------------------------------------------------
 hero:
-  # Badge shown above the main heading
-  badge: "Vacation Rentals"
+  badge: "Dolomiti Trentine"
 
-  # Main heading (supports line break with \n)
-  title: "Welcome to"
-  title_highlight: "Your Property"
+  title: "Benvenuti a"
+  title_highlight: "Casa Vacanze Ianes"
 
-  # Subtitle below heading
-  subtitle: "Modern apartments in a perfect location"
+  subtitle: "Il tuo rifugio di pace nelle Dolomiti trentine"
 
-  # Description paragraph
   description: >
-    Located in a prime location, our apartments offer the perfect balance
-    between tranquility and convenience. Choose from three solutions
-    designed for every type of stay.
+    Splendido appartamento in località Mosenè, la più soleggiata della valle,
+    con panorama mozzafiato sulla catena del Lagorai. Circondato dal verde,
+    baciato dal sole dall'alba al tramonto, perfetto per chi cerca tranquillità
+    e tanto spazio all'aperto.
 
-  # CTA Buttons
-  cta_primary: "Discover our properties"
-  cta_secondary: "Contact us"
+  cta_primary: "Scopri l'appartamento"
+  cta_secondary: "Contattaci"
 
-  # Key features shown in hero
   features:
-    - title: "Prime Location"
-      subtitle: "Close to city center"
+    - title: "Val di Fiemme"
+      subtitle: "A un passo dalle Dolomiti"
       icon: "location"
-    - title: "Modern Comfort"
-      subtitle: "All amenities included"
+    - title: "5 Posti Letto"
+      subtitle: "Ideale per famiglie"
       icon: "check"
-    - title: "Flexible Check-in"
-      subtitle: "From 4:00 PM"
+    - title: "Check-in Flessibile"
+      subtitle: "Dalle 16:00"
       icon: "clock"
 
-  # Scroll indicator
-  scroll_text: "Scroll to discover"
+  scroll_text: "Scorri per scoprire"
 
-  # Hero image alt text
-  image_alt: "Exterior view of the property"
+  image_alt: "Vista esterna di Casa Vacanze Ianes con le Dolomiti sullo sfondo"
 
 # -----------------------------------------------------------------------------
 # About Section
 # -----------------------------------------------------------------------------
 about:
   section_id: "about"
-  title: "Your retreat, between nature and comfort"
+  title: "Il tuo rifugio tra natura e comfort"
   description: >
-    Our property offers modern and comfortable apartments, perfect for
-    families, couples, groups of friends, or business travelers. Each
-    apartment has been designed to ensure a relaxing and worry-free stay.
+    Casa Vacanze Ianes è un accogliente appartamento in villetta indipendente,
+    ristrutturata con gusto e dotata di riscaldamento ad aria per un rapido
+    comfort. All'esterno vi attende un ampio prato privato all'ombra di un
+    grande faggio rosso ultracinquantennale. Pace e tranquillità qui sono
+    di casa, dove potrete apprezzare il profondo silenzio della notte rotto,
+    in estate, solo dal frinire dei grilli.
 
-  # Key selling points
   highlights:
-    - "Close to city center"
-    - "Modern and comfortable apartments"
-    - "Perfect for every type of guest"
-    - "Relaxing and worry-free stay"
+    - "Vista mozzafiato sul Lagorai"
+    - "Ampio prato privato con barbecue"
+    - "Posizione soleggiata tutto il giorno"
+    - "Perfetto per famiglie e amanti della natura"
 
 # -----------------------------------------------------------------------------
 # Apartments Overview Section
 # -----------------------------------------------------------------------------
 apartments:
-  section_id: "properties"
-  title: "Our Properties"
-  subtitle: "Choose the solution that suits you among our apartments, each with unique features to meet your needs."
+  section_id: "appartamento"
+  title: "L'Appartamento"
+  subtitle: "Due camere da letto, soggiorno con angolo cottura e ampi spazi esterni per vivere la montagna in totale relax."
 
-  # Comparison banner
   comparison_banner:
-    title: "Can't decide?"
-    description: "Contact us for personalized advice based on your needs."
-    cta: "Contact us"
+    title: "Vuoi saperne di più?"
+    description: "Contattaci per verificare la disponibilità e ricevere tutte le informazioni."
+    cta: "Contattaci"
 
-  # Card labels
   card:
-    guests_label: "Guests"
-    size_label: "Size"
-    view_details: "Learn more"
+    guests_label: "Ospiti"
+    size_label: "Superficie"
+    view_details: "Scopri di più"
 
 # -----------------------------------------------------------------------------
 # Comfort/Services Section
 # -----------------------------------------------------------------------------
 comfort:
-  section_id: "amenities"
-  title: "Comfort and Services"
-  subtitle: "Everything you need for a perfect stay"
+  section_id: "servizi"
+  title: "Comfort e Servizi"
+  subtitle: "Tutto ciò che serve per una vacanza serena"
   description: >
-    Our apartments are equipped with all modern comforts to guarantee
-    a superior stay experience.
+    L'appartamento offre tutti i comfort moderni: Wi-Fi gratuito, lavatrice
+    e asciugatrice, cucina completamente attrezzata con forno e microonde,
+    garage privato per la tua attrezzatura e ampi spazi esterni con barbecue.
 
 # -----------------------------------------------------------------------------
 # Testimonials Section
 # -----------------------------------------------------------------------------
 testimonials:
-  section_id: "testimonials"
-  title: "What our guests say"
-  subtitle: "Reviews from those who have already stayed with us"
+  section_id: "recensioni"
+  title: "Cosa dicono i nostri ospiti"
+  subtitle: "Valutazione 10 su 10 - Eccezionale"
 
 # -----------------------------------------------------------------------------
 # CTA Section
 # -----------------------------------------------------------------------------
 cta:
-  title: "Book your stay"
-  description: "Contact us to check availability and book your apartment."
-  button: "Contact us now"
+  title: "Prenota il tuo soggiorno"
+  description: "Contattaci per verificare la disponibilità e prenotare la tua vacanza nelle Dolomiti."
+  button: "Contattaci ora"
 
 # -----------------------------------------------------------------------------
 # SEO Metadata
 # -----------------------------------------------------------------------------
 seo:
-  title: "Vacation Rentals"
-  description: "Modern vacation apartments. Prime location, modern comfort, and flexible check-in."
+  title: "Casa Vacanze Ianes - Appartamento nelle Dolomiti Trentine"
+  description: "Appartamento vacanze a Ziano di Fiemme in Val di Fiemme. Vista sul Lagorai, 5 posti letto, ampio prato privato. Il tuo rifugio di pace nelle Dolomiti."

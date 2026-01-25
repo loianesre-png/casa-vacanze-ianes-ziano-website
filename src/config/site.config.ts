@@ -22,15 +22,15 @@ const siteConfig: SiteConfig = {
   // ==========================================================================
   identity: {
     /** Your business/site name */
-    name: 'Your Property Name',
+    name: 'Casa Vacanze Ianes',
 
     /** Short tagline (shown in some components) */
-    tagline: 'Vacation rentals in Your City',
+    tagline: 'Il tuo rifugio di pace nelle Dolomiti trentine',
 
     /** Logo configuration (optional - uses text if not provided) */
     logo: {
       // src: 'images/logo.png',  // Uncomment and add your logo
-      alt: 'Your Property Name',
+      alt: 'Casa Vacanze Ianes',
       useText: true, // Set to false when using an image logo
     },
   },
@@ -40,27 +40,27 @@ const siteConfig: SiteConfig = {
   // ==========================================================================
   contact: {
     /** Primary contact email */
-    email: 'contact@example.com',
+    email: 'info@casavacanzeianes.it',
 
     /** Phone number with country code */
-    phone: '+1 XXX XXX XXXX', // TODO: Add actual phone number
+    phone: '+39 XXX XXX XXXX', // TODO: Add actual phone number
 
     /** WhatsApp number (optional) */
-    // whatsapp: '+1 XXX XXX XXXX',
+    // whatsapp: '+39 XXX XXX XXXX',
 
     /** Physical address */
     address: {
-      street: '123 Main Street',
-      city: 'Your City',
-      region: 'Your State/Region',
-      postalCode: '12345',
-      country: 'Country',
+      street: 'Località Mosenè',
+      city: 'Ziano di Fiemme',
+      region: 'Trentino Alto Adige',
+      postalCode: '38030',
+      country: 'Italia',
     },
 
     /** GPS coordinates for maps */
     coordinates: {
-      lat: 40.7128,
-      lng: -74.0060,
+      lat: 46.2864,
+      lng: 11.5614,
     },
   },
 
@@ -68,11 +68,12 @@ const siteConfig: SiteConfig = {
   // SOCIAL MEDIA LINKS (optional)
   // ==========================================================================
   social: {
-    // facebook: 'https://facebook.com/yourproperty',
-    // instagram: 'https://instagram.com/yourproperty',
+    // facebook: 'https://facebook.com/casavacanzeianes',
+    // instagram: 'https://instagram.com/casavacanzeianes',
     // tripadvisor: 'https://tripadvisor.com/...',
     // airbnb: 'https://airbnb.com/rooms/...',
     // booking: 'https://booking.com/hotel/...',
+    vrbo: 'https://www.vrbo.com/it-it/affitto-vacanze/p11986442',
   },
 
   // ==========================================================================
@@ -80,16 +81,14 @@ const siteConfig: SiteConfig = {
   // ==========================================================================
   legal: {
     /** Legal business name (if different from site name) */
-    companyName: 'Your Company Name',
+    companyName: 'Casa Vacanze Ianes',
 
     /** VAT/Tax ID number */
     // vatNumber: 'XX12345678901',
 
     /** Registration codes (CIN, licenses, etc.) */
     registrationCodes: [
-      'LICENSE-001',
-      'LICENSE-002',
-      'LICENSE-003',
+      'IT022226C2S3BZ8358',
     ],
 
     /** Legal page URLs */
@@ -134,16 +133,16 @@ const siteConfig: SiteConfig = {
   // ==========================================================================
   seo: {
     /** Default page title */
-    defaultTitle: 'Your Property Name',
+    defaultTitle: 'Casa Vacanze Ianes - Dolomiti Trentine',
 
     /** Title template (use %s for page title) */
-    titleTemplate: '%s — Your Property Name',
+    titleTemplate: '%s — Casa Vacanze Ianes',
 
     /** Default meta description */
-    description: 'Vacation rentals for your perfect getaway in Your City',
+    description: 'Appartamento vacanze a Ziano di Fiemme nelle Dolomiti trentine. Panorama mozzafiato sul Lagorai, ampio prato privato, 5 posti letto. Il tuo rifugio di pace in Val di Fiemme.',
 
     /** Site language (ISO 639-1 code) */
-    language: 'en',
+    language: 'it',
 
     /** Text direction */
     textDirection: 'ltr',
@@ -162,8 +161,8 @@ const siteConfig: SiteConfig = {
 
     /** Twitter card settings */
     twitter: {
-      handle: '@yourproperty',
-      site: '@yourproperty',
+      handle: '@casavacanzeianes',
+      site: '@casavacanzeianes',
       cardType: 'summary_large_image',
     },
 
@@ -192,7 +191,7 @@ const siteConfig: SiteConfig = {
   // SITE URLS
   // ==========================================================================
   /** Full site URL (for sitemap, canonical URLs) */
-  url: 'https://yourdomain.com',
+  url: 'https://casavacanzeianes.it',
 
   /** Base path (usually '/') */
   basePath: '/',

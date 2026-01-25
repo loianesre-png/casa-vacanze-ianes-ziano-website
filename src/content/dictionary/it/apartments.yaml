@@ -112,3 +112,29 @@ recommendations:
 house_rules:
   title: "Regole della casa"
   subtitle: "Informazioni importanti per il tuo soggiorno"
+  rules:
+    check_in: "Check-in dalle 16:00"
+    check_out: "Check-out entro le 10:00"
+    min_age: "Età minima per affittare: 22 anni"
+    no_pets: "Non sono ammessi animali domestici"
+    no_smoking: "Non è consentito fumare"
+    no_events: "Non è consentito organizzare eventi"
+    tourist_tax: "Tassa di soggiorno: €1,50 a persona/notte (max 10 notti, esenti under 14)"
+
+# -----------------------------------------------------------------------------
+# Nearby Attractions
+# -----------------------------------------------------------------------------
+nearby:
+  title: "Cosa c'è nei dintorni"
+  subtitle: "Scopri le attrazioni della Val di Fiemme"
+  attractions:
+    - name: "Val di Fiemme"
+      distance: "1 min a piedi"
+    - name: "Parco Bici kart Panchià"
+      distance: "2 min in auto"
+    - name: "Dolomiti"
+      distance: "3 min in auto"
+    - name: "QC Terme Dolomiti"
+      distance: "26 min in auto"
+    - name: "Lago Caldaro"
+      distance: "45 min in auto"

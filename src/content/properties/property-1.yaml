@@ -1,9 +1,7 @@
 # =============================================================================
-# Property Configuration: Property 1 - One Bedroom Apartment (Template)
+# Property Configuration: Casa Vacanze Ianes
 # =============================================================================
-# This file defines all data for a single property/apartment
-# Edit this file to customize the property details
-#
+# Appartamento vacanze nelle Dolomiti trentine - Ziano di Fiemme
 # Images should be placed in: src/assets/images/property-1/
 # =============================================================================
 
@@ -11,33 +9,40 @@
 # Basic Information
 # -----------------------------------------------------------------------------
 id: property-1
-slug: property-1
+slug: casa-vacanze-ianes
 published: true
-order: 1  # Display order (lower = first)
+order: 1
 
-name: "One Bedroom Apartment"
-subtitle: "Cozy apartment with private balcony"
+name: "Casa Vacanze Ianes"
+subtitle: "Il tuo rifugio di pace nelle Dolomiti trentine"
 
 description: >
-  A charming one-bedroom apartment perfect for couples or solo travelers.
-  Features a comfortable bedroom, modern bathroom with shower, and a bright
-  living room with fully equipped kitchen. The private balcony offers a
-  peaceful retreat with scenic views, while modern interiors ensure all
-  comforts for a perfect stay.
+  Splendido ed accogliente appartamento in villetta indipendente degli anni '70,
+  ristrutturata con gusto nei primi anni 2000 con impianto di riscaldamento ad aria
+  per un rapido comfort. Posizionata in alto rispetto alla valle, in località Mosenè
+  – la più soleggiata – è rivolta a sud, circondata dal verde e baciata dal sole
+  dall'alba al tramonto anche nei mesi invernali, con panorama mozzafiato sulla
+  prospicente catena del Lagorai.
 
-shortDescription: "Intimate and comfortable apartment with private balcony"
+  All'esterno vi attende un ampio prato privato, ideale per far giocare i bambini
+  o semplicemente per rilassarsi al sole, leggere un libro o godersi una colazione
+  od un pranzo tra i monti all'ombra di un grande faggio rosso ultracinquantennale.
+  Pace e tranquillità qui sono di casa e potrete apprezzare il profondo silenzio
+  della notte rotto, in estate, solo dal frinire dei grilli.
+
+shortDescription: "Appartamento accogliente con vista mozzafiato sul Lagorai e ampio prato privato"
 
 # -----------------------------------------------------------------------------
 # Capacity & Size
 # -----------------------------------------------------------------------------
 capacity:
-  guests: 2
-  bedrooms: "1 double bedroom"
-  bathrooms: "1 bathroom with shower"
+  guests: 5
+  bedrooms: "2 camere da letto"
+  bathrooms: "1 bagno con doccia"
   beds:
     double: 1
-    single: 0
-    sofa: 0
+    single: 2  # Letto a castello
+    sofa: 1
 
 size:
   value: 70
@@ -46,110 +51,165 @@ size:
 # -----------------------------------------------------------------------------
 # Images
 # -----------------------------------------------------------------------------
-# Image filenames relative to src/assets/images/property-1/
 images:
   hero: "hero.svg"
   thumbnail: "thumbnail.svg"
-  # Gallery can be a folder path (loads all images) or array of filenames
-  gallery: "property-1"  # Will load from src/assets/images/property-1/
+  gallery: "property-1"
 
 # -----------------------------------------------------------------------------
 # Rooms
 # -----------------------------------------------------------------------------
 rooms:
-  - name: "Bedroom"
+  - name: "Soggiorno con Angolo Cottura"
     description: >
-      Spacious double bedroom with large wardrobes, floor heating and cooling,
-      and direct access to the private balcony. The room is decorated with
-      modern taste and offers a tranquil atmosphere for perfect rest. The
-      double bed features a high-quality mattress for maximum comfort.
-    image: "bedroom.svg"
-    amenities:
-      - "Double bed"
-      - "Spacious wardrobe"
-      - "Balcony access"
-      - "Floor climate control"
-
-  - name: "Living Room"
-    description: >
-      The bright living room combines comfort and functionality with a
-      comfortable sofa, flat-screen TV, and elegant dining area. Large
-      windows provide abundant natural light and splendid views. The
-      perfect space to relax after a day of exploration.
+      Accogliente e luminoso soggiorno con angolo cottura completamente attrezzato,
+      dotato di forno elettrico, microonde e un grande tavolo con panca in legno,
+      perfetto per pranzi e cene in compagnia. Presente un comodo e pratico divano
+      letto disponibile per ogni evenienza.
     image: "living-room.svg"
     amenities:
-      - "Sofa"
-      - "Flat-screen TV"
-      - "Dining table"
-      - "Large windows"
-      - "Floor climate control"
+      - "Grande tavolo con panca in legno"
+      - "Forno elettrico"
+      - "Microonde"
+      - "Frigorifero"
+      - "Divano letto"
+      - "Riscaldamento ad aria"
 
-  - name: "Kitchen"
+  - name: "Camera Matrimoniale"
     description: >
-      Modern and fully equipped kitchen with everything you need to prepare
-      your favorite meals. Features refrigerator, induction cooktop, oven,
-      microwave, and complete utensils. The kitchen area integrates
-      perfectly with the living room, creating a convivial space.
-    image: "kitchen.svg"
+      Spaziosa camera matrimoniale con letto matrimoniale confortevole e
+      lettino per bebé a disposizione su richiesta. L'ambiente è luminoso
+      e accogliente, perfetto per un riposo rigenerante dopo una giornata
+      di attività in montagna.
+    image: "bedroom.svg"
     amenities:
-      - "Refrigerator"
-      - "Induction cooktop"
-      - "Microwave"
-      - "Dishwasher"
-      - "Coffee maker"
-      - "Complete utensils"
+      - "Letto matrimoniale"
+      - "Lettino bebé disponibile"
+      - "Armadio"
+      - "Riscaldamento ad aria"
 
-  - name: "Bathroom"
+  - name: "Camera Ragazzi"
     description: >
-      Modern bathroom with spacious shower, quality fixtures, and elegant
-      finishes. Equipped with hairdryer, courtesy set, and ample space for
-      your personal items. The spacious shower ensures comfort and
-      practicality.
+      Seconda camera con letto a castello, ideale per bambini o amici.
+      Uno spazio funzionale e divertente che rende la casa perfetta
+      per famiglie con bambini.
+    image: "bedroom-kids.svg"
+    amenities:
+      - "Letto a castello"
+      - "Spazio gioco"
+      - "Riscaldamento ad aria"
+
+  - name: "Bagno"
+    description: >
+      Bagno moderno e funzionale con doccia spaziosa, lavatrice e
+      asciugatrice. Dotato di tutti i comfort necessari inclusi
+      asciugamani, sapone, shampoo e asciugacapelli.
     image: "bathroom.svg"
     amenities:
-      - "Spacious shower"
-      - "Hairdryer"
-      - "Courtesy set"
-      - "Towels provided"
+      - "Doccia"
+      - "Lavatrice"
+      - "Asciugatrice"
+      - "Asciugacapelli"
+      - "Bidet"
+      - "Asciugamani forniti"
 
-  - name: "Balcony"
+  - name: "Spazi Esterni"
     description: >
-      Private balcony equipped with table and chairs, perfect for enjoying
-      a morning coffee or relaxing in the evening while admiring the
-      panoramic views. An ideal space for moments of tranquility outdoors.
-    image: "balcony.svg"
+      Ampio prato privato circondato dal verde, perfetto per far giocare
+      i bambini o rilassarsi al sole all'ombra di un grande faggio rosso
+      ultracinquantennale. Disponibili panche, lettini prendisole, sedie
+      sdraio e un immancabile barbecue per grigliate con vista natura.
+      Garage privato per custodire sci, biciclette o attrezzatura da
+      montagna, più due posti auto nella proprietà.
+    image: "garden.svg"
     amenities:
-      - "Table"
-      - "Chairs"
-      - "Panoramic view"
+      - "Ampio prato privato"
+      - "Faggio rosso secolare"
+      - "Panche e lettini prendisole"
+      - "Sedie sdraio"
+      - "Barbecue"
+      - "Garage privato"
+      - "Due posti auto"
 
 # -----------------------------------------------------------------------------
 # Features & Amenities
 # -----------------------------------------------------------------------------
 features:
-  - "High-speed WiFi"
-  - "Parking included"
-  - "Private balcony"
-  - "Fully equipped kitchen"
-  - "Floor heating and cooling"
-  - "Flat-screen TV"
-  - "Linens and towels included"
-  - "Elevator"
-  - "Safe"
-  - "Cots and cribs available"
+  - "Wi-Fi gratuito"
+  - "Parcheggio incluso"
+  - "Garage privato"
+  - "Vista montagna sul Lagorai"
+  - "Ampio prato privato"
+  - "Barbecue"
+  - "Lavatrice e asciugatrice"
+  - "Angolo cottura attrezzato"
+  - "Riscaldamento ad aria"
+  - "Lettino bebé disponibile"
+
+amenities:
+  - "Wi-Fi gratuito"
+  - "Cucina attrezzata"
+  - "Forno elettrico"
+  - "Microonde"
+  - "Frigorifero"
+  - "Lavatrice"
+  - "Asciugatrice"
+  - "Asciugacapelli"
+  - "Asciugamani forniti"
+  - "Biancheria da letto"
+  - "Riscaldamento ad aria"
+  - "Garage privato"
+  - "Due posti auto"
+  - "Prato privato"
+  - "Barbecue"
+  - "Lettini prendisole"
+  - "Vista montagna"
 
 # -----------------------------------------------------------------------------
 # Target Audience
 # -----------------------------------------------------------------------------
 idealFor:
-  - "Couples"
-  - "Solo travelers"
-  - "Business trips"
-  - "Romantic weekends"
+  - "Famiglie con bambini"
+  - "Coppie"
+  - "Amanti della natura"
+  - "Escursionisti"
+  - "Sciatori"
 
 # -----------------------------------------------------------------------------
-# SEO (optional - uses defaults from site config if not specified)
+# House Rules
+# -----------------------------------------------------------------------------
+houseRules:
+  checkIn: "16:00"
+  checkOut: "10:00"
+  minAge: 22
+  petsAllowed: false
+  smokingAllowed: false
+  eventsAllowed: false
+
+# -----------------------------------------------------------------------------
+# Location & Nearby
+# -----------------------------------------------------------------------------
+location:
+  address: "Località Mosenè"
+  city: "Ziano di Fiemme"
+  region: "Trentino Alto Adige"
+  country: "Italia"
+
+nearby:
+  - name: "Val di Fiemme"
+    distance: "1 min a piedi"
+  - name: "Parco Bici kart Panchià"
+    distance: "2 min in auto"
+  - name: "Dolomiti"
+    distance: "3 min in auto"
+  - name: "Centro benessere QC Terme Dolomiti"
+    distance: "26 min in auto"
+  - name: "Lago Caldaro"
+    distance: "45 min in auto"
+
+# -----------------------------------------------------------------------------
+# SEO
 # -----------------------------------------------------------------------------
 seo:
-  title: "One Bedroom Apartment - 2 Guests"
-  description: "Cozy one-bedroom apartment with equipped kitchen and private balcony. Perfect for couples."
+  title: "Casa Vacanze Ianes - Appartamento nelle Dolomiti Trentine"
+  description: "Appartamento vacanze a Ziano di Fiemme con vista sul Lagorai. 5 posti letto, 2 camere, prato privato e barbecue. Il tuo rifugio di pace in Val di Fiemme."
