@@ -101,12 +101,12 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
 };
 
 const load = async function (): Promise<Array<Post>> {
-  const posts = await getCollection('post');
-  const normalizedPosts = posts.map(async (post) => await getNormalizedPost(post));
+  const posts: CollectionEntry<'post'>[] = await getCollection('post');
+  const normalizedPosts: Promise<Post>[] = posts.map(async (post: CollectionEntry<'post'>): Promise<Post> => await getNormalizedPost(post));
 
-  const results = (await Promise.all(normalizedPosts))
-    .sort((a, b) => b.publishDate.valueOf() - a.publishDate.valueOf())
-    .filter((post) => !post.draft);
+  const results: Post[] = (await Promise.all(normalizedPosts))
+    .sort((a: Post, b: Post) => b.publishDate.valueOf() - a.publishDate.valueOf())
+    .filter((post: Post) => !post.draft);
 
   return results;
 };

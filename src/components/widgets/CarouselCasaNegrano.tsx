@@ -2,7 +2,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 interface CarouselCasaNegranoProps {
-  images: any[];
+  images: { src: string }[];
 }
 
 export default function CarouselCasaNegrano({ images }: CarouselCasaNegranoProps) {
