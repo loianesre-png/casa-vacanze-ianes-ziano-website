@@ -20,7 +20,7 @@ const apartmentsContent = await getApartmentsContent();
 
 // Dynamic image loading using import.meta.glob
 // This loads all webp images from all property folders
-const allImages = import.meta.glob<{ default: ImageMetadata }>('../../assets/images/**/*.webp', { eager: true });
+const allImages = import.meta.glob<{ default: ImageMetadata }>('../../assets/images/*/*.webp', { eager: true });
 
 // Filter images for the current property
 const propertyImages = Object.entries(allImages)
