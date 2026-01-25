@@ -2,11 +2,10 @@
 // import { Icon } from 'astro-icon/components';
 import { SITE } from 'astrowind:config';
 import { getHomePermalink } from '~/utils/permalinks';
-import { getMapConfig, getFormattedAddress, getSiteName } from '~/config';
+import { getMapConfig, getSiteName } from '~/config';
 
 // Get map configuration from centralized config
 const mapConfig = getMapConfig();
-const formattedAddress = getFormattedAddress();
 const siteName = getSiteName();
 
 // Build OpenStreetMap embed URL (alternative to Google Maps)
@@ -37,6 +36,7 @@ export interface Props {
   mapEmbedUrl?: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light', mapEmbedUrl } = Astro.props;
 
 // Use provided Google Maps URL, or fall back to OSM

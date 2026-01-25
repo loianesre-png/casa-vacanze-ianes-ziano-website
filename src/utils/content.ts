@@ -67,7 +67,7 @@ export async function getContent<T = Record<string, unknown>>(
     contentCache.set(cacheKey, data);
 
     return data;
-  } catch (error) {
+  } catch {
     // If locale-specific file not found, try default locale
     if (locale !== DEFAULT_LOCALE) {
       console.warn(

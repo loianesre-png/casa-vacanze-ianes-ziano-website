@@ -6,6 +6,7 @@
  * Properties are loaded from: src/content/properties/*.yaml
  */
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import type { Property } from '~/utils/properties';
 import { getCommonContent } from '~/utils/content';
 
@@ -26,7 +27,7 @@ if (!imageModule) {
   throw new Error(`Property image not found: ${imagePath}`);
 }
 
-const propertyImageModule = await imageModule();
+const propertyImageModule = (await imageModule()) as { default: ImageMetadata };
 const propertyImage = propertyImageModule.default;
 
 // Size label based on unit

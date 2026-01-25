@@ -17,7 +17,7 @@
  * ```
  */
 
-import type { ThemeConfig, ThemePreset } from '~/config/schema/theme';
+import type { ThemeConfig, ThemePreset, ResolvedThemeConfig, ColorPalette, TypographyConfig, StyleConfig } from '~/config/schema/theme';
 import themeConfig from '~/config/theme.config';
 
 // =============================================================================
@@ -237,7 +237,7 @@ export function colorToHSL(color: string): string {
  * Get the resolved theme configuration
  * Merges preset defaults with user overrides
  */
-export function getTheme(): ThemeConfig {
+export function getTheme(): ResolvedThemeConfig {
   const preset = themeConfig.preset || 'luxury';
   const presetConfig = themePresets[preset] || themePresets.luxury;
 
@@ -247,17 +247,17 @@ export function getTheme(): ThemeConfig {
     colors: {
       ...presetConfig.colors,
       ...themeConfig.colors,
-    },
+    } as ColorPalette,
     typography: {
       ...presetConfig.typography,
       ...themeConfig.typography,
-    },
+    } as TypographyConfig,
     style: {
       ...presetConfig.style,
       ...themeConfig.style,
-    },
+    } as StyleConfig,
     darkColors: themeConfig.darkColors,
-  } as ThemeConfig;
+  };
 }
 
 // =============================================================================
@@ -322,11 +322,11 @@ function getShadowValues(intensity: string): { sm: string; md: string; lg: strin
 /**
  * Generate CSS variable declarations for :root
  */
-export function generateThemeCSS(theme?: ThemeConfig): string {
+export function generateThemeCSS(theme?: ResolvedThemeConfig): string {
   const resolvedTheme = theme || getTheme();
   const { colors, typography, style } = resolvedTheme;
 
-  const shadows = getShadowValues(style.shadowIntensity);
+  const shadows = getShadowValues(style.shadowIntensity!);
 
   const cssVars = `
   :root {
@@ -360,13 +360,13 @@ export function generateThemeCSS(theme?: ThemeConfig): string {
     /* Typography */
     --font-heading: '${typography.headingFont}', serif;
     --font-body: '${typography.bodyFont}', sans-serif;
-    --font-mono: ${typography.monoFont};
-    --font-size-base: ${typography.baseFontSize}px;
-    --line-height: ${typography.lineHeight};
+    --font-mono: ${typography.monoFont!};
+    --font-size-base: ${typography.baseFontSize!}px;
+    --line-height: ${typography.lineHeight!};
 
     /* Style */
-    --radius: ${getBorderRadius(style.borderRadius)};
-    --transition-speed: ${getTransitionSpeed(style.transitionSpeed)};
+    --radius: ${getBorderRadius(style.borderRadius!)};
+    --transition-speed: ${getTransitionSpeed(style.transitionSpeed!)};
     --shadow-sm: ${shadows.sm};
     --shadow-md: ${shadows.md};
     --shadow-lg: ${shadows.lg};
@@ -383,7 +383,7 @@ export function generateThemeCSS(theme?: ThemeConfig): string {
 /**
  * Generate dark mode CSS variables
  */
-export function generateDarkModeCSS(theme?: ThemeConfig): string {
+export function generateDarkModeCSS(theme?: ResolvedThemeConfig): string {
   const resolvedTheme = theme || getTheme();
 
   if (!resolvedTheme.darkColors) {
@@ -431,7 +431,7 @@ export function generateDarkModeCSS(theme?: ThemeConfig): string {
 /**
  * Generate complete theme stylesheet
  */
-export function generateFullThemeCSS(theme?: ThemeConfig): string {
+export function generateFullThemeCSS(theme?: ResolvedThemeConfig): string {
   return generateThemeCSS(theme) + '\n' + generateDarkModeCSS(theme);
 }
 
