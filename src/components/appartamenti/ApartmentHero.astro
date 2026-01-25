@@ -21,7 +21,7 @@ interface Props {
 const { title, subtitle, heroImage, apartmentId } = Astro.props;
 
 // Dynamically import the hero image
-const images = import.meta.glob('../../assets/images/**/*.webp');
+const images = import.meta.glob('../../assets/images/**/*.{webp,svg,png,jpg,jpeg}');
 const imagePath = `../../assets/images/${apartmentId}/${heroImage}`;
 const imageModule = images[imagePath];
 
