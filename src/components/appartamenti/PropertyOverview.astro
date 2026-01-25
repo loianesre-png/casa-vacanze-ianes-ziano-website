@@ -30,7 +30,7 @@ const { description, propertyImage, apartmentId, capacity, size, sizeUnit = 'sqm
 const sizeLabel = sizeUnit === 'sqm' ? 'm²' : 'ft²';
 
 // Dynamically import the property image
-const images = import.meta.glob('../../assets/images/**/*.webp');
+const images = import.meta.glob('../../assets/images/**/*.{webp,svg,png,jpg,jpeg}');
 const imagePath = `../../assets/images/${apartmentId}/${propertyImage}`;
 const imageModule = images[imagePath];
 
