@@ -1,9 +1,5 @@
 import { getPermalink } from './utils/permalinks';
-import {
-  getContactEmail,
-  getFormattedRegistrationCodes,
-  getCopyrightText,
-} from './config';
+import { getContactEmail, getFormattedRegistrationCodes, getCopyrightText } from './config';
 
 export const headerData = {
   links: [
@@ -17,25 +13,7 @@ export const headerData = {
     },
     {
       text: 'Properties',
-      href: '/#properties',
-      links: [
-        {
-          text: 'One Bedroom Apartment',
-          href: '/properties/property-1',
-        },
-        {
-          text: 'Two Bedroom Apartment',
-          href: '/properties/property-2',
-        },
-        {
-          text: 'Deluxe Suite',
-          href: '/properties/property-3',
-        },
-        {
-          text: 'All Properties',
-          href: '/#properties',
-        },
-      ],
+      href: '/appartamenti/casa-vacanze-ianes',
     },
     {
       text: 'Amenities',
@@ -70,9 +48,7 @@ export const footerData = {
     {
       title: 'Properties',
       links: [
-        { text: 'One Bedroom Apartment', href: '/properties/property-1' },
-        { text: 'Two Bedroom Apartment', href: '/properties/property-2' },
-        { text: 'Deluxe Suite', href: '/properties/property-3' },
+        { text: 'Our Properties', href: '/appartamenti/casa-vacanze-ianes' },
       ],
     },
   ],

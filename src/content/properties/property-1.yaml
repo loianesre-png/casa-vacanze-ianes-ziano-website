@@ -52,8 +52,8 @@ size:
 # Images
 # -----------------------------------------------------------------------------
 images:
-  hero: "hero.svg"
-  thumbnail: "thumbnail.svg"
+  hero: "WhatsApp Image 2025-09-10 at 17.16.55.webp"
+  thumbnail: "IMG_20180708_161300.webp"
   gallery: "property-1"
 
 # -----------------------------------------------------------------------------
@@ -66,7 +66,7 @@ rooms:
       dotato di forno elettrico, microonde e un grande tavolo con panca in legno,
       perfetto per pranzi e cene in compagnia. Presente un comodo e pratico divano
       letto disponibile per ogni evenienza.
-    image: "living-room.svg"
+    image: "IMG_20180708_161655.webp"
     amenities:
       - "Grande tavolo con panca in legno"
       - "Forno elettrico"
@@ -81,7 +81,7 @@ rooms:
       lettino per bebé a disposizione su richiesta. L'ambiente è luminoso
       e accogliente, perfetto per un riposo rigenerante dopo una giornata
       di attività in montagna.
-    image: "bedroom.svg"
+    image: "IMG_20180708_162059.webp"
     amenities:
       - "Letto matrimoniale"
       - "Lettino bebé disponibile"
@@ -93,7 +93,7 @@ rooms:
       Seconda camera con letto a castello, ideale per bambini o amici.
       Uno spazio funzionale e divertente che rende la casa perfetta
       per famiglie con bambini.
-    image: "bedroom-kids.svg"
+    image: "IMG_20180708_161743.webp"
     amenities:
       - "Letto a castello"
       - "Spazio gioco"
@@ -104,7 +104,7 @@ rooms:
       Bagno moderno e funzionale con doccia spaziosa, lavatrice e
       asciugatrice. Dotato di tutti i comfort necessari inclusi
       asciugamani, sapone, shampoo e asciugacapelli.
-    image: "bathroom.svg"
+    image: "IMG_20180708_161822.webp"
     amenities:
       - "Doccia"
       - "Lavatrice"

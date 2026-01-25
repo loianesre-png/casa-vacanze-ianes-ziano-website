@@ -26,7 +26,7 @@ const themeConfig: ThemeConfig = {
    * - 'minimal'  : Black, white, neutral
    * - 'custom'   : Use your own colors below
    */
-  preset: 'modern',
+  preset: 'luxury',
 
   // ==========================================================================
   // COLOR PALETTE (Optional Overrides)
