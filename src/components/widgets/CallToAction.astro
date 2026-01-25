@@ -2,7 +2,6 @@
 import WidgetWrapper from '../ui/WidgetWrapper.astro';
 import type { CallToAction, Widget } from '~/types';
 import Headline from '~/components/ui/Headline.astro';
-import Button from '~/components/ui/Button.astro';
 import CalendarForm from './CalendarForm';
 
 interface Props extends Widget {
@@ -17,7 +16,6 @@ const {
   title = await Astro.slots.render('title'),
   subtitle = await Astro.slots.render('subtitle'),
   tagline = await Astro.slots.render('tagline'),
-  actions = await Astro.slots.render('actions'),
 
   id,
   isDark = false,

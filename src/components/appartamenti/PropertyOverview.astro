@@ -5,6 +5,7 @@
  * Two-column layout: image + description and specs
  */
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 
 interface Props {
   /** Main description of the apartment */
@@ -37,7 +38,7 @@ if (!imageModule) {
   throw new Error(`Property image not found: ${imagePath}`);
 }
 
-const propertyImageModule = await imageModule();
+const propertyImageModule = (await imageModule()) as { default: ImageMetadata };
 const propertyImageSrc = propertyImageModule.default;
 ---
 

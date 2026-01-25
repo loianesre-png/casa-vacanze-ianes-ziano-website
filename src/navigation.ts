@@ -3,7 +3,6 @@ import {
   getContactEmail,
   getFormattedRegistrationCodes,
   getCopyrightText,
-  getSiteName,
 } from './config';
 
 export const headerData = {

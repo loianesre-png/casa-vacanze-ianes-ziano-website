@@ -5,6 +5,7 @@
  * Displays apartment name, subtitle, and hero image
  */
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 
 interface Props {
   /** Apartment name */
@@ -28,7 +29,7 @@ if (!imageModule) {
   throw new Error(`Hero image not found: ${imagePath}`);
 }
 
-const heroImageModule = await imageModule();
+const heroImageModule = (await imageModule()) as { default: ImageMetadata };
 const heroImageSrc = heroImageModule.default;
 ---
 
