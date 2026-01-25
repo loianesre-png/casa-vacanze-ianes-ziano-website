@@ -21,8 +21,8 @@ interface Props {
 const { rooms, apartmentId } = Astro.props;
 const apartmentsContent = await getApartmentsContent();
 
-// Dynamically import all images for this apartment
-const images = import.meta.glob('../../assets/images/**/*.webp');
+// Dynamically import all images for this apartment (webp, svg, jpg, png)
+const images = import.meta.glob('../../assets/images/**/*.{webp,svg,jpg,png}');
 
 // Helper function to get image module
 async function getImageModule(imageName: string) {
@@ -73,7 +73,7 @@ const roomImages = await Promise.all(
                 <div class="relative rounded overflow-hidden shadow-lg group">
                   <Image
                     src={roomImage}
-                    alt={`${room.name} - Casa Negrano`}
+                    alt={`${room.name}`}
                     class="w-full h-full object-cover aspect-[4/3] transition-transform duration-400 group-hover:scale-105"
                     widths={[400, 600, 800, 1000]}
                     sizes="(max-width: 768px) 100vw, 50vw"

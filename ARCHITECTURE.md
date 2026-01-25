@@ -1,10 +1,8 @@
-# Casa Negrano Website - Architecture Documentation
+# Property Rental Website Template - Architecture Documentation
 
 ## Overview
 
-Casa Negrano is a luxury vacation rental website showcasing three apartments in Trento, Italy. Built with **Astro 4.15.5**, **Tailwind CSS 3.4.11**, and a custom luxury design system, the site provides a refined, minimal aesthetic that emphasizes elegance without extravagance.
-
-**Live Site:** https://casanegrano.it
+This is a property rental website template for vacation rentals and apartments. Built with **Astro 4.15.5**, **Tailwind CSS 3.4.11**, and a customizable luxury design system, the template provides a refined, minimal aesthetic that emphasizes elegance.
 
 ---
 
@@ -36,7 +34,7 @@ Casa Negrano is a luxury vacation rental website showcasing three apartments in 
 
 ### Image Optimization
 - **Astro Assets** - Built-in image optimization
-- **WebP format** - All images optimized as WebP
+- **SVG/WebP format** - All images optimized
 - **Responsive srcset** - Multiple image sizes for different viewports
 
 ---
@@ -113,18 +111,18 @@ font-sans: 'Inter Variable', sans-serif
 ## Architecture & File Structure
 
 ```
-casa-negrano-website-v1/
+property-rental-website-template/
 ├── src/
 │   ├── assets/
 │   │   ├── images/
-│   │   │   ├── bilocale/          # 17 photos
-│   │   │   ├── trilocale/         # 17 photos
-│   │   │   └── suite-deluxe/      # 17 photos
+│   │   │   ├── property-1/      # Property 1 images
+│   │   │   ├── property-2/      # Property 2 images
+│   │   │   └── property-3/      # Property 3 images
 │   │   └── styles/
-│   │       └── tailwind.css       # Button system & utilities
+│   │       └── tailwind.css     # Button system & utilities
 │   │
 │   ├── components/
-│   │   ├── appartamenti/          # Apartment-specific components
+│   │   ├── appartamenti/        # Property-specific components
 │   │   │   ├── ApartmentHero.astro
 │   │   │   ├── PropertyOverview.astro
 │   │   │   ├── RoomShowcase.astro
@@ -133,57 +131,69 @@ casa-negrano-website-v1/
 │   │   │   ├── Benefits.astro
 │   │   │   └── ApartmentCTA.astro
 │   │   │
-│   │   ├── home/                  # Home page components
+│   │   ├── home/                # Home page components
 │   │   │   ├── HomeHero.astro
 │   │   │   ├── ApartmentCard.astro
 │   │   │   └── ApartmentsOverview.astro
 │   │   │
-│   │   ├── widgets/               # Reusable widgets
+│   │   ├── widgets/             # Reusable widgets
 │   │   │   ├── Header.astro
 │   │   │   ├── Footer.astro
 │   │   │   ├── ImageCarousel.astro
 │   │   │   ├── CalendarForm.jsx
 │   │   │   ├── Testimonials.astro
-│   │   │   ├── CallToAction.astro
-│   │   │   ├── Features2.astro
-│   │   │   ├── Features3.astro
-│   │   │   └── HeroText.astro
+│   │   │   └── CallToAction.astro
 │   │   │
-│   │   └── ui/                    # Base UI components
+│   │   └── ui/                  # Base UI components
 │   │       ├── Headline.astro
-│   │       ├── ItemGrid.astro
-│   │       ├── ItemGrid2.astro
 │   │       ├── Button.astro
-│   │       ├── button.tsx         # Shadcn/ui React button
-│   │       ├── card.tsx           # Shadcn/ui card components
-│   │       ├── input.tsx
-│   │       ├── textarea.tsx
-│   │       ├── calendar.tsx
-│   │       ├── popover.tsx
-│   │       └── label.tsx
+│   │       └── ...
+│   │
+│   ├── config/                  # Configuration files
+│   │   ├── site.config.ts       # Site identity, contact, SEO
+│   │   ├── theme.config.ts      # Theme customization
+│   │   └── schema/              # TypeScript interfaces
+│   │
+│   ├── content/
+│   │   ├── dictionary/          # UI text content
+│   │   │   └── it/              # Language folder
+│   │   │       ├── common.yaml
+│   │   │       ├── homepage.yaml
+│   │   │       └── ...
+│   │   └── properties/          # Property YAML files
+│   │       ├── property-1.yaml
+│   │       ├── property-2.yaml
+│   │       └── property-3.yaml
 │   │
 │   ├── data/
-│   │   ├── apartments.ts          # Apartment data & type definitions
-│   │   └── services.ts            # Services, amenities, benefits data
+│   │   └── apartments.ts        # Legacy apartment data (fallback)
 │   │
 │   ├── layouts/
-│   │   ├── Layout.astro           # Base HTML layout
-│   │   └── PageLayout.astro       # Page layout with header/footer
+│   │   ├── Layout.astro         # Base HTML layout
+│   │   └── PageLayout.astro     # Page layout with header/footer
 │   │
 │   ├── pages/
-│   │   ├── index.astro            # Home page
-│   │   ├── contatti.astro         # Contact page
-│   │   ├── 404.astro              # Error page
-│   │   └── appartamenti/
-│   │       ├── bilocale.astro
-│   │       ├── trilocale.astro
-│   │       └── suite-deluxe.astro
+│   │   ├── index.astro          # Home page
+│   │   ├── contact.astro        # Contact page
+│   │   ├── 404.astro            # Error page
+│   │   └── properties/
+│   │       └── [slug].astro     # Dynamic property pages
 │   │
-│   └── styles/
-│       └── globals.css            # Global styles, CSS variables
+│   ├── utils/
+│   │   └── properties.ts        # Property loader utility
+│   │
+│   └── navigation.ts            # Navigation configuration
 │
-├── tailwind.config.js             # Tailwind configuration
-└── astro.config.mjs               # Astro configuration
+├── docs/                        # Documentation
+│   ├── configuration/
+│   │   ├── properties.md
+│   │   ├── site-config.md
+│   │   └── theme.md
+│   └── getting-started/
+│       └── quick-start.md
+│
+├── tailwind.config.js           # Tailwind configuration
+└── astro.config.ts              # Astro configuration
 ```
 
 ---
@@ -194,40 +204,39 @@ casa-negrano-website-v1/
 
 **Home Page** (`/`)
 - Hero section with property showcase
-- Overview of all three apartments
-- Apartment comparison table
+- Overview of all properties
+- Property comparison table
 - About section
 - Testimonials
 - Call-to-action
 
-**Apartment Pages** (`/appartamenti/*`)
-Each apartment has a dedicated page with:
+**Property Pages** (`/properties/*`)
+Each property has a dedicated page with:
 - Hero with breadcrumb navigation
 - Property overview with specs
 - Room-by-room showcase
-- **Photo gallery carousel** (17 photos each)
+- Photo gallery carousel
 - Services grid
 - Testimonials
-- Trentino Guest Card benefits
-- Local recommendations
+- Benefits section
 - Call-to-action
 
-**Contact Page** (`/contatti`)
+**Contact Page** (`/contact`)
 - Contact form with calendar integration
 - Contact information cards
-- Google Maps embed
+- Maps embed
 
 ### 2. Photo Gallery Carousel
 
 A luxury-styled, full-featured image carousel with:
 
 **Features:**
-- 📱 Touch/swipe support for mobile
-- ⌨️ Keyboard navigation (arrow keys)
-- 🖼️ Fullscreen modal with high-res images
-- ▶️ Autoplay mode
-- ⚡ Lazy loading with intersection observer
-- 🎯 Responsive images (srcset: 800w, 1200w, 1600w, 2400w)
+- Touch/swipe support for mobile
+- Keyboard navigation (arrow keys)
+- Fullscreen modal with high-res images
+- Autoplay mode
+- Lazy loading with intersection observer
+- Responsive images
 
 **Luxury Styling:**
 - Gold navigation buttons with charcoal backgrounds
@@ -236,31 +245,7 @@ A luxury-styled, full-featured image carousel with:
 - Gold progress indicator
 - Elegant loading placeholders
 
-**Component:** `PhotoGallery.astro` + `ImageCarousel.astro`
-
-### 3. Responsive Image System
-
-All images use Astro's built-in optimization:
-
-```typescript
-// Thumbnail variants for carousel
-const thumbnail = await getImage({
-  src: originalImage,
-  width: 800,
-  format: 'webp',
-  quality: 85,
-});
-
-// Full-size variants for modal
-const full = await getImage({
-  src: originalImage,
-  width: 1600,
-  format: 'webp',
-  quality: 90,
-});
-```
-
-### 4. Interactive Calendar Form
+### 3. Interactive Calendar Form
 
 React-based booking inquiry form with:
 - Date picker for check-in/check-out
@@ -268,55 +253,64 @@ React-based booking inquiry form with:
 - Special requests textarea
 - Webhook integration for form submission
 
-**Component:** `CalendarForm.jsx` (React + Shadcn/ui)
-
 ---
 
 ## Data Structure
 
-### Apartments
+### Properties
+
+Properties are configured in YAML files (`src/content/properties/*.yaml`):
+
+```yaml
+id: property-1
+slug: property-1
+name: "Property Name"
+subtitle: "Property tagline"
+description: "Full description..."
+
+capacity:
+  guests: 4
+  bedrooms: "2 bedrooms"
+  bathrooms: "1 bathroom"
+
+images:
+  hero: "hero.svg"
+  thumbnail: "thumbnail.svg"
+  gallery: "property-1"
+
+rooms:
+  - name: "Bedroom"
+    description: "Room description..."
+    image: "bedroom.svg"
+    amenities:
+      - "Double bed"
+      - "Wardrobe"
+
+features:
+  - "High-speed WiFi"
+  - "Parking included"
+```
+
+### Legacy TypeScript Format (fallback)
 
 ```typescript
 // src/data/apartments.ts
 export interface Apartment {
-  id: string;                    // 'bilocale' | 'trilocale' | 'suite-deluxe'
-  name: string;                  // Display name
-  subtitle: string;              // Short description
-  description: string;           // Full description
-  capacity: number;              // Max guests
-  size: string;                  // Square meters
-  bedrooms: number;
-  bathrooms: number;
-  heroImage: ImageMetadata;      // Hero banner image
-  propertyImage: ImageMetadata;  // Overview section image
-  rooms: Room[];                 // Room-by-room details
-  features: string[];            // Key features list
-  idealFor: string[];            // Target audience tags
-}
-
-export interface Room {
+  id: string;
+  slug: string;
   name: string;
-  icon: string;                  // Tabler icon name
-  amenities: string[];
-  images: ImageMetadata[];       // Multiple room photos
-}
-```
-
-### Services & Amenities
-
-```typescript
-// src/data/services.ts
-export interface Service {
-  title: string;
+  subtitle: string;
   description: string;
-  icon: string;                  // Tabler icon name
+  capacity: number;
+  size: number;
+  bedrooms: string;
+  bathrooms: string;
+  heroImage: string;
+  propertyImage: string;
+  rooms: Room[];
+  features: string[];
+  idealFor: string[];
 }
-
-// Categories
-- coreServices: Service[]        // All apartments
-- premiumServices: Service[]     // Suite Deluxe only
-- guestCardBenefits: Benefit[]   // Trentino Guest Card
-- localRecommendations: LocalRecommendation[]
 ```
 
 ---
@@ -327,123 +321,36 @@ export interface Service {
 
 **Header** (`Header.astro`)
 - Sticky navigation with luxury styling
-- Dropdown menu for apartment selection
+- Dropdown menu for property selection
 - Gold hover states
 - Responsive mobile menu
 
 **Footer** (`Footer.astro`)
 - Site links and contact info
-- Google Maps embed
+- Maps embed
 - Luxury typography and colors
 
-### Apartment Page Components
+### Property Page Components
 
-**ApartmentHero** (`ApartmentHero.astro`)
-- Full-screen hero with gradient overlay
-- Breadcrumb navigation
-- Playfair Display heading
-- Scroll indicator
-
-**PropertyOverview** (`PropertyOverview.astro`)
-- Apartment description
-- Key specifications (capacity, size, bedrooms, bathrooms)
-- Large featured image
-- Icon-based spec cards with luxury styling
-
-**RoomShowcase** (`RoomShowcase.astro`)
-- Grid layout of all rooms
-- Hover effects with image zoom
-- Amenity icons
-- Room-specific photos
-
-**PhotoGallery** (`PhotoGallery.astro`)
-- Section heading with gold divider
-- Image carousel integration
-- Photo count display
-- Fullscreen instructions
-
-**ServicesGrid** (`ServicesGrid.astro`)
-- Grid of service cards
-- Icon backgrounds with hover effects
-- Luxury beige to gold transitions
-
-**Benefits** (`Benefits.astro`)
-- Two-column layout
-- Trentino Guest Card section (gold accents)
-- Local recommendations (bronze accents)
-- Dark luxury banner for CTA
-
-**ApartmentCTA** (`ApartmentCTA.astro`)
-- Dark charcoal/black gradient background
-- Gold decorative elements
-- Primary and secondary CTAs
-- Trust indicators
-
-### Home Page Components
-
-**HomeHero** (`HomeHero.astro`)
-- Large hero banner with overlay
-- Luxury gold welcome badge
-- Key features grid
-- Primary CTAs
-
-**ApartmentCard** (`ApartmentCard.astro`)
-- Compact apartment preview
-- Capacity badge
-- Feature icons
-- "Ideal for" tags
-- Hover effects
-
-**ApartmentsOverview** (`ApartmentsOverview.astro`)
-- Gradient background section
-- Comparison table
-- Dark luxury banner with CTAs
-
-### Shared Widgets
-
-**ImageCarousel** (`ImageCarousel.astro`)
-- Alpine.js powered carousel
-- Touch gesture support
-- Modal fullscreen view
-- Autoplay functionality
-- Lazy loading
-
-**Testimonials** (`Testimonials.astro`)
-- Customer review cards
-- Luxury card styling
-- Gold link accents
-
-**CallToAction** (`CallToAction.astro`)
-- Reusable CTA sections
-- Luxury card with borders
-- Flexible content slots
+**ApartmentHero** - Full-screen hero with gradient overlay
+**PropertyOverview** - Property description and specs
+**RoomShowcase** - Grid layout of all rooms
+**PhotoGallery** - Image carousel integration
+**ServicesGrid** - Grid of service cards
+**Benefits** - Two-column layout with benefits
+**ApartmentCTA** - Call-to-action section
 
 ### UI Components
 
-**Headline** (`Headline.astro`)
-- Standardized section headings
-- Gold tagline
-- Playfair Display title
-- Graphite subtitle
-
-**ItemGrid** (`ItemGrid.astro`)
-- Flexible grid layout
-- Icon + title + description
-- Gold default icons
-- Customizable classes
-
-**Button** (`Button.astro`)
-- Four variants: primary, secondary, tertiary, link
-- Maps to Tailwind button classes
-- Icon support
+**Headline** - Standardized section headings
+**ItemGrid** - Flexible grid layout
+**Button** - Four variants: primary, secondary, tertiary, link
 
 ---
 
 ## Styling Patterns
 
 ### Button System
-
-Defined in `src/assets/styles/tailwind.css`:
 
 ```css
 /* Primary Button - Gold background, black text */
@@ -461,19 +368,6 @@ Defined in `src/assets/styles/tailwind.css`:
          hover:text-luxury-black shadow-luxury-sm
          uppercase tracking-wide transition-all duration-400;
 }
-
-/* Ghost Button - Transparent on dark backgrounds */
-.btn-ghost {
-  @apply btn border border-white/30 text-white bg-transparent
-         hover:bg-white/10 hover:border-white/50
-         transition-all duration-400;
-}
-
-/* Tertiary Button - Minimal styling */
-.btn-tertiary {
-  @apply font-medium text-luxury-gold hover:text-luxury-bronze
-         underline-offset-4 hover:underline transition-all duration-400;
-}
 ```
 
 ### Common Component Patterns
@@ -484,64 +378,14 @@ Defined in `src/assets/styles/tailwind.css`:
   <div class="max-w-7xl mx-auto px-4 sm:px-6">
     <!-- Section Heading -->
     <div class="text-center mb-8 md:mb-12">
-      <h2 class="text-3xl md:text-4xl font-heading font-medium text-luxury-black mb-4">
+      <h2 class="text-3xl md:text-4xl font-heading font-medium">
         Section Title
       </h2>
       <div class="w-20 h-0.5 bg-luxury-gold mx-auto mb-4"></div>
-      <p class="text-lg text-luxury-graphite max-w-2xl mx-auto">
-        Subtitle text
-      </p>
     </div>
-
     <!-- Content -->
   </div>
 </section>
-```
-
-**Card Pattern:**
-```astro
-<div class="bg-luxury-white rounded shadow-luxury-md border border-luxury-sand
-            hover:shadow-luxury-lg hover:border-luxury-gold transition-all duration-400">
-  <!-- Card content -->
-</div>
-```
-
-**Icon Container:**
-```astro
-<!-- Square icon background (luxury standard) -->
-<div class="rounded bg-luxury-gold">
-  <svg class="text-luxury-black">
-    <!-- Icon -->
-  </svg>
-</div>
-```
-
-**Gradient Backgrounds:**
-```astro
-<!-- Light gradient -->
-<section class="bg-gradient-to-br from-luxury-cream via-luxury-white to-luxury-beige">
-
-<!-- Dark gradient -->
-<section class="bg-gradient-to-br from-luxury-charcoal via-luxury-black to-luxury-charcoal">
-```
-
-### Hover States
-
-**Navigation Links:**
-```astro
-<a class="hover:text-luxury-gold transition-all duration-400">
-```
-
-**Interactive Cards:**
-```astro
-<div class="hover:shadow-luxury-lg hover:border-luxury-gold
-            hover:scale-105 transition-all duration-400">
-```
-
-**Buttons:**
-```astro
-<button class="hover:bg-luxury-gold hover:text-luxury-black
-               hover:scale-110 transition-all duration-400">
 ```
 
 ---
@@ -549,130 +393,40 @@ Defined in `src/assets/styles/tailwind.css`:
 ## Performance Optimizations
 
 ### Image Optimization
-- **WebP format** for all images
-- **Responsive srcset** with multiple sizes (400w, 800w, 1200w, 1600w, 2400w)
-- **Lazy loading** with native `loading="lazy"` and Intersection Observer
+- **WebP/SVG format** for all images
+- **Responsive srcset** with multiple sizes
+- **Lazy loading** with native `loading="lazy"`
 - **Astro Assets** for automatic optimization at build time
 
 ### JavaScript
-- **Alpine.js** for lightweight interactivity (carousel, dropdowns)
+- **Alpine.js** for lightweight interactivity
 - **Minimal React** usage (only CalendarForm)
-- **Lazy initialization** for carousel with requestIdleCallback
-- **Image preloading** only for visible carousel slides
+- **Lazy initialization** for carousel
 
 ### Build Output
 - **Static Site Generation** (SSG) - all pages pre-rendered
 - **Optimized HTML** - no runtime rendering
-- **Page sizes**: 111K-140K per apartment page (excellent!)
-
-### Best Practices
-- **Content-visibility** CSS for images
-- **Will-change** for animated elements
-- **Transition duration** reduction for users who prefer reduced motion
-- **Focus-visible** outlines for accessibility
-
----
-
-## Development Commands
-
-```bash
-# Install dependencies
-npm install
-
-# Start dev server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-```
-
----
-
-## Design System Reference
-
-### Quick Reference Card
-
-| Element | Style |
-|---------|-------|
-| Border radius | `rounded` (4px) |
-| Button hover | `hover:bg-luxury-gold hover:text-luxury-black` |
-| Card shadow | `shadow-luxury-md` |
-| Divider line | `h-0.5 bg-luxury-gold` |
-| Focus outline | `focus:ring-2 focus:ring-luxury-gold` |
-| Heading font | `font-heading` (Playfair Display) |
-| Heading weight | `font-medium` (500) |
-| Icon background | `rounded bg-luxury-gold` |
-| Label style | `uppercase tracking-wide text-sm` |
-| Link hover | `hover:text-luxury-gold transition-all duration-400` |
-| Section padding | `py-12 md:py-16` |
-| Transition | `duration-400` (400ms) |
-
-### Color Usage Guide
-
-| Use Case | Color |
-|----------|-------|
-| Primary accent, CTAs | `luxury-gold` |
-| Hover states, links | `luxury-gold` |
-| Secondary accent | `luxury-bronze` |
-| Page backgrounds | `luxury-white`, `luxury-cream` |
-| Card backgrounds | `luxury-white`, `luxury-beige` |
-| Borders, dividers | `luxury-sand` |
-| Headings | `luxury-black` |
-| Body text | `luxury-graphite` |
-| Dark sections | `luxury-charcoal`, `luxury-black` |
 
 ---
 
 ## Deployment
 
-The site is configured for static site deployment. Build output goes to `dist/` directory.
+The site generates static HTML and can be deployed anywhere:
 
-**Supported platforms:**
-- Netlify
-- Vercel
-- GitHub Pages
-- Any static hosting service
-
-**Build configuration:**
-```javascript
-// astro.config.mjs
-export default defineConfig({
-  output: 'static',
-  // ... other config
-});
-```
+- **Netlify**: Connect your Git repo for automatic deploys
+- **Vercel**: Similar to Netlify
+- **GitHub Pages**: Use `gh-pages` branch
+- **Any server**: Upload the `dist/` folder
 
 ---
 
-## Future Enhancements
+## Customization
 
-Potential areas for expansion:
-- Multi-language support (Italian/English)
-- Online booking integration
-- Availability calendar
-- Guest reviews system
-- Blog/news section
-- Virtual tour integration
-
----
-
-## Credits
-
-- **Framework**: Astro 4.15.5
-- **Base Template**: AstroWind (heavily customized)
-- **Design**: Custom luxury design system
-- **Fonts**: Playfair Display, Inter Variable
-- **Icons**: Tabler Icons
-- **Images**: Casa Negrano photography collection
-
----
-
-## License
-
-See LICENSE.md for details.
+1. Edit `src/config/site.config.ts` for site identity
+2. Add/edit property YAML files in `src/content/properties/`
+3. Replace placeholder images in `src/assets/images/`
+4. Customize theme in `src/config/theme.config.ts`
+5. Update text content in `src/content/dictionary/`
 
 ---
 

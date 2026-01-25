@@ -19,7 +19,7 @@ const themeConfig: ThemeConfig = {
   // ==========================================================================
   /**
    * Available presets:
-   * - 'luxury'   : Gold, cream, bronze (current Casa Negrano theme)
+   * - 'luxury'   : Gold, cream, bronze
    * - 'modern'   : Blue, clean, minimal
    * - 'rustic'   : Warm amber, earthy tones
    * - 'coastal'  : Cyan, light, airy

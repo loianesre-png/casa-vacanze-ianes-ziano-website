@@ -1,0 +1,155 @@
+# =============================================================================
+# Property Configuration: Property 1 - One Bedroom Apartment (Template)
+# =============================================================================
+# This file defines all data for a single property/apartment
+# Edit this file to customize the property details
+#
+# Images should be placed in: src/assets/images/property-1/
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Basic Information
+# -----------------------------------------------------------------------------
+id: property-1
+slug: property-1
+published: true
+order: 1  # Display order (lower = first)
+
+name: "One Bedroom Apartment"
+subtitle: "Cozy apartment with private balcony"
+
+description: >
+  A charming one-bedroom apartment perfect for couples or solo travelers.
+  Features a comfortable bedroom, modern bathroom with shower, and a bright
+  living room with fully equipped kitchen. The private balcony offers a
+  peaceful retreat with scenic views, while modern interiors ensure all
+  comforts for a perfect stay.
+
+shortDescription: "Intimate and comfortable apartment with private balcony"
+
+# -----------------------------------------------------------------------------
+# Capacity & Size
+# -----------------------------------------------------------------------------
+capacity:
+  guests: 2
+  bedrooms: "1 double bedroom"
+  bathrooms: "1 bathroom with shower"
+  beds:
+    double: 1
+    single: 0
+    sofa: 0
+
+size:
+  value: 70
+  unit: sqm
+
+# -----------------------------------------------------------------------------
+# Images
+# -----------------------------------------------------------------------------
+# Image filenames relative to src/assets/images/property-1/
+images:
+  hero: "hero.svg"
+  thumbnail: "thumbnail.svg"
+  # Gallery can be a folder path (loads all images) or array of filenames
+  gallery: "property-1"  # Will load from src/assets/images/property-1/
+
+# -----------------------------------------------------------------------------
+# Rooms
+# -----------------------------------------------------------------------------
+rooms:
+  - name: "Bedroom"
+    description: >
+      Spacious double bedroom with large wardrobes, floor heating and cooling,
+      and direct access to the private balcony. The room is decorated with
+      modern taste and offers a tranquil atmosphere for perfect rest. The
+      double bed features a high-quality mattress for maximum comfort.
+    image: "bedroom.svg"
+    amenities:
+      - "Double bed"
+      - "Spacious wardrobe"
+      - "Balcony access"
+      - "Floor climate control"
+
+  - name: "Living Room"
+    description: >
+      The bright living room combines comfort and functionality with a
+      comfortable sofa, flat-screen TV, and elegant dining area. Large
+      windows provide abundant natural light and splendid views. The
+      perfect space to relax after a day of exploration.
+    image: "living-room.svg"
+    amenities:
+      - "Sofa"
+      - "Flat-screen TV"
+      - "Dining table"
+      - "Large windows"
+      - "Floor climate control"
+
+  - name: "Kitchen"
+    description: >
+      Modern and fully equipped kitchen with everything you need to prepare
+      your favorite meals. Features refrigerator, induction cooktop, oven,
+      microwave, and complete utensils. The kitchen area integrates
+      perfectly with the living room, creating a convivial space.
+    image: "kitchen.svg"
+    amenities:
+      - "Refrigerator"
+      - "Induction cooktop"
+      - "Microwave"
+      - "Dishwasher"
+      - "Coffee maker"
+      - "Complete utensils"
+
+  - name: "Bathroom"
+    description: >
+      Modern bathroom with spacious shower, quality fixtures, and elegant
+      finishes. Equipped with hairdryer, courtesy set, and ample space for
+      your personal items. The spacious shower ensures comfort and
+      practicality.
+    image: "bathroom.svg"
+    amenities:
+      - "Spacious shower"
+      - "Hairdryer"
+      - "Courtesy set"
+      - "Towels provided"
+
+  - name: "Balcony"
+    description: >
+      Private balcony equipped with table and chairs, perfect for enjoying
+      a morning coffee or relaxing in the evening while admiring the
+      panoramic views. An ideal space for moments of tranquility outdoors.
+    image: "balcony.svg"
+    amenities:
+      - "Table"
+      - "Chairs"
+      - "Panoramic view"
+
+# -----------------------------------------------------------------------------
+# Features & Amenities
+# -----------------------------------------------------------------------------
+features:
+  - "High-speed WiFi"
+  - "Parking included"
+  - "Private balcony"
+  - "Fully equipped kitchen"
+  - "Floor heating and cooling"
+  - "Flat-screen TV"
+  - "Linens and towels included"
+  - "Elevator"
+  - "Safe"
+  - "Cots and cribs available"
+
+# -----------------------------------------------------------------------------
+# Target Audience
+# -----------------------------------------------------------------------------
+idealFor:
+  - "Couples"
+  - "Solo travelers"
+  - "Business trips"
+  - "Romantic weekends"
+
+# -----------------------------------------------------------------------------
+# SEO (optional - uses defaults from site config if not specified)
+# -----------------------------------------------------------------------------
+seo:
+  title: "One Bedroom Apartment - 2 Guests"
+  description: "Cozy one-bedroom apartment with equipped kitchen and private balcony. Perfect for couples."
