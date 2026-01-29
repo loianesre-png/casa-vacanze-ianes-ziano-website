@@ -29,7 +29,7 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 
 export default defineConfig({
   output: 'server',
-  adapter: vercel(),
+  adapter: vercel({ maxDuration: 60 }),
 
   integrations: [tailwind({
     applyBaseStyles: false,
