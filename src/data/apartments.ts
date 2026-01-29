@@ -54,12 +54,12 @@ export const apartments: Apartment[] = [
     id: 'property-1',
     slug: 'property-1',
     name: 'One Bedroom Apartment',
-    subtitle: 'Cozy apartment with private balcony',
+    subtitle: 'Cozy ground floor apartment with private garden',
     description:
-      'A charming one-bedroom apartment perfect for couples or solo travelers. Features a comfortable bedroom, modern bathroom with shower, and a bright living room with fully equipped kitchen. The private balcony offers a peaceful retreat with scenic views.',
-    capacity: 2,
-    size: 70,
-    bedrooms: '1 double bedroom',
+      'A charming ground floor apartment perfect for families. Features two bedrooms, modern bathroom with shower, and a bright living room with fully equipped kitchen. The large private garden of over 2000sqm offers a peaceful retreat with scenic views of the Lagorai mountains.',
+    capacity: 4,
+    size: 65,
+    bedrooms: '2 bedrooms',
     bathrooms: '1 bathroom with shower',
     heroImage: 'WhatsApp Image 2025-09-10 at 17.16.55.webp',
     propertyImage: 'thumbnail.svg',
@@ -67,9 +67,9 @@ export const apartments: Apartment[] = [
       {
         name: 'Bedroom',
         description:
-          'Spacious double bedroom with large wardrobes, floor heating and cooling, and direct access to the private balcony. The room is decorated with modern taste and offers a tranquil atmosphere for perfect rest.',
+          'Spacious double bedroom with large wardrobes and air heating with remote app control. The room is decorated with modern taste and offers a tranquil atmosphere for perfect rest with stunning views of the Lagorai mountains.',
         image: 'bedroom.svg',
-        amenities: ['Double bed', 'Spacious wardrobe', 'Balcony access', 'Floor climate control'],
+        amenities: ['Double bed', 'Spacious wardrobe', 'Air heating'],
       },
       {
         name: 'Living Room',
@@ -108,18 +108,17 @@ export const apartments: Apartment[] = [
       },
     ],
     features: [
-      'High-speed WiFi',
+      'Free WiFi',
       'Parking included',
-      'Private balcony',
+      'Large private garden (2000+ sqm)',
       'Fully equipped kitchen',
-      'Floor heating and cooling',
+      'Air heating with app control',
       'Flat-screen TV',
       'Linens and towels included',
-      'Elevator',
-      'Safe',
-      'Cots and cribs available'
+      'Equipment storage room',
+      'Baby cot available'
     ],
-    idealFor: ['Couples', 'Solo travelers', 'Business trips', 'Romantic weekends'],
+    idealFor: ['Families with children', 'Couples', 'Nature lovers', 'Hikers', 'Skiers'],
   }
 ];
 

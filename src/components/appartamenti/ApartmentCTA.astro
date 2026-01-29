@@ -7,7 +7,7 @@
  */
 import { Icon } from 'astro-icon/components';
 import { getContactEmail } from '~/config';
-import { getApartmentsContent } from '~/utils/content';
+import { getApartmentsContent, getCurrentLocale } from '~/utils/content';
 
 interface Props {
   /** Apartment name for personalized messaging */
@@ -20,7 +20,8 @@ interface Props {
   contactUrl?: string;
 }
 
-const apartmentsContent = await getApartmentsContent();
+const currentLocale = getCurrentLocale(Astro.url);
+const apartmentsContent = await getApartmentsContent(currentLocale);
 const contactEmail = getContactEmail();
 const ctaContent = apartmentsContent.sections?.cta;
 

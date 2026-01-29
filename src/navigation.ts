@@ -1,6 +1,13 @@
 import { getPermalink } from './utils/permalinks';
 import { getContactEmail, getFormattedRegistrationCodes, getCopyrightText } from './config';
 
+/**
+ * Navigation Data
+ * ---------------
+ * Text labels here are fallback values only.
+ * Translations are applied in PageLayout.astro using the dictionary system.
+ * See: src/content/dictionary/{locale}/common.yaml -> navigation section
+ */
 export const headerData = {
   links: [
     {
@@ -8,25 +15,25 @@ export const headerData = {
       href: '/',
     },
     {
-      text: 'About Us',
+      text: 'Chi siamo',
       href: '/#about',
     },
     {
-      text: 'Properties',
+      text: 'Appartamenti',
       href: '/appartamenti/casa-vacanze-ianes',
     },
     {
-      text: 'Amenities',
+      text: 'Servizi',
       href: '/#amenities',
     },
     {
-      text: 'Testimonials',
+      text: 'Testimonianze',
       href: '/#testimonials',
     },
   ],
   actions: [
     {
-      text: 'Contact Us',
+      text: 'Contatti',
       href: '/contact',
     },
   ],
@@ -35,26 +42,26 @@ export const headerData = {
 export const footerData = {
   links: [
     {
-      title: 'Quick Links',
+      title: 'Link rapidi',
       links: [
         { text: 'Home', href: '/' },
-        { text: 'About Us', href: '/#about' },
-        { text: 'Properties', href: '/#properties' },
-        { text: 'Amenities', href: '/#amenities' },
-        { text: 'Testimonials', href: '/#testimonials' },
-        { text: 'Contact', href: '/contact' },
+        { text: 'Chi siamo', href: '/#about' },
+        { text: 'Appartamenti', href: '/#properties' },
+        { text: 'Servizi', href: '/#amenities' },
+        { text: 'Testimonianze', href: '/#testimonials' },
+        { text: 'Contatti', href: '/contact' },
       ],
     },
     {
-      title: 'Properties',
+      title: 'Appartamenti',
       links: [
-        { text: 'Our Properties', href: '/appartamenti/casa-vacanze-ianes' },
+        { text: 'I nostri appartamenti', href: '/appartamenti/casa-vacanze-ianes' },
       ],
     },
   ],
   secondaryLinks: [
-    { text: 'Cookies', href: getPermalink('/cookies') },
-    { text: 'Privacy Policy', href: getPermalink('/privacy') },
+    { text: 'Cookie', href: getPermalink('/cookies') },
+    { text: 'Privacy', href: getPermalink('/privacy') },
     { text: getContactEmail(), href: `mailto:${getContactEmail()}` },
   ],
   socialLinks: [
@@ -65,9 +72,9 @@ export const footerData = {
     // { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/onwidget/astrowind' },
   ],
   footNote: `
-      Registration Codes: ${getFormattedRegistrationCodes()}
+      ${getFormattedRegistrationCodes('<br />')}
       <br />
-      ${getCopyrightText()}. All rights reserved.
+      ${getCopyrightText()}. Tutti i diritti riservati.
 
   `,
 };

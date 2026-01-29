@@ -8,7 +8,7 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import type { Property } from '~/utils/properties';
-import { getCommonContent } from '~/utils/content';
+import { getCommonContent, getCurrentLocale } from '~/utils/content';
 
 interface Props {
   /** Property data object */
@@ -16,7 +16,8 @@ interface Props {
 }
 
 const { property } = Astro.props;
-const common = await getCommonContent();
+const currentLocale = getCurrentLocale(Astro.url);
+const common = await getCommonContent(currentLocale);
 
 // Dynamically import the property image
 const images = import.meta.glob('../../assets/images/**/*.{webp,svg,png,jpg,jpeg}');

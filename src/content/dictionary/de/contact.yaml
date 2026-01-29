@@ -1,0 +1,77 @@
+# =============================================================================
+# Contact Page Content (German)
+# =============================================================================
+# All text content for the contact page
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Page Header
+# -----------------------------------------------------------------------------
+page:
+  tagline: "Kontakt"
+  title: "Kontaktieren Sie uns!"
+  description: "Haben Sie Fragen oder möchten Sie buchen? Wir helfen Ihnen gerne."
+
+# -----------------------------------------------------------------------------
+# Contact Form
+# -----------------------------------------------------------------------------
+form:
+  title: "Schreiben Sie uns!"
+  subtitle: "Füllen Sie das folgende Formular aus"
+
+  fields:
+    name:
+      label: "Vollständiger Name"
+      placeholder: "Max Mustermann"
+    email:
+      label: "E-Mail"
+      placeholder: "max.mustermann@beispiel.de"
+    phone:
+      label: "Telefon"
+      placeholder: "+49 XXX XXX XXXX"
+    guests:
+      label: "Anzahl der Gäste"
+      placeholder: "2"
+    check_in:
+      label: "Check-in Datum"
+      placeholder: "Datum auswählen"
+    check_out:
+      label: "Check-out Datum"
+      placeholder: "Datum auswählen"
+    message:
+      label: "Besondere Wünsche"
+      placeholder: "Besondere Wünsche..."
+
+  submit: "Anfrage senden"
+  submitting: "Wird gesendet..."
+
+# -----------------------------------------------------------------------------
+# Contact Info Section
+# -----------------------------------------------------------------------------
+info:
+  title: "So finden Sie uns!"
+  items:
+    - icon: "email"
+      label: "E-Mail"
+      value: "" # Pulled from config
+    - icon: "phone"
+      label: "Telefon"
+      value: "" # Pulled from config
+    - icon: "location"
+      label: "Adresse"
+      value: "" # Pulled from config
+
+# -----------------------------------------------------------------------------
+# Messages
+# -----------------------------------------------------------------------------
+messages:
+  success: "Anfrage erfolgreich gesendet! Wir melden uns bald bei Ihnen."
+  error: "Fehler beim Senden der Anfrage. Bitte versuchen Sie es später erneut."
+  disabled: "Das Kontaktformular ist derzeit nicht verfügbar. Bitte kontaktieren Sie uns direkt per E-Mail."
+
+# -----------------------------------------------------------------------------
+# SEO
+# -----------------------------------------------------------------------------
+seo:
+  title: "Kontakt"
+  description: "Kontaktieren Sie uns für Informationen und Buchungen. Wir beantworten gerne alle Ihre Fragen."

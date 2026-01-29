@@ -13,10 +13,11 @@ hero:
   title: "Benvenuti a"
   title_highlight: "Casa Vacanze Ianes"
 
-  subtitle: "Il tuo rifugio di pace nelle Dolomiti trentine"
+  subtitle: "Il tuo rifugio di pace nel cuore delle Dolomiti Trentine"
+  subtitle_secondary: "al centro delle location dei Giochi Olimpici Milano-Cortina 2026"
 
   description: >
-    Splendido appartamento in località Mosenè, la più soleggiata della valle,
+    Splendido appartamento a piano terra in località Mosenè, la più soleggiata della valle,
     con panorama mozzafiato sulla catena del Lagorai. Circondato dal verde,
     baciato dal sole dall'alba al tramonto, perfetto per chi cerca tranquillità
     e tanto spazio all'aperto.
@@ -25,10 +26,10 @@ hero:
   cta_secondary: "Contattaci"
 
   features:
-    - title: "Val di Fiemme"
+    - title: "Ziano di Fiemme, frazione Mosenè - Val di Fiemme"
       subtitle: "A un passo dalle Dolomiti"
       icon: "location"
-    - title: "5 Posti Letto"
+    - title: "4 Posti Letto + lettino bimbo"
       subtitle: "Ideale per famiglie"
       icon: "check"
     - title: "Check-in Flessibile"
@@ -46,10 +47,10 @@ about:
   section_id: "about"
   title: "Il tuo rifugio tra natura e comfort"
   description: >
-    Casa Vacanze Ianes è un accogliente appartamento in villetta indipendente,
+    Casa Vacanze Ianes è un accogliente appartamento a piano terra in villetta indipendente,
     ristrutturata con gusto e dotata di riscaldamento ad aria per un rapido
-    comfort. All'esterno vi attende un ampio prato privato all'ombra di un
-    grande faggio rosso ultracinquantennale. Pace e tranquillità qui sono
+    comfort, con possibilità di controllo remoto da App. All'esterno vi attende un ampio prato privato di oltre 2000mq all'ombra di un
+    grande faggio rosso ultracinquantennale, con panorama sul Lagorai. Pace e tranquillità qui sono
     di casa, dove potrete apprezzare il profondo silenzio della notte rotto,
     in estate, solo dal frinire dei grilli.
 
@@ -85,9 +86,9 @@ comfort:
   title: "Comfort e Servizi"
   subtitle: "Tutto ciò che serve per una vacanza serena"
   description: >
-    L'appartamento offre tutti i comfort moderni: Wi-Fi gratuito, lavatrice
-    e asciugatrice, cucina completamente attrezzata con forno e microonde,
-    garage privato per la tua attrezzatura e ampi spazi esterni con barbecue.
+    L'appartamento a piano terra offre tutti i comfort moderni: Wi-Fi gratuito, lavatrice
+    e asciugatrice nel deposito attrezzatura di 37mq, cucina completamente attrezzata con forno e microonde,
+    riscaldamento ad aria controllabile da App e ampi spazi esterni con oltre 2000mq di prato privato.
 
 # -----------------------------------------------------------------------------
 # Testimonials Section
@@ -109,5 +110,5 @@ cta:
 # SEO Metadata
 # -----------------------------------------------------------------------------
 seo:
-  title: "Casa Vacanze Ianes - Appartamento nelle Dolomiti Trentine"
-  description: "Appartamento vacanze a Ziano di Fiemme in Val di Fiemme. Vista sul Lagorai, 5 posti letto, ampio prato privato. Il tuo rifugio di pace nelle Dolomiti."
+  title: "Casa Vacanze Ianes - Appartamento a piano terra nelle Dolomiti Trentine"
+  description: "Appartamento vacanze a piano terra a Ziano di Fiemme in Val di Fiemme. Vista sul Lagorai, 4 posti letto + lettino bimbo, ampio prato privato. Il tuo rifugio di pace nelle Dolomiti."

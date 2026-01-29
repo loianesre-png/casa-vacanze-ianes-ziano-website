@@ -8,11 +8,14 @@
  * Configuration is loaded from: src/config/site.config.ts
  */
 import { Image } from 'astro:assets';
-import { getHomepageContent } from '~/utils/content';
+import { getHomepageContent, getCurrentLocale } from '~/utils/content';
 import { getSiteName } from '~/config';
 
-// Load content from dictionary
-const content = await getHomepageContent();
+// Get current locale from URL
+const currentLocale = getCurrentLocale(Astro.url);
+
+// Load content from dictionary with locale
+const content = await getHomepageContent(currentLocale);
 const hero = content.hero;
 const siteName = getSiteName();
 
@@ -41,7 +44,7 @@ import heroImage from '../../assets/images/WhatsApp Image 2025-09-10 at 17.16.55
   <!-- Hero Content -->
   <div class="relative h-full min-h-[85vh] lg:min-h-[90vh] flex items-center">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
-      <div class="max-w-4xl">
+      <div class="max-w-3xl lg:max-w-2xl">
         <!-- Welcome Badge -->
         <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 backdrop-blur-sm rounded mb-6 border border-primary/30">
           <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -62,9 +65,16 @@ import heroImage from '../../assets/images/WhatsApp Image 2025-09-10 at 17.16.55
         </h1>
 
         <!-- Subtitle -->
-        <p class="text-xl sm:text-2xl md:text-3xl text-white/95 font-light mb-6 leading-relaxed">
+        <p class="text-xl sm:text-2xl md:text-3xl text-white/95 font-light mb-2 leading-relaxed">
           {hero.subtitle}
         </p>
+
+        <!-- Olympics Subtitle -->
+        {hero.subtitle_secondary && (
+          <p class="text-lg sm:text-xl md:text-2xl text-primary font-medium mb-6 leading-relaxed">
+            {hero.subtitle_secondary}
+          </p>
+        )}
 
         <!-- Description -->
         <p class="text-base sm:text-lg text-white/90 max-w-2xl mb-10 leading-relaxed">

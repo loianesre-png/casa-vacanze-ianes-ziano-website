@@ -9,7 +9,7 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import type { Room } from '~/utils/properties';
-import { getApartmentsContent } from '~/utils/content';
+import { getApartmentsContent, getCurrentLocale } from '~/utils/content';
 
 interface Props {
   /** Array of room objects */
@@ -19,7 +19,8 @@ interface Props {
 }
 
 const { rooms, apartmentId } = Astro.props;
-const apartmentsContent = await getApartmentsContent();
+const currentLocale = getCurrentLocale(Astro.url);
+const apartmentsContent = await getApartmentsContent(currentLocale);
 
 // Dynamically import all images for this apartment (webp, svg, jpg, png)
 const images = import.meta.glob('../../assets/images/**/*.{webp,svg,jpg,png}');

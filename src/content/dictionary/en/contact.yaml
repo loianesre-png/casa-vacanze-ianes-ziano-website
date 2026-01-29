@@ -1,0 +1,77 @@
+# =============================================================================
+# Contact Page Content (English)
+# =============================================================================
+# All text content for the contact page
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Page Header
+# -----------------------------------------------------------------------------
+page:
+  tagline: "Contact"
+  title: "Get in Touch!"
+  description: "Have questions or want to book? We're here to help."
+
+# -----------------------------------------------------------------------------
+# Contact Form
+# -----------------------------------------------------------------------------
+form:
+  title: "Write to Us!"
+  subtitle: "Fill out the form below"
+
+  fields:
+    name:
+      label: "Full Name"
+      placeholder: "John Smith"
+    email:
+      label: "Email"
+      placeholder: "john.smith@example.com"
+    phone:
+      label: "Phone"
+      placeholder: "+1 XXX XXX XXXX"
+    guests:
+      label: "Number of Guests"
+      placeholder: "2"
+    check_in:
+      label: "Check-in Date"
+      placeholder: "Select date"
+    check_out:
+      label: "Check-out Date"
+      placeholder: "Select date"
+    message:
+      label: "Special Requests"
+      placeholder: "Any special requests..."
+
+  submit: "Submit Request"
+  submitting: "Submitting..."
+
+# -----------------------------------------------------------------------------
+# Contact Info Section
+# -----------------------------------------------------------------------------
+info:
+  title: "Here's How to Find Us!"
+  items:
+    - icon: "email"
+      label: "Email"
+      value: "" # Pulled from config
+    - icon: "phone"
+      label: "Phone"
+      value: "" # Pulled from config
+    - icon: "location"
+      label: "Address"
+      value: "" # Pulled from config
+
+# -----------------------------------------------------------------------------
+# Messages
+# -----------------------------------------------------------------------------
+messages:
+  success: "Request sent successfully! We'll get back to you soon."
+  error: "Error sending request. Please try again later."
+  disabled: "The contact form is currently unavailable. Please contact us directly via email."
+
+# -----------------------------------------------------------------------------
+# SEO
+# -----------------------------------------------------------------------------
+seo:
+  title: "Contact"
+  description: "Contact us for information and bookings. We're available to answer all your questions."

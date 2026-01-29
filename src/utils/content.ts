@@ -21,14 +21,21 @@
 // Default locale - change this to set a different default language
 export const DEFAULT_LOCALE = 'it';
 
-// Supported locales (for future i18n)
-export const SUPPORTED_LOCALES = ['it'] as const;
+// Supported locales
+export const SUPPORTED_LOCALES = ['it', 'en', 'de'] as const;
 export type SupportedLocale = (typeof SUPPORTED_LOCALES)[number];
+
+// Language metadata for UI
+export const LANGUAGE_META: Record<SupportedLocale, { flag: string; label: string }> = {
+  it: { flag: '🇮🇹', label: 'Italiano' },
+  en: { flag: '🇬🇧', label: 'English' },
+  de: { flag: '🇩🇪', label: 'Deutsch' },
+};
 
 /**
  * Content sections that can be loaded
  */
-export type ContentSection = 'common' | 'homepage' | 'contact' | 'apartments';
+export type ContentSection = 'common' | 'homepage' | 'contact' | 'apartments' | 'services';
 
 /**
  * Cache for loaded content to avoid re-reading files
@@ -183,14 +190,22 @@ export function isLocaleSupported(locale: string): locale is SupportedLocale {
 }
 
 /**
- * Get the current locale from URL or default
- * This is a placeholder for future i18n routing
+ * Get the current locale from URL query parameter (?lang=xx) or path
+ * For static builds, uses ?lang=xx query parameter
+ * 
+ * @param url - The current URL
+ * @returns The detected locale or default
  */
 export function getCurrentLocale(url?: URL): SupportedLocale {
   if (!url) return DEFAULT_LOCALE;
 
-  // Future: Extract locale from URL path
-  // e.g., /en/about -> 'en'
+  // Check query parameter first (?lang=en)
+  const langParam = url.searchParams.get('lang');
+  if (langParam && isLocaleSupported(langParam)) {
+    return langParam;
+  }
+
+  // Check URL path (e.g., /en/about -> 'en')
   const pathSegments = url.pathname.split('/').filter(Boolean);
   const potentialLocale = pathSegments[0];
 
@@ -230,6 +245,10 @@ export interface CommonContent {
     comfort: string;
     testimonials: string;
     contact: string;
+    properties?: string;
+    quick_links?: string;
+    our_properties?: string;
+    amenities?: string;
   };
   labels: {
     guests: string;
@@ -249,6 +268,9 @@ export interface CommonContent {
     parking_included?: string;
     features?: string;
     amenities?: string;
+    capacity?: string;
+    guest_singular?: string;
+    guests_plural?: string;
   };
   form: Record<string, string>;
   placeholders: Record<string, string>;
@@ -262,6 +284,27 @@ export interface CommonContent {
     format: Record<string, string>;
   };
   misc: Record<string, string>;
+  legal?: {
+    cookies?: string;
+    privacy_policy?: string;
+    terms?: string;
+  };
+  accessibility?: {
+    previous?: string;
+    next?: string;
+    close?: string;
+    open_fullscreen?: string;
+    view_fullscreen?: string;
+    image_counter?: string;
+    play?: string;
+    stop?: string;
+    main_navigation?: string;
+    rss_feed?: string;
+  };
+  breadcrumbs?: {
+    home?: string;
+    apartments?: string;
+  };
 }
 
 /**
@@ -273,6 +316,7 @@ export interface HomepageContent {
     title: string;
     title_highlight: string;
     subtitle: string;
+    subtitle_secondary?: string;
     description: string;
     cta_primary: string;
     cta_secondary: string;
@@ -381,7 +425,11 @@ export interface ApartmentsContent {
     benefits: string;
   };
   sections: {
-    overview: { title: string };
+    overview: {
+      title: string;
+      apartment_view_alt?: string;
+      quick_comparison?: string;
+    };
     rooms: { title: string; subtitle: string };
     gallery: {
       title: string;
@@ -397,9 +445,30 @@ export interface ApartmentsContent {
       subtitle: string;
       core_services_title: string;
       premium_services_title: string;
+      default_title?: string;
+      default_subtitle?: string;
     };
     reviews: { title: string; subtitle: string };
-    benefits: { title: string; subtitle: string };
+    benefits: {
+      title: string;
+      subtitle: string;
+      main_title?: string;
+      main_subtitle?: string;
+      guest_card_included?: string;
+      guest_card_description?: string;
+      guest_card_banner?: string;
+      nearby_title?: string;
+      nearby_subtitle?: string;
+      nearby_description?: string;
+      ask_recommendations?: string;
+      privileged_position_title?: string;
+      privileged_position_description?: string;
+      location_features?: Array<{
+        icon?: string;
+        title: string;
+        description: string;
+      }>;
+    };
     cta: {
       title: string;
       description: string;
@@ -434,6 +503,13 @@ export interface ApartmentsContent {
     description: string;
     cta: string;
   };
+  recommendation_types?: {
+    attraction?: string;
+    restaurant?: string;
+    activity?: string;
+    transport?: string;
+    other?: string;
+  };
   testimonials?: {
     title?: string;
     subtitle?: string;
@@ -444,8 +520,57 @@ export interface ApartmentsContent {
   };
 }
 
-// Type-safe content getters
-export const getCommonContent = () => getContent<CommonContent>('common');
-export const getHomepageContent = () => getContent<HomepageContent>('homepage');
-export const getContactContent = () => getContent<ContactContent>('contact');
-export const getApartmentsContent = () => getContent<ApartmentsContent>('apartments');
+// Type-safe content getters (accept optional locale parameter)
+export const getCommonContent = (locale?: SupportedLocale) => getContent<CommonContent>('common', locale);
+export const getHomepageContent = (locale?: SupportedLocale) => getContent<HomepageContent>('homepage', locale);
+export const getContactContent = (locale?: SupportedLocale) => getContent<ContactContent>('contact', locale);
+export const getApartmentsContent = (locale?: SupportedLocale) => getContent<ApartmentsContent>('apartments', locale);
+export const getServicesContent = (locale?: SupportedLocale) => getContent<ServicesContent>('services', locale);
+
+/**
+ * Services content structure
+ */
+export interface ServiceItem {
+  key: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface GuestCardBenefit {
+  key: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface LocalRecommendation {
+  key: string;
+  name: string;
+  type: 'attraction' | 'restaurant' | 'activity' | 'transport' | 'other';
+  description: string;
+  distance?: string;
+}
+
+export interface HouseRule {
+  key: string;
+  title: string;
+  description: string;
+  icon?: string;
+}
+
+export interface PricingPeriod {
+  key: string;
+  name: string;
+  period: string;
+  description: string;
+}
+
+export interface ServicesContent {
+  core_services: ServiceItem[];
+  premium_services: ServiceItem[];
+  guest_card_benefits: GuestCardBenefit[];
+  local_recommendations: LocalRecommendation[];
+  house_rules: HouseRule[];
+  pricing_periods: PricingPeriod[];
+}

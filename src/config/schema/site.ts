@@ -143,6 +143,8 @@ export interface MapsConfig {
   apiKey?: string;
   /** Default zoom level */
   defaultZoom?: number;
+  /** Google Maps embed URL (if using Google) */
+  embedUrl?: string;
 }
 
 /**

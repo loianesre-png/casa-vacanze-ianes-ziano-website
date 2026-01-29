@@ -39,8 +39,8 @@ export interface Props {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light', mapEmbedUrl } = Astro.props;
 
-// Use provided Google Maps URL, or fall back to OSM
-const finalMapUrl = mapEmbedUrl || osmEmbedUrl;
+// Use provided Google Maps URL, config embed URL, or fall back to OSM
+const finalMapUrl = mapEmbedUrl || mapConfig.embedUrl || osmEmbedUrl;
 ---
 
 <footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-muted bg-card not-prose']}>

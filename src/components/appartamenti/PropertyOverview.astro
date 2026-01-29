@@ -6,6 +6,7 @@
  */
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import { getCommonContent, getApartmentsContent, getCurrentLocale } from '~/utils/content';
 
 interface Props {
   /** Main description of the apartment */
@@ -40,13 +41,18 @@ if (!imageModule) {
 
 const propertyImageModule = (await imageModule()) as { default: ImageMetadata };
 const propertyImageSrc = propertyImageModule.default;
+
+// Load translations with locale
+const currentLocale = getCurrentLocale(Astro.url);
+const common = await getCommonContent(currentLocale);
+const apartments = await getApartmentsContent(currentLocale);
 ---
 
 <section class="py-12 md:py-16 lg:py-24 bg-card">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Title -->
     <div class="text-center mb-12 md:mb-16">
-      <h2 class="font-heading text-3xl md:text-4xl font-medium text-foreground mb-4">L'appartamento</h2>
+      <h2 class="font-heading text-3xl md:text-4xl font-medium text-foreground mb-4">{apartments.sections?.overview?.title || "L'appartamento"}</h2>
       <div class="w-20 h-0.5 bg-primary mx-auto"></div>
     </div>
 
@@ -57,7 +63,7 @@ const propertyImageSrc = propertyImageModule.default;
         <div class="relative rounded overflow-hidden shadow-lg">
           <Image
             src={propertyImageSrc}
-            alt="Vista dell'appartamento"
+            alt={apartments.sections?.overview?.apartment_view_alt || "Vista dell'appartamento"}
             class="w-full h-full object-cover"
             widths={[400, 600, 800, 1000]}
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -92,8 +98,8 @@ const propertyImageSrc = propertyImageModule.default;
               </svg>
             </div>
             <div>
-              <h3 class="text-sm font-medium text-muted-foreground mb-1 uppercase tracking-wide">Capacità</h3>
-              <p class="text-lg font-medium text-foreground">{capacity} {capacity === 1 ? 'ospite' : 'ospiti'}</p>
+              <h3 class="text-sm font-medium text-muted-foreground mb-1 uppercase tracking-wide">{common.labels?.capacity || 'Capacità'}</h3>
+              <p class="text-lg font-medium text-foreground">{capacity} {capacity === 1 ? (common.labels?.guest_singular || 'ospite') : (common.labels?.guests_plural || 'ospiti')}</p>
             </div>
           </div>
 
@@ -110,7 +116,7 @@ const propertyImageSrc = propertyImageModule.default;
               </svg>
             </div>
             <div>
-              <h3 class="text-sm font-medium text-muted-foreground mb-1 uppercase tracking-wide">Superficie</h3>
+              <h3 class="text-sm font-medium text-muted-foreground mb-1 uppercase tracking-wide">{common.labels?.size || 'Superficie'}</h3>
               <p class="text-lg font-medium text-foreground">{size} {sizeLabel}</p>
             </div>
           </div>
@@ -128,7 +134,7 @@ const propertyImageSrc = propertyImageModule.default;
               </svg>
             </div>
             <div>
-              <h3 class="text-sm font-medium text-muted-foreground mb-1 uppercase tracking-wide">Camere</h3>
+              <h3 class="text-sm font-medium text-muted-foreground mb-1 uppercase tracking-wide">{common.labels?.bedrooms || 'Camere'}</h3>
               <p class="text-lg font-medium text-foreground">{bedrooms}</p>
             </div>
           </div>
@@ -145,7 +151,7 @@ const propertyImageSrc = propertyImageModule.default;
               </svg>
             </div>
             <div>
-              <h3 class="text-sm font-medium text-muted-foreground mb-1 uppercase tracking-wide">Bagni</h3>
+              <h3 class="text-sm font-medium text-muted-foreground mb-1 uppercase tracking-wide">{common.labels?.bathrooms || 'Bagni'}</h3>
               <p class="text-lg font-medium text-foreground">{bathrooms}</p>
             </div>
           </div>

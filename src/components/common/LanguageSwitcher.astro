@@ -1,0 +1,84 @@
+---
+/**
+ * LanguageSwitcher Component
+ * ==========================
+ * Displays flag buttons for switching between supported languages.
+ * Uses localStorage to persist the selected language and reloads the page on change.
+ */
+import { SUPPORTED_LOCALES, LANGUAGE_META, DEFAULT_LOCALE } from '~/utils/content';
+import type { SupportedLocale } from '~/utils/content';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={['language-switcher flex items-center gap-0.5', className]}>
+  {SUPPORTED_LOCALES.map((code) => {
+    const { flag, label } = LANGUAGE_META[code as SupportedLocale];
+    return (
+      <button
+        type="button"
+        data-lang={code}
+        class="lang-btn px-1.5 py-1 text-lg hover:opacity-100 transition-opacity rounded hover:bg-secondary/50"
+        aria-label={label}
+        title={label}
+      >
+        {flag}
+      </button>
+    );
+  })}
+</div>
+
+<script define:vars={{ DEFAULT_LOCALE }}>
+  // Initialize language switcher
+  function initLanguageSwitcher() {
+    const STORAGE_KEY = 'preferred-locale';
+    const currentLocale = localStorage.getItem(STORAGE_KEY) || DEFAULT_LOCALE;
+    
+    // Update button states
+    document.querySelectorAll('.lang-btn').forEach((btn) => {
+      const lang = btn.getAttribute('data-lang');
+      if (lang === currentLocale) {
+        btn.classList.remove('opacity-50');
+        btn.classList.add('ring-2', 'ring-primary/50', 'bg-secondary/30');
+      } else {
+        btn.classList.add('opacity-50');
+        btn.classList.remove('ring-2', 'ring-primary/50', 'bg-secondary/30');
+      }
+    });
+    
+    // Add click handlers (clone to remove old listeners)
+    document.querySelectorAll('.lang-btn').forEach((btn) => {
+      const newBtn = btn.cloneNode(true);
+      btn.parentNode?.replaceChild(newBtn, btn);
+      
+      newBtn.addEventListener('click', () => {
+        const newLocale = newBtn.getAttribute('data-lang');
+        if (newLocale && newLocale !== currentLocale) {
+          // Save preference
+          localStorage.setItem(STORAGE_KEY, newLocale);
+          
+          // Build new URL with lang parameter
+          const url = new URL(window.location.href);
+          if (newLocale === DEFAULT_LOCALE) {
+            url.searchParams.delete('lang');
+          } else {
+            url.searchParams.set('lang', newLocale);
+          }
+          
+          // Navigate to new URL
+          window.location.href = url.href;
+        }
+      });
+    });
+  }
+  
+  // Run on initial load
+  initLanguageSwitcher();
+  
+  // Re-run after Astro page transitions (View Transitions API)
+  document.addEventListener('astro:after-swap', initLanguageSwitcher);
+</script>

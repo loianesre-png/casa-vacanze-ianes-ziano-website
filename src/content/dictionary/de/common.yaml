@@ -1,0 +1,152 @@
+# =============================================================================
+# Common UI Text (German)
+# =============================================================================
+# Shared text elements used across multiple components
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Buttons
+# -----------------------------------------------------------------------------
+buttons:
+  contact: "Kontakt"
+  book_now: "Jetzt buchen"
+  learn_more: "Mehr erfahren"
+  view_all: "Alle anzeigen"
+  send: "Senden"
+  submit: "Anfrage senden"
+  submitting: "Wird gesendet..."
+  back: "Zurück"
+  close: "Schließen"
+  discover: "Entdecken"
+  explore: "Erkunden"
+
+# -----------------------------------------------------------------------------
+# Navigation
+# -----------------------------------------------------------------------------
+navigation:
+  home: "Startseite"
+  about: "Über uns"
+  apartments: "Wohnungen"
+  all_apartments: "Alle Wohnungen"
+  comfort: "Ausstattung"
+  testimonials: "Bewertungen"
+  contact: "Kontakt"
+  properties: "Unterkünfte"
+  quick_links: "Schnelllinks"
+  our_properties: "Unsere Wohnungen"
+  amenities: "Annehmlichkeiten"
+
+# -----------------------------------------------------------------------------
+# Labels
+# -----------------------------------------------------------------------------
+labels:
+  guests: "Gäste"
+  bedrooms: "Schlafzimmer"
+  bathrooms: "Badezimmer"
+  size: "Größe"
+  sqm: "m²"
+  sqft: "sq ft"
+  from: "ab"
+  per_night: "pro Nacht"
+  check_in: "Check-in"
+  check_out: "Check-out"
+  min_stay: "Mindestaufenthalt"
+  nights: "Nächte"
+  wifi_included: "WLAN inklusive"
+  ideal_for: "Ideal für"
+  parking_included: "Parkplatz inklusive"
+  features: "Merkmale"
+  amenities: "Ausstattung"
+  capacity: "Kapazität"
+  guest_singular: "Gast"
+  guests_plural: "Gäste"
+
+# -----------------------------------------------------------------------------
+# Form Labels
+# -----------------------------------------------------------------------------
+form:
+  name: "Vollständiger Name"
+  email: "E-Mail"
+  phone: "Telefon"
+  guests_count: "Anzahl der Gäste"
+  check_in_date: "Check-in Datum"
+  check_out_date: "Check-out Datum"
+  message: "Nachricht"
+  special_requests: "Besondere Wünsche"
+  select_date: "Datum auswählen"
+
+# -----------------------------------------------------------------------------
+# Form Placeholders
+# -----------------------------------------------------------------------------
+placeholders:
+  name: "Max Mustermann"
+  email: "max.mustermann@beispiel.de"
+  phone: "+49 XXX XXX XXXX"
+  guests: "2"
+  message: "Besondere Wünsche..."
+
+# -----------------------------------------------------------------------------
+# Messages
+# -----------------------------------------------------------------------------
+messages:
+  success:
+    form_sent: "Anfrage erfolgreich gesendet!"
+    booking_confirmed: "Buchung bestätigt!"
+  error:
+    generic: "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut."
+    form_error: "Fehler beim Senden der Anfrage"
+    required_field: "Dieses Feld ist erforderlich"
+    invalid_email: "Bitte geben Sie eine gültige E-Mail-Adresse ein"
+    invalid_date: "Bitte wählen Sie ein gültiges Datum"
+  info:
+    form_disabled: "Das Kontaktformular ist derzeit nicht verfügbar. Bitte kontaktieren Sie uns direkt per E-Mail."
+
+# -----------------------------------------------------------------------------
+# Date Formats
+# -----------------------------------------------------------------------------
+date:
+  locale: "de-DE"
+  format:
+    short: "DD.MM.YYYY"
+    long: "dddd, D. MMMM YYYY"
+    month_year: "MMMM YYYY"
+
+# -----------------------------------------------------------------------------
+# Misc
+# -----------------------------------------------------------------------------
+misc:
+  scroll_to_discover: "Scrollen zum Entdecken"
+  all_rights_reserved: "Alle Rechte vorbehalten"
+  cin_codes_label: "CIN-Codes"
+  loading: "Wird geladen..."
+  no_results: "Keine Ergebnisse"
+
+# -----------------------------------------------------------------------------
+# Legal
+# -----------------------------------------------------------------------------
+legal:
+  cookies: "Cookies"
+  privacy_policy: "Datenschutz"
+  terms: "Allgemeine Geschäftsbedingungen"
+
+# -----------------------------------------------------------------------------
+# Accessibility Labels
+# -----------------------------------------------------------------------------
+accessibility:
+  previous: "Zurück"
+  next: "Weiter"
+  close: "Schließen"
+  open_fullscreen: "Vollbild öffnen"
+  view_fullscreen: "Vollbild anzeigen"
+  image_counter: "von"
+  play: "Abspielen"
+  stop: "Stoppen"
+  main_navigation: "Hauptnavigation"
+  rss_feed: "RSS-Feed"
+
+# -----------------------------------------------------------------------------
+# Breadcrumbs
+# -----------------------------------------------------------------------------
+breadcrumbs:
+  home: "Startseite"
+  apartments: "Wohnungen"

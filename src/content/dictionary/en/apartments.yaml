@@ -1,0 +1,184 @@
+# =============================================================================
+# Apartments/Properties Content (English)
+# =============================================================================
+# Text content for apartment pages and property-related sections
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Common Property Labels
+# -----------------------------------------------------------------------------
+labels:
+  guests: "Guests"
+  bedrooms: "Bedrooms"
+  bathrooms: "Bathrooms"
+  size: "Size"
+  sqm: "m²"
+  features: "Features"
+  amenities: "Amenities"
+  ideal_for: "Ideal for"
+  rooms: "Rooms"
+  gallery: "Photo Gallery"
+  reviews: "Reviews"
+  benefits: "Benefits"
+
+# -----------------------------------------------------------------------------
+# Property Page Sections
+# -----------------------------------------------------------------------------
+sections:
+  overview:
+    title: "The Apartment"
+    apartment_view_alt: "Apartment view"
+    quick_comparison: "Quick comparison"
+  rooms:
+    title: "Apartment Rooms"
+    subtitle: "Discover each space"
+  gallery:
+    title: "Photo Gallery"
+    subtitle: "Explore the spaces and amenities of the apartment through our photos"
+    photo_label: "Photo"
+    photos_label: "photos"
+    available_label: "available"
+    fullscreen_hint: "Click the expand icon to view fullscreen"
+    no_images: "No images available"
+  services:
+    title: "Included Services"
+    subtitle: "All the comfort you need"
+    core_services_title: "Core Services"
+    premium_services_title: "Premium Services"
+    default_title: "Our Services"
+    default_subtitle: "Discover everything we've prepared to make your experience special"
+  reviews:
+    title: "What Our Guests Say"
+    subtitle: "Verified reviews"
+  benefits:
+    title: "Exclusive Benefits"
+    subtitle: "Trentino Guest Card included"
+    main_title: "Our partnerships and recommendations"
+    main_subtitle: "Take advantage of exclusive benefits and discover the wonders of Trentino"
+    guest_card_included: "Included with your stay"
+    guest_card_description: "During your stay, you will receive the Trentino Guest Card, which allows you free or reduced access to numerous activities, museums, public transport, and ski lifts throughout Trentino."
+    guest_card_banner: "The Guest Card is included free of charge in all our apartments"
+    nearby_title: "Surroundings and Attractions"
+    nearby_subtitle: "What to visit nearby"
+    nearby_description: "Nestled in the heart of the Trentino Dolomites, our apartment is the ideal starting point to explore Val di Fiemme and its wonders."
+    ask_recommendations: "Ask for personalized recommendations"
+    privileged_position_title: "Privileged Location"
+    privileged_position_description: "Our apartment enjoys a strategic position that allows you to experience the best of Trentino."
+    location_features:
+      - icon: "🌿"
+        title: "Relaxation and Walks"
+        description: "Enjoy peaceful walks immersed in nature."
+      - icon: "⛷️"
+        title: "Winter Sports"
+        description: "Ski slopes and lifts just minutes away."
+      - icon: "🚴"
+        title: "Cycling"
+        description: "Cycling paths for all levels."
+      - icon: "🏔️"
+        title: "Hiking"
+        description: "Panoramic trails in the Dolomites."
+      - icon: "🍷"
+        title: "Food and Wine"
+        description: "Wineries and typical Trentino restaurants."
+      - icon: "♨️"
+        title: "Wellness"
+        description: "Spas and wellness centers nearby."
+  cta:
+    title: "Book {name}"
+    description: "Have you found the perfect apartment for your stay? Contact us to check availability and receive a personalized quote."
+    button: "Check availability"
+    email_button: "Send an email"
+    email_subject: "Information request for {name}"
+    features:
+      response_title: "Quick Response"
+      response_subtitle: "Within 24 hours"
+      checkin_title: "Flexible Check-in"
+      checkin_subtitle: "From 4:00 PM"
+      price_title: "Best Price Guaranteed"
+      price_subtitle: "Direct booking"
+
+# -----------------------------------------------------------------------------
+# Rooms Section (for property pages)
+# -----------------------------------------------------------------------------
+rooms_section:
+  title: "Apartment Spaces"
+  subtitle: "Discover each space in detail, designed to offer you comfort and functionality"
+
+# -----------------------------------------------------------------------------
+# Property Card
+# -----------------------------------------------------------------------------
+card:
+  view_details: "Learn More"
+  starting_from: "starting from"
+  per_night: "per night"
+
+# -----------------------------------------------------------------------------
+# Comparison Table
+# -----------------------------------------------------------------------------
+comparison:
+  title: "Compare Apartments"
+  headers:
+    property: "Apartment"
+    guests: "Guests"
+    bedrooms: "Bedrooms"
+    bathrooms: "Bathrooms"
+    size: "Size"
+
+# -----------------------------------------------------------------------------
+# Trentino Guest Card
+# -----------------------------------------------------------------------------
+guest_card:
+  title: "Trentino Guest Card"
+  description: "All our guests receive the Trentino Guest Card for free, which offers free or discounted access to museums, public transport, and activities throughout Trentino."
+  cta: "Discover the benefits"
+
+# -----------------------------------------------------------------------------
+# Recommendation Types
+# -----------------------------------------------------------------------------
+recommendation_types:
+  attraction: "Attraction"
+  restaurant: "Restaurant"
+  activity: "Activity"
+  transport: "Transport"
+  other: "Service"
+
+# -----------------------------------------------------------------------------
+# Local Recommendations
+# -----------------------------------------------------------------------------
+recommendations:
+  title: "Things to Do Nearby"
+  subtitle: "Discover local attractions"
+  distance_label: "Distance"
+
+# -----------------------------------------------------------------------------
+# House Rules
+# -----------------------------------------------------------------------------
+house_rules:
+  title: "House Rules"
+  subtitle: "Important information for your stay"
+  rules:
+    check_in: "Check-in from 4:00 PM"
+    check_out: "Check-out by 10:00 AM"
+    min_age: "Minimum rental age: 22 years"
+    no_pets: "Pets are not allowed"
+    no_smoking: "Smoking is not permitted"
+    no_events: "Events are not allowed"
+    tourist_tax: "Tourist tax: €1.50 per person/night (max 10 nights, under 14 exempt)"
+
+# -----------------------------------------------------------------------------
+# Nearby Attractions
+# -----------------------------------------------------------------------------
+nearby:
+  title: "What's Nearby"
+  subtitle: "Discover the attractions of Val di Fiemme"
+  attractions:
+    - name: "Ziano di Fiemme, Mosenè district - Val di Fiemme"
+      distance: "1 min walk"
+    - name: "Bici Kart Park Panchià"
+      distance: "2 min drive"
+    - name: "Dolomites"
+      distance: "3 min drive"
+    - name: "QC Terme Dolomiti"
+      distance: "26 min drive"
+    - name: "Lake Caldaro"
+      distance: "45 min drive"

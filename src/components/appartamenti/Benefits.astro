@@ -5,6 +5,13 @@
  */
 import { Icon } from 'astro-icon/components';
 import { trentinoGuestCardBenefits, localRecommendations } from '~/data/services';
+import { getApartmentsContent, getServicesContent, getCurrentLocale } from '~/utils/content';
+
+const currentLocale = getCurrentLocale(Astro.url);
+const apartments = await getApartmentsContent(currentLocale);
+const services = await getServicesContent(currentLocale);
+const benefits = apartments.sections?.benefits;
+const recommendationTypes = apartments.recommendation_types;
 ---
 
 <section class="py-12 md:py-16 lg:py-24 bg-gradient-to-br from-background via-card to-secondary">
@@ -12,10 +19,10 @@ import { trentinoGuestCardBenefits, localRecommendations } from '~/data/services
     <!-- Section Header -->
     <div class="text-center mb-12 md:mb-16">
       <h2 class="font-heading text-3xl md:text-4xl font-medium text-foreground mb-4">
-        Le nostre convenzioni e consigli
+        {benefits?.main_title || 'Le nostre convenzioni e consigli'}
       </h2>
       <p class="text-lg text-muted-foreground max-w-3xl mx-auto">
-        Approfitta dei vantaggi esclusivi e scopri le meraviglie del Trentino
+        {benefits?.main_subtitle || 'Approfitta dei vantaggi esclusivi e scopri le meraviglie del Trentino'}
       </p>
       <div class="w-20 h-0.5 bg-primary mx-auto mt-4"></div>
     </div>
@@ -28,14 +35,13 @@ import { trentinoGuestCardBenefits, localRecommendations } from '~/data/services
             <Icon name="tabler:ticket" class="w-10 h-10 text-foreground" />
           </div>
           <div>
-            <h3 class="font-heading text-2xl font-medium text-foreground">Trentino Guest Card</h3>
-            <p class="text-muted-foreground">Inclusa nel soggiorno</p>
+            <h3 class="font-heading text-2xl font-medium text-foreground">{apartments.guest_card?.title || 'Trentino Guest Card'}</h3>
+            <p class="text-muted-foreground">{benefits?.guest_card_included || 'Inclusa nel soggiorno'}</p>
           </div>
         </div>
 
         <p class="text-muted-foreground mb-6 leading-relaxed">
-          Durante il tuo soggiorno riceverai la Trentino Guest Card, una carta che ti permette di accedere gratuitamente
-          o con sconti esclusivi a decine di servizi e attrazioni in tutta la regione.
+          {benefits?.guest_card_description || 'Durante il tuo soggiorno riceverai la Trentino Guest Card, una carta che ti permette di accedere gratuitamente o con sconti esclusivi a decine di servizi e attrazioni in tutta la regione.'}
         </p>
 
         <!-- Benefits List -->
@@ -59,7 +65,7 @@ import { trentinoGuestCardBenefits, localRecommendations } from '~/data/services
 
         <div class="mt-6 p-4 bg-gradient-to-r from-muted-foreground to-foreground rounded text-white text-center">
           <p class="text-sm font-medium">
-            💎 La Guest Card è inclusa gratuitamente in tutti i nostri appartamenti
+            💎 {benefits?.guest_card_banner || 'La Guest Card è inclusa gratuitamente in tutti i nostri appartamenti'}
           </p>
         </div>
       </div>
@@ -71,14 +77,13 @@ import { trentinoGuestCardBenefits, localRecommendations } from '~/data/services
             <Icon name="tabler:map-pin" class="w-10 h-10 text-white" />
           </div>
           <div>
-            <h3 class="font-heading text-2xl font-medium text-foreground">Dintorni e attrazioni</h3>
-            <p class="text-muted-foreground">Cosa visitare nei dintorni</p>
+            <h3 class="font-heading text-2xl font-medium text-foreground">{benefits?.nearby_title || 'Dintorni e attrazioni'}</h3>
+            <p class="text-muted-foreground">{benefits?.nearby_subtitle || 'Cosa visitare nei dintorni'}</p>
           </div>
         </div>
 
         <p class="text-muted-foreground mb-6 leading-relaxed">
-          Villazzano offre una posizione strategica per esplorare il meglio del Trentino, dal centro storico di Trento
-          alle montagne circostanti.
+          {benefits?.nearby_description || "Immerso nel cuore pulsante delle Dolomiti, il nostro appartamento a piano terra a Ziano di Fiemme – frazione Mosenè, offre una posizione privilegiata che unisce il fascino della montagna a un'infinità di esperienze a portata di mano."}
         </p>
 
         <!-- Recommendations List -->
@@ -105,11 +110,11 @@ import { trentinoGuestCardBenefits, localRecommendations } from '~/data/services
                     <span
                       class={`inline-block px-2 py-0.5 rounded text-xs font-medium mb-2 ${typeColors[recommendation.type]}`}
                     >
-                      {recommendation.type === 'attraction' && 'Attrazione'}
-                      {recommendation.type === 'restaurant' && 'Ristorante'}
-                      {recommendation.type === 'activity' && 'Attività'}
-                      {recommendation.type === 'transport' && 'Trasporti'}
-                      {recommendation.type === 'other' && 'Servizio'}
+                      {recommendation.type === 'attraction' && (recommendationTypes?.attraction || 'Attrazione')}
+                      {recommendation.type === 'restaurant' && (recommendationTypes?.restaurant || 'Ristorante')}
+                      {recommendation.type === 'activity' && (recommendationTypes?.activity || 'Attività')}
+                      {recommendation.type === 'transport' && (recommendationTypes?.transport || 'Trasporti')}
+                      {recommendation.type === 'other' && (recommendationTypes?.other || 'Servizio')}
                     </span>
                     <p class="text-sm text-muted-foreground leading-relaxed">{recommendation.description}</p>
                   </div>
@@ -124,7 +129,7 @@ import { trentinoGuestCardBenefits, localRecommendations } from '~/data/services
             href="/#contact"
             class="inline-flex items-center gap-2 text-primary hover:text-accent font-medium transition-all duration-400"
           >
-            <span>Chiedi consigli personalizzati</span>
+            <span>{benefits?.ask_recommendations || 'Chiedi consigli personalizzati'}</span>
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
@@ -134,12 +139,48 @@ import { trentinoGuestCardBenefits, localRecommendations } from '~/data/services
     </div>
 
     <!-- Additional Info Banner -->
-    <div class="mt-12 bg-gradient-to-r from-muted-foreground to-foreground rounded p-8 text-white text-center shadow-lg">
-      <h3 class="font-heading text-2xl md:text-3xl font-medium mb-3">Posizione strategica</h3>
-      <p class="text-lg max-w-3xl mx-auto leading-relaxed opacity-90">
-        A soli 5 km dal centro di Trento, immersi nella natura ma vicini a tutti i servizi.
-        Raggiungibili in auto: Lago di Garda (35 km), Madonna di Campiglio (60 km), Dolomiti di Brenta (60 km).
+    <div class="mt-12 bg-gradient-to-r from-muted-foreground to-foreground rounded p-8 text-white shadow-lg">
+      <h3 class="font-heading text-2xl md:text-3xl font-medium mb-4">{benefits?.privileged_position_title || 'Posizione Privilegiata'}</h3>
+      <p class="text-lg max-w-4xl mx-auto leading-relaxed opacity-90 mb-6">
+        {benefits?.privileged_position_description || "Immerso nel cuore pulsante delle Dolomiti, il nostro appartamento a piano terra a Ziano di Fiemme – frazione Mosenè, offre una posizione privilegiata che unisce il fascino della montagna a un'infinità di esperienze a portata di mano. Più che un semplice alloggio, è il vostro punto di partenza ideale per un'avventura a 360 gradi."}
       </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm opacity-90">
+        {benefits?.location_features && benefits.location_features.length > 0 ? (
+          benefits.location_features.map((feature) => (
+            <div class="bg-white/10 rounded p-4">
+              <h4 class="font-medium mb-2">{feature.icon} {feature.title}</h4>
+              <p>{feature.description}</p>
+            </div>
+          ))
+        ) : (
+          <>
+            <div class="bg-white/10 rounded p-4">
+              <h4 class="font-medium mb-2">🌿 Relax e Passeggiate</h4>
+              <p>Godetevi piacevoli e tranquille passeggiate direttamente partendo da casa, verso il paese o sui pendii soprastanti o verso Predazzo, immergendovi nell'atmosfera autentica della valle.</p>
+            </div>
+            <div class="bg-white/10 rounded p-4">
+              <h4 class="font-medium mb-2">🌲 Paradiso Naturale</h4>
+              <p>Siete a un passo dal maestoso Parco Naturale di Paneveggio - Pale di San Martino, una riserva di biodiversità dove la natura regna sovrana e i cervi sono di casa.</p>
+            </div>
+            <div class="bg-white/10 rounded p-4">
+              <h4 class="font-medium mb-2">🗺️ Territorio Senza Confini</h4>
+              <p>Esplorate la Val di Fassa, il Passo San Pellegrino o il Torrente Travignolo. Tutta la Val di Fiemme fino al panoramico Passo Lavazzè.</p>
+            </div>
+            <div class="bg-white/10 rounded p-4">
+              <h4 class="font-medium mb-2">⛰️ Paradiso per Alpinisti</h4>
+              <p>Raggiungete Latemar, Catinaccio, Sella, Sassolungo, Marmolada, Monzoni e il selvaggio Lagorai, visibile ogni mattina dalla finestra della vostra camera.</p>
+            </div>
+            <div class="bg-white/10 rounded p-4">
+              <h4 class="font-medium mb-2">🇦🇹 Oltre il Confine</h4>
+              <p>Concedetevi un'escursione "fuori porta" per un rapido assaggio di Alto Adige/Südtirol: Aldino, Trodena e Nova Ponente.</p>
+            </div>
+            <div class="bg-white/10 rounded p-4">
+              <h4 class="font-medium mb-2">❤️ Ogni Giorno un'Avventura</h4>
+              <p>Qui, ogni giorno è un invito a esplorare, rilassarsi e innamorarsi delle Dolomiti, in una posizione che rende tutto incredibilmente vicino.</p>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   </div>
 </section>

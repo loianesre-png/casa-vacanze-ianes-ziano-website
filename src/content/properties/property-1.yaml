@@ -14,38 +14,39 @@ published: true
 order: 1
 
 name: "Casa Vacanze Ianes"
-subtitle: "Il tuo rifugio di pace nelle Dolomiti trentine"
+subtitle: "Il tuo rifugio di pace nel cuore delle Dolomiti Trentine"
 
 description: >
-  Splendido ed accogliente appartamento in villetta indipendente degli anni '70,
+  Splendido ed accogliente appartamento a piano terra in villetta indipendente degli anni '70,
   ristrutturata con gusto nei primi anni 2000 con impianto di riscaldamento ad aria
-  per un rapido comfort. Posizionata in alto rispetto alla valle, in località Mosenè
+  per un rapido comfort, con possibilità di controllo remoto da App. Posizionata in alto rispetto alla valle, in località Mosenè
   – la più soleggiata – è rivolta a sud, circondata dal verde e baciata dal sole
   dall'alba al tramonto anche nei mesi invernali, con panorama mozzafiato sulla
   prospicente catena del Lagorai.
 
-  All'esterno vi attende un ampio prato privato, ideale per far giocare i bambini
-  o semplicemente per rilassarsi al sole, leggere un libro o godersi una colazione
+  All'esterno vi attende un ampio prato privato di oltre 2000mq, ideale per far giocare i bambini
+  o semplicemente per rilassarvi al sole, leggere un libro o godervi una colazione
   od un pranzo tra i monti all'ombra di un grande faggio rosso ultracinquantennale.
   Pace e tranquillità qui sono di casa e potrete apprezzare il profondo silenzio
   della notte rotto, in estate, solo dal frinire dei grilli.
 
-shortDescription: "Appartamento accogliente con vista mozzafiato sul Lagorai e ampio prato privato"
+shortDescription: "Appartamento a piano terra accogliente con vista mozzafiato sul Lagorai e ampio prato privato"
 
 # -----------------------------------------------------------------------------
 # Capacity & Size
 # -----------------------------------------------------------------------------
 capacity:
-  guests: 5
+  guests: 4
   bedrooms: "2 camere da letto"
   bathrooms: "1 bagno con doccia"
   beds:
     double: 1
     single: 2  # Letto a castello
     sofa: 1
+    baby_cot: 1  # Lettino bimbo disponibile
 
 size:
-  value: 70
+  value: 65
   unit: sqm
 
 # -----------------------------------------------------------------------------
@@ -196,7 +197,7 @@ location:
   country: "Italia"
 
 nearby:
-  - name: "Val di Fiemme"
+  - name: "Ziano di Fiemme, frazione Mosenè - Val di Fiemme"
     distance: "1 min a piedi"
   - name: "Parco Bici kart Panchià"
     distance: "2 min in auto"
@@ -211,5 +212,5 @@ nearby:
 # SEO
 # -----------------------------------------------------------------------------
 seo:
-  title: "Casa Vacanze Ianes - Appartamento nelle Dolomiti Trentine"
-  description: "Appartamento vacanze a Ziano di Fiemme con vista sul Lagorai. 5 posti letto, 2 camere, prato privato e barbecue. Il tuo rifugio di pace in Val di Fiemme."
+  title: "Casa Vacanze Ianes - Appartamento a piano terra nelle Dolomiti Trentine"
+  description: "Appartamento vacanze a piano terra a Ziano di Fiemme con vista sul Lagorai. 4 posti letto + lettino bimbo, 2 camere, prato privato e barbecue. Il tuo rifugio di pace in Val di Fiemme."

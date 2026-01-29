@@ -1,5 +1,11 @@
 ---
 // Responsive ImageCarousel.astro with srcset support
+import { getCommonContent, getCurrentLocale } from '~/utils/content';
+
+const currentLocale = getCurrentLocale(Astro.url);
+const common = await getCommonContent(currentLocale);
+const a11y = common.accessibility;
+
 interface ImageItem {
   src: string;
   srcset?: string;
@@ -17,6 +23,18 @@ interface Props {
 }
 
 const { images } = Astro.props;
+
+// Accessibility labels from dictionary
+const labels = {
+  previous: a11y?.previous || 'Previous',
+  next: a11y?.next || 'Next',
+  close: a11y?.close || 'Close',
+  openFullscreen: a11y?.open_fullscreen || 'Open larger view',
+  viewFullscreen: a11y?.view_fullscreen || 'View fullscreen',
+  imageCounter: a11y?.image_counter || 'of',
+  play: a11y?.play || 'Play',
+  stop: a11y?.stop || 'Stop',
+};
 
 // Process image sources - now includes srcset
 const safeImages = images.map((img, index) => ({
@@ -325,8 +343,8 @@ const safeImages = images.map((img, index) => ({
       <button
         @click="openModal"
         class="absolute top-2 right-2 bg-primary/90 hover:bg-primary text-foreground p-2 rounded transition-all duration-400 z-10 pointer-events-auto hover:scale-110"
-        aria-label="Open larger view"
-        title="View fullscreen"
+        aria-label={labels.openFullscreen}
+        title={labels.viewFullscreen}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M16 4l4 0l0 4"></path>
@@ -338,12 +356,12 @@ const safeImages = images.map((img, index) => ({
 
       <template x-if="images.length > 1">
         <div class="flex justify-between w-full px-2 pointer-events-auto">
-          <button @click="prev" class="bg-muted-foreground/80 hover:bg-primary text-white hover:text-foreground p-2 rounded transition-all duration-400 hover:scale-110 group" aria-label="Previous">
+          <button @click="prev" class="bg-muted-foreground/80 hover:bg-primary text-white hover:text-foreground p-2 rounded transition-all duration-400 hover:scale-110 group" aria-label={labels.previous}>
             <svg class="h-6 w-6 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
           </button>
-          <button @click="next" class="bg-muted-foreground/80 hover:bg-primary text-white hover:text-foreground p-2 rounded transition-all duration-400 hover:scale-110 group" aria-label="Next">
+          <button @click="next" class="bg-muted-foreground/80 hover:bg-primary text-white hover:text-foreground p-2 rounded transition-all duration-400 hover:scale-110 group" aria-label={labels.next}>
             <svg class="h-6 w-6 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
@@ -386,7 +404,7 @@ const safeImages = images.map((img, index) => ({
         <div class="relative w-full max-w-6xl">
           <div class="absolute top-4 right-4 flex gap-2 z-20">
             <template x-if="images.length > 1">
-              <button @click="toggleAutoplay" class="bg-muted-foreground/80 hover:bg-primary text-white hover:text-foreground p-2 rounded transition-all duration-400" :aria-label="autoplayEnabled ? 'Stop' : 'Play'">
+              <button @click="toggleAutoplay" class="bg-muted-foreground/80 hover:bg-primary text-white hover:text-foreground p-2 rounded transition-all duration-400" :aria-label={`"autoplayEnabled ? '${labels.stop}' : '${labels.play}'"`}>
                 <svg x-show="!autoplayEnabled" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -396,7 +414,7 @@ const safeImages = images.map((img, index) => ({
                 </svg>
               </button>
             </template>
-            <button @click="closeModal" class="bg-muted-foreground/80 hover:bg-primary text-white hover:text-foreground p-2 rounded transition-all duration-400" aria-label="Close">
+            <button @click="closeModal" class="bg-muted-foreground/80 hover:bg-primary text-white hover:text-foreground p-2 rounded transition-all duration-400" aria-label={labels.close}>
               <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
               </svg>
@@ -424,12 +442,12 @@ const safeImages = images.map((img, index) => ({
 
             <template x-if="images.length > 1">
               <div class="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 pointer-events-none">
-                <button @click="prev" class="bg-muted-foreground/80 hover:bg-primary text-white hover:text-foreground p-4 rounded transition-all duration-400 pointer-events-auto" aria-label="Previous">
+                <button @click="prev" class="bg-muted-foreground/80 hover:bg-primary text-white hover:text-foreground p-4 rounded transition-all duration-400 pointer-events-auto" aria-label={labels.previous}>
                   <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                   </svg>
                 </button>
-                <button @click="next" class="bg-muted-foreground/80 hover:bg-primary text-white hover:text-foreground p-4 rounded transition-all duration-400 pointer-events-auto" aria-label="Next">
+                <button @click="next" class="bg-muted-foreground/80 hover:bg-primary text-white hover:text-foreground p-4 rounded transition-all duration-400 pointer-events-auto" aria-label={labels.next}>
                   <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                   </svg>
@@ -443,7 +461,7 @@ const safeImages = images.map((img, index) => ({
                   <div class="h-full bg-primary transition-all duration-500" :style="`width: ${((currentIndex + 1) / images.length) * 100}%`"></div>
                 </div>
                 <div class="bg-muted-foreground/80 text-white px-3 py-2 rounded text-sm backdrop-blur-sm font-medium">
-                  <span x-text="currentIndex + 1"></span> of <span x-text="images.length"></span>
+                  <span x-text="currentIndex + 1"></span> {labels.imageCounter} <span x-text="images.length"></span>
                 </div>
               </div>
             </template>

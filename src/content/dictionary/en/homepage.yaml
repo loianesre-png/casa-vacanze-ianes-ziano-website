@@ -1,0 +1,114 @@
+# =============================================================================
+# Homepage Content - Casa Vacanze Ianes
+# =============================================================================
+# All text content for the homepage
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Hero Section
+# -----------------------------------------------------------------------------
+hero:
+  badge: "Trentino Dolomites"
+
+  title: "Welcome to"
+  title_highlight: "Casa Vacanze Ianes"
+
+  subtitle: "Your peaceful retreat in the heart of the Trentino Dolomites"
+  subtitle_secondary: "at the center of the Milano-Cortina 2026 Winter Olympics venues"
+
+  description: >
+    Beautiful ground floor apartment in the Mosenè area, the sunniest in the valley,
+    with breathtaking views of the Lagorai mountain range. Surrounded by greenery,
+    kissed by the sun from dawn to dusk, perfect for those seeking tranquility
+    and plenty of outdoor space.
+
+  cta_primary: "Discover the apartment"
+  cta_secondary: "Contact Us"
+
+  features:
+    - title: "Ziano di Fiemme, Mosenè district - Val di Fiemme"
+      subtitle: "Steps from the Dolomites"
+      icon: "location"
+    - title: "4 Beds + baby cot"
+      subtitle: "Ideal for families"
+      icon: "check"
+    - title: "Flexible Check-in"
+      subtitle: "From 4:00 PM"
+      icon: "clock"
+
+  scroll_text: "Scroll to discover"
+
+  image_alt: "Exterior view of Casa Vacanze Ianes with the Dolomites in the background"
+
+# -----------------------------------------------------------------------------
+# About Section
+# -----------------------------------------------------------------------------
+about:
+  section_id: "about"
+  title: "Your retreat between nature and comfort"
+  description: >
+    Casa Vacanze Ianes is a cozy ground floor apartment in an independent villa,
+    tastefully renovated and equipped with air heating for quick
+    comfort, with remote control via App. Outside, a large private lawn of over 2000sqm awaits you in the shade of
+    a large fifty-year-old red beech tree, with views of the Lagorai. Peace and tranquility are
+    at home here, where you can appreciate the deep silence of the night broken,
+    in summer, only by the chirping of crickets.
+
+  highlights:
+    - "Breathtaking views of the Lagorai"
+    - "Large private lawn with barbecue"
+    - "Sunny location all day"
+    - "Perfect for families and nature lovers"
+
+# -----------------------------------------------------------------------------
+# Apartments Overview Section
+# -----------------------------------------------------------------------------
+apartments:
+  section_id: "apartment"
+  title: "The Apartment"
+  subtitle: "Two bedrooms, living room with kitchenette, and spacious outdoor areas to enjoy the mountains in total relaxation."
+
+  comparison_banner:
+    title: "Want to know more?"
+    description: "Contact us to check availability and receive all the information."
+    cta: "Contact Us"
+
+  card:
+    guests_label: "Guests"
+    size_label: "Size"
+    view_details: "Learn More"
+
+# -----------------------------------------------------------------------------
+# Comfort/Services Section
+# -----------------------------------------------------------------------------
+comfort:
+  section_id: "services"
+  title: "Comfort and Services"
+  subtitle: "Everything you need for a peaceful vacation"
+  description: >
+    The ground floor apartment offers all modern comforts: free Wi-Fi, washer
+    and dryer in the 37sqm equipment storage room, fully equipped kitchen with oven and microwave,
+    air heating controllable via App, and spacious outdoor areas with over 2000sqm of private lawn.
+
+# -----------------------------------------------------------------------------
+# Testimonials Section
+# -----------------------------------------------------------------------------
+testimonials:
+  section_id: "reviews"
+  title: "What Our Guests Say"
+  subtitle: "Rating 10 out of 10 - Exceptional"
+
+# -----------------------------------------------------------------------------
+# CTA Section
+# -----------------------------------------------------------------------------
+cta:
+  title: "Book Your Stay"
+  description: "Contact us to check availability and book your vacation in the Dolomites."
+  button: "Contact Us Now"
+
+# -----------------------------------------------------------------------------
+# SEO Metadata
+# -----------------------------------------------------------------------------
+seo:
+  title: "Casa Vacanze Ianes - Ground Floor Apartment in the Trentino Dolomites"
+  description: "Vacation apartment on the ground floor in Ziano di Fiemme in Val di Fiemme. Views of the Lagorai, 4 beds + baby cot, large private lawn. Your peaceful retreat in the Dolomites."

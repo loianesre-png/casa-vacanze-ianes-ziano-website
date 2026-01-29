@@ -6,6 +6,11 @@
 import { Icon } from 'astro-icon/components';
 import { coreServices } from '~/data/services';
 import type { Service } from '~/data/services';
+import { getApartmentsContent, getCurrentLocale } from '~/utils/content';
+
+const currentLocale = getCurrentLocale(Astro.url);
+const apartments = await getApartmentsContent(currentLocale);
+const servicesSection = apartments.sections?.services;
 
 interface Props {
   /** Optional custom services array, defaults to core services */
@@ -20,8 +25,8 @@ interface Props {
 
 const {
   services = coreServices,
-  title = 'I nostri servizi',
-  subtitle = 'Scopri tutto ciò che abbiamo pensato per rendere speciale la tua esperienza',
+  title = servicesSection?.default_title || 'I nostri servizi',
+  subtitle = servicesSection?.default_subtitle || 'Scopri tutto ciò che abbiamo pensato per rendere speciale la tua esperienza',
   columns = 3,
 } = Astro.props;
 

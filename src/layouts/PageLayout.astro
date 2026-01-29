@@ -4,6 +4,7 @@ import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
 
 import { headerData, footerData } from '~/navigation';
+import { getCommonContent, getCurrentLocale, DEFAULT_LOCALE, SUPPORTED_LOCALES } from '~/utils/content';
 import type { MetaData } from '~/types';
 
 export interface Props {
@@ -11,11 +12,71 @@ export interface Props {
 }
 
 const { metadata } = Astro.props;
+
+// Get current locale from URL query parameter
+const currentLocale = getCurrentLocale(Astro.url);
+
+// Load translations for navigation with current locale
+const common = await getCommonContent(currentLocale);
+const nav = common.navigation;
+const legal = common.legal;
+const misc = common.misc;
+
+// Create translated header data
+const translatedHeaderData = {
+  ...headerData,
+  links: headerData.links.map(link => ({
+    ...link,
+    text: getNavigationText(link.href, link.text),
+  })),
+  actions: headerData.actions.map(action => ({
+    ...action,
+    text: action.href === '/contact' || action.href === '/contatti' 
+      ? nav?.contact || action.text 
+      : action.text,
+  })),
+};
+
+// Create translated footer data
+const translatedFooterData = {
+  ...footerData,
+  links: footerData.links.map(section => ({
+    ...section,
+    title: section.title === 'Quick Links' ? (nav?.quick_links || 'Link rapidi') : 
+           section.title === 'Properties' ? (nav?.apartments || 'Appartamenti') :
+           section.title,
+    links: section.links.map(link => ({
+      ...link,
+      text: getNavigationText(link.href, link.text),
+    })),
+  })),
+  secondaryLinks: footerData.secondaryLinks.map(link => ({
+    ...link,
+    text: link.href?.includes('cookies') ? (legal?.cookies || link.text) :
+          link.href?.includes('privacy') ? (legal?.privacy_policy || link.text) :
+          link.text,
+  })),
+  footNote: footerData.footNote?.replace('All rights reserved.', misc?.all_rights_reserved || 'Tutti i diritti riservati.'),
+};
+
+// Helper function to get translated navigation text based on href
+function getNavigationText(href: string | undefined, fallback: string | undefined): string {
+  if (!href) return fallback || '';
+  
+  if (href === '/' || href === '/#') return nav?.home || fallback || 'Home';
+  if (href.includes('#about')) return nav?.about || fallback || 'Chi siamo';
+  if (href.includes('appartamenti') || href.includes('#properties')) return nav?.apartments || fallback || 'Appartamenti';
+  if (href.includes('#amenities') || href.includes('#comfort')) return nav?.amenities || nav?.comfort || fallback || 'Servizi';
+  if (href.includes('#testimonials')) return nav?.testimonials || fallback || 'Testimonianze';
+  if (href.includes('contact') || href.includes('contatti')) return nav?.contact || fallback || 'Contatti';
+  
+  return fallback || '';
+}
 ---
 
 <Layout metadata={metadata}>
   <slot name="header">
-    <Header {...headerData} isSticky />
+    <Header {...translatedHeaderData} isSticky />
   </slot>
 
   <main>
@@ -23,8 +84,48 @@ const { metadata } = Astro.props;
   </main>
 
   <slot name="footer">
-    <Footer {...footerData} />
+    <Footer {...translatedFooterData} />
   </slot>
-
-  
 </Layout>
+
+<script define:vars={{ currentLocale, DEFAULT_LOCALE, SUPPORTED_LOCALES }}>
+  // Language preference management
+  const STORAGE_KEY = 'preferred-locale';
+  
+  function initLocaleRedirect() {
+    // Get stored preference
+    const storedLocale = localStorage.getItem(STORAGE_KEY);
+    
+    // If no stored preference, set current as default and don't redirect
+    if (!storedLocale) {
+      localStorage.setItem(STORAGE_KEY, currentLocale);
+      return;
+    }
+    
+    // If stored preference matches current URL locale, we're good
+    if (storedLocale === currentLocale) {
+      return;
+    }
+    
+    // If stored preference is different, redirect to correct locale
+    if (SUPPORTED_LOCALES.includes(storedLocale)) {
+      const url = new URL(window.location.href);
+      
+      // Set or update the lang parameter
+      if (storedLocale === DEFAULT_LOCALE) {
+        // Remove lang param for default locale
+        url.searchParams.delete('lang');
+      } else {
+        url.searchParams.set('lang', storedLocale);
+      }
+      
+      // Only redirect if URL actually changed
+      if (url.href !== window.location.href) {
+        window.location.replace(url.href);
+      }
+    }
+  }
+  
+  // Run on page load
+  initLocaleRedirect();
+</script>

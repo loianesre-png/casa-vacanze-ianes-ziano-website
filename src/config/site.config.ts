@@ -25,7 +25,7 @@ const siteConfig: SiteConfig = {
     name: 'Casa Vacanze Ianes',
 
     /** Short tagline (shown in some components) */
-    tagline: 'Il tuo rifugio di pace nelle Dolomiti trentine',
+    tagline: 'Il tuo rifugio di pace nel cuore delle Dolomiti Trentine',
 
     /** Logo configuration (optional - uses text if not provided) */
     logo: {
@@ -40,13 +40,13 @@ const siteConfig: SiteConfig = {
   // ==========================================================================
   contact: {
     /** Primary contact email */
-    email: 'info@casavacanzeianes.it',
+    email: 'loianes.re@gmail.com',
 
     /** Phone number with country code */
-    phone: '+39 XXX XXX XXXX', // TODO: Add actual phone number
+    phone: '+39 349 291 4657', // TODO: Add actual phone number
 
     /** WhatsApp number (optional) */
-    // whatsapp: '+39 XXX XXX XXXX',
+    whatsapp: '+39 349 291 4657', // TODO: Add actual WhatsApp number
 
     /** Physical address */
     address: {
@@ -73,7 +73,7 @@ const siteConfig: SiteConfig = {
     // tripadvisor: 'https://tripadvisor.com/...',
     // airbnb: 'https://airbnb.com/rooms/...',
     // booking: 'https://booking.com/hotel/...',
-    vrbo: 'https://www.vrbo.com/it-it/affitto-vacanze/p11986442',
+    // vrbo: 'https://www.vrbo.com/it-it/affitto-vacanze/p11986442',
   },
 
   // ==========================================================================
@@ -88,7 +88,8 @@ const siteConfig: SiteConfig = {
 
     /** Registration codes (CIN, licenses, etc.) */
     registrationCodes: [
-      'IT022226C2S3BZ8358',
+      'CIN: IT022226C2S3BZ8358',
+      'CIR: 022226-AT015570', // TODO: Add actual CIR code
     ],
 
     /** Legal page URLs */
@@ -122,9 +123,11 @@ const siteConfig: SiteConfig = {
 
     /** Maps configuration */
     maps: {
-      provider: 'openstreetmap', // 'google' | 'openstreetmap' | 'none'
+      provider: 'google', // 'google' | 'openstreetmap' | 'none'
       // apiKey: 'YOUR_GOOGLE_MAPS_API_KEY', // Required for Google Maps
       defaultZoom: 15,
+      /** Google Maps embed URL (get from Google Maps share > embed) */
+      embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1159.1567345292046!2d11.571141527463851!3d46.29011366946691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4778635ae66f0901%3A0x1bc5e2a0a4447d6c!2sCasa%20vacanze%20Ianes%20-%20Il%20tuo%20angolo%20di%20pace%20nelle%20Dolomiti%20trentine!5e1!3m2!1sit!2sit!4v1769709112114!5m2!1sit!2sit',
     },
   },
 
@@ -139,7 +142,7 @@ const siteConfig: SiteConfig = {
     titleTemplate: '%s — Casa Vacanze Ianes',
 
     /** Default meta description */
-    description: 'Appartamento vacanze a Ziano di Fiemme nelle Dolomiti trentine. Panorama mozzafiato sul Lagorai, ampio prato privato, 5 posti letto. Il tuo rifugio di pace in Val di Fiemme.',
+    description: 'Appartamento vacanze a piano terra a Ziano di Fiemme nel cuore delle Dolomiti Trentine. Panorama mozzafiato sul Lagorai, ampio prato privato, 4 posti letto + lettino bimbo. Il tuo rifugio di pace in Val di Fiemme.',
 
     /** Site language (ISO 639-1 code) */
     language: 'it',

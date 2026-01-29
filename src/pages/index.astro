@@ -13,13 +13,17 @@ import Features3 from '~/components/widgets/Features3.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import { coreServices } from '~/data/services';
-import { getHomepageContent } from '~/utils/content';
+import { getHomepageContent, getCurrentLocale, getServicesContent } from '~/utils/content';
 import { getSiteName } from '~/config';
 
 import '@/styles/globals.css';
 
-// Load content from dictionary
-const homepage = await getHomepageContent();
+// Get current locale from URL
+const currentLocale = getCurrentLocale(Astro.url);
+
+// Load content from dictionary with current locale
+const homepage = await getHomepageContent(currentLocale);
+const services = await getServicesContent(currentLocale);
 const siteName = getSiteName();
 
 const metadata = {
@@ -55,8 +59,8 @@ const testimonials = [
   },
 ];
 
-// Map core services to Features3 items format
-const comfortItems = coreServices.map((service) => ({
+// Map core services to Features3 items format (use localized services if available)
+const comfortItems = (services?.core_services || coreServices).map((service) => ({
   title: service.title,
   description: service.description,
   icon: service.icon,

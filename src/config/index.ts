@@ -217,6 +217,7 @@ export function getMapConfig() {
     provider: site.integrations.maps?.provider ?? 'openstreetmap',
     apiKey: site.integrations.maps?.apiKey,
     zoom: site.integrations.maps?.defaultZoom ?? 15,
+    embedUrl: (site.integrations.maps as any)?.embedUrl,
   };
 }
 

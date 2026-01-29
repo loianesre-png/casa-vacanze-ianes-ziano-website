@@ -18,7 +18,7 @@ import ApartmentCTA from '~/components/appartamenti/ApartmentCTA.astro';
 
 import { getProperties, getPropertyBySlug } from '~/utils/properties';
 import { getSiteName, getSiteUrl } from '~/config';
-import { getApartmentsContent } from '~/utils/content';
+import { getApartmentsContent, getCurrentLocale } from '~/utils/content';
 
 // Generate static paths for all properties
 export async function getStaticPaths() {
@@ -37,8 +37,11 @@ if (!property) {
   return Astro.redirect('/404');
 }
 
-// Load content dictionary for apartments
-const apartmentsContent = await getApartmentsContent();
+// Get current locale from URL
+const currentLocale = getCurrentLocale(Astro.url);
+
+// Load content dictionary for apartments with locale
+const apartmentsContent = await getApartmentsContent(currentLocale);
 const siteName = getSiteName();
 const siteUrl = getSiteUrl();
 

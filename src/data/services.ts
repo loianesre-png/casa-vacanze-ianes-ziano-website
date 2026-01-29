@@ -45,15 +45,40 @@ export interface LocalRecommendation {
  */
 export const coreServices: Service[] = [
   {
-    title: 'WiFi ad alta velocità',
+    title: 'Grande prato',
     description:
-      'Rimani sempre connesso con una connessione veloce e stabile, ideale per lavorare da remoto o per lo streaming dei tuoi contenuti preferiti.',
-    icon: 'tabler:wifi',
+      'Oltre 2000mq con panorama sul Lagorai, offre un soleggiato relax all\'aperto e pranzi all\'ombra del grande faggio rosso.',
+    icon: 'tabler:tree',
   },
   {
-    title: 'Parcheggio in struttura',
-    description: 'Parcheggia comodamente la tua auto nella nostra struttura, senza pensieri e senza costi aggiuntivi.',
+    title: 'Deposito attrezzatura',
+    description:
+      'Locale chiuso di 37 mq attiguo all\'appartamento, ideale per depositare e-bike, sci e scarponi. Dispone di un frigo per bevande, un freezer e di asciugatrice.',
+    icon: 'tabler:building-warehouse',
+  },
+  {
+    title: 'Tavoli, sdraio e lettini',
+    description:
+      'Ampia dotazione di sdraio, sedie, tavoli, panche e materassini da giardino per freschi pranzi e merende estive all\'aperto.',
+    icon: 'tabler:armchair',
+  },
+  {
+    title: 'Parcheggio',
+    description:
+      'Parcheggia comodamente la tua auto nella nostra struttura, senza pensieri e senza costi aggiuntivi. Sono disponibili 2 posti auto all\'ingresso della proprietà.',
     icon: 'tabler:parking-circle',
+  },
+  {
+    title: 'Parcheggio ridotta mobilità',
+    description:
+      'Possibilità di parcheggiare a pochi metri dall\'ingresso dell\'appartamento per ospiti con mobilità ridotta.',
+    icon: 'tabler:wheelchair',
+  },
+  {
+    title: 'Wi-Fi gratuito',
+    description:
+      'Wi-Fi gratuito disponibile per gli ospiti.',
+    icon: 'tabler:wifi',
   },
   {
     title: 'Check-in flessibile a partire dalle 16:00',
@@ -62,39 +87,22 @@ export const coreServices: Service[] = [
     icon: 'tabler:door-enter',
   },
   {
-    title: 'Riscaldamento e raffrescamento a pavimento',
-    description: 'Il massimo del comfort termico in ogni stagione, per un ambiente sempre alla temperatura ideale.',
+    title: 'Riscaldamento ad aria',
+    description:
+      'Riscaldamento ad aria per un rapido comfort, con possibilità di controllo remoto da App.',
     icon: 'tabler:air-conditioning',
   },
   {
     title: 'Cucina ben attrezzata',
     description:
-      'Ogni appartamento dispone di una cucina completa, dotata di tutto il necessario per preparare e gustare i tuoi pasti preferiti.',
+      'L\'appartamento a piano terra dispone di una cucina completa, dotata di tutto il necessario per preparare e gustare i tuoi pasti preferiti.',
     icon: 'tabler:tools-kitchen',
-  },
-  {
-    title: 'Balcone privato',
-    description:
-      "Goditi la vista e l'aria fresca dal balcone del tuo appartamento, perfetto per un momento di relax all'aperto.",
-    icon: 'tabler:building-bridge-2',
   },
   {
     title: 'Biancheria e asciugamani inclusi',
     description:
       'Troverai tutto ciò di cui hai bisogno per un soggiorno confortevole, con biancheria e asciugamani forniti per ogni ospite.',
     icon: 'tabler:bed',
-  },
-  {
-    title: 'Ascensore',
-    description:
-      "L'ascensore offre un accesso facile e comodo a tutti gli appartamenti, garantendo un soggiorno senza ostacoli per famiglie, coppie e ospiti con mobilità ridotta.",
-    icon: 'tabler:elevator',
-  },
-  {
-    title: 'Cassaforte',
-    description:
-      'Per la tua sicurezza, ogni appartamento è dotato di una cassaforte per riporre i tuoi oggetti di valore in tutta tranquillità.',
-    icon: 'tabler:lock',
   },
 ];
 

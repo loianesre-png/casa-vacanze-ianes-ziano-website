@@ -1,5 +1,5 @@
 # =============================================================================
-# Common UI Text (Italian)
+# Common UI Text (English)
 # =============================================================================
 # Shared text elements used across multiple components
 # Edit these values to customize your site's common UI elements
@@ -13,145 +13,145 @@
 # Buttons
 # -----------------------------------------------------------------------------
 buttons:
-  contact: "Contattaci"
-  book_now: "Prenota ora"
-  learn_more: "Scopri di più"
-  view_all: "Vedi tutti"
-  send: "Invia"
-  submit: "Invia Richiesta"
-  submitting: "Invio in corso..."
-  back: "Indietro"
-  close: "Chiudi"
-  discover: "Scopri"
-  explore: "Esplora"
+  contact: "Contact Us"
+  book_now: "Book Now"
+  learn_more: "Learn More"
+  view_all: "View All"
+  send: "Send"
+  submit: "Submit Request"
+  submitting: "Submitting..."
+  back: "Back"
+  close: "Close"
+  discover: "Discover"
+  explore: "Explore"
 
 # -----------------------------------------------------------------------------
 # Navigation
 # -----------------------------------------------------------------------------
 navigation:
   home: "Home"
-  about: "Chi siamo"
-  apartments: "Appartamenti"
-  all_apartments: "Tutti gli appartamenti"
-  comfort: "I nostri comfort"
-  testimonials: "Testimonianze"
-  contact: "Contatti"
-  properties: "Proprietà"
-  quick_links: "Link rapidi"
-  our_properties: "I nostri appartamenti"
-  amenities: "Servizi"
+  about: "About Us"
+  apartments: "Apartments"
+  all_apartments: "All Apartments"
+  comfort: "Our Amenities"
+  testimonials: "Testimonials"
+  contact: "Contact"
+  properties: "Properties"
+  quick_links: "Quick Links"
+  our_properties: "Our Apartments"
+  amenities: "Amenities"
 
 # -----------------------------------------------------------------------------
 # Labels
 # -----------------------------------------------------------------------------
 labels:
-  guests: "Ospiti"
-  bedrooms: "Camere"
-  bathrooms: "Bagni"
-  size: "Superficie"
+  guests: "Guests"
+  bedrooms: "Bedrooms"
+  bathrooms: "Bathrooms"
+  size: "Size"
   sqm: "m²"
   sqft: "sq ft"
-  from: "da"
-  per_night: "a notte"
+  from: "from"
+  per_night: "per night"
   check_in: "Check-in"
   check_out: "Check-out"
-  min_stay: "Soggiorno minimo"
-  nights: "notti"
-  wifi_included: "WiFi incluso"
-  ideal_for: "Ideale per"
-  parking_included: "Parcheggio incluso"
-  features: "Caratteristiche"
-  amenities: "Servizi"
-  capacity: "Capacità"
-  guest_singular: "ospite"
-  guests_plural: "ospiti"
+  min_stay: "Minimum stay"
+  nights: "nights"
+  wifi_included: "WiFi included"
+  ideal_for: "Ideal for"
+  parking_included: "Parking included"
+  features: "Features"
+  amenities: "Amenities"
+  capacity: "Capacity"
+  guest_singular: "guest"
+  guests_plural: "guests"
 
 # -----------------------------------------------------------------------------
 # Form Labels
 # -----------------------------------------------------------------------------
 form:
-  name: "Nome Completo"
+  name: "Full Name"
   email: "Email"
-  phone: "Telefono"
-  guests_count: "Numero di Ospiti"
-  check_in_date: "Data di Check-in"
-  check_out_date: "Data di Check-out"
-  message: "Messaggio"
-  special_requests: "Richieste Speciali"
-  select_date: "Seleziona data"
+  phone: "Phone"
+  guests_count: "Number of Guests"
+  check_in_date: "Check-in Date"
+  check_out_date: "Check-out Date"
+  message: "Message"
+  special_requests: "Special Requests"
+  select_date: "Select date"
 
 # -----------------------------------------------------------------------------
 # Form Placeholders
 # -----------------------------------------------------------------------------
 placeholders:
-  name: "Mario Rossi"
-  email: "mario.rossi@example.com"
-  phone: "+39 XXX XXX XXXX"
+  name: "John Smith"
+  email: "john.smith@example.com"
+  phone: "+1 XXX XXX XXXX"
   guests: "2"
-  message: "Eventuali richieste speciali..."
+  message: "Any special requests..."
 
 # -----------------------------------------------------------------------------
 # Messages
 # -----------------------------------------------------------------------------
 messages:
   success:
-    form_sent: "Richiesta inviata con successo!"
-    booking_confirmed: "Prenotazione confermata!"
+    form_sent: "Request sent successfully!"
+    booking_confirmed: "Booking confirmed!"
   error:
-    generic: "Si è verificato un errore. Riprova più tardi."
-    form_error: "Errore nell'invio della richiesta"
-    required_field: "Questo campo è obbligatorio"
-    invalid_email: "Inserisci un indirizzo email valido"
-    invalid_date: "Seleziona una data valida"
+    generic: "An error occurred. Please try again later."
+    form_error: "Error sending request"
+    required_field: "This field is required"
+    invalid_email: "Please enter a valid email address"
+    invalid_date: "Please select a valid date"
   info:
-    form_disabled: "Il modulo di contatto non è attualmente disponibile. Contattaci direttamente via email."
+    form_disabled: "The contact form is currently unavailable. Please contact us directly via email."
 
 # -----------------------------------------------------------------------------
 # Date Formats
 # -----------------------------------------------------------------------------
 date:
-  locale: "it-IT"
+  locale: "en-US"
   format:
-    short: "DD/MM/YYYY"
-    long: "dddd, D MMMM YYYY"
+    short: "MM/DD/YYYY"
+    long: "dddd, MMMM D, YYYY"
     month_year: "MMMM YYYY"
 
 # -----------------------------------------------------------------------------
 # Misc
 # -----------------------------------------------------------------------------
 misc:
-  scroll_to_discover: "Scorri per scoprire"
-  all_rights_reserved: "Tutti i diritti riservati"
-  cin_codes_label: "Codici CIN"
-  loading: "Caricamento..."
-  no_results: "Nessun risultato"
+  scroll_to_discover: "Scroll to discover"
+  all_rights_reserved: "All rights reserved"
+  cin_codes_label: "CIN Codes"
+  loading: "Loading..."
+  no_results: "No results"
 
 # -----------------------------------------------------------------------------
 # Legal
 # -----------------------------------------------------------------------------
 legal:
-  cookies: "Cookie"
-  privacy_policy: "Informativa Privacy"
-  terms: "Termini e Condizioni"
+  cookies: "Cookies"
+  privacy_policy: "Privacy Policy"
+  terms: "Terms and Conditions"
 
 # -----------------------------------------------------------------------------
 # Accessibility Labels
 # -----------------------------------------------------------------------------
 accessibility:
-  previous: "Precedente"
-  next: "Successivo"
-  close: "Chiudi"
-  open_fullscreen: "Apri a schermo intero"
-  view_fullscreen: "Visualizza a schermo intero"
-  image_counter: "di"
-  play: "Avvia"
-  stop: "Ferma"
-  main_navigation: "Navigazione principale"
-  rss_feed: "Feed RSS"
+  previous: "Previous"
+  next: "Next"
+  close: "Close"
+  open_fullscreen: "Open fullscreen"
+  view_fullscreen: "View fullscreen"
+  image_counter: "of"
+  play: "Play"
+  stop: "Stop"
+  main_navigation: "Main navigation"
+  rss_feed: "RSS Feed"
 
 # -----------------------------------------------------------------------------
 # Breadcrumbs
 # -----------------------------------------------------------------------------
 breadcrumbs:
   home: "Home"
-  apartments: "Appartamenti"
+  apartments: "Apartments"

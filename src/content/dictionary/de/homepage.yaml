@@ -1,0 +1,114 @@
+# =============================================================================
+# Homepage Content - Casa Vacanze Ianes (German)
+# =============================================================================
+# All text content for the homepage
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Hero Section
+# -----------------------------------------------------------------------------
+hero:
+  badge: "Trentino Dolomiten"
+
+  title: "Willkommen bei"
+  title_highlight: "Casa Vacanze Ianes"
+
+  subtitle: "Ihre friedliche Oase im Herzen der Trentiner Dolomiten"
+  subtitle_secondary: "im Zentrum der Austragungsorte der Olympischen Winterspiele Milano-Cortina 2026"
+
+  description: >
+    Wunderschöne Erdgeschosswohnung in der Gegend von Mosenè, der sonnigsten im Tal,
+    mit atemberaubendem Blick auf die Lagorai-Bergkette. Umgeben von Grün,
+    von der Sonne von Morgen bis Abend geküsst, perfekt für alle, die Ruhe
+    und viel Platz im Freien suchen.
+
+  cta_primary: "Wohnung entdecken"
+  cta_secondary: "Kontakt"
+
+  features:
+    - title: "Ziano di Fiemme, Ortsteil Mosenè - Val di Fiemme"
+      subtitle: "Nur wenige Schritte von den Dolomiten"
+      icon: "location"
+    - title: "4 Betten + Babybett"
+      subtitle: "Ideal für Familien"
+      icon: "check"
+    - title: "Flexibler Check-in"
+      subtitle: "Ab 16:00 Uhr"
+      icon: "clock"
+
+  scroll_text: "Scrollen zum Entdecken"
+
+  image_alt: "Außenansicht von Casa Vacanze Ianes mit den Dolomiten im Hintergrund"
+
+# -----------------------------------------------------------------------------
+# About Section
+# -----------------------------------------------------------------------------
+about:
+  section_id: "about"
+  title: "Ihr Rückzugsort zwischen Natur und Komfort"
+  description: >
+    Casa Vacanze Ianes ist eine gemütliche Erdgeschosswohnung in einer freistehenden Villa,
+    geschmackvoll renoviert und mit Luftheizung für schnellen
+    Komfort ausgestattet, mit Fernsteuerung per App. Draußen erwartet Sie ein großer privater Rasen von über 2000qm im Schatten
+    einer großen fünfzig Jahre alten Rotbuche, mit Blick auf den Lagorai. Ruhe und Gelassenheit sind
+    hier zu Hause, wo Sie die tiefe Stille der Nacht genießen können, die
+    im Sommer nur vom Zirpen der Grillen unterbrochen wird.
+
+  highlights:
+    - "Atemberaubender Blick auf den Lagorai"
+    - "Großer privater Rasen mit Grill"
+    - "Sonnige Lage den ganzen Tag"
+    - "Perfekt für Familien und Naturliebhaber"
+
+# -----------------------------------------------------------------------------
+# Apartments Overview Section
+# -----------------------------------------------------------------------------
+apartments:
+  section_id: "apartment"
+  title: "Die Wohnung"
+  subtitle: "Zwei Schlafzimmer, Wohnzimmer mit Küchenzeile und großzügige Außenbereiche, um die Berge in völliger Entspannung zu genießen."
+
+  comparison_banner:
+    title: "Möchten Sie mehr erfahren?"
+    description: "Kontaktieren Sie uns, um die Verfügbarkeit zu prüfen und alle Informationen zu erhalten."
+    cta: "Kontakt"
+
+  card:
+    guests_label: "Gäste"
+    size_label: "Größe"
+    view_details: "Mehr erfahren"
+
+# -----------------------------------------------------------------------------
+# Comfort/Services Section
+# -----------------------------------------------------------------------------
+comfort:
+  section_id: "services"
+  title: "Komfort und Service"
+  subtitle: "Alles, was Sie für einen erholsamen Urlaub brauchen"
+  description: >
+    Die Erdgeschosswohnung bietet allen modernen Komfort: kostenloses WLAN, Waschmaschine
+    und Trockner im 37qm großen Abstellraum, voll ausgestattete Küche mit Backofen und Mikrowelle,
+    Luftheizung per App steuerbar und großzügige Außenbereiche mit über 2000qm privatem Rasen.
+
+# -----------------------------------------------------------------------------
+# Testimonials Section
+# -----------------------------------------------------------------------------
+testimonials:
+  section_id: "reviews"
+  title: "Was unsere Gäste sagen"
+  subtitle: "Bewertung 10 von 10 - Außergewöhnlich"
+
+# -----------------------------------------------------------------------------
+# CTA Section
+# -----------------------------------------------------------------------------
+cta:
+  title: "Buchen Sie Ihren Aufenthalt"
+  description: "Kontaktieren Sie uns, um die Verfügbarkeit zu prüfen und Ihren Urlaub in den Dolomiten zu buchen."
+  button: "Jetzt kontaktieren"
+
+# -----------------------------------------------------------------------------
+# SEO Metadata
+# -----------------------------------------------------------------------------
+seo:
+  title: "Casa Vacanze Ianes - Erdgeschosswohnung in den Trentiner Dolomiten"
+  description: "Ferienwohnung im Erdgeschoss in Ziano di Fiemme im Val di Fiemme. Blick auf den Lagorai, 4 Betten + Babybett, großer privater Rasen. Ihr friedlicher Rückzugsort in den Dolomiten."

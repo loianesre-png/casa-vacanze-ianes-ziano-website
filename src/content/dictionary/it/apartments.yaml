@@ -26,7 +26,9 @@ labels:
 # -----------------------------------------------------------------------------
 sections:
   overview:
-    title: "Panoramica"
+    title: "L'appartamento"
+    apartment_view_alt: "Vista dell'appartamento"
+    quick_comparison: "Confronto rapido"
   rooms:
     title: "Le stanze dell'appartamento"
     subtitle: "Scopri ogni ambiente"
@@ -43,12 +45,44 @@ sections:
     subtitle: "Tutto il comfort di cui hai bisogno"
     core_services_title: "Servizi base"
     premium_services_title: "Servizi premium"
+    default_title: "I nostri servizi"
+    default_subtitle: "Scopri tutto ciò che abbiamo pensato per rendere speciale la tua esperienza"
   reviews:
     title: "Cosa dicono i nostri ospiti"
     subtitle: "Recensioni verificate"
   benefits:
     title: "Vantaggi esclusivi"
     subtitle: "Trentino Guest Card inclusa"
+    main_title: "Le nostre convenzioni e consigli"
+    main_subtitle: "Approfitta dei vantaggi esclusivi e scopri le meraviglie del Trentino"
+    guest_card_included: "Inclusa nel soggiorno"
+    guest_card_description: "Durante il tuo soggiorno riceverai la Trentino Guest Card, che ti permetterà di accedere gratuitamente o a prezzo ridotto a tantissime attività, musei, trasporti pubblici e impianti di risalita in tutto il Trentino."
+    guest_card_banner: "La Guest Card è inclusa gratuitamente in tutti i nostri appartamenti"
+    nearby_title: "Dintorni e attrazioni"
+    nearby_subtitle: "Cosa visitare nei dintorni"
+    nearby_description: "Immerso nel cuore pulsante delle Dolomiti trentine, il nostro appartamento è il punto di partenza ideale per esplorare la Val di Fiemme e le sue meraviglie."
+    ask_recommendations: "Chiedi consigli personalizzati"
+    privileged_position_title: "Posizione Privilegiata"
+    privileged_position_description: "Il nostro appartamento gode di una posizione strategica che ti permette di vivere il meglio del Trentino."
+    location_features:
+      - icon: "🌿"
+        title: "Relax e Passeggiate"
+        description: "Godetevi piacevoli e tranquille passeggiate immersi nella natura."
+      - icon: "⛷️"
+        title: "Sport Invernali"
+        description: "Piste da sci e impianti di risalita a pochi minuti."
+      - icon: "🚴"
+        title: "Ciclismo"
+        description: "Percorsi ciclabili per tutti i livelli."
+      - icon: "🏔️"
+        title: "Escursioni"
+        description: "Sentieri panoramici nelle Dolomiti."
+      - icon: "🍷"
+        title: "Enogastronomia"
+        description: "Cantine e ristoranti tipici trentini."
+      - icon: "♨️"
+        title: "Benessere"
+        description: "Terme e centri benessere nelle vicinanze."
   cta:
     title: "Prenota {name}"
     description: "Hai trovato l'appartamento perfetto per il tuo soggiorno? Contattaci per verificare la disponibilità e ricevere un preventivo personalizzato."
@@ -99,6 +133,16 @@ guest_card:
   cta: "Scopri i vantaggi"
 
 # -----------------------------------------------------------------------------
+# Recommendation Types
+# -----------------------------------------------------------------------------
+recommendation_types:
+  attraction: "Attrazione"
+  restaurant: "Ristorante"
+  activity: "Attività"
+  transport: "Trasporti"
+  other: "Servizio"
+
+# -----------------------------------------------------------------------------
 # Local Recommendations
 # -----------------------------------------------------------------------------
 recommendations:
@@ -128,7 +172,7 @@ nearby:
   title: "Cosa c'è nei dintorni"
   subtitle: "Scopri le attrazioni della Val di Fiemme"
   attractions:
-    - name: "Val di Fiemme"
+    - name: "Ziano di Fiemme, frazione Mosenè - Val di Fiemme"
       distance: "1 min a piedi"
     - name: "Parco Bici kart Panchià"
       distance: "2 min in auto"

@@ -5,10 +5,11 @@ import Button from '~/components/ui/Button.astro';
 import Image from '~/components/common/Image.astro';
 import type { Testimonials as Props } from '~/types';
 import { getSocialLinks } from '~/config';
-import { getCommonContent } from '~/utils/content';
+import { getCommonContent, getCurrentLocale } from '~/utils/content';
 
 const socialLinks = getSocialLinks();
-const common = await getCommonContent();
+const currentLocale = getCurrentLocale(Astro.url);
+const common = await getCommonContent(currentLocale);
 
 // Get reviews URL from social links (booking.com link)
 const reviewsUrl = socialLinks?.booking;

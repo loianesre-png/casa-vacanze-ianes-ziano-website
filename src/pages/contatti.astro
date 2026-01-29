@@ -11,12 +11,15 @@ import CalendarForm from '~/components/widgets/CalendarForm';
 import Features2 from '~/components/widgets/Features2.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 
-import { getContactContent, getCommonContent } from '~/utils/content';
+import { getContactContent, getCommonContent, getCurrentLocale } from '~/utils/content';
 import { getContactEmail, getFormattedAddress, getSiteName } from '~/config';
 
-// Load content from dictionary
-const contactContent = await getContactContent();
-const common = await getCommonContent();
+// Get current locale from URL
+const currentLocale = getCurrentLocale(Astro.url);
+
+// Load content from dictionary with current locale
+const contactContent = await getContactContent(currentLocale);
+const common = await getCommonContent(currentLocale);
 
 // Get contact info from config
 const email = getContactEmail();
