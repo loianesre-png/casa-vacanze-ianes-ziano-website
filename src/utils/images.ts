@@ -1,6 +1,8 @@
 import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import type { OpenGraph } from '@astrolib/seo';
+import type { Props as SeoProps } from 'astro-seo';
+
+type OpenGraph = NonNullable<SeoProps['openGraph']>;
 
 const load = async function () {
   let images: Record<string, () => Promise<unknown>> | undefined = undefined;

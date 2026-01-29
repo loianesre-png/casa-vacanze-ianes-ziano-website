@@ -1,8 +1,8 @@
 ---
 import merge from 'lodash.merge';
-import { AstroSeo } from '@astrolib/seo';
+import { SEO } from 'astro-seo';
 
-import type { Props as AstroSeoProps } from '@astrolib/seo';
+import type { Props as AstroSeoProps } from 'astro-seo';
 
 import { SITE, METADATA, I18N } from 'astrowind:config';
 import type { MetaData } from '~/types';
@@ -32,13 +32,6 @@ const seoProps: AstroSeoProps = merge(
     noindex: true,
     nofollow: true,
     description: undefined,
-    openGraph: {
-      url: canonical,
-      site_name: SITE?.name,
-      images: [],
-      locale: I18N?.language || 'en',
-      type: 'website',
-    },
     twitter: {
       cardType: openGraph?.images?.length ? 'summary_large_image' : 'summary',
     },
@@ -49,7 +42,6 @@ const seoProps: AstroSeoProps = merge(
     noindex: typeof METADATA?.robots?.index !== 'undefined' ? !METADATA.robots.index : undefined,
     nofollow: typeof METADATA?.robots?.follow !== 'undefined' ? !METADATA.robots.follow : undefined,
     description: METADATA?.description,
-    openGraph: METADATA?.openGraph,
     twitter: METADATA?.twitter,
   },
   {
@@ -59,10 +51,41 @@ const seoProps: AstroSeoProps = merge(
     noindex: typeof robots?.index !== 'undefined' ? !robots.index : undefined,
     nofollow: typeof robots?.follow !== 'undefined' ? !robots.follow : undefined,
     description: description,
-    openGraph: { url: canonical, ...openGraph },
     twitter: twitter,
   }
 );
+
+// Build openGraph only if we have the required properties (title, type, image)
+const finalTitle = seoProps.title || METADATA?.title?.default || SITE?.name || '';
+const ogImages = await adaptOpenGraphImages(
+  { images: openGraph?.images || METADATA?.openGraph?.images || [] },
+  Astro.site
+);
+const hasRequiredOgProps = finalTitle && ogImages?.images?.length;
+
+const finalOpenGraph = hasRequiredOgProps
+  ? {
+      basic: {
+        title: openGraph?.title || finalTitle,
+        type: openGraph?.type || METADATA?.openGraph?.type || 'website',
+        image: ogImages.images?.[0]?.url || '',
+        url: canonical,
+      },
+      optional: {
+        siteName: SITE?.name,
+        locale: I18N?.language || 'en',
+        description: seoProps.description,
+      },
+      image: ogImages.images?.[0]
+        ? {
+            url: ogImages.images[0].url,
+            width: ogImages.images[0].width,
+            height: ogImages.images[0].height,
+            alt: openGraph?.title || finalTitle,
+          }
+        : undefined,
+    }
+  : undefined;
 ---
 
-<AstroSeo {...{ ...seoProps, openGraph: await adaptOpenGraphImages(seoProps?.openGraph, Astro.site) }} />
+<SEO {...seoProps} openGraph={finalOpenGraph} />
