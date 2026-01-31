@@ -112,11 +112,15 @@ export interface LegalConfig {
  */
 export interface ContactFormConfig {
   /** Form submission provider */
-  provider: 'webhook' | 'email' | 'none';
-  /** Webhook URL for form submissions */
+  provider: 'webhook' | 'mailgun' | 'email' | 'none';
+  /** Webhook URL for form submissions (when provider is 'webhook') */
   webhookUrl?: string;
   /** Email address to receive form submissions */
   emailTo?: string;
+  /** Sender email address (when provider is 'mailgun') */
+  emailFrom?: string;
+  /** Email subject line template */
+  emailSubject?: string;
   /** Enable/disable the contact form */
   enabled: boolean;
 }

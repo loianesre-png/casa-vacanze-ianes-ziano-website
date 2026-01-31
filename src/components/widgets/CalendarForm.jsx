@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { getContactFormWebhook, isContactFormEnabled } from "@/config";
+import { isContactFormEnabled } from "@/config";
 
 /**
  * CalendarForm Component
@@ -20,8 +20,7 @@ import { getContactFormWebhook, isContactFormEnabled } from "@/config";
  * @param {Object} props.content - Form content/labels (from content dictionary)
  */
 const CalendarForm = ({ content = {} }) => {
-  // Get webhook URL from centralized config
-  const webhookUrl = getContactFormWebhook();
+  // Check if form is enabled from centralized config
   const formEnabled = isContactFormEnabled();
 
   // Default content with Italian fallbacks
@@ -80,11 +79,7 @@ const CalendarForm = ({ content = {} }) => {
     };
 
     try {
-      if (!webhookUrl) {
-        throw new Error('Contact form webhook URL not configured');
-      }
-
-      const response = await fetch(webhookUrl, {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -92,8 +87,10 @@ const CalendarForm = ({ content = {} }) => {
         body: JSON.stringify(bookingData)
       });
 
-      if (!response.ok) {
-        throw new Error(labels.errorMessage);
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || labels.errorMessage);
       }
 
       alert(labels.successMessage);

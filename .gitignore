@@ -23,3 +23,10 @@ pnpm-debug.log*
 pnpm-lock.yaml
 
 .astro
+
+# local development files
+.vscode/
+.idea/
+*.local.js
+*.local.ts
+package-lock.json

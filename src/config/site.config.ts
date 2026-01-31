@@ -108,11 +108,12 @@ const siteConfig: SiteConfig = {
     /** Contact form configuration */
     contactForm: {
       enabled: true,
-      provider: 'webhook',
-      webhookUrl: 'https://your-webhook-url.com/endpoint',
-      // Alternative: send to email
-      // provider: 'email',
-      // emailTo: 'contact@example.com',
+      provider: 'mailgun',
+      emailTo: 'Lorenzo Ianes <loianes.re@gmail.com>', // Your email to receive form submissions
+      emailFrom: 'Mailgun Sandbox <postmaster@sandbox7ecaa7eca9244b7b8041e3d96a2abfa6.mailgun.org', // Must match Mailgun domain
+      emailSubject: 'Nuova Richiesta di Prenotazione - Casa Vacanze Ianes Ziano di Fiemme',
+      // Mailgun credentials are read from environment variables:
+      // MAILGUN_API_KEY and MAILGUN_DOMAIN
     },
 
     /** Analytics configuration */

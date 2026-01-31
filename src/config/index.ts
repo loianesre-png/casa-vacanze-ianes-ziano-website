@@ -202,6 +202,26 @@ export function isContactFormEnabled(): boolean {
 }
 
 /**
+ * Get contact form provider type
+ */
+export function getContactFormProvider(): string {
+  return site.integrations.contactForm.provider;
+}
+
+/**
+ * Get Mailgun email configuration
+ * Returns email settings for the contact form when using Mailgun provider
+ */
+export function getMailgunConfig() {
+  const form = site.integrations.contactForm;
+  return {
+    emailTo: form.emailTo ?? site.contact.email,
+    emailFrom: form.emailFrom ?? `${site.identity.name} <noreply@${site.url.replace(/^https?:\/\//, '')}>`,
+    emailSubject: form.emailSubject ?? `Nuova Richiesta - ${site.identity.name}`,
+  };
+}
+
+/**
  * Get Google Analytics ID
  */
 export function getGoogleAnalyticsId(): string | undefined {
