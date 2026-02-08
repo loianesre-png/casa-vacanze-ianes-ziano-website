@@ -3,13 +3,6 @@ title: 'Privacy Policy'
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
-{/*
-  ============================================================================
-  TEMPLATE NOTE: Update this privacy policy with your actual information
-  Replace all [PLACEHOLDER] values with your real data before going live.
-  ============================================================================
-*/}
-
 **Ultimo aggiornamento:** 29 Gennaio 2026
 
 ## 1. INTRODUZIONE
@@ -105,7 +98,7 @@ I dati personali possono essere trasferiti verso paesi dell'Unione Europea o ver
 
 ## 10. COOKIE E TECNOLOGIE SIMILI
 
-Il nostro sito utilizza cookie e tecnologie simili per migliorare l'esperienza dell'utente, analizzare il traffico e personalizzare i contenuti. Per maggiori informazioni sui cookie utilizzati, consultare la nostra Cookie Policy [INSERIRE LINK ALLA COOKIE POLICY].
+Il nostro sito utilizza cookie e tecnologie simili per migliorare l'esperienza dell'utente, analizzare il traffico e personalizzare i contenuti. Per maggiori informazioni sui cookie utilizzati, consultare la nostra [Cookie Policy](/cookies).
 
 ## 11. DIRITTI DEGLI INTERESSATI
 

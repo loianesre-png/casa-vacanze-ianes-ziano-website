@@ -173,77 +173,98 @@ export const trentinoGuestCardBenefits: Benefit[] = [
 ];
 
 /**
- * Local recommendations and attractions
+ * Local recommendations and attractions near Ziano di Fiemme
  */
 export const localRecommendations: LocalRecommendation[] = [
   {
-    name: 'Centro storico di Trento',
+    name: 'Predazzo – Ski Center Latemar',
     type: 'attraction',
-    description:
-      'Bellissimo centro medievale con Piazza Duomo, Castello del Buonconsiglio e vie storiche ricche di negozi e caffè.',
-    distance: '5 km',
+    description: 'Comprensorio sciistico e centro per sport invernali ed estivi ai piedi del Latemar.',
+    distance: '4 km – 8 min.',
   },
   {
-    name: 'MUSE - Museo delle Scienze',
+    name: 'Cavalese – Alpe Cermis',
     type: 'attraction',
-    description:
-      'Museo interattivo e innovativo progettato da Renzo Piano, perfetto per famiglie e appassionati di scienza.',
-    distance: '6 km',
+    description: 'Skiarea e punto panoramico raggiungibile in funivia, escursioni e sci.',
+    distance: '8 km – 10 min.',
   },
   {
-    name: 'Monte Bondone',
+    name: 'Pampeago – Obereggen',
     type: 'attraction',
-    description:
-      "L'altopiano di Trento, ideale per escursioni estive, sci invernale e panorami mozzafiato. Raggiungibile in 30 minuti.",
-    distance: '15 km',
+    description: 'Comprensorio sciistico con piste per tutti i livelli e panorami sulle Dolomiti.',
+    distance: '12 km – 15 min.',
   },
   {
-    name: 'Lago di Garda',
+    name: 'Moena',
     type: 'attraction',
-    description:
-      'Il più grande lago italiano, con borghi pittoreschi, spiagge e attività acquatiche. Torbole e Riva del Garda a 40 minuti.',
-    distance: '35 km',
+    description: 'La "Fata delle Dolomiti", pittoresco borgo alpino con passeggiate e gastronomia tipica.',
+    distance: '13 km – 16 min.',
   },
   {
-    name: 'Dolomiti di Brenta',
+    name: 'Bellamonte – Skiarea Alpe Lusia',
     type: 'attraction',
-    description:
-      'Patrimonio UNESCO, ideale per trekking, arrampicata e fotografia naturalistica. Madonna di Campiglio a 60 km.',
-    distance: '60 km',
+    description: 'Area sciistica e escursionistica con vista sulle Pale di San Martino.',
+    distance: '14 km – 18 min.',
   },
   {
-    name: 'Mercatini di Natale',
+    name: 'Passo Rolle – Le Pale di San Martino',
     type: 'attraction',
-    description:
-      'Durante il periodo natalizio, Trento ospita famosi mercatini con artigianato locale, gastronomia e atmosfera magica.',
-    distance: '5 km',
+    description: 'Passo dolomitico con vista spettacolare sulle Pale di San Martino, ideale per escursioni e sci.',
+    distance: '25 km – 35 min.',
   },
   {
-    name: 'Orrido di Ponte Alto',
+    name: 'Terme QC Spa – Vigo di Fassa',
+    type: 'activity',
+    description: 'Centro termale e benessere immerso nelle Dolomiti per momenti di relax.',
+    distance: '26 min. in auto',
+  },
+  {
+    name: 'Canazei',
     type: 'attraction',
-    description:
-      'Spettacolare gola naturale scavata dal torrente Fersina, con passerelle panoramiche e cascate. Perfetto per passeggiate.',
-    distance: '3 km',
+    description: 'Rinomata località turistica nel cuore delle Dolomiti, punto di partenza per la Sella Ronda.',
+    distance: '30 km – 35 min.',
   },
   {
-    name: 'Fermate autobus urbano',
-    type: 'transport',
-    description:
-      'Fermata autobus nelle vicinanze con collegamenti frequenti per il centro di Trento e località limitrofe.',
-    distance: '200 m',
+    name: 'Centro acquatico Dolaondes – Canazei',
+    type: 'activity',
+    description: 'Centro acquatico con piscine, scivoli e area benessere per tutta la famiglia.',
+    distance: '30 km – 35 min.',
   },
   {
-    name: 'Supermercato',
-    type: 'other',
-    description: 'Supermercati e negozi di alimentari nelle immediate vicinanze per la spesa quotidiana.',
-    distance: '500 m',
+    name: 'Campitello di Fassa – Val Duron – Sella Ronda',
+    type: 'attraction',
+    description: 'Punto di accesso alla Val Duron e al circuito sciistico Sella Ronda.',
+    distance: '32 km – 38 min.',
   },
   {
-    name: 'Ristoranti tipici trentini',
-    type: 'restaurant',
-    description:
-      'Numerosi ristoranti nella zona che servono specialità trentine come canederli, polenta, carne salada e piatti a base di selvaggina.',
-    distance: '1-3 km',
+    name: 'Passo Fedaia con la Marmolada',
+    type: 'attraction',
+    description: 'Passo ai piedi della Regina delle Dolomiti, la Marmolada, con il suo ghiacciaio e il lago.',
+    distance: '42 km – 52 min.',
+  },
+  {
+    name: 'Passo Sella – Gruppo del Sella e Sassolungo',
+    type: 'attraction',
+    description: 'Passo iconico delle Dolomiti con vista sul Gruppo del Sella e Sassolungo, paradiso per alpinisti e ciclisti.',
+    distance: '44 km – 55 min.',
+  },
+  {
+    name: 'Bolzano',
+    type: 'attraction',
+    description: 'I portici, il centro storico, piazza Walther ed il museo di Oetzi.',
+    distance: '44 km – 55 min.',
+  },
+  {
+    name: 'Piscina Cavalese',
+    type: 'activity',
+    description: 'Piscina pubblica ideale per famiglie e momenti di svago.',
+    distance: '8 km – 10 min.',
+  },
+  {
+    name: 'Trento',
+    type: 'attraction',
+    description: 'Il Castello del Buonconsiglio, il Duomo e la piazza, il MuSe.',
+    distance: '60 km – 65 min.',
   },
 ];
 

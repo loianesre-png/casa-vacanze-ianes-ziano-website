@@ -29,9 +29,9 @@ const siteConfig: SiteConfig = {
 
     /** Logo configuration (optional - uses text if not provided) */
     logo: {
-      // src: 'images/logo.png',  // Uncomment and add your logo
+      src: 'images/logo.png',
       alt: 'Casa Vacanze Ianes',
-      useText: true, // Set to false when using an image logo
+      useText: false,
     },
   },
 

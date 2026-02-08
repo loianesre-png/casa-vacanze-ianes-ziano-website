@@ -97,6 +97,25 @@ testimonials:
   section_id: "reviews"
   title: "Was unsere Gäste sagen"
   subtitle: "Bewertung 10 von 10 - Außergewöhnlich"
+  reviews:
+    - name: "Beppe"
+      country: "Italien"
+      text: "Lorenzo war viel mehr als nur ein Gastgeber. Er hat uns wie Freunde empfangen und uns mit wertvollen touristischen und organisatorischen Tipps unterstützt. Die Unterkunft war in perfektem Zustand und es fehlte an absolut nichts. Immer erreichbar, mit größter Diskretion und für jedes Anliegen verfügbar. Ein echter Mehrwert für unseren Urlaub."
+    - name: "Dietrich"
+      country: "Deutschland"
+      text: "Es ist sehr schwierig, ein unabhängiges Ferienhaus mit Garten in ruhiger Lage in den Dolomiten zu finden – Lorenzos Haus hat diese Qualitäten. Außerdem sehr sonnig – im Vergleich zu den dicht bebauten und oft überfüllten Dörfern im Val di Fassa. Die Küche ist sehr gut ausgestattet. Lorenzos Aufmerksamkeit für seine Gäste ist ausgezeichnet. Der Preis für diese Unterkunftsqualität ist sehr günstig."
+    - name: "Sara"
+      country: "Italien"
+      text: "Wir hatten eine wunderbare Zeit mit unserem kleinen Kind. Das Haus war komplett ausgestattet und ordentlich. Super ruhige Lage mit einem Garten zum Entspannen oder Spielen. Das Zentrum ist leicht zu Fuß erreichbar. Lorenzo war super hilfsbereit und gab uns nützliche Tipps. Perfektes Haus."
+    - name: "Audrey"
+      country: "Malta"
+      text: "Wir haben unseren Aufenthalt in Ziano sehr genossen. Wir reisten mit zwei kleinen Kindern und das Haus war sehr komfortabel für unsere Familie. Es war nur ein paar Minuten vom Latemar Snowpark entfernt, ideal für Kinder. Ein Supermarkt liegt nur wenige Gehminuten vom Haus entfernt. Lorenzo war sehr hilfsbereit und hat uns in jeder Hinsicht entgegengekommen. Ich werde die Dolomiten auf jeden Fall wieder besuchen."
+    - name: "Elvera"
+      country: "Niederlande"
+      text: "Wir hatten einen fantastischen Urlaub im Val di Fiemme. Lorenzos Haus ist sehr gemütlich und liegt an einem wunderschönen, ruhigen Ort in den Bergen. Lorenzo ist ein fantastischer Gastgeber und hat uns unzählige wunderbare Tipps für Aktivitäten in der Umgebung gegeben. Sehr empfehlenswert!"
+    - name: "Eugen"
+      country: "Belgien"
+      text: "Lorenzos Haus ist die perfekte Unterkunft für einen Aufenthalt in Ziano. Als Super-Gastgeber hat er sein Bestes getan, um uns einen komfortablen und angenehmen Aufenthalt zu ermöglichen. Das Haus selbst ist gemütlich und komfortabel, mit allen Annehmlichkeiten, die man braucht. Der Blick vom Haus ist absolut atemberaubend und ruhig – der perfekte Ort zum Entspannen und Abschalten."
 
 # -----------------------------------------------------------------------------
 # CTA Section

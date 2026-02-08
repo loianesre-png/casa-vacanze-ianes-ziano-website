@@ -1,5 +1,5 @@
 site:
-  name: Your Property Name
+  name: Casa Vacanze Ianes
   site: 'https://yourdomain.com'
   base: '/'
   trailingSlash: false
@@ -9,14 +9,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: Your Property Name
-    template: '%s — Your Property Name'
+    default: Casa Vacanze Ianes
+    template: '%s — Casa Vacanze Ianes'
   description: "Vacation rentals for your perfect getaway"
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: Your Property Name
+    site_name: Casa Vacanze Ianes
     images:
       - url: '~/assets/images/default.png'
         width: 1200

@@ -359,6 +359,11 @@ export interface HomepageContent {
     section_id: string;
     title: string;
     subtitle: string;
+    reviews?: Array<{
+      name: string;
+      country: string;
+      text: string;
+    }>;
   };
   cta: {
     title: string;
@@ -516,6 +521,11 @@ export interface ApartmentsContent {
     default?: Array<{
       text: string;
       name: string;
+    }>;
+    reviews?: Array<{
+      name: string;
+      country: string;
+      text: string;
     }>;
   };
 }
