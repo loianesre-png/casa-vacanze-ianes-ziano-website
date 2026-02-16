@@ -12,7 +12,7 @@ import Features2 from '~/components/widgets/Features2.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 
 import { getContactContent, getCommonContent, getCurrentLocale } from '~/utils/content';
-import { getContactEmail, getFormattedAddress, getSiteName } from '~/config';
+import { getContactEmail, getFormattedAddress, getSiteName, getContactPhone, getWhatsApp } from '~/config';
 
 // Get current locale from URL
 const currentLocale = getCurrentLocale(Astro.url);
@@ -25,6 +25,8 @@ const common = await getCommonContent(currentLocale);
 const email = getContactEmail();
 const address = getFormattedAddress();
 const siteName = getSiteName();
+const phone = getContactPhone();
+const whatsapp = getWhatsApp();
 
 // Build form content props for CalendarForm
 const formContent = {
@@ -80,6 +82,16 @@ const metadata = {
         description: address,
         icon: 'tabler:map-pin',
       },
+      ...(phone ? [{
+        title: 'Telefono',
+        description: `<a href="tel:${phone.replace(/\s/g, '')}" class="text-primary hover:text-accent transition-all duration-400">${phone}</a>`,
+        icon: 'tabler:phone',
+      }] : []),
+      ...(whatsapp ? [{
+        title: 'WhatsApp',
+        description: `<a href="https://wa.me/${whatsapp.replace(/[\s+]/g, '')}" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-accent transition-all duration-400">${whatsapp}</a>`,
+        icon: 'tabler:brand-whatsapp',
+      }] : []),
     ]}
   />
 </Layout>

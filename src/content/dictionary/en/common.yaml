@@ -31,14 +31,14 @@ buttons:
 navigation:
   home: "Home"
   about: "About Us"
-  apartments: "Apartments"
-  all_apartments: "All Apartments"
+  apartments: "Apartment"
+  all_apartments: "The Apartment"
   comfort: "Our Amenities"
-  testimonials: "Testimonials"
+  testimonials: "What Our Guests Say"
   contact: "Contact"
   properties: "Properties"
   quick_links: "Quick Links"
-  our_properties: "Our Apartments"
+  our_properties: "Our Apartment"
   amenities: "Amenities"
 
 # -----------------------------------------------------------------------------
@@ -154,4 +154,4 @@ accessibility:
 # -----------------------------------------------------------------------------
 breadcrumbs:
   home: "Home"
-  apartments: "Apartments"
+  apartments: "Apartment"

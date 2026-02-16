@@ -142,41 +142,41 @@ const recommendationTypes = apartments.recommendation_types;
     <div class="mt-12 bg-gradient-to-r from-muted-foreground to-foreground rounded p-8 text-white shadow-lg">
       <h3 class="font-heading text-2xl md:text-3xl font-medium mb-4">{benefits?.privileged_position_title || 'Posizione Privilegiata'}</h3>
       <p class="text-lg max-w-4xl mx-auto leading-relaxed opacity-90 mb-6">
-        {benefits?.privileged_position_description || "Immerso nel cuore pulsante delle Dolomiti, il nostro appartamento a piano terra a Ziano di Fiemme – frazione Mosenè, offre una posizione privilegiata che unisce il fascino della montagna a un'infinità di esperienze a portata di mano. Più che un semplice alloggio, è il vostro punto di partenza ideale per un'avventura a 360 gradi."}
+        {benefits?.privileged_position_description || "Immerso nel cuore pulsante delle Dolomiti, il nostro appartamento a Ziano di Fiemme – frazione Mosenè, offre una posizione privilegiata che unisce il fascino della montagna estiva ed invernale con un'infinità di esperienze a portata di mano. Più che un semplice alloggio, è il vostro punto di partenza ideale per un'avventura a 360 gradi:"}
       </p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm opacity-90">
         {benefits?.location_features && benefits.location_features.length > 0 ? (
           benefits.location_features.map((feature) => (
-            <div class="bg-white/10 rounded p-4">
+            <div class="bg-white/10 rounded p-5">
               <h4 class="font-medium mb-2">{feature.icon} {feature.title}</h4>
               <p>{feature.description}</p>
             </div>
           ))
         ) : (
           <>
-            <div class="bg-white/10 rounded p-4">
+            <div class="bg-white/10 rounded p-5">
               <h4 class="font-medium mb-2">🌿 Relax e Passeggiate</h4>
-              <p>Godetevi piacevoli e tranquille passeggiate direttamente partendo da casa, verso il paese o sui pendii soprastanti o verso Predazzo, immergendovi nell'atmosfera autentica della valle.</p>
+              <p>Dimenticate l'auto per un attimo: godetevi piacevoli e tranquille passeggiate direttamente partendo da casa, immergendovi nell'atmosfera autentica della valle.</p>
             </div>
-            <div class="bg-white/10 rounded p-4">
-              <h4 class="font-medium mb-2">🌲 Paradiso Naturale</h4>
-              <p>Siete a un passo dal maestoso Parco Naturale di Paneveggio - Pale di San Martino, una riserva di biodiversità dove la natura regna sovrana e i cervi sono di casa.</p>
+            <div class="bg-white/10 rounded p-5">
+              <h4 class="font-medium mb-2">🌲 Paradiso Naturale Incontaminato</h4>
+              <p>Parco Naturale di Paneveggio - Pale di San Martino, una riserva di biodiversità dove la natura regna sovrana e i cervi sono di casa.</p>
             </div>
-            <div class="bg-white/10 rounded p-4">
-              <h4 class="font-medium mb-2">🗺️ Territorio Senza Confini</h4>
-              <p>Esplorate la Val di Fassa, il Passo San Pellegrino o il Torrente Travignolo. Tutta la Val di Fiemme fino al panoramico Passo Lavazzè.</p>
+            <div class="bg-white/10 rounded p-5">
+              <h4 class="font-medium mb-2">🗺️ Un Territorio Senza Confini</h4>
+              <p>La posizione strategica apre le porte a scenari infiniti. Val di Fassa, la valle del Passo San Pellegrino, valle del Travignolo. Tutta la Val di Fiemme è a vostra disposizione, fino al panoramico Passo Lavazzè.</p>
             </div>
-            <div class="bg-white/10 rounded p-4">
-              <h4 class="font-medium mb-2">⛰️ Paradiso per Alpinisti</h4>
-              <p>Raggiungete Latemar, Catinaccio, Sella, Sassolungo, Marmolada, Monzoni e il selvaggio Lagorai, visibile ogni mattina dalla finestra della vostra camera.</p>
+            <div class="bg-white/10 rounded p-5">
+              <h4 class="font-medium mb-2">⛰️ Un Paradiso per gli Alpinisti</h4>
+              <p>Passeggiate, escursioni, ferrate ed arrampicate nei più famosi gruppi dolomitici quali: Latemar, Catinaccio, Sella, Sassolungo, Marmolada, Monzoni e naturalmente il selvaggio Lagorai proprio di fronte a casa.</p>
             </div>
-            <div class="bg-white/10 rounded p-4">
-              <h4 class="font-medium mb-2">🇦🇹 Oltre il Confine</h4>
-              <p>Concedetevi un'escursione "fuori porta" per un rapido assaggio di Alto Adige/Südtirol: Aldino, Trodena e Nova Ponente.</p>
+            <div class="bg-white/10 rounded p-5">
+              <h4 class="font-medium mb-2">🇦🇹 Oltre il Confine Regionale</h4>
+              <p>Concedetevi un'escursione 'fuori porta' per un rapido assaggio di Alto Adige/Südtirol, esplorando i territori confinanti di Aldino, Trodena e Nova Ponente.</p>
             </div>
-            <div class="bg-white/10 rounded p-4">
-              <h4 class="font-medium mb-2">❤️ Ogni Giorno un'Avventura</h4>
-              <p>Qui, ogni giorno è un invito a esplorare, rilassarsi e innamorarsi delle Dolomiti, in una posizione che rende tutto incredibilmente vicino.</p>
+            <div class="bg-white/10 rounded p-5">
+              <h4 class="font-medium mb-2">⛷️ Sport Invernali</h4>
+              <p>La patria della Marcialonga con meravigliose piste da fondo. Piste da sci per discesisti a pochi minuti. Qui, ogni giorno è un invito a esplorare, rilassarsi e innamorarsi delle Dolomiti.</p>
             </div>
           </>
         )}

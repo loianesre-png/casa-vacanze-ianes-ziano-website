@@ -19,7 +19,7 @@ export const headerData = {
       href: '/#about',
     },
     {
-      text: 'Appartamenti',
+      text: 'Appartamento',
       href: '/appartamenti/casa-vacanze-ianes',
     },
     {
@@ -27,7 +27,7 @@ export const headerData = {
       href: '/#amenities',
     },
     {
-      text: 'Testimonianze',
+      text: 'Dicono di noi',
       href: '/#testimonials',
     },
   ],
@@ -46,16 +46,16 @@ export const footerData = {
       links: [
         { text: 'Home', href: '/' },
         { text: 'Chi siamo', href: '/#about' },
-        { text: 'Appartamenti', href: '/#properties' },
+        { text: 'Appartamento', href: '/#properties' },
         { text: 'Servizi', href: '/#amenities' },
-        { text: 'Testimonianze', href: '/#testimonials' },
+        { text: 'Dicono di noi', href: '/#testimonials' },
         { text: 'Contatti', href: '/contact' },
       ],
     },
     {
-      title: 'Appartamenti',
+      title: 'Appartamento',
       links: [
-        { text: 'I nostri appartamenti', href: '/appartamenti/casa-vacanze-ianes' },
+        { text: 'Il nostro appartamento', href: '/appartamenti/casa-vacanze-ianes' },
       ],
     },
   ],

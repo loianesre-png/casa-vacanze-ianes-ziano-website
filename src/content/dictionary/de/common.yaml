@@ -26,14 +26,14 @@ buttons:
 navigation:
   home: "Startseite"
   about: "Über uns"
-  apartments: "Wohnungen"
-  all_apartments: "Alle Wohnungen"
+  apartments: "Wohnung"
+  all_apartments: "Die Wohnung"
   comfort: "Ausstattung"
-  testimonials: "Bewertungen"
+  testimonials: "Was unsere Gäste sagen"
   contact: "Kontakt"
   properties: "Unterkünfte"
   quick_links: "Schnelllinks"
-  our_properties: "Unsere Wohnungen"
+  our_properties: "Unsere Wohnung"
   amenities: "Annehmlichkeiten"
 
 # -----------------------------------------------------------------------------
@@ -149,4 +149,4 @@ accessibility:
 # -----------------------------------------------------------------------------
 breadcrumbs:
   home: "Startseite"
-  apartments: "Wohnungen"
+  apartments: "Wohnung"

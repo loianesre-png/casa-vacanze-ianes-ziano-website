@@ -6,7 +6,7 @@
  * Uses config for email and content dictionary for labels
  */
 import { Icon } from 'astro-icon/components';
-import { getContactEmail } from '~/config';
+import { getContactEmail, getContactPhone, getWhatsApp } from '~/config';
 import { getApartmentsContent, getCurrentLocale } from '~/utils/content';
 
 interface Props {
@@ -23,6 +23,8 @@ interface Props {
 const currentLocale = getCurrentLocale(Astro.url);
 const apartmentsContent = await getApartmentsContent(currentLocale);
 const contactEmail = getContactEmail();
+const contactPhone = getContactPhone();
+const contactWhatsApp = getWhatsApp();
 const ctaContent = apartmentsContent.sections?.cta;
 
 const {
@@ -118,13 +120,31 @@ const {
         </div>
       </div>
 
-      <!-- Contact Info -->
-      <!-- <div class="mt-8 text-white/80 text-sm">
-        <p>
-          Oppure chiamaci al
-          <a href="tel:+39XXXXXXXXX" class="text-primary font-medium hover:text-accent transition-all duration-400">+39 XXX XXX XXXX</a>
-        </p>
-      </div> -->
+      <!-- Contact Info - Phone & WhatsApp -->
+      {(contactPhone || contactWhatsApp) && (
+        <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
+          {contactPhone && (
+            <a
+              href={`tel:${contactPhone.replace(/\s/g, '')}`}
+              class="inline-flex items-center gap-2 text-white/90 hover:text-primary transition-all duration-400"
+            >
+              <Icon name="tabler:phone" class="w-5 h-5" />
+              <span>{contactPhone}</span>
+            </a>
+          )}
+          {contactWhatsApp && (
+            <a
+              href={`https://wa.me/${contactWhatsApp.replace(/[\s+]/g, '')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 text-white/90 hover:text-primary transition-all duration-400"
+            >
+              <Icon name="tabler:brand-whatsapp" class="w-5 h-5" />
+              <span>WhatsApp: {contactWhatsApp}</span>
+            </a>
+          )}
+        </div>
+      )}
     </div>
   </div>
 </section>
