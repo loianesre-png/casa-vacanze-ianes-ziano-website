@@ -194,6 +194,8 @@ export const POST: APIRoute = async ({ request }) => {
     const mg = mailgun.client({
       username: 'api',
       key: apiKey,
+      // mg.fiemmenelcuore.it is hosted in Mailgun's EU region.
+      url: 'https://api.eu.mailgun.net',
     });
 
     // Send email
